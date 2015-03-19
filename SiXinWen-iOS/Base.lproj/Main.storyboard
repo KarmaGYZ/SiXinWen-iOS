@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vky-gV-cOK">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tmp" id="vky-gV-cOK">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vky-gV-cOK" id="QmC-U5-ZhS">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -31,11 +31,11 @@
             </objects>
             <point key="canvasLocation" x="2173" y="690"/>
         </scene>
-        <!--asdf-->
+        <!--消息-->
         <scene sceneID="Mks-RU-OQn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SKw-QW-Eqj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="asdf" id="lb6-lT-lHH"/>
+                    <tabBarItem key="tabBarItem" title="消息" id="lb6-lT-lHH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HJH-vj-GPM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -61,9 +61,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="8UE-3o-vUb" kind="relationship" relationship="viewControllers" id="4aF-oJ-Rp8"/>
                         <segue destination="SKw-QW-Eqj" kind="relationship" relationship="viewControllers" id="X6F-sJ-1Lg"/>
                         <segue destination="GZL-28-Nr8" kind="relationship" relationship="viewControllers" id="TOa-yZ-m3k"/>
-                        <segue destination="8UE-3o-vUb" kind="relationship" relationship="viewControllers" id="4aF-oJ-Rp8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlP-1O-7IK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="1571" y="2254"/>
         </scene>
-        <!--Main View Controller-->
+        <!--撕新闻-->
         <scene sceneID="KzX-bI-pIM">
             <objects>
                 <tableViewController id="tMz-XQ-IJ4" customClass="MainViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,7 +164,7 @@
                             <outlet property="delegate" destination="tMz-XQ-IJ4" id="ha8-fv-GlG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CQZ-Jh-Ufj">
+                    <navigationItem key="navigationItem" title="撕新闻" id="CQZ-Jh-Ufj">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="NhJ-T9-sDa">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -196,11 +196,11 @@
             </objects>
             <point key="canvasLocation" x="4143" y="1430"/>
         </scene>
-        <!--Item-->
+        <!--我-->
         <scene sceneID="mEz-4t-niF">
             <objects>
                 <navigationController id="GZL-28-Nr8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hhs-jD-Xab"/>
+                    <tabBarItem key="tabBarItem" title="我" id="Hhs-jD-Xab"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CpD-zW-Hx5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,11 +213,11 @@
             </objects>
             <point key="canvasLocation" x="165" y="2254"/>
         </scene>
-        <!--News-->
+        <!--首页-->
         <scene sceneID="49O-sb-7gO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8UE-3o-vUb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" id="Zpt-sp-UL5"/>
+                    <tabBarItem key="tabBarItem" title="首页" id="Zpt-sp-UL5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQi-fW-aV6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
