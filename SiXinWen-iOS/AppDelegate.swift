@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+var account = Account(user: User(ID: 1, username: "mattdipasquale", firstName: "Matt", lastName: "Di Pasquale"))
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        ChatsViewController()
         return true
     }
 
