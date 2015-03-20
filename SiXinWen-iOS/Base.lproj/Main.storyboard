@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--消息-->
@@ -22,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DeZ-HV-fd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1150" y="670"/>
+            <point key="canvasLocation" x="1150" y="690"/>
         </scene>
         <!--消息-->
         <scene sceneID="iEm-2m-PZM">
@@ -52,7 +53,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cph-EN-lh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2004" y="690"/>
+            <point key="canvasLocation" x="2140" y="690"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="csk-J4-NVh">
@@ -99,7 +100,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPK-KL-CRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571" y="2254"/>
+            <point key="canvasLocation" x="1150" y="2254"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="KzX-bI-pIM">
@@ -115,15 +116,15 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3HD-3u-WP0" id="0GP-Pr-3lK">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
-                                            <rect key="frame" x="8" y="8" width="80" height="80"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
+                                            <rect key="frame" x="8" y="6.5" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="6Ie-jQ-Vb9"/>
                                                 <constraint firstAttribute="height" constant="80" id="SBo-Ga-oLB"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
-                                            <rect key="frame" x="96" y="8" width="496" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
+                                            <rect key="frame" x="96" y="7" width="496" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="XOm-NG-Xg8"/>
                                                 <constraint firstAttribute="width" constant="496" id="gWa-Yz-gwq"/>
@@ -132,8 +133,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
-                                            <rect key="frame" x="96" y="31" width="814" height="49"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
+                                            <rect key="frame" x="96" y="36" width="496" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="49" id="4Hj-TP-Cw0"/>
                                                 <constraint firstAttribute="width" constant="496" id="I8l-83-Jfq"/>
@@ -146,17 +147,29 @@
                                     <constraints>
                                         <constraint firstItem="1JT-YF-Hr0" firstAttribute="top" secondItem="0GP-Pr-3lK" secondAttribute="top" constant="7" id="4De-Vq-jiS"/>
                                         <constraint firstItem="kdU-0C-OY3" firstAttribute="leading" secondItem="fbU-bh-dtu" secondAttribute="trailing" constant="8" id="9Vx-7g-0Ox"/>
+                                        <constraint firstAttribute="centerY" secondItem="fbU-bh-dtu" secondAttribute="centerY" id="DM4-Xn-tc1"/>
                                         <constraint firstItem="kdU-0C-OY3" firstAttribute="top" secondItem="1JT-YF-Hr0" secondAttribute="bottom" constant="8" id="Gfi-PG-ZwC"/>
+                                        <constraint firstItem="kdU-0C-OY3" firstAttribute="bottom" secondItem="0GP-Pr-3lK" secondAttribute="bottomMargin" id="IsL-oF-oWB"/>
                                         <constraint firstAttribute="bottom" secondItem="fbU-bh-dtu" secondAttribute="bottom" constant="6" id="JG6-a1-dTI"/>
                                         <constraint firstItem="fbU-bh-dtu" firstAttribute="leading" secondItem="0GP-Pr-3lK" secondAttribute="leading" constant="8" id="K0V-NO-RkC"/>
                                         <constraint firstItem="kdU-0C-OY3" firstAttribute="leading" secondItem="fbU-bh-dtu" secondAttribute="trailing" constant="8" id="WNG-Cs-hID"/>
+                                        <constraint firstItem="kdU-0C-OY3" firstAttribute="trailing" secondItem="0GP-Pr-3lK" secondAttribute="trailingMargin" id="XXv-GM-Plr"/>
                                         <constraint firstItem="fbU-bh-dtu" firstAttribute="top" secondItem="0GP-Pr-3lK" secondAttribute="top" constant="7" id="aEq-XY-sj6"/>
                                         <constraint firstAttribute="trailing" secondItem="1JT-YF-Hr0" secondAttribute="trailing" constant="8" id="lZM-Rz-3ef"/>
                                         <constraint firstItem="kdU-0C-OY3" firstAttribute="top" secondItem="1JT-YF-Hr0" secondAttribute="bottom" constant="8" id="nNX-pN-Cff"/>
                                         <constraint firstAttribute="bottom" secondItem="kdU-0C-OY3" secondAttribute="bottom" constant="8" id="nit-2q-F3W"/>
                                         <constraint firstAttribute="trailing" secondItem="kdU-0C-OY3" secondAttribute="trailing" constant="8" id="qPn-Cl-7zK"/>
+                                        <constraint firstItem="kdU-0C-OY3" firstAttribute="leading" secondItem="fbU-bh-dtu" secondAttribute="trailing" constant="8" id="sX3-wV-OaH"/>
                                         <constraint firstItem="1JT-YF-Hr0" firstAttribute="leading" secondItem="fbU-bh-dtu" secondAttribute="trailing" constant="8" id="wc9-iS-bRu"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="JG6-a1-dTI"/>
+                                            <exclude reference="aEq-XY-sj6"/>
+                                            <exclude reference="4De-Vq-jiS"/>
+                                            <exclude reference="nit-2q-F3W"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="Xov-hG-2Up" kind="show" id="Ivx-e4-9ju"/>
@@ -184,7 +197,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjd-o8-wD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2173" y="1429"/>
+            <point key="canvasLocation" x="2140" y="1466"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8yQ-L2-DeS">
@@ -203,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UmY-L6-QRu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4143" y="1430"/>
+            <point key="canvasLocation" x="4115" y="1466"/>
         </scene>
         <!--我-->
         <scene sceneID="mEz-4t-niF">
@@ -247,7 +260,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBr-vM-mKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="1430"/>
+            <point key="canvasLocation" x="1150" y="1466"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xqb-3B-cS9">
@@ -265,7 +278,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zev-NH-5EH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3113" y="1440"/>
+            <point key="canvasLocation" x="3105" y="1466"/>
         </scene>
     </scenes>
     <resources>
