@@ -158,9 +158,6 @@
                                         <constraint firstItem="1JT-YF-Hr0" firstAttribute="leading" secondItem="fbU-bh-dtu" secondAttribute="trailing" constant="8" id="wc9-iS-bRu"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Xov-hG-2Up" kind="show" id="Ivx-e4-9ju"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -181,6 +178,9 @@
                             </state>
                         </button>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Xov-hG-2Up" kind="show" id="MaQ-LE-HEo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjd-o8-wD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
