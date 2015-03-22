@@ -34,5 +34,7 @@ class UserCell: UITableViewCell {
         self.addSubview(pictureImageView)
         self.addSubview(nameLabel)
         self.addSubview(usernameLabel)
+
+        
     }
 }
