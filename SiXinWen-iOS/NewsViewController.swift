@@ -12,7 +12,8 @@ class NewsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+       self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,6 +44,14 @@ class NewsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as UITableViewCell
         
         return cell
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        
+       self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
 
     /*
