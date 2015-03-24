@@ -185,11 +185,8 @@
                                             <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                                             <color key="progressTintColor" red="1" green="0.0" blue="0.14858211595246473" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="trackTintColor" red="0.0" green="0.83320033664264415" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <variation key="widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="0.0" y="93.5" width="400" height="2"/>
-                                            </variation>
                                         </progressView>
-                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
+                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
                                             <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <accessibility key="accessibilityConfiguration">
@@ -297,7 +294,7 @@
                         <viewControllerLayoutGuide type="bottom" id="viL-pQ-OST"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ojD-k3-cyG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-6Y-3Np" userLabel="Chat View">
@@ -443,6 +440,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SaL-jx-mur"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1TU-0G-V3Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -460,6 +458,7 @@
                         <viewControllerLayoutGuide type="bottom" id="e2y-kf-egi"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fYM-sK-ZBa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

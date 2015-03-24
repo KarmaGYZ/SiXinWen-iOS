@@ -27,7 +27,6 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as UITableViewCell
-        
         return cell
     }
 
