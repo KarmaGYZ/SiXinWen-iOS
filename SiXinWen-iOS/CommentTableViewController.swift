@@ -1,19 +1,18 @@
 //
-//  NewsViewController.swift
+//  CommentTableViewController.swift
 //  SiXinWen-iOS
 //
-//  Created by Karma Guo on 3/22/15.
-//  Copyright (c) 2015 SiXinWen. All rights reserved.
+//  Created by walker on 15/3/25.
+//  Copyright (c) 2015年 SiXinWen. All rights reserved.
 //
 
 import UIKit
 
-class NewsViewController: UITableViewController {
+class CommentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,42 +36,36 @@ class NewsViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 5
+        return 2
     }
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as UITableViewCell
+        
+        var cell = UITableViewCell()
+    
+        switch indexPath.row {
+    
+        case 0:cell = tableView.dequeueReusableCellWithIdentifier("TitleCell") as UITableViewCell
+            
+             break
+            
+        
+        case 1:cell = tableView.dequeueReusableCellWithIdentifier("SegmentCell") as UITableViewCell
+            
+        
+             break
+            
+        default: cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
+            
+             break
+        }
         
         return cell
-    }
-    
-    func refresh(sender:AnyObject)
-    {
-        // Updating your data here...
         
-       self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-    }
-
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.hidden = true
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
-    }
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
