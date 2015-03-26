@@ -13,6 +13,7 @@
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
 		31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */; };
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
+<<<<<<< HEAD
 		84CAF2131AC43679001070B4 /* aComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2101AC43679001070B4 /* aComment.swift */; };
 		84CAF2141AC43679001070B4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2111AC43679001070B4 /* Comment.swift */; };
 		84CAF2151AC43679001070B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2121AC43679001070B4 /* User.swift */; };
@@ -20,6 +21,12 @@
 		84CAF21F1AC436AA001070B4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21C1AC436AA001070B4 /* CommentCell.swift */; };
 		84CAF2201AC436AA001070B4 /* CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21D1AC436AA001070B4 /* CommentTableView.swift */; };
 		84CAF2211AC436AA001070B4 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21E1AC436AA001070B4 /* CommentTableViewController.swift */; };
+=======
+		31F4E5D81AC3EB340046FCD8 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E5D71AC3EB340046FCD8 /* NewsItem.swift */; };
+		DE3CEA341AC30A90006140AA /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */; };
+		DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA351AC30ABA006140AA /* CommentTableView.swift */; };
+		DE3CEA381AC30B19006140AA /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA371AC30B19006140AA /* CommentCell.swift */; };
+>>>>>>> origin/master
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +50,7 @@
 		31C6F8DA1ABA702F00DFF5EE /* SiXinWen-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SiXinWen-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8DF1ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		84CAF2101AC43679001070B4 /* aComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aComment.swift; sourceTree = "<group>"; };
 		84CAF2111AC43679001070B4 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		84CAF2121AC43679001070B4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -50,6 +58,12 @@
 		84CAF21C1AC436AA001070B4 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		84CAF21D1AC436AA001070B4 /* CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableView.swift; sourceTree = "<group>"; };
 		84CAF21E1AC436AA001070B4 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+=======
+		31F4E5D71AC3EB340046FCD8 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+		DE3CEA351AC30ABA006140AA /* CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableView.swift; sourceTree = "<group>"; };
+		DE3CEA371AC30B19006140AA /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+>>>>>>> origin/master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +117,7 @@
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
 				31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */,
 				31C6F8C51ABA702F00DFF5EE /* Supporting Files */,
+				31F4E5D71AC3EB340046FCD8 /* NewsItem.swift */,
 			);
 			path = "SiXinWen-iOS";
 			sourceTree = "<group>";
@@ -232,6 +247,7 @@
 				TargetAttributes = {
 					31C6F8C11ABA702F00DFF5EE = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = F499E6K8ZV;
 					};
 					31C6F8D91ABA702F00DFF5EE = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -283,7 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				84CAF2211AC436AA001070B4 /* CommentTableViewController.swift in Sources */,
+=======
+				DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */,
+				31F4E5D81AC3EB340046FCD8 /* NewsItem.swift in Sources */,
+>>>>>>> origin/master
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
 				84CAF2141AC43679001070B4 /* Comment.swift in Sources */,
@@ -416,6 +437,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
