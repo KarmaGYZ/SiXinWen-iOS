@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D01ABA702F00DFF5EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
 		31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */; };
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
-		DE3CEA341AC30A90006140AA /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */; };
-		DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA351AC30ABA006140AA /* CommentTableView.swift */; };
-		DE3CEA381AC30B19006140AA /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA371AC30B19006140AA /* CommentCell.swift */; };
+		84CAF2131AC43679001070B4 /* aComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2101AC43679001070B4 /* aComment.swift */; };
+		84CAF2141AC43679001070B4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2111AC43679001070B4 /* Comment.swift */; };
+		84CAF2151AC43679001070B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2121AC43679001070B4 /* User.swift */; };
+		84CAF2191AC43697001070B4 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF2181AC43697001070B4 /* NewsViewController.swift */; };
+		84CAF21F1AC436AA001070B4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21C1AC436AA001070B4 /* CommentCell.swift */; };
+		84CAF2201AC436AA001070B4 /* CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21D1AC436AA001070B4 /* CommentTableView.swift */; };
+		84CAF2211AC436AA001070B4 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAF21E1AC436AA001070B4 /* CommentTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,9 +43,13 @@
 		31C6F8DA1ABA702F00DFF5EE /* SiXinWen-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SiXinWen-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8DF1ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
-		DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
-		DE3CEA351AC30ABA006140AA /* CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableView.swift; sourceTree = "<group>"; };
-		DE3CEA371AC30B19006140AA /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		84CAF2101AC43679001070B4 /* aComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aComment.swift; sourceTree = "<group>"; };
+		84CAF2111AC43679001070B4 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		84CAF2121AC43679001070B4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84CAF2181AC43697001070B4 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		84CAF21C1AC436AA001070B4 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		84CAF21D1AC436AA001070B4 /* CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableView.swift; sourceTree = "<group>"; };
+		84CAF21E1AC436AA001070B4 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,15 +91,17 @@
 		31C6F8C41ABA702F00DFF5EE /* SiXinWen-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				84CAF21B1AC436AA001070B4 /* comment */,
+				84CAF2221AC436BA001070B4 /* news */,
+				84CAF20F1AC43679001070B4 /* Models */,
+				84CAF2161AC4368D001070B4 /* 我 */,
+				84CAF21A1AC436A1001070B4 /* notification */,
+				84CAF2171AC43697001070B4 /* 首页 */,
 				31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */,
-				3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */,
 				31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */,
-				DE3CEA371AC30B19006140AA /* CommentCell.swift */,
 				31C6F8D11ABA702F00DFF5EE /* Images.xcassets */,
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
 				31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */,
-				DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */,
-				DE3CEA351AC30ABA006140AA /* CommentTableView.swift */,
 				31C6F8C51ABA702F00DFF5EE /* Supporting Files */,
 			);
 			path = "SiXinWen-iOS";
@@ -122,6 +130,57 @@
 				31C6F8DF1ABA702F00DFF5EE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84CAF20F1AC43679001070B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF2101AC43679001070B4 /* aComment.swift */,
+				84CAF2111AC43679001070B4 /* Comment.swift */,
+				84CAF2121AC43679001070B4 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84CAF2161AC4368D001070B4 /* 我 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "我";
+			sourceTree = "<group>";
+		};
+		84CAF2171AC43697001070B4 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF2181AC43697001070B4 /* NewsViewController.swift */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
+		84CAF21A1AC436A1001070B4 /* notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = notification;
+			sourceTree = "<group>";
+		};
+		84CAF21B1AC436AA001070B4 /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				84CAF21C1AC436AA001070B4 /* CommentCell.swift */,
+				84CAF21D1AC436AA001070B4 /* CommentTableView.swift */,
+				84CAF21E1AC436AA001070B4 /* CommentTableViewController.swift */,
+			);
+			name = comment;
+			path = Models/comment;
+			sourceTree = "<group>";
+		};
+		84CAF2221AC436BA001070B4 /* news */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = news;
+			path = Models/comment/news;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,12 +283,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */,
+				84CAF2211AC436AA001070B4 /* CommentTableViewController.swift in Sources */,
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
-				DE3CEA341AC30A90006140AA /* CommentTableViewController.swift in Sources */,
-				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
-				DE3CEA381AC30B19006140AA /* CommentCell.swift in Sources */,
+				84CAF2141AC43679001070B4 /* Comment.swift in Sources */,
+				84CAF2151AC43679001070B4 /* User.swift in Sources */,
+				84CAF2191AC43697001070B4 /* NewsViewController.swift in Sources */,
+				84CAF2131AC43679001070B4 /* aComment.swift in Sources */,
+				84CAF21F1AC436AA001070B4 /* CommentCell.swift in Sources */,
+				84CAF2201AC436AA001070B4 /* CommentTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
