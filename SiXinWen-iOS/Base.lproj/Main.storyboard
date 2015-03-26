@@ -6,11 +6,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--通知-->
+        <!--消息-->
         <scene sceneID="Mks-RU-OQn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SKw-QW-Eqj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通知" id="lb6-lT-lHH"/>
+                    <tabBarItem key="tabBarItem" title="消息" id="lb6-lT-lHH"/>
                     <toolbarItems/>
                     <keyCommands/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HJH-vj-GPM">
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="1150" y="690"/>
         </scene>
-        <!--notification-->
+        <!--消息-->
         <scene sceneID="iEm-2m-PZM">
             <objects>
-                <tableViewController id="g1Z-fC-1ef" userLabel="notification" sceneMemberID="viewController">
+                <tableViewController id="g1Z-fC-1ef" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="22" sectionFooterHeight="22" id="jL2-Lk-Jsq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="2140" y="690"/>
         </scene>
-        <!--start-->
+        <!--Tab Bar Controller-->
         <scene sceneID="csk-J4-NVh">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jjc-vE-ycb" userLabel="start" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jjc-vE-ycb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="d7b-85-AMv">
@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="165" y="690"/>
         </scene>
-        <!--me-->
+        <!--Root View Controller-->
         <scene sceneID="gyE-Pd-P5k">
             <objects>
-                <tableViewController id="hOk-AE-Ymh" userLabel="me" sceneMemberID="viewController">
+                <tableViewController id="hOk-AE-Ymh" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7bB-mN-aEQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,21 +103,16 @@
             </objects>
             <point key="canvasLocation" x="1150" y="2254"/>
         </scene>
-        <!--homepage-->
+        <!--News View Controller-->
         <scene sceneID="KzX-bI-pIM">
             <objects>
-<<<<<<< HEAD
-                <tableViewController id="tMz-XQ-IJ4" userLabel="homepage" customClass="NewsViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" id="KpC-d2-NmY">
-=======
                 <tableViewController id="tMz-XQ-IJ4" customClass="NewsViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="22" sectionFooterHeight="22" id="KpC-d2-NmY">
->>>>>>> origin/master
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" id="KpC-d2-NmY">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsItem" rowHeight="95" id="3HD-3u-WP0">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsItem" rowHeight="96" id="3HD-3u-WP0">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3HD-3u-WP0" id="0GP-Pr-3lK">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -262,7 +257,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="zTO-t0-GbO" kind="show" id="JWj-Hy-HBw"/>
+                                    <segue destination="er0-va-D3c" kind="show" id="XzA-AZ-wBF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -292,18 +287,24 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjd-o8-wD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2139" y="1466"/>
+            <point key="canvasLocation" x="2362.5" y="1308"/>
         </scene>
-        <!--news&comment-->
-        <scene sceneID="cFc-cl-vPY">
+        <!--Comment Table View Controller-->
+        <scene sceneID="N35-Xb-6da">
             <objects>
-                <tableViewController id="zTO-t0-GbO" userLabel="news&amp;comment" customClass="CommentTableViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Spq-qD-r6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="er0-va-D3c" customClass="CommentTableViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qUH-K8-oHS"/>
+                        <viewControllerLayoutGuide type="bottom" id="DSB-hR-YOH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="51t-JB-FfO">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2779" y="1400"/>
+            <point key="canvasLocation" x="3379.5" y="1321"/>
         </scene>
         <!--我-->
         <scene sceneID="mEz-4t-niF">
