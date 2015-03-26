@@ -10,25 +10,13 @@
 		3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
-		31C6F8CD1ABA702F00DFF5EE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8CC1ABA702F00DFF5EE /* MainViewController.swift */; };
 		31C6F8D01ABA702F00DFF5EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
 		31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */; };
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
-		847BAB161ABBF03B00E766DE /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB151ABBF03B00E766DE /* Account.swift */; };
-		847BAB181ABBF04200E766DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB171ABBF04200E766DE /* User.swift */; };
-		847BAB1A1ABBF04600E766DE /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB191ABBF04600E766DE /* Chat.swift */; };
-		847BAB1C1ABBF04B00E766DE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB1B1ABBF04B00E766DE /* Message.swift */; };
-		847BAB201ABBF0BB00E766DE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB1F1ABBF0BB00E766DE /* ChatViewController.swift */; };
-		847BAB221ABBF0C600E766DE /* MessageSentDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB211ABBF0C600E766DE /* MessageSentDateCell.swift */; };
-		847BAB241ABBF0CD00E766DE /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB231ABBF0CD00E766DE /* MessageBubbleCell.swift */; };
-		847BAB271ABBF0F700E766DE /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB261ABBF0F700E766DE /* ChatsViewController.swift */; };
-		847BAB291ABBF0FE00E766DE /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB281ABBF0FE00E766DE /* ChatCell.swift */; };
-		847BAB2C1ABBF11E00E766DE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB2B1ABBF11E00E766DE /* ComposeViewController.swift */; };
-		847BAB2E1ABBF12300E766DE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB2D1ABBF12300E766DE /* UserCell.swift */; };
-		847BAB301ABBF12800E766DE /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BAB2F1ABBF12800E766DE /* PlaceholderTextView.swift */; };
-		847BAB321ABBF13300E766DE /* MessageIncoming.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 847BAB311ABBF13300E766DE /* MessageIncoming.aiff */; };
-		847BAB341ABBF14300E766DE /* MessageOutgoing.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 847BAB331ABBF14300E766DE /* MessageOutgoing.aiff */; };
+		DE3CEA341AC30A90006140AA /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */; };
+		DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA351AC30ABA006140AA /* CommentTableView.swift */; };
+		DE3CEA381AC30B19006140AA /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3CEA371AC30B19006140AA /* CommentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,27 +35,15 @@
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31C6F8CA1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SiXinWen_iOS.xcdatamodel; sourceTree = "<group>"; };
-		31C6F8CC1ABA702F00DFF5EE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		31C6F8CF1ABA702F00DFF5EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31C6F8D11ABA702F00DFF5EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31C6F8D41ABA702F00DFF5EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		31C6F8DA1ABA702F00DFF5EE /* SiXinWen-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SiXinWen-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8DF1ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
-		847BAB151ABBF03B00E766DE /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		847BAB171ABBF04200E766DE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		847BAB191ABBF04600E766DE /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		847BAB1B1ABBF04B00E766DE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../Message.swift; sourceTree = "<group>"; };
-		847BAB1F1ABBF0BB00E766DE /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		847BAB211ABBF0C600E766DE /* MessageSentDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentDateCell.swift; sourceTree = "<group>"; };
-		847BAB231ABBF0CD00E766DE /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
-		847BAB261ABBF0F700E766DE /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
-		847BAB281ABBF0FE00E766DE /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
-		847BAB2B1ABBF11E00E766DE /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
-		847BAB2D1ABBF12300E766DE /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		847BAB2F1ABBF12800E766DE /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
-		847BAB311ABBF13300E766DE /* MessageIncoming.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = MessageIncoming.aiff; sourceTree = "<group>"; };
-		847BAB331ABBF14300E766DE /* MessageOutgoing.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = MessageOutgoing.aiff; sourceTree = "<group>"; };
+		DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+		DE3CEA351AC30ABA006140AA /* CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableView.swift; sourceTree = "<group>"; };
+		DE3CEA371AC30B19006140AA /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,20 +85,16 @@
 		31C6F8C41ABA702F00DFF5EE /* SiXinWen-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				847BAB2A1ABBF11100E766DE /* Compose */,
-				847BAB251ABBF0EC00E766DE /* Chats */,
-				847BAB141ABBF01500E766DE /* Models */,
-				847BAB1D1ABBF0A700E766DE /* Chat */,
-				31C6F8CC1ABA702F00DFF5EE /* MainViewController.swift */,
 				31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */,
+				3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */,
 				31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */,
+				DE3CEA371AC30B19006140AA /* CommentCell.swift */,
 				31C6F8D11ABA702F00DFF5EE /* Images.xcassets */,
-				847BAB311ABBF13300E766DE /* MessageIncoming.aiff */,
-				847BAB331ABBF14300E766DE /* MessageOutgoing.aiff */,
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
 				31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */,
+				DE3CEA331AC30A90006140AA /* CommentTableViewController.swift */,
+				DE3CEA351AC30ABA006140AA /* CommentTableView.swift */,
 				31C6F8C51ABA702F00DFF5EE /* Supporting Files */,
-				3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */,
 			);
 			path = "SiXinWen-iOS";
 			sourceTree = "<group>";
@@ -150,46 +122,6 @@
 				31C6F8DF1ABA702F00DFF5EE /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		847BAB141ABBF01500E766DE /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				847BAB151ABBF03B00E766DE /* Account.swift */,
-				847BAB171ABBF04200E766DE /* User.swift */,
-				847BAB191ABBF04600E766DE /* Chat.swift */,
-				847BAB1B1ABBF04B00E766DE /* Message.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		847BAB1D1ABBF0A700E766DE /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				847BAB1F1ABBF0BB00E766DE /* ChatViewController.swift */,
-				847BAB211ABBF0C600E766DE /* MessageSentDateCell.swift */,
-				847BAB231ABBF0CD00E766DE /* MessageBubbleCell.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		847BAB251ABBF0EC00E766DE /* Chats */ = {
-			isa = PBXGroup;
-			children = (
-				847BAB261ABBF0F700E766DE /* ChatsViewController.swift */,
-				847BAB281ABBF0FE00E766DE /* ChatCell.swift */,
-			);
-			path = Chats;
-			sourceTree = "<group>";
-		};
-		847BAB2A1ABBF11100E766DE /* Compose */ = {
-			isa = PBXGroup;
-			children = (
-				847BAB2B1ABBF11E00E766DE /* ComposeViewController.swift */,
-				847BAB2D1ABBF12300E766DE /* UserCell.swift */,
-				847BAB2F1ABBF12800E766DE /* PlaceholderTextView.swift */,
-			);
-			path = Compose;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C6F8D01ABA702F00DFF5EE /* Main.storyboard in Resources */,
-				847BAB321ABBF13300E766DE /* MessageIncoming.aiff in Resources */,
 				31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */,
-				847BAB341ABBF14300E766DE /* MessageOutgoing.aiff in Resources */,
 				31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,22 +224,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C6F8CD1ABA702F00DFF5EE /* MainViewController.swift in Sources */,
-				847BAB1A1ABBF04600E766DE /* Chat.swift in Sources */,
-				847BAB201ABBF0BB00E766DE /* ChatViewController.swift in Sources */,
-				847BAB161ABBF03B00E766DE /* Account.swift in Sources */,
-				847BAB221ABBF0C600E766DE /* MessageSentDateCell.swift in Sources */,
-				847BAB2C1ABBF11E00E766DE /* ComposeViewController.swift in Sources */,
-				847BAB2E1ABBF12300E766DE /* UserCell.swift in Sources */,
-				847BAB291ABBF0FE00E766DE /* ChatCell.swift in Sources */,
+				DE3CEA361AC30ABA006140AA /* CommentTableView.swift in Sources */,
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
-				847BAB301ABBF12800E766DE /* PlaceholderTextView.swift in Sources */,
-				847BAB271ABBF0F700E766DE /* ChatsViewController.swift in Sources */,
-				847BAB181ABBF04200E766DE /* User.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
-				847BAB1C1ABBF04B00E766DE /* Message.swift in Sources */,
-				847BAB241ABBF0CD00E766DE /* MessageBubbleCell.swift in Sources */,
+				DE3CEA341AC30A90006140AA /* CommentTableViewController.swift in Sources */,
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
+				DE3CEA381AC30B19006140AA /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
