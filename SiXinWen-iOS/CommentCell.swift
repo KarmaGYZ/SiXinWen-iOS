@@ -33,10 +33,10 @@ func bubbleImageMake() -> (incoming: UIImage, incomingHighlighed: UIImage, outgo
     let capInsetsIncoming = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
     let capInsetsOutgoing = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
     
-    let incoming = coloredImage(maskIncoming, 229/255.0, 229/255.0, 234/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let incomingHighlighted = coloredImage(maskIncoming, 206/255.0, 206/255.0, 210/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let outgoing = coloredImage(maskOutgoing, 43/255.0, 119/255.0, 250/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
-    let outgoingHighlighted = coloredImage(maskOutgoing, 32/255.0, 96/255.0, 200/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
+    let incoming = coloredImage(maskIncoming,255/255.0, 215/255.0, 10/255.0 , 1).resizableImageWithCapInsets(capInsetsIncoming)
+    let incomingHighlighted = coloredImage(maskIncoming, 255/255.0, 227/255.0, 132/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
+    let outgoing = coloredImage(maskOutgoing,  242/255.0, 12/255.0, 0/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
+    let outgoingHighlighted = coloredImage(maskOutgoing,255/255.0, 99/255.0, 71/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
     
     return (incoming, incomingHighlighted, outgoing, outgoingHighlighted)
 }
@@ -56,7 +56,10 @@ class CommentCell: UITableViewCell {
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        
+        let backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/225.0, alpha: 1)
         bubbleImageView = UIImageView(image: bubbleImage.incoming, highlightedImage: bubbleImage.incomingHighlighed)
+        bubbleImageView.backgroundColor = backgroundColor
         bubbleImageView.tag = bubbleTag
         bubbleImageView.userInteractionEnabled = true // #CopyMesage
         
@@ -67,6 +70,7 @@ class CommentCell: UITableViewCell {
         
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
+        
         
         contentView.addSubview(bubbleImageView)
         bubbleImageView.addSubview(commentLabel)
@@ -89,7 +93,7 @@ class CommentCell: UITableViewCell {
     }
     
     
-    // Highlight cell #CopyMessage
+    // Highlight cell #Copy
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         bubbleImageView.highlighted = selected
@@ -107,7 +111,7 @@ class CommentCell: UITableViewCell {
     func configureWithComment(comment: aComment) {
         commentLabel.text = comment.text
         
-        if comment.incoming != (tag == incomingTag) {
+//        if comment.incoming != (tag == incomingTag) {
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             
@@ -136,7 +140,7 @@ class CommentCell: UITableViewCell {
             }
             contentView.removeConstraint(constraints[indexOfConstraint] as NSLayoutConstraint)
             contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: layoutAttribute, relatedBy: .Equal, toItem: contentView, attribute: layoutAttribute, multiplier: 1, constant: layoutConstant))
-        }
+//        }
     }
     
     

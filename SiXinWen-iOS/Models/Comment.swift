@@ -14,7 +14,7 @@ import Foundation
 
 class Comments {
     let user: User
-    var lastCommentText: String
+//    var lastCommentText: String
 //    var lastCommentSentDate: NSDate
 //    var lastCommentSentDateString: String {
 //        return formatDate(lastCommentSentDcate)
@@ -27,14 +27,14 @@ class Comments {
     init(){
         
         user = User()
-        lastCommentText = "bitch"
+//        lastCommentText = "bitch"
         
     }
     
     
     init(user: User, lastCommentText: String) {
         self.user = user
-        self.lastCommentText = lastCommentText
+//        self.lastCommentText = lastCommentText
 //        self.lastCommentSentDate = lastCommentSentDate
     }
     

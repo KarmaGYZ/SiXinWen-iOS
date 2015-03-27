@@ -11,7 +11,7 @@ import UIKit
 class InputTextView: UITextView {
     override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
         if (delegate as CommentTableViewController).tableView.indexPathForSelectedRow() != nil {
-            return action == "messageCopyTextAction:"
+            return action == "copyTextAction:"
         } else {
             return super.canPerformAction(action, withSender: sender)
         }
@@ -30,12 +30,14 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     let comments = Comments()
     var toolBar:UIToolbar!
     var commentTextView:UITextView!
-    var sendButton:UIButton!
+    var rightButton = UIButton()
+    var leftButton = UIButton()
     var rotating = false
     
     
     let whiteColor = UIColor.whiteColor()
     
+    let backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/225.0, alpha: 1)
     
     
     
@@ -43,9 +45,11 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         
         switch sender.selectedSegmentIndex {
             
-        case 0:  break
+        case 0:
+            break
             
-        case 1: break
+        case 1:
+            break
             
         default: break
             
@@ -62,7 +66,39 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     override var inputAccessoryView: UIView! {
         get {
             if toolBar == nil {
+                let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
+                let leftColor = UIColor(red: 255/255, green: 211/255, blue: 0/255, alpha: 1)
+                let rightColor = UIColor(red: 239/255, green: 3/255, blue: 0/255, alpha: 1)
+                
                 toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
+                toolBar.backgroundColor = whiteColor
+                
+                
+                
+                leftButton = UIButton.buttonWithType(.Custom) as UIButton
+                leftButton.backgroundColor = leftColor
+                leftButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+                leftButton.enabled = false
+                leftButton.setTitle("动嘴", forState: .Normal)
+                leftButton.setTitleColor(leftColor, forState: .Disabled)
+                leftButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                leftButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+                leftButton.addTarget(self, action: "sendAction:", forControlEvents: UIControlEvents.TouchUpInside)
+                toolBar.addSubview(leftButton)
+                
+                
+                rightButton = UIButton.buttonWithType(.Custom) as UIButton
+                rightButton.backgroundColor = rightColor
+                rightButton.enabled = false
+                rightButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+                rightButton.setTitle("开撕", forState: .Normal)
+                rightButton.setTitleColor(rightColor, forState: .Disabled)
+                rightButton.setTitleColor(whiteColor, forState: .Normal)
+                rightButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+                rightButton.addTarget(self, action: "sendAction:", forControlEvents: UIControlEvents.TouchUpInside)
+                toolBar.addSubview(rightButton)
+                
+                
                 
                 commentTextView = InputTextView(frame: CGRectZero)
                 commentTextView.backgroundColor = UIColor(white: 250/255, alpha: 1)
@@ -75,25 +111,19 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
                 commentTextView.textContainerInset = UIEdgeInsetsMake(4, 3, 3, 3)
                 toolBar.addSubview(commentTextView)
                 
-                sendButton = UIButton.buttonWithType(.System) as UIButton
-                sendButton.enabled = false
-                sendButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
-                sendButton.setTitle("Send", forState: .Normal)
-                sendButton.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1), forState: .Disabled)
-                sendButton.setTitleColor(UIColor(red: 1/255, green: 122/255, blue: 255/255, alpha: 1), forState: .Normal)
-                sendButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
-                sendButton.addTarget(self, action: "sendAction", forControlEvents: UIControlEvents.TouchUpInside)
-                toolBar.addSubview(sendButton)
-                
+              
                 // Auto Layout allows `sendButton` to change width, e.g., for localization.
+                leftButton.setTranslatesAutoresizingMaskIntoConstraints(false)
                 commentTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
-                sendButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Left, relatedBy: .Equal, toItem: toolBar, attribute: .Left, multiplier: 1, constant: 8))
+                rightButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Left, relatedBy:.Equal , toItem: toolBar, attribute: .Left, multiplier: 1, constant: 0))
+                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Left, relatedBy: .Equal, toItem: leftButton, attribute: .Right, multiplier: 1, constant: 2))
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 7.5))
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Right, relatedBy: .Equal, toItem: sendButton, attribute: .Left, multiplier: 1, constant: -2))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Right, relatedBy: .Equal, toItem: rightButton, attribute: .Left, multiplier: 1, constant: -2))
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -8))
-                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
-                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
+                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
+                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
             }
             return toolBar
         }
@@ -110,9 +140,10 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         
         
         var shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
-        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: 0, animated: true)
-        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: 1, animated: true)
-        shiftSegmentControl.momentary = true
+        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: 1, animated: true)
+        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: 0, animated: true)
+        shiftSegmentControl.selectedSegmentIndex = 1
+//        shiftSegmentControl.momentary = true
         shiftSegmentControl.multipleTouchEnabled = false
         shiftSegmentControl.userInteractionEnabled = true
         shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
@@ -121,19 +152,22 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         
         comments.loadedComments =  [
             [
-                aComment(incoming: true, text: "I really enjoyed programming with you! :-)"),
-                aComment(incoming: false, text: "Thanks! Me too! :-)")
+                aComment(incoming: true, text: "社会就是需要这样的公知站出来办实事"),
+                aComment(incoming: false, text: "公知必须真的知道才能公布吧"),
+                aComment(incoming: false, text: "有些调查根本不严谨"),
+                aComment(incoming: true, text: "那些专家倒是知道，怎么也没见说了什么产生这么大的社会效应"),
+                aComment(incoming: true, text: "让人们正视一个问题才是公知要做的")
             ]
             
         ]
         
-        view.backgroundColor = whiteColor
+        view.backgroundColor = backgroundColor
         
         tableView = UITableView(frame: view.bounds, style: .Plain)
         
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         
-        tableView.backgroundColor = whiteColor
+        tableView.backgroundColor = backgroundColor
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
         self.tableView.contentInset = edgeInsets
         self.tableView.dataSource = self
@@ -143,6 +177,8 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.separatorStyle = .None
         tableView.registerClass(CommentCell.self, forCellReuseIdentifier: NSStringFromClass(CommentCell))
         view.addSubview(tableView)
+        
+        
         
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -177,7 +213,8 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     
     func textViewDidChange(textView: UITextView!) {
         updateTextViewHeight()
-        sendButton.enabled = textView.hasText()
+        leftButton.enabled = textView.hasText()
+        rightButton.enabled = textView.hasText()
     }
     
     override func viewDidLayoutSubviews()  {
@@ -236,6 +273,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         
         if indexPath.row == 0 && indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(CommentCell)) as UITableViewCell
+            cell.backgroundColor = backgroundColor
             return cell
         } else {
             let cellIdentifier = NSStringFromClass(CommentCell)
@@ -244,14 +282,15 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
                 cell = CommentCell(style: .Default, reuseIdentifier: cellIdentifier)
                 
                 // Add gesture recognizers #CopyMessage
-                //                let action: Selector = "messageShowMenuAction:"
-                //                let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: action)
-                //                doubleTapGestureRecognizer.numberOfTapsRequired = 2
-                //                cell.bubbleImageView.addGestureRecognizer(doubleTapGestureRecognizer)
-                //                cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
+//                     let action: Selector = "showMenuAction:"
+//                     let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: action)
+//                     doubleTapGestureRecognizer.numberOfTapsRequired = 2
+//                     cell.bubbleImageView.addGestureRecognizer(doubleTapGestureRecognizer)
+//                     cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
             }
-            println(comments.loadedComments[indexPath.section-1].count)
-            println(indexPath.row)
+//            println(comments.loadedComments[indexPath.section-1].count)
+//            println(indexPath.row)
+             cell.backgroundColor = backgroundColor
             let singleComment = comments.loadedComments[indexPath.section-1][indexPath.row]
             cell.configureWithComment(singleComment)
             return cell
@@ -309,68 +348,76 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableViewScrollToBottomAnimated(animated: Bool) {
-        let numberOfRows = tableView.numberOfRowsInSection(0)
-        if numberOfRows > 0 {
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: 0), atScrollPosition: .Bottom, animated: animated)
-        }
+        let lastSection = tableView.numberOfSections() - 1
+        let numberOfRows = tableView.numberOfRowsInSection(lastSection)
+//        println(lastSection)
+//        println(numberOfRows)
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
+  
     }
     
     
-    func sendAction() {
+    func sendAction(sender: UIButton) {
         // Autocomplete text before sending #hack
         commentTextView.resignFirstResponder()
         commentTextView.becomeFirstResponder()
         
-        comments.loadedComments.append([aComment(incoming: false, text: commentTextView.text)])
+        var left = false
+        
+        if sender.titleLabel?.text == "动嘴"{
+        left = true
+        }
+        
+        comments.loadedComments.append([aComment(incoming: left, text: commentTextView.text)])
         commentTextView.text = nil
         updateTextViewHeight()
-        sendButton.enabled = false
+        leftButton.enabled = false
+        rightButton.enabled = false
         
         let lastSection = tableView.numberOfSections()
         tableView.beginUpdates()
         tableView.insertSections(NSIndexSet(index: lastSection), withRowAnimation: .Automatic)
         tableView.insertRowsAtIndexPaths([
-            NSIndexPath(forRow: 0, inSection: lastSection),
-            NSIndexPath(forRow: 1, inSection: lastSection)
+            NSIndexPath(forRow: 0, inSection: lastSection)
             ], withRowAnimation: .Automatic)
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(true)
     }
     
     
-    
-    func messageShowMenuAction(gestureRecognizer: UITapGestureRecognizer) {
-        let twoTaps = (gestureRecognizer.numberOfTapsRequired == 2)
-        let doubleTap = (twoTaps && gestureRecognizer.state == .Ended)
-        let longPress = (!twoTaps && gestureRecognizer.state == .Began)
-        if doubleTap || longPress {
-            let pressedIndexPath = tableView.indexPathForRowAtPoint(gestureRecognizer.locationInView(tableView))!
-            tableView.selectRowAtIndexPath(pressedIndexPath, animated: false, scrollPosition: .None)
-            
-            let menuController = UIMenuController.sharedMenuController()
-            let bubbleImageView = gestureRecognizer.view!
-            menuController.setTargetRect(bubbleImageView.frame, inView: bubbleImageView.superview!)
-            menuController.menuItems = [UIMenuItem(title: "Copy", action: "messageCopyTextAction:")]
-            menuController.setMenuVisible(true, animated: true)
-        }
-    }
-    // 2. Copy text to pasteboard
-    func messageCopyTextAction(menuController: UIMenuController) {
-        let selectedIndexPath = tableView.indexPathForSelectedRow()
-        let selectedMessage = comments.loadedComments[selectedIndexPath!.section][selectedIndexPath!.row-1]
-        UIPasteboard.generalPasteboard().string = selectedMessage.text
-    }
-    // 3. Deselect row
-    func menuControllerWillHide(notification: NSNotification) {
-        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
-            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
-        }
-        (notification.object as UIMenuController).menuItems = nil
-    }
-    
-    
-    
-    
+//    
+//    func showMenuAction(gestureRecognizer: UITapGestureRecognizer) {
+//        let twoTaps = (gestureRecognizer.numberOfTapsRequired == 2)
+//        let doubleTap = (twoTaps && gestureRecognizer.state == .Ended)
+//        let longPress = (!twoTaps && gestureRecognizer.state == .Began)
+//        if doubleTap || longPress {
+//            let pressedIndexPath = tableView.indexPathForRowAtPoint(gestureRecognizer.locationInView(tableView))!
+//            tableView.selectRowAtIndexPath(pressedIndexPath, animated: false, scrollPosition: .None)
+//            
+//            let menuController = UIMenuController.sharedMenuController()
+//            let bubbleImageView = gestureRecognizer.view!
+//            menuController.setTargetRect(bubbleImageView.frame, inView: bubbleImageView.superview!)
+//            menuController.menuItems = [UIMenuItem(title: "Copy", action: "copyTextAction:")]
+//            menuController.setMenuVisible(true, animated: true)
+//        }
+//    }
+//    // 2. Copy text to pasteboard
+//    func copyTextAction(menuController: UIMenuController) {
+//        let selectedIndexPath = tableView.indexPathForSelectedRow()
+//        let selectedMessage = comments.loadedComments[selectedIndexPath!.section][selectedIndexPath!.row-1]
+//        UIPasteboard.generalPasteboard().string = selectedMessage.text
+//    }
+//    // 3. Deselect row
+//    func menuControllerWillHide(notification: NSNotification) {
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
+//            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+//        }
+//        (notification.object as UIMenuController).menuItems = nil
+//    }
+//    
+//    
+//    
+//    
     
     
 }

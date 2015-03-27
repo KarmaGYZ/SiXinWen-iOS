@@ -287,7 +287,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjd-o8-wD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2362.5" y="1308"/>
+            <point key="canvasLocation" x="2343" y="1452"/>
         </scene>
         <!--Comment Table View Controller-->
         <scene sceneID="N35-Xb-6da">
@@ -297,9 +297,10 @@
                         <viewControllerLayoutGuide type="top" id="qUH-K8-oHS"/>
                         <viewControllerLayoutGuide type="bottom" id="DSB-hR-YOH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="51t-JB-FfO">
+                    <view key="view" contentMode="redraw" id="51t-JB-FfO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -332,15 +333,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQi-fW-aV6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.0" green="0.54898156437544632" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
+                        <color key="tintColor" red="1" green="0.1647058824" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.96470588239999999" green="0.92549019610000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7uz-VL-nhd">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.16470588235294117" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="tMz-XQ-IJ4" kind="relationship" relationship="rootViewController" id="7sX-bW-eoz"/>
