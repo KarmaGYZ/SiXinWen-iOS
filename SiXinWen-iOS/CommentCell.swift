@@ -32,10 +32,10 @@ func bubbleImageMake() -> (incoming: UIImage, incomingHighlighed: UIImage, outgo
     
     let capInsetsIncoming = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
     let capInsetsOutgoing = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
-    
-    let incoming = coloredImage(maskIncoming,255/255.0, 215/255.0, 10/255.0 , 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let incomingHighlighted = coloredImage(maskIncoming, 255/255.0, 227/255.0, 132/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let outgoing = coloredImage(maskOutgoing,  242/255.0, 12/255.0, 0/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
+
+    let incoming = coloredImage(maskIncoming,77/255.0, 188/255.0, 249/255.0 , 1).resizableImageWithCapInsets(capInsetsIncoming)
+    let incomingHighlighted = coloredImage(maskIncoming, 51/255.0, 102/255.0, 205/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
+    let outgoing = coloredImage(maskOutgoing,  252/255.0, 13/255.0, 68/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
     let outgoingHighlighted = coloredImage(maskOutgoing,255/255.0, 99/255.0, 71/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
     
     return (incoming, incomingHighlighted, outgoing, outgoingHighlighted)
@@ -56,8 +56,8 @@ class CommentCell: UITableViewCell {
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        
-        let backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/225.0, alpha: 1)
+    
+        let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
         bubbleImageView = UIImageView(image: bubbleImage.incoming, highlightedImage: bubbleImage.incomingHighlighed)
         bubbleImageView.backgroundColor = backgroundColor
         bubbleImageView.tag = bubbleTag
@@ -119,7 +119,7 @@ class CommentCell: UITableViewCell {
                 tag = incomingTag
                 bubbleImageView.image = bubbleImage.incoming
                 bubbleImageView.highlightedImage = bubbleImage.incomingHighlighed
-                commentLabel.textColor = UIColor.blackColor()
+                commentLabel.textColor = UIColor.whiteColor()
                 layoutAttribute = .Left
                 layoutConstant = 10
             } else { // outgoing

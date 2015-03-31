@@ -37,8 +37,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     
     let whiteColor = UIColor.whiteColor()
     
-    let backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/225.0, alpha: 1)
-    
+    let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
     
     
     func shiftSegment(sender: UISegmentedControl) {
@@ -67,8 +66,8 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         get {
             if toolBar == nil {
                 let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
-                let leftColor = UIColor(red: 255/255, green: 211/255, blue: 0/255, alpha: 1)
-                let rightColor = UIColor(red: 239/255, green: 3/255, blue: 0/255, alpha: 1)
+                let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
+                let rightColor = UIColor(red: 253/255, green: 13/255, blue: 68/255, alpha: 1)
                 
                 toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
                 toolBar.backgroundColor = whiteColor
@@ -81,7 +80,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
                 leftButton.enabled = false
                 leftButton.setTitle("动嘴", forState: .Normal)
                 leftButton.setTitleColor(leftColor, forState: .Disabled)
-                leftButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                leftButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 leftButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
                 leftButton.addTarget(self, action: "sendAction:", forControlEvents: UIControlEvents.TouchUpInside)
                 toolBar.addSubview(leftButton)

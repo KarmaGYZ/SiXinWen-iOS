@@ -184,7 +184,7 @@
                                         <progressView opaque="NO" tag="1006" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EiA-xU-Tnz">
                                             <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                                             <color key="progressTintColor" red="1" green="0.0" blue="0.14858211595246473" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="trackTintColor" red="0.0" green="0.83320033664264415" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="trackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
                                         <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
                                             <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -332,8 +332,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQi-fW-aV6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="0.1647058824" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.96470588239999999" green="0.92549019610000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7uz-VL-nhd">

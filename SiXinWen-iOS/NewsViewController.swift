@@ -31,7 +31,7 @@ class NewsViewController: UITableViewController {
     
     func getNewsAtIndex(indext:Int)->NewsItem{
         var news = NewsItem()
-        news.text = "差劲时间阿斯顿发生发顺丰阿打发士大夫阿斯顿发斯蒂芬阿斯顿发斯蒂芬阿斯顿发斯蒂芬"
+        news.text = "2015年2月28日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
         news.title = "柴静_穹顶之下"
         news.support = 0.3
         return news
