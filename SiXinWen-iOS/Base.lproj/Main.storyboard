@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -112,12 +112,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsItem" rowHeight="96" id="3HD-3u-WP0">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsItem" rowHeight="96" id="3HD-3u-WP0" customClass="NewsCell" customModule="SiXinWen_iOS">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3HD-3u-WP0" id="0GP-Pr-3lK">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
+                                            <rect key="frame" x="96" y="38" width="496" height="49"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49" id="4Hj-TP-Cw0"/>
+                                                <constraint firstAttribute="width" constant="496" id="I8l-83-Jfq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="96" y="40" width="296" height="49"/>
+                                                <mask key="constraints">
+                                                    <exclude reference="I8l-83-Jfq"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <exclude reference="I8l-83-Jfq"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
+                                            <rect key="frame" x="96" y="9" width="496" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="XOm-NG-Xg8"/>
+                                                <constraint firstAttribute="width" constant="496" id="gWa-Yz-gwq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="96" y="11" width="296" height="21"/>
+                                                <mask key="constraints">
+                                                    <exclude reference="gWa-Yz-gwq"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <exclude reference="gWa-Yz-gwq"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
                                             <rect key="frame" x="8" y="7" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="6Ie-jQ-Vb9"/>
@@ -139,59 +181,14 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
-                                            <rect key="frame" x="96" y="9" width="496" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="XOm-NG-Xg8"/>
-                                                <constraint firstAttribute="width" constant="496" id="gWa-Yz-gwq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="96" y="10.5" width="296" height="21"/>
-                                                <mask key="constraints">
-                                                    <exclude reference="gWa-Yz-gwq"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="gWa-Yz-gwq"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
-                                            <rect key="frame" x="96" y="38" width="496" height="49"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="49" id="4Hj-TP-Cw0"/>
-                                                <constraint firstAttribute="width" constant="496" id="I8l-83-Jfq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="96" y="39.5" width="296" height="49"/>
-                                                <mask key="constraints">
-                                                    <exclude reference="I8l-83-Jfq"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="I8l-83-Jfq"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EiA-xU-Tnz">
+                                        <progressView opaque="NO" tag="1006" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EiA-xU-Tnz">
                                             <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                                             <color key="progressTintColor" red="1" green="0.0" blue="0.14858211595246473" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="trackTintColor" red="0.0" green="0.83320033664264415" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
-                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
+                                        <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
                                             <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <bool key="isElement" value="NO"/>
-                                            </accessibility>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -257,6 +254,11 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="commentNum" destination="kli-WS-eH1" id="d4f-yI-YLm"/>
+                                    <outlet property="newsImage" destination="fbU-bh-dtu" id="kKL-KR-2dl"/>
+                                    <outlet property="newsText" destination="kdU-0C-OY3" id="iYi-im-etA"/>
+                                    <outlet property="newsTitle" destination="1JT-YF-Hr0" id="p8K-NP-dcj"/>
+                                    <outlet property="support" destination="EiA-xU-Tnz" id="nQ0-FU-75b"/>
                                     <segue destination="er0-va-D3c" kind="show" id="XzA-AZ-wBF"/>
                                 </connections>
                             </tableViewCell>
@@ -269,9 +271,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="CQZ-Jh-Ufj">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="NhJ-T9-sDa">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="agW-N0-hrs">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,7 +299,7 @@
                     <view key="view" contentMode="redraw" id="51t-JB-FfO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>

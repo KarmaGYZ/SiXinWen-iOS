@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */; };
+		311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B32911ACA651A00B05BC2 /* NewsItem.swift */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D01ABA702F00DFF5EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
 		31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */; };
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
+		31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F51ACA856B0029C2C8 /* NewsCell.swift */; };
 		31F4E6301AC444830046FCD8 /* aComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62D1AC444830046FCD8 /* aComment.swift */; };
 		31F4E6311AC444830046FCD8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* Comment.swift */; };
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
@@ -33,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		311B32911ACA651A00B05BC2 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		31C6F8DA1ABA702F00DFF5EE /* SiXinWen-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SiXinWen-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8DF1ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
+		31E891F51ACA856B0029C2C8 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsCell.swift; path = Models/NewsCell.swift; sourceTree = "<group>"; };
 		31F4E62D1AC444830046FCD8 /* aComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aComment.swift; sourceTree = "<group>"; };
 		31F4E62E1AC444830046FCD8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		31C6F8C41ABA702F00DFF5EE /* SiXinWen-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				31E891F71ACA89EF0029C2C8 /* View */,
 				31F4E62C1AC444830046FCD8 /* Models */,
 				31F4E63A1AC444EA0046FCD8 /* CommentTableViewController.swift */,
 				31F4E63C1AC445270046FCD8 /* CommentCell.swift */,
@@ -128,12 +133,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		31E891F71ACA89EF0029C2C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E891F51ACA856B0029C2C8 /* NewsCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		31F4E62C1AC444830046FCD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				31F4E62D1AC444830046FCD8 /* aComment.swift */,
 				31F4E62E1AC444830046FCD8 /* Comment.swift */,
 				31F4E62F1AC444830046FCD8 /* User.swift */,
+				311B32911ACA651A00B05BC2 /* NewsItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,9 +256,11 @@
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				31F4E6301AC444830046FCD8 /* aComment.swift in Sources */,
+				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
 				31F4E63D1AC445270046FCD8 /* CommentCell.swift in Sources */,
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
+				311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */,
 				31F4E63B1AC444EA0046FCD8 /* CommentTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
