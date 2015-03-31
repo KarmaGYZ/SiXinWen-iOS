@@ -364,7 +364,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         var left = false
         
         if sender.titleLabel?.text == "动嘴"{
-        left = true
+            left = true
         }
         
         comments.loadedComments.append([aComment(incoming: left, text: commentTextView.text)])
@@ -375,7 +375,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         
         let lastSection = tableView.numberOfSections()
         tableView.beginUpdates()
-        tableView.insertSections(NSIndexSet(index: lastSection), withRowAnimation: .Automatic)
+        tableView.insertSections(NSIndexSet(index: lastSection), withRowAnimation: .None)
         tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow: 0, inSection: lastSection)
             ], withRowAnimation: .Automatic)
