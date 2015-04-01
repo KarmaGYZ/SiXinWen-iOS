@@ -16,7 +16,6 @@ class NewsViewController: UITableViewController {
     
     required init(coder aDecoder:NSCoder){
         newsList = [NewsItem]()
-        
         super.init(coder: aDecoder)
         news_list_update()
         

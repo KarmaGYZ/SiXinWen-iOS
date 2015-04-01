@@ -17,6 +17,8 @@
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
 		31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F51ACA856B0029C2C8 /* NewsCell.swift */; };
 		31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F81ACB8E450029C2C8 /* MessageViewController.swift */; };
+		31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */; };
+		31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FC1ACBEF410029C2C8 /* MessageCell.swift */; };
 		31F4E6301AC444830046FCD8 /* aComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62D1AC444830046FCD8 /* aComment.swift */; };
 		31F4E6311AC444830046FCD8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* Comment.swift */; };
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
@@ -49,6 +51,8 @@
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
 		31E891F51ACA856B0029C2C8 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsCell.swift; path = Models/NewsCell.swift; sourceTree = "<group>"; };
 		31E891F81ACB8E450029C2C8 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
+		31E891FC1ACBEF410029C2C8 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		31F4E62D1AC444830046FCD8 /* aComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aComment.swift; sourceTree = "<group>"; };
 		31F4E62E1AC444830046FCD8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				31E891F51ACA856B0029C2C8 /* NewsCell.swift */,
+				31E891FC1ACBEF410029C2C8 /* MessageCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				31F4E62E1AC444830046FCD8 /* Comment.swift */,
 				31F4E62F1AC444830046FCD8 /* User.swift */,
 				311B32911ACA651A00B05BC2 /* NewsItem.swift */,
+				31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,10 +266,12 @@
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				31F4E6301AC444830046FCD8 /* aComment.swift in Sources */,
+				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
 				31F4E63D1AC445270046FCD8 /* CommentCell.swift in Sources */,
 				31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */,
+				31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */,
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
 				311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */,
 				31F4E63B1AC444EA0046FCD8 /* CommentTableViewController.swift in Sources */,

@@ -9,10 +9,30 @@
 import UIKit
 
 class MessageViewController: UITableViewController {
-
+    
+    var messageList:[MessageItem]
+    
+    required init(coder aDecoder:NSCoder){
+        messageList = [MessageItem]()
+        super.init(coder: aDecoder)
+       // messagelist_update()
+        
+        
+    }
+    
+    func messagelist_update(){
+        for(var i=0;i<5;i++){
+            var message = MessageItem()
+            message.userName = "肖倾城\(i)号"
+            message.messageText = "我是sb"
+            messageList.append(message)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,33 +50,67 @@ class MessageViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        if messageList.isEmpty {
+            return 1
+        }
+        else {
+            return messageList.count
+        }
     }
-    
     override func viewWillDisappear(animated: Bool) {
+        //tableView.reloadData()
         super.viewWillDisappear(animated)
        // self.tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
+       // tableView.reloadData()
         super.viewWillAppear(animated)
       //  self.tabBarController?.tabBar.hidden = false
     }
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
+        if messageList.isEmpty {
+            let cell = tableView.dequeueReusableCellWithIdentifier("NoNewMessage", forIndexPath: indexPath) as UITableViewCell
+            //tableView.rowHeight = tableView.frame.size.height
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath) as MessageCell
+            cell.messageText.text = messageList[messageList.count - indexPath.row - 1].messageText
+            cell.userName.text = messageList[messageList.count - indexPath.row - 1].userName
+            //tableView.rowHeight = 100.0
+            return cell
+        }
         // Configure the cell...
 
-        return cell
+       // return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if messageList.isEmpty {
+            return tableView.frame.size.height - 150.0
+        }
+        else {
+            return 100.0
+        }
+    }
+    
+    
+    func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        messagelist_update()
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
 
     /*
     // Override to support conditional editing of the table view.
