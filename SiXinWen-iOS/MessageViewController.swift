@@ -1,50 +1,18 @@
 //
-//  NewsViewController.swift
+//  MessageViewController.swift
 //  SiXinWen-iOS
 //
-//  Created by Karma Guo on 3/22/15.
+//  Created by Karma Guo on 4/1/15.
 //  Copyright (c) 2015 SiXinWen. All rights reserved.
 //
 
-
 import UIKit
 
-class NewsViewController: UITableViewController {
-    
-    var newsList:[NewsItem]
-    let NEWS_PER_PAGE = 5
-    
-    required init(coder aDecoder:NSCoder){
-        newsList = [NewsItem]()
-        
-        super.init(coder: aDecoder)
-        news_list_update()
-        
-        
-    }
-    
-    func news_list_update(){
-        if(newsList.isEmpty){
-            for(var i = 0;i < 5;i++){
-                newsList.append(getNewsAtIndex(i))
-            }
-        }
-    }
-    
-    func getNewsAtIndex(indext:Int)->NewsItem{
-        var news = NewsItem()
-        news.text = "2015年2月28日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
-        news.title = "柴静_穹顶之下"
-        news.support = 0.3
-        return news
-    }
+class MessageViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
-        tableView.tableFooterView = UIView(frame:CGRectZero)
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -62,58 +30,23 @@ class NewsViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 5
+        return 0
     }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     //   let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as NewsCell
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem", forIndexPath: indexPath) as NewsCell
-        let news = newsList[indexPath.row]
-        configTitleAndTextForCell(cell,withNewsItem:news)
-        configCommentNumForCell(cell,withNewsItem:news)
-        configImageForCell(cell, withNewsItem: news)
-        configSupportForCell(cell, withNewsItem: news)
-        return cell
-    }
-    
-    func configTitleAndTextForCell(cell:NewsCell,withNewsItem news:NewsItem){
-        cell.newsTitle.text = news.title
-        cell.newsText.text = news.text
-    }
-    func configCommentNumForCell(cell:NewsCell,withNewsItem news:NewsItem){
-        cell.commentNum.text = "评论\(news.commentNum)"
-    }
-    func configSupportForCell(cell:NewsCell,withNewsItem news:NewsItem){
-        cell.support.progress = news.support
-    }
-    func configImageForCell(cell:NewsCell,withNewsItem news:NewsItem){
-        //let image = cell.viewWithTag(1004) as UIImageView
-    }
-    
-    
-    func refresh(sender:AnyObject)
-    {
-        // Updating your data here...
-        
-       self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-    }
-
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-      //  self.tabBarController?.tabBar.hidden = true
+       // self.tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //self.tabBarController?.tabBar.hidden = false
+      //  self.tabBarController?.tabBar.hidden = false
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

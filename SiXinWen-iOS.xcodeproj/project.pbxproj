@@ -16,6 +16,7 @@
 		31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */; };
 		31C6F8E11ABA702F00DFF5EE /* SiXinWen_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */; };
 		31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F51ACA856B0029C2C8 /* NewsCell.swift */; };
+		31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F81ACB8E450029C2C8 /* MessageViewController.swift */; };
 		31F4E6301AC444830046FCD8 /* aComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62D1AC444830046FCD8 /* aComment.swift */; };
 		31F4E6311AC444830046FCD8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* Comment.swift */; };
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
@@ -47,6 +48,7 @@
 		31C6F8DF1ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8E01ABA702F00DFF5EE /* SiXinWen_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiXinWen_iOSTests.swift; sourceTree = "<group>"; };
 		31E891F51ACA856B0029C2C8 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsCell.swift; path = Models/NewsCell.swift; sourceTree = "<group>"; };
+		31E891F81ACB8E450029C2C8 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		31F4E62D1AC444830046FCD8 /* aComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aComment.swift; sourceTree = "<group>"; };
 		31F4E62E1AC444830046FCD8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				31F4E63C1AC445270046FCD8 /* CommentCell.swift */,
 				31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */,
 				3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */,
+				31E891F81ACB8E450029C2C8 /* MessageViewController.swift */,
 				31C6F8CE1ABA702F00DFF5EE /* Main.storyboard */,
 				31C6F8D11ABA702F00DFF5EE /* Images.xcassets */,
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
@@ -260,6 +263,7 @@
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
 				31F4E63D1AC445270046FCD8 /* CommentCell.swift in Sources */,
+				31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */,
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
 				311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */,
 				31F4E63B1AC444EA0046FCD8 /* CommentTableViewController.swift in Sources */,
