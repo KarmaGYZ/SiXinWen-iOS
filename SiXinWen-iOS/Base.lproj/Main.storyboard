@@ -31,6 +31,7 @@
             <objects>
                 <tableViewController id="mrQ-gm-a6e" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9Uc-HV-vvQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -55,9 +56,9 @@
         <!--消息列表-->
         <scene sceneID="Me8-yC-oMV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9fv-yu-GaJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="KJc-cA-tzc" customClass="MessageViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="EGd-Qr-e7f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -66,7 +67,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TKe-VJ-wYM" id="Dl4-VS-bX3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MessageBubble" translatesAutoresizingMaskIntoConstraints="NO" id="IM2-6w-hxn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="h_large_yV7D_0fa60001447b111a" translatesAutoresizingMaskIntoConstraints="NO" id="IM2-6w-hxn">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="75" id="YMw-jj-nfQ"/>
@@ -129,6 +130,13 @@
                                                 </mask>
                                             </variation>
                                         </label>
+                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Nj-Am-asO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                            <color key="backgroundColor" red="0.5280342487373737" green="0.5280342487373737" blue="0.5280342487373737" alpha="1" colorSpace="calibratedRGB"/>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="95" width="384" height="1"/>
+                                            </variation>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="0GS-S3-QCb" secondAttribute="bottom" constant="13" id="5gu-fh-F2w"/>
@@ -151,14 +159,9 @@
                                             <exclude reference="IM2-6w-hxn"/>
                                             <exclude reference="0GS-S3-QCb"/>
                                             <exclude reference="X3Z-r7-feS"/>
+                                            <exclude reference="9Nj-Am-asO"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="H87-8q-Pao"/>
-                                            <exclude reference="eV3-Ub-7dc"/>
-                                            <exclude reference="pkE-av-Pu4"/>
-                                            <exclude reference="8ez-Fe-Z1C"/>
-                                            <exclude reference="J79-TI-NMj"/>
-                                            <exclude reference="RP1-ZL-UlU"/>
                                             <exclude reference="5gu-fh-F2w"/>
                                             <exclude reference="6AH-O9-c5Z"/>
                                             <exclude reference="6DD-XC-gfl"/>
@@ -167,6 +170,12 @@
                                             <exclude reference="bnL-6u-M1o"/>
                                             <exclude reference="dYk-GV-WEG"/>
                                             <exclude reference="yFV-Cm-pfx"/>
+                                            <exclude reference="8ez-Fe-Z1C"/>
+                                            <exclude reference="J79-TI-NMj"/>
+                                            <exclude reference="RP1-ZL-UlU"/>
+                                            <exclude reference="H87-8q-Pao"/>
+                                            <exclude reference="eV3-Ub-7dc"/>
+                                            <exclude reference="pkE-av-Pu4"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
@@ -174,14 +183,9 @@
                                             <include reference="IM2-6w-hxn"/>
                                             <include reference="0GS-S3-QCb"/>
                                             <include reference="X3Z-r7-feS"/>
+                                            <include reference="9Nj-Am-asO"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="H87-8q-Pao"/>
-                                            <include reference="eV3-Ub-7dc"/>
-                                            <include reference="pkE-av-Pu4"/>
-                                            <include reference="8ez-Fe-Z1C"/>
-                                            <include reference="J79-TI-NMj"/>
-                                            <include reference="RP1-ZL-UlU"/>
                                             <include reference="5gu-fh-F2w"/>
                                             <include reference="6AH-O9-c5Z"/>
                                             <include reference="6DD-XC-gfl"/>
@@ -190,6 +194,12 @@
                                             <include reference="bnL-6u-M1o"/>
                                             <include reference="dYk-GV-WEG"/>
                                             <include reference="yFV-Cm-pfx"/>
+                                            <include reference="8ez-Fe-Z1C"/>
+                                            <include reference="J79-TI-NMj"/>
+                                            <include reference="RP1-ZL-UlU"/>
+                                            <include reference="H87-8q-Pao"/>
+                                            <include reference="eV3-Ub-7dc"/>
+                                            <include reference="pkE-av-Pu4"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -220,8 +230,7 @@
                                                     <exclude reference="XjB-Ez-Zrb"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="137" y="178" width="127" height="38"/>
+                                            <variation key="widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="6xg-M7-yOs"/>
                                                     <include reference="XjB-Ez-Zrb"/>
@@ -265,6 +274,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9fv-yu-GaJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2310" y="140"/>
         </scene>
@@ -282,7 +292,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3HD-3u-WP0" id="0GP-Pr-3lK">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="大三发送到发送到发送到发送到发生大是大非撒旦法师打发士大夫asd飞撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦法撒旦飞洒地方" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-0C-OY3">
                                             <rect key="frame" x="96" y="38" width="496" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="49" id="4Hj-TP-Cw0"/>
@@ -303,7 +313,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="柴静___穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
                                             <rect key="frame" x="96" y="9" width="496" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="XOm-NG-Xg8"/>
@@ -324,7 +334,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
+                                        <imageView userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SliderThumb-Normal" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-bh-dtu">
                                             <rect key="frame" x="8" y="7" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="6Ie-jQ-Vb9"/>
@@ -566,7 +576,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MessageBubble" width="48" height="35"/>
         <image name="SliderThumb-Normal" width="32" height="32"/>
+        <image name="h_large_yV7D_0fa60001447b111a" width="300" height="300"/>
     </resources>
 </document>
