@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -434,7 +434,7 @@
                                     <outlet property="newsText" destination="kdU-0C-OY3" id="iYi-im-etA"/>
                                     <outlet property="newsTitle" destination="1JT-YF-Hr0" id="p8K-NP-dcj"/>
                                     <outlet property="support" destination="EiA-xU-Tnz" id="nQ0-FU-75b"/>
-                                    <segue destination="er0-va-D3c" kind="show" id="XzA-AZ-wBF"/>
+                                    <segue destination="FnD-hh-84x" kind="show" id="Xby-Iv-5l0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -454,6 +454,41 @@
             </objects>
             <point key="canvasLocation" x="3261" y="1452"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MIm-c8-5SG">
+            <objects>
+                <navigationController id="FnD-hh-84x" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gj7-uP-5uj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zUO-nL-knV" kind="relationship" relationship="rootViewController" id="kpI-XG-Fmf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilN-Ie-hmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2922" y="791"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="P5K-Vp-WCJ">
+            <objects>
+                <viewController id="zUO-nL-knV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1AL-pA-I2R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bdv-c0-iGT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BSA-s8-e6m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jft-TF-8Hr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tA-us-waW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3674" y="786"/>
+        </scene>
         <!--Comment Table View Controller-->
         <scene sceneID="N35-Xb-6da">
             <objects>
@@ -470,7 +505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4297.5" y="1321"/>
+            <point key="canvasLocation" x="4126" y="1452"/>
         </scene>
         <!--首页-->
         <scene sceneID="49O-sb-7gO">

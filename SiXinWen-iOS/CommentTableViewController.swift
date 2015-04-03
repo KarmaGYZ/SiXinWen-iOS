@@ -25,7 +25,6 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     let toolBarMinHeight: CGFloat = 44
     let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrait: 272, landscape: 90)
     
-    
     var tableView = UITableView()
     let comments = Comments()
     var toolBar:UIToolbar!
@@ -38,8 +37,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     let whiteColor = UIColor.whiteColor()
     
     let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
-    
-    
+        
     func shiftSegment(sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
@@ -61,6 +59,8 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
+    
     
     override var inputAccessoryView: UIView! {
         get {
@@ -185,13 +185,35 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
         notificationCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
         
+               
     }
     
+//    func showContent() {
+//        showNewsContent()
+//    }
+    
+    
+
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         comments.draft = commentTextView.text
+     //   willHideNewsContent()
     }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+       // hideNewsContent()
+//
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+    
     
     
     func updateTextViewHeight() {
@@ -241,7 +263,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return comments.loadedComments.count + 1
+        return comments.loadedComments.count
     }
     
     
@@ -256,25 +278,57 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section != 0{
-            return  comments.loadedComments[section-1].count
-        }
-        
-        return 1
+//        if section != 0{
+            return  comments.loadedComments[section].count
+//        }
+//        
+//        return 1
         
         
     }
+    
+    
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return nil
+//    }
+//    
+//    
+//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0
+//        {
+//            return 40.0
+//        }
+//        return 0.0
+//    }
+//    
+//    
+//   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    println(section)
+//    if section == 0 {
+//        let titleView = UIView(frame: CGRectMake(0, 0,tableView.frame.width, 40))
+//        titleView.backgroundColor = UIColor.grayColor()
+//        titleView.alpha = 0.7
+//        let title = UILabel(frame: CGRectMake(0, 0,titleView.frame.width, titleView.frame.height))
+//        println(titleView.frame.width)
+//        title.text = "穹顶之下"
+//        title.textAlignment = NSTextAlignment.Center
+//        titleView.addSubview(title)
+//        return titleView
+//    }
+//    return nil
+//    }
+    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //  println(indexPath.section)
         
-        if indexPath.row == 0 && indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(CommentCell)) as UITableViewCell
-            cell.backgroundColor = backgroundColor
-            return cell
-        } else {
+//        if indexPath.row == 0 && indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(CommentCell)) as UITableViewCell
+//            cell.backgroundColor = backgroundColor
+//            return cell
+//        } else {
             let cellIdentifier = NSStringFromClass(CommentCell)
             var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as CommentCell!
             if cell == nil {
@@ -290,10 +344,10 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
 //            println(comments.loadedComments[indexPath.section-1].count)
 //            println(indexPath.row)
              cell.backgroundColor = backgroundColor
-            let singleComment = comments.loadedComments[indexPath.section-1][indexPath.row]
+            let singleComment = comments.loadedComments[indexPath.section][indexPath.row]
             cell.configureWithComment(singleComment)
             return cell
-        }
+//        }
         
     }
     
@@ -349,7 +403,7 @@ class CommentTableViewController: UIViewController, UITableViewDataSource, UITab
     func tableViewScrollToBottomAnimated(animated: Bool) {
         let lastSection = tableView.numberOfSections() - 1
         let numberOfRows = tableView.numberOfRowsInSection(lastSection)
-//        println(lastSection)
+        println(lastSection)
 //        println(numberOfRows)
         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
   

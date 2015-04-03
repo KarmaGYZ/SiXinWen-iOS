@@ -24,6 +24,8 @@
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
 		31F4E63B1AC444EA0046FCD8 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63A1AC444EA0046FCD8 /* CommentTableViewController.swift */; };
 		31F4E63D1AC445270046FCD8 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63C1AC445270046FCD8 /* CommentCell.swift */; };
+		84A376F91ACE846C008F17C4 /* contentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A376F81ACE846C008F17C4 /* contentView.swift */; };
+		84A376FD1ACEBF4F008F17C4 /* navigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31F4E63A1AC444EA0046FCD8 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
 		31F4E63C1AC445270046FCD8 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		84A376F81ACE846C008F17C4 /* contentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contentView.swift; sourceTree = "<group>"; };
+		84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 				31E891F71ACA89EF0029C2C8 /* View */,
 				31F4E62C1AC444830046FCD8 /* Models */,
 				31F4E63A1AC444EA0046FCD8 /* CommentTableViewController.swift */,
+				84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */,
 				31F4E63C1AC445270046FCD8 /* CommentCell.swift */,
 				31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */,
 				3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */,
@@ -143,6 +148,7 @@
 		31E891F71ACA89EF0029C2C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84A376F81ACE846C008F17C4 /* contentView.swift */,
 				31E891F51ACA856B0029C2C8 /* NewsCell.swift */,
 				31E891FC1ACBEF410029C2C8 /* MessageCell.swift */,
 			);
@@ -264,8 +270,10 @@
 			files = (
 				31F4E6311AC444830046FCD8 /* Comment.swift in Sources */,
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
+				84A376F91ACE846C008F17C4 /* contentView.swift in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				31F4E6301AC444830046FCD8 /* aComment.swift in Sources */,
+				84A376FD1ACEBF4F008F17C4 /* navigationViewController.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
