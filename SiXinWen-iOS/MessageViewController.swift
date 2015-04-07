@@ -10,13 +10,16 @@ import UIKit
 
 class MessageViewController: UITableViewController {
     
+    
+    @IBOutlet weak var topbar: UIView!
+    
     var messageList:[MessageItem]
     
     required init(coder aDecoder:NSCoder){
         messageList = [MessageItem]()
         super.init(coder: aDecoder)
        // messagelist_update()
-        
+      //  self.tableView.tableHeaderView = topbar
         
     }
     
@@ -31,7 +34,7 @@ class MessageViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //self.tableView.tableHeaderView = topbar
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -56,6 +59,8 @@ class MessageViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
+      
+        
         if messageList.isEmpty {
             return 1
         }
@@ -63,6 +68,8 @@ class MessageViewController: UITableViewController {
             return messageList.count
         }
     }
+    
+    
     override func viewWillDisappear(animated: Bool) {
         //tableView.reloadData()
         super.viewWillDisappear(animated)
