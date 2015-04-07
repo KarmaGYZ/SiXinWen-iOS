@@ -19,7 +19,7 @@ class Comments {
 //    var lastCommentSentDateString: String {
 //        return formatDate(lastCommentSentDcate)
 //    }
-    var loadedComments = [[aComment]]()
+    var loadedComments = [aComment]()
     var unreadCommentCount: Int = 0 // subtacted from total when read
     var hasUnloadedComments = false
     var draft = ""
@@ -27,8 +27,7 @@ class Comments {
     init(){
         
         user = User()
-//        lastCommentText = "bitch"
-        
+    
     }
     
     

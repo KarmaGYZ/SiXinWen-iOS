@@ -26,6 +26,8 @@
 		31F4E63D1AC445270046FCD8 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63C1AC445270046FCD8 /* CommentCell.swift */; };
 		84A376F91ACE846C008F17C4 /* contentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A376F81ACE846C008F17C4 /* contentView.swift */; };
 		84A376FD1ACEBF4F008F17C4 /* navigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */; };
+		DE403FB11AD3A51400EFE1EF /* instantComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE403FB01AD3A51400EFE1EF /* instantComment.swift */; };
+		DEBA58351ACED820006274FC /* titleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBA58341ACED820006274FC /* titleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		31F4E63C1AC445270046FCD8 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		84A376F81ACE846C008F17C4 /* contentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contentView.swift; sourceTree = "<group>"; };
 		84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navigationViewController.swift; sourceTree = "<group>"; };
+		DE403FB01AD3A51400EFE1EF /* instantComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = instantComment.swift; sourceTree = "<group>"; };
+		DEBA58341ACED820006274FC /* titleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = titleView.swift; sourceTree = "<group>"; };
+		DEBA58361ACEF038006274FC /* SiXinWen-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SiXinWen-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,8 @@
 				31E891F71ACA89EF0029C2C8 /* View */,
 				31F4E62C1AC444830046FCD8 /* Models */,
 				31F4E63A1AC444EA0046FCD8 /* CommentTableViewController.swift */,
+				DE403FB01AD3A51400EFE1EF /* instantComment.swift */,
+				DEBA58341ACED820006274FC /* titleView.swift */,
 				84A376FC1ACEBF4F008F17C4 /* navigationViewController.swift */,
 				31F4E63C1AC445270046FCD8 /* CommentCell.swift */,
 				31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */,
@@ -116,6 +123,7 @@
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
 				31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */,
 				31C6F8C51ABA702F00DFF5EE /* Supporting Files */,
+				DEBA58361ACEF038006274FC /* SiXinWen-iOS-Bridging-Header.h */,
 			);
 			path = "SiXinWen-iOS";
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F4E6311AC444830046FCD8 /* Comment.swift in Sources */,
+				DEBA58351ACED820006274FC /* titleView.swift in Sources */,
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				84A376F91ACE846C008F17C4 /* contentView.swift in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
@@ -283,6 +292,7 @@
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
 				311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */,
 				31F4E63B1AC444EA0046FCD8 /* CommentTableViewController.swift in Sources */,
+				DE403FB11AD3A51400EFE1EF /* instantComment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,10 +417,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SiXinWen-iOS/SiXinWen-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -418,10 +431,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SiXinWen-iOS/SiXinWen-iOS-Bridging-Header.h";
 			};
 			name = Release;
 		};

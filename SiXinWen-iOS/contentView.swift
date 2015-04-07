@@ -8,11 +8,6 @@
 
 import UIKit
 
-public let MENU_BOUNCE_OFFSET: CGFloat         = 0
-public let MENU_HEIGHT: CGFloat                = 550
-public let VELOCITY_TRESHOLD: CGFloat          = 300
-
-
 public enum State {
     case Shown
     case Closed
