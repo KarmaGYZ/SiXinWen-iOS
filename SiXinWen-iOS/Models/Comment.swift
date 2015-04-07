@@ -7,12 +7,14 @@
 //
 
 import Foundation
-
+import UIKit
 
 
 //var dateFormatter = NSDateFormatter()
 
-class Comments {
+class Comments{
+    
+    
     let user: User
 //    var lastCommentText: String
 //    var lastCommentSentDate: NSDate
