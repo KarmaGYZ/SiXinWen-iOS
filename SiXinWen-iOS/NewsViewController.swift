@@ -107,12 +107,12 @@ class NewsViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-      //  self.tabBarController?.tabBar.hidden = true
+//        self.tabBarController?.tabBar.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //self.tabBarController?.tabBar.hidden = false
+        self.tabBarController?.tabBar.hidden = false
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

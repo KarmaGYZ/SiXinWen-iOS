@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -434,7 +434,7 @@
                                     <outlet property="newsText" destination="kdU-0C-OY3" id="iYi-im-etA"/>
                                     <outlet property="newsTitle" destination="1JT-YF-Hr0" id="p8K-NP-dcj"/>
                                     <outlet property="support" destination="EiA-xU-Tnz" id="nQ0-FU-75b"/>
-                                    <segue destination="er0-va-D3c" kind="show" id="XzA-AZ-wBF"/>
+                                    <segue destination="er0-va-D3c" kind="show" id="EVl-ry-29i"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -454,6 +454,39 @@
             </objects>
             <point key="canvasLocation" x="3261" y="1452"/>
         </scene>
+        <!--Content View Controller-->
+        <scene sceneID="P5K-Vp-WCJ">
+            <objects>
+                <viewController id="zUO-nL-knV" userLabel="Content View Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1AL-pA-I2R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bdv-c0-iGT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BSA-s8-e6m" userLabel="contentView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCc-iW-2ui">
+                                <rect key="frame" x="279" y="44" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwM-I5-URr" userLabel="LAL">
+                                <rect key="frame" x="277" y="550" width="48" height="35"/>
+                                <state key="normal" image="MessageBubble">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jft-TF-8Hr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tA-us-waW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3674" y="786"/>
+        </scene>
         <!--Comment Table View Controller-->
         <scene sceneID="N35-Xb-6da">
             <objects>
@@ -470,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4297.5" y="1321"/>
+            <point key="canvasLocation" x="4050" y="1446"/>
         </scene>
         <!--首页-->
         <scene sceneID="49O-sb-7gO">
@@ -577,6 +610,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MessageBubble" width="48" height="35"/>
         <image name="SliderThumb-Normal" width="32" height="32"/>
         <image name="h_large_yV7D_0fa60001447b111a" width="300" height="300"/>
     </resources>
