@@ -454,39 +454,6 @@
             </objects>
             <point key="canvasLocation" x="3261" y="1452"/>
         </scene>
-        <!--Content View Controller-->
-        <scene sceneID="P5K-Vp-WCJ">
-            <objects>
-                <viewController id="zUO-nL-knV" userLabel="Content View Controller" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1AL-pA-I2R"/>
-                        <viewControllerLayoutGuide type="bottom" id="Bdv-c0-iGT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BSA-s8-e6m" userLabel="contentView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="穹顶之下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCc-iW-2ui">
-                                <rect key="frame" x="279" y="44" width="68" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwM-I5-URr" userLabel="LAL">
-                                <rect key="frame" x="277" y="550" width="48" height="35"/>
-                                <state key="normal" image="MessageBubble">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="jft-TF-8Hr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9tA-us-waW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3674" y="786"/>
-        </scene>
         <!--Comment Table View Controller-->
         <scene sceneID="N35-Xb-6da">
             <objects>
@@ -610,7 +577,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MessageBubble" width="48" height="35"/>
         <image name="SliderThumb-Normal" width="32" height="32"/>
         <image name="h_large_yV7D_0fa60001447b111a" width="300" height="300"/>
     </resources>
