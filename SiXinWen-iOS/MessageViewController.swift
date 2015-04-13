@@ -84,12 +84,12 @@ class MessageViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if messageList.isEmpty {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NoNewMessage", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("NoNewMessage", forIndexPath: indexPath) as! UITableViewCell
             //tableView.rowHeight = tableView.frame.size.height
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath) as MessageCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath)as! MessageCell
             cell.messageText.text = messageList[messageList.count - indexPath.row - 1].messageText
             cell.userName.text = messageList[messageList.count - indexPath.row - 1].userName
             //tableView.rowHeight = 100.0
