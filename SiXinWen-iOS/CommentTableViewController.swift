@@ -19,6 +19,12 @@ class InputTextView: UITextView {
 }
 
 
+public let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
+public let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
+public let highLeftColor = UIColor(red: 51/255.0, green: 102/255.0, blue: 205/255.0, alpha: 1)
+public let rightColor = UIColor(red: 253/255, green: 13/255, blue: 68/255, alpha: 1)
+public let highRightColor = UIColor(red: 255/255.0, green: 99/255.0, blue: 71/255.0, alpha: 1)
+public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
 
 
 class CommentTableViewController: UIViewController , UITableViewDelegate, UITableViewDataSource,UITextViewDelegate{
@@ -28,9 +34,10 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     var popularcomment = popularComment.alloc()
     var newscontent = newsContent.alloc()
     
-    var titleview:UIView!
+    var titleview:titleView!
 //    var contentView:UIScrollView!
     var tableView = UITableView()
+    
    
     var rotating = false
     
@@ -46,17 +53,13 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     var rightButton = UIButton()
     var leftButton = UIButton()
     
-    let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
     
     override var inputAccessoryView: UIView! {
         get {
             if toolBar == nil {
-                let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
-                let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
-                let rightColor = UIColor(red: 253/255, green: 13/255, blue: 68/255, alpha: 1)
                 
                 toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
-                toolBar.backgroundColor = UIColor.whiteColor()
+                toolBar.backgroundColor = bgColor
                 
                 
                 
@@ -86,7 +89,8 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
                 
                 
                 commentTextView = InputTextView(frame: CGRectZero)
-                commentTextView.backgroundColor = UIColor(white: 250/255, alpha: 1)
+                commentTextView.backgroundColor = bgColor
+                    //UIColor(white: 250/255, alpha: 1)
                 commentTextView.delegate = self
                 commentTextView.font = UIFont.systemFontOfSize(commentFontSize)
                 commentTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha:1).CGColor
@@ -127,6 +131,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     
     func updateTextViewHeight() {
         let oldHeight = commentTextView.frame.height
+//        println("old \(oldHeight)")
         let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
         var newHeight = min(commentTextView.sizeThatFits(CGSize(width: commentTextView.frame.width, height: CGFloat.max)).height, maxHeight)
         #if arch(x86_64) || arch(arm64)
@@ -134,8 +139,11 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
             #else
             newHeight = CGFloat(ceilf(newHeight.native))
         #endif
-        if newHeight != oldHeight {
-            toolBar.frame.size.height = newHeight+8*2-0.5
+//         println("new \(newHeight)")
+        let heightChange = newHeight - oldHeight
+        if heightChange != 0 {
+            toolBar.frame.origin.y -= heightChange
+            commentTextView.frame.size.height += heightChange
         }
     }
     
@@ -229,13 +237,13 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
                   
         
         
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = bgColor
         
         tableView = UITableView(frame: view.bounds, style: .Plain)
         
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         
-        tableView.backgroundColor = backgroundColor
+        tableView.backgroundColor = bgColor
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
         self.tableView.contentInset = edgeInsets
         self.tableView.dataSource = self
@@ -247,16 +255,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         view.addSubview(tableView)
     
         
-//        contentView = UIScrollView(frame: CGRectMake(0, 40, tableView.frame.width, tableView.frame.height - 40))
-//        contentView.scrollEnabled = true
 
-        
-//        var contentText = UILabel(frame: CGRectMake(20, 0, tableView.frame.width-40, tableView.frame.height - 40));
-//        contentText.lineBreakMode = NSLineBreakMode.ByWordWrapping
-//        contentText.numberOfLines = 0
-//        contentText.text = "柴静走访多个污染现场寻找雾霾根源，赴多国实地了解治污经验，并从国家层面和个人层面提出了行动方案。\n她实地勘察：在燃煤消耗和钢材生产大省河北，经历了无人机因雾霾过重而无法记录污染情况的尴尬；她亲自携带采样仪，在雾霾中生活一天，一个白色的采样仪变为黑色，从中检测出15种致癌物质，最危险的一种物质的含量超过国家标准14倍.\n通过调查她告诉我们，在北京，每天高峰时段，有34%的车在路上堵着，六环以内每小时PM2.5的排放量是1吨；在燃煤污染致死数千人的伦敦雾霾事件过后62年，她前往因雾霾丧生者的墓地凭吊，也去到仍烧壁炉的人家拜访，当年伦敦“禁排黑烟”、“限烟区只能烧无烟煤，财政补贴壁炉改造的大部分费用”等规定的条文，具体化为男主人手中清洁的煤块——煤是可以干净的；为考察同样恶名昭著但污染源主要是汽车尾气的洛杉矶光化学污染现象，她在直升机上俯瞰这座车轮上的城市摊大饼式的道路模式和对汽车的高度依赖，在公路边直击加州空气资源管理委员会的官员向没给重型柴油车加装空气颗粒物过滤器的司机开出罚单。\n她查阅文献：对一些人所称的伦敦雾霾治理四五十年方见成效的说法，她发现开始治理的头十年就降低了80%的大气污染物；还把官员和业界已知的秘密推到公众视野之中：一艘海轮排放的PM2.5几乎等于50万辆货车，而轮船和飞机的燃油还没有得到像汽车用油那样的哪怕不算严格的监管。\n她拜访各方面专家：她直问中国石化集团前总工程师、国家石油标准委员会主任曹湘洪：为什么是石化行业而不是环保部门主导油品标准制定？为什么不公开油品标准升级的成本？有没有可能放开油品市场？她用数据视觉化，把包括中国科学院院士、前卫生部部长陈竺与专家合作发表于《柳叶刀》杂志的报告估计的中国每年因室外空气污染导致35万至50万人早死这样惨烈的数字，处理得通俗、形象、警醒。\n探查真相之后，她用行动以尽绵薄之力：看到家门口有一片工地裸露，她试着与施工者交涉，结果扬尘的土堆得到覆盖；楼下的餐馆没有加装油烟处理装置，她打了举报电话12369，餐馆老板果然装上了法规要求安装的设备；加油站的加油枪汽油挥发严重，她又向环保部门举报，加油站答应马上修好防挥发装置。她的体会是，如果不打，12369就只是一个数字。她建议网友：表达你的不满、维护你的权益。"
-//        contentText.backgroundColor = whiteColor
-//        contentView.addSubview(contentText)
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -355,7 +354,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         }
         //            println(comments.loadedComments[indexPath.section-1].count)
         //            println(indexPath.row)
-                cell.backgroundColor = backgroundColor
+                cell.backgroundColor = bgColor
                 let singleComment = comments.loadedComments[indexPath.row]
                 cell.configureWithComment(singleComment)
         return cell
@@ -431,6 +430,10 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         
         if sender.titleLabel?.text == "动嘴"{
             left = true
+            titleview.support.progress /= 0.8
+        }
+        else {
+            titleview.support.progress *= 0.8
         }
         
         comments.loadedComments.append(aComment(incoming: left, text: commentTextView.text))
@@ -444,8 +447,8 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         tableView.beginUpdates()
         //        tableView.insertSections(NSIndexSet(index: lastsec+1), withRowAnimation: .None)
         //        tableView.insertRowsAtIndexPaths(NSIndexPath(forRow: lastrow, inSection: lastsec ), withRowAnimation: .Automatic)
-        println(lastrow)
-        println(lastsec)
+//        println(lastrow)
+//        println(lastsec)
         tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow: lastrow, inSection: lastsec)
             ], withRowAnimation: .Automatic)

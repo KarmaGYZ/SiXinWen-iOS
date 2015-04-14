@@ -26,8 +26,8 @@ class MessageViewController: UITableViewController {
     func messagelist_update(){
         for(var i=0;i<5;i++){
             var message = MessageItem()
-            message.userName = "肖倾城\(i)号"
-            message.messageText = "我是sb"
+            message.userName = "用户\(i)号"
+            message.messageText = "你是shenmegui"
             messageList.append(message)
         }
     }

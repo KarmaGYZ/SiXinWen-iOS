@@ -10,22 +10,18 @@
 	<string>SiXinWen-iOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>176778A3E76352D69D95DA39A5705B65B715C138</key>
-		<string>github.com:SiXinWen/UX.git</string>
 		<key>4ED46E35C061684A60739972665B77C695296855</key>
-		<string>github.com:SiXinWen/SiXinWen-iOS.git</string>
+		<string>https://github.com/SiXinWen/SiXinWen-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SiXinWen-iOS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>176778A3E76352D69D95DA39A5705B65B715C138</key>
-		<string>../../SiXinWen-iOS/Sixinwen/UX</string>
 		<key>4ED46E35C061684A60739972665B77C695296855</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:SiXinWen/SiXinWen-iOS.git</string>
+	<string>https://github.com/SiXinWen/SiXinWen-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -39,14 +35,6 @@
 			<string>4ED46E35C061684A60739972665B77C695296855</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SiXinWen-iOS</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>176778A3E76352D69D95DA39A5705B65B715C138</string>
-			<key>IDESourceControlWCCName</key>
-			<string>UX</string>
 		</dict>
 	</array>
 </dict>

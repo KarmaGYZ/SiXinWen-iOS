@@ -49,7 +49,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     
     func getNewsAtIndex(indext:Int)->NewsItem{
         var news = NewsItem()
-        news.text = "2015年2月28日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
+        news.text = "近日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
         news.title = "柴静_穹顶之下"
         news.support = 0.3
         return news
@@ -107,6 +107,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     }
     func configSupportForCell(cell:NewsCell,withNewsItem news:NewsItem){
         cell.support.progress = news.support
+        cell.support.progressTintColor = leftColor
+        cell.support.trackTintColor =  rightColor
     }
     func configImageForCell(cell:NewsCell,withNewsItem news:NewsItem){
         //let image = cell.viewWithTag(1004) as UIImageView

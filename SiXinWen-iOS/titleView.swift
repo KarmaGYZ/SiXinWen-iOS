@@ -7,35 +7,38 @@
 //
 
 import UIKit
-
-public let MENU_BOUNCE_OFFSET: CGFloat         = 0
-public let MENU_HEIGHT: CGFloat                = 550
-public let VELOCITY_TRESHOLD: CGFloat          = 300
-
-public let CRITERION = UIScreen.mainScreen().bounds.size.height / 2
+//
+//public let MENU_BOUNCE_OFFSET: CGFloat         = 0
+//public let MENU_HEIGHT: CGFloat                = 550
+//public let VELOCITY_TRESHOLD: CGFloat          = 300
+//
+//public let CRITERION = UIScreen.mainScreen().bounds.size.height / 2
 
 
 class titleView: UIView {
     
+    var title:UILabel
+    var support:UIProgressView
+    
     override init(frame: CGRect){
+        
+        support = UIProgressView(frame: CGRectMake(0, frame.height - 5,frame.width, 5))
+        title = UILabel(frame: CGRectMake(0, 0,frame.width, frame.height ))
         super.init(frame: frame)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = bgColor
         self.alpha = 0.9
-        let title = UILabel(frame: CGRectMake(0, 0,self.frame.width, self.frame.height))
         title.text = "穹顶之下"
         title.textAlignment = NSTextAlignment.Center
         self.addSubview(title)
-        
+        support.progress = 0.5
+        support.progressTintColor = leftColor
+        support.trackTintColor = rightColor
+        self.addSubview(support)
         
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
-    
-    
     
 }

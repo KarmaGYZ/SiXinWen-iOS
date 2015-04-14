@@ -13,13 +13,14 @@ let incomingTag = 0, outgoingTag = 1
 
 let bubbleTag = 8
 
-func coloredImage(image: UIImage, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIImage! {
+func coloredImage(image: UIImage, color:UIColor) -> UIImage! {
     let rect = CGRect(origin: CGPointZero, size: image.size)
     UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
     let context = UIGraphicsGetCurrentContext()
     image.drawInRect(rect)
-    CGContextSetRGBFillColor(context, red, green, blue, alpha)
-    CGContextSetBlendMode(context, kCGBlendModeSourceAtop)
+    var components = CGColorGetComponents(color.CGColor)
+    CGContextSetRGBFillColor(context, components[0],components[1],components[2],components[3])
+        CGContextSetBlendMode(context, kCGBlendModeSourceAtop)
     CGContextFillRect(context, rect)
     let result = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
@@ -33,10 +34,10 @@ func bubbleImageMake() -> (incoming: UIImage, incomingHighlighed: UIImage, outgo
     let capInsetsIncoming = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
     let capInsetsOutgoing = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
 
-    let incoming = coloredImage(maskIncoming,77/255.0, 188/255.0, 249/255.0 , 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let incomingHighlighted = coloredImage(maskIncoming, 51/255.0, 102/255.0, 205/255.0, 1).resizableImageWithCapInsets(capInsetsIncoming)
-    let outgoing = coloredImage(maskOutgoing,  252/255.0, 13/255.0, 68/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
-    let outgoingHighlighted = coloredImage(maskOutgoing,255/255.0, 99/255.0, 71/255.0, 1).resizableImageWithCapInsets(capInsetsOutgoing)
+    let incoming = coloredImage(maskIncoming,leftColor).resizableImageWithCapInsets(capInsetsIncoming)
+    let incomingHighlighted = coloredImage(maskIncoming, highLeftColor).resizableImageWithCapInsets(capInsetsIncoming)
+    let outgoing = coloredImage(maskOutgoing, rightColor).resizableImageWithCapInsets(capInsetsOutgoing)
+    let outgoingHighlighted = coloredImage(maskOutgoing,highRightColor).resizableImageWithCapInsets(capInsetsOutgoing)
     
     return (incoming, incomingHighlighted, outgoing, outgoingHighlighted)
 }
@@ -49,17 +50,18 @@ let commentFontSize: CGFloat = 17
 class CommentCell: UITableViewCell {
     
     
+//    let usrPhoto:UIImage
     
     let bubbleImageView: UIImageView
     let commentLabel: UILabel
+    let like: UIButton
     
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     
-        let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
         bubbleImageView = UIImageView(image: bubbleImage.incoming, highlightedImage: bubbleImage.incomingHighlighed)
-        bubbleImageView.backgroundColor = backgroundColor
+        bubbleImageView.backgroundColor = bgColor
         bubbleImageView.tag = bubbleTag
         bubbleImageView.userInteractionEnabled = true // #CopyMesage
         
@@ -67,6 +69,9 @@ class CommentCell: UITableViewCell {
         commentLabel.font = UIFont.systemFontOfSize(commentFontSize)
         commentLabel.numberOfLines = 0
         commentLabel.userInteractionEnabled = false   // #Copycomment
+       
+        like = UIButton(frame: CGRectZero)
+        
         
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None

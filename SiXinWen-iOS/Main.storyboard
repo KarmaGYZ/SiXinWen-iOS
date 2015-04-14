@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -358,8 +358,8 @@
                                         </imageView>
                                         <progressView opaque="NO" tag="1006" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EiA-xU-Tnz">
                                             <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
-                                            <color key="progressTintColor" red="1" green="0.0" blue="0.14858211595246473" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="trackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="progressTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="trackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
                                         <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
                                             <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -577,7 +577,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SliderThumb-Normal" width="32" height="32"/>
-        <image name="h_large_yV7D_0fa60001447b111a" width="300" height="300"/>
+        <image name="SliderThumb-Normal" width="220" height="165"/>
+        <image name="h_large_yV7D_0fa60001447b111a" width="200" height="200"/>
     </resources>
 </document>

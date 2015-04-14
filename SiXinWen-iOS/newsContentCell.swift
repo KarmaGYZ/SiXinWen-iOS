@@ -15,16 +15,7 @@ class newsContentCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        let backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
-//        bubbleImageView = UIImageView(image: bubbleImage.incoming, highlightedImage: bubbleImage.incomingHighlighed)
-//        bubbleImageView.backgroundColor = backgroundColor
-//        bubbleImageView.tag = bubbleTag
-//        bubbleImageView.userInteractionEnabled = true // #CopyMesage
-//        
-//        commentLabel = UILabel(frame: CGRectZero)
-//        commentLabel.font = UIFont.systemFontOfSize(commentFontSize)
-//        commentLabel.numberOfLines = 0
-//        commentLabel.userInteractionEnabled = false   // #Copycomment
+        let backgroundColor = bgColor
         
         
         newsContentText = UILabel(frame: CGRectZero)
@@ -40,22 +31,14 @@ class newsContentCell: UITableViewCell {
         
         
         contentView.addSubview(newsContentText)
-//        bubbleImageView.addSubview(commentLabel)
-//        
-//        bubbleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         newsContentText.setTranslatesAutoresizingMaskIntoConstraints(false)
         contentView.addConstraint(NSLayoutConstraint(item: newsContentText, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 10))
         
         contentView.addConstraint(NSLayoutConstraint(item: newsContentText, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -10))
         
         contentView.addConstraint(NSLayoutConstraint(item: newsContentText, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 4.5))
-//        contentView.addConstraint(NSLayoutConstraint(item: newsContentText, attribute: .Width, relatedBy: .Equal, toItem: contentView, attribute: .Width, multiplier: 1, constant: 30))
         contentView.addConstraint(NSLayoutConstraint(item: newsContentText, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -4.5))
 //
-//        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .CenterX, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterX, multiplier: 1, constant: 3))
-//        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .CenterY, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterY, multiplier: 1, constant: -0.5))
-//        commentLabel.preferredMaxLayoutWidth = 218
-//        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .Height, relatedBy: .Equal, toItem: bubbleImageView, attribute: .Height, multiplier: 1, constant: -15))
     }
     
     required init(coder: NSCoder) {
