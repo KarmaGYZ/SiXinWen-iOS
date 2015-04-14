@@ -10,7 +10,7 @@ import UIKit
 
 class InputTextView: UITextView {
     override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
-        if (delegate as! CommentTableViewController).tableView.indexPathForSelectedRow() != nil {
+        if (delegate as CommentTableViewController).tableView.indexPathForSelectedRow() != nil {
             return action == "copyTextAction:"
         } else {
             return super.canPerformAction(action, withSender: sender)
@@ -60,7 +60,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
                 
                 
                 
-                leftButton = UIButton.buttonWithType(.Custom) as! UIButton
+                leftButton = UIButton.buttonWithType(.Custom) as UIButton
                 leftButton.backgroundColor = leftColor
                 leftButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
                 leftButton.enabled = false
@@ -72,7 +72,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
                 toolBar.addSubview(leftButton)
                 
                 
-                rightButton = UIButton.buttonWithType(.Custom) as! UIButton
+                rightButton = UIButton.buttonWithType(.Custom) as UIButton
                 rightButton.backgroundColor = rightColor
                 rightButton.enabled = false
                 rightButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
@@ -141,7 +141,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     
     
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(textView: UITextView!) {
         updateTextViewHeight()
         leftButton.enabled = textView.hasText()
         rightButton.enabled = textView.hasText()
@@ -342,7 +342,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         //            return cell
         //        } else {
         let cellIdentifier = NSStringFromClass(CommentCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CommentCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as CommentCell!
         if cell == nil {
             cell = CommentCell(style: .Default, reuseIdentifier: cellIdentifier)
             
@@ -377,13 +377,13 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
         let insetNewBottom = self.tableView.convertRect(frameNew, fromView: nil).height
         let insetOld = self.tableView.contentInset
         let insetChange = insetNewBottom - insetOld.bottom
         let overflow = self.tableView.contentSize.height - (self.tableView.frame.height-insetOld.top-insetOld.bottom)
         
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber).doubleValue
         let animations: (() -> Void) = {
             if !(self.tableView.tracking || self.tableView.decelerating) {
                 // Move content with keyboard
@@ -398,7 +398,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
             }
         }
         if duration > 0 {
-            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber).integerValue << 16))
             UIView.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
         } else {
             animations()
@@ -407,7 +407,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     
     func keyboardDidShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
         let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
         
         // Inset `tableView` with keyboard

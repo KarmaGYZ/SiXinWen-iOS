@@ -234,11 +234,11 @@ public class newsContentView: UIView {
         self.currentState = State.Closed
         self.height = MENU_HEIGHT
     }
-/*
+
     override public init() {
         super.init()
     }
-*/
+
     required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

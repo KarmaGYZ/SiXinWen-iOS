@@ -36,9 +36,9 @@ class DataSource: NSObject, UITableViewDataSource{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! CommentCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as CommentCell
         
-        cell.configureWithComment(cellData![indexPath.row] as! aComment)
+        cell.configureWithComment(cellData![indexPath.row] as aComment)
         
         return cell
     }
