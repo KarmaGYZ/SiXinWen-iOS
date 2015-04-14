@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 SiXinWen. All rights reserved.
 //
 
-
+import CoreLocation
 import UIKit
 
-class NewsViewController: UITableViewController {
-    
+class NewsViewController: UITableViewController , CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
     var newsList:[NewsItem]
     let NEWS_PER_PAGE = 5
     
@@ -19,9 +19,26 @@ class NewsViewController: UITableViewController {
         super.init(coder: aDecoder)
         news_list_update()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 10
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+       
         
     }
     
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        let currentLocation = locations.last
+        println("位置\(currentLocation)")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("错误\(error)")
+    }
+    
+    
+
     func news_list_update(){
         if(newsList.isEmpty){
             for(var i = 0;i < 5;i++){
@@ -72,7 +89,7 @@ class NewsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
      //   let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as NewsCell
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem", forIndexPath: indexPath) as NewsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem", forIndexPath: indexPath) as! NewsCell
         let news = newsList[indexPath.row]
         configTitleAndTextForCell(cell,withNewsItem:news)
         configCommentNumForCell(cell,withNewsItem:news)
@@ -107,6 +124,7 @@ class NewsViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
 //        self.tabBarController?.tabBar.hidden = true
     }
     
