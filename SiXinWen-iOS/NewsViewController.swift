@@ -8,6 +8,7 @@
 
 import CoreLocation
 import UIKit
+import AVOSCloud
 
 class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
@@ -29,7 +30,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let currentLocation = locations.last
+        let currentLocation: AnyObject? = locations.last
         println("位置\(currentLocation)")
     }
     
@@ -57,6 +58,32 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //test code
+        var testobject = AVObject(className: "IOSUserInfo")
+        testobject.setObject("ios_test", forKey: "iostestkey")
+        testobject.setObject("IOSUser", forKey: "UserName")
+        testobject.setObject(0, forKey: "UserId")
+        testobject.save()
+        var query = AVQuery(className: "News")
+        
+        var news = query.getObjectWithId("552d0880e4b0f543686dbdff")
+        var htmlCont = news.objectForKey("htmlContent") as! String
+        println("\(htmlCont)")
+        //news.refresh()
+        var bcktest = AVObject(className: "IOSUserInfo")
+        bcktest.setObject("background save", forKey: "bck")
+        //AVBooleanResultBlock
+        bcktest.saveInBackgroundWithBlock(){(succeeded:Bool,error:NSError!)->Void in
+            if(error == nil){
+                println("Save in back succeed")
+            }
+            else{
+                println("\(error)")
+            }
+        }
+        
+        
         
        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         

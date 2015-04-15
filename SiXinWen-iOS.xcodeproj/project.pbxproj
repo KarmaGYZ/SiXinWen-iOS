@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */; };
 		311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B32911ACA651A00B05BC2 /* NewsItem.swift */; };
+		3173F9661ADEA2E9001D33E3 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9651ADEA2E9001D33E3 /* AVOSCloud.framework */; };
+		3173F9681ADEA31A001D33E3 /* AVOSCloudIM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9671ADEA31A001D33E3 /* AVOSCloudIM.framework */; };
+		3173F96A1ADEA327001D33E3 /* AVOSCloudSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9691ADEA327001D33E3 /* AVOSCloudSNS.framework */; };
+		3173F96C1ADEA4EB001D33E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F96B1ADEA4EA001D33E3 /* SystemConfiguration.framework */; };
+		3173F96E1ADEA500001D33E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F96D1ADEA500001D33E3 /* MobileCoreServices.framework */; };
+		3173F9701ADEA510001D33E3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */; };
+		3173F9721ADEA533001D33E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9711ADEA533001D33E3 /* libicucore.dylib */; };
+		3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9741ADEA56D001D33E3 /* CFNetwork.framework */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
@@ -43,6 +51,14 @@
 /* Begin PBXFileReference section */
 		3111F77B1ABE98AE00009CF1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		311B32911ACA651A00B05BC2 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		3173F9651ADEA2E9001D33E3 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
+		3173F9671ADEA31A001D33E3 /* AVOSCloudIM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudIM.framework; sourceTree = "<group>"; };
+		3173F9691ADEA327001D33E3 /* AVOSCloudSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloudSNS.framework; sourceTree = "<group>"; };
+		3173F96B1ADEA4EA001D33E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3173F96D1ADEA500001D33E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3173F9711ADEA533001D33E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3173F9741ADEA56D001D33E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +89,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */,
+				3173F9721ADEA533001D33E3 /* libicucore.dylib in Frameworks */,
+				3173F9701ADEA510001D33E3 /* CoreTelephony.framework in Frameworks */,
+				3173F96E1ADEA500001D33E3 /* MobileCoreServices.framework in Frameworks */,
+				3173F96C1ADEA4EB001D33E3 /* SystemConfiguration.framework in Frameworks */,
+				3173F9661ADEA2E9001D33E3 /* AVOSCloud.framework in Frameworks */,
+				3173F9681ADEA31A001D33E3 /* AVOSCloudIM.framework in Frameworks */,
+				3173F96A1ADEA327001D33E3 /* AVOSCloudSNS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,9 +110,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3173F9731ADEA53C001D33E3 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				3173F9711ADEA533001D33E3 /* libicucore.dylib */,
+				3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */,
+				3173F96D1ADEA500001D33E3 /* MobileCoreServices.framework */,
+				3173F96B1ADEA4EA001D33E3 /* SystemConfiguration.framework */,
+				3173F9691ADEA327001D33E3 /* AVOSCloudSNS.framework */,
+				3173F9671ADEA31A001D33E3 /* AVOSCloudIM.framework */,
+				3173F9651ADEA2E9001D33E3 /* AVOSCloud.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		31C6F8B91ABA702F00DFF5EE = {
 			isa = PBXGroup;
 			children = (
+				3173F9741ADEA56D001D33E3 /* CFNetwork.framework */,
+				3173F9731ADEA53C001D33E3 /* Framework */,
 				31C6F8C41ABA702F00DFF5EE /* SiXinWen-iOS */,
 				31C6F8DD1ABA702F00DFF5EE /* SiXinWen-iOSTests */,
 				31C6F8C31ABA702F00DFF5EE /* Products */,
@@ -417,6 +457,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -431,6 +475,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "SiXinWen-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
