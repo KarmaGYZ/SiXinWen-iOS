@@ -1,5 +1,5 @@
 //
-//  Comment.swift
+//  Comments.swift
 //  SiXinWen-iOS
 //
 //  Created by admin on 15/3/26.
@@ -12,32 +12,20 @@ import UIKit
 
 //var dateFormatter = NSDateFormatter()
 
-class Comments{
+class Messages{
     
-    
-    let user: User
 //    var lastCommentText: String
 //    var lastCommentSentDate: NSDate
 //    var lastCommentSentDateString: String {
 //        return formatDate(lastCommentSentDcate)
 //    }
-    var loadedComments = [aComment]()
-    var unreadCommentCount: Int = 0 // subtacted from total when read
-    var hasUnloadedComments = false
+    var loadedMessages = [singleMessage]()
+    var unreadCount: Int = 0 // subtacted from total when read
+    var hasUnloadedMessage = false
     var draft = ""
     
-    init(){
-        
-        user = User()
-    
-    }
     
     
-    init(user: User, lastCommentText: String) {
-        self.user = user
-//        self.lastCommentText = lastCommentText
-//        self.lastCommentSentDate = lastCommentSentDate
-    }
     
 //    func formatDate(date: NSDate) -> String {
 //        let calendar = NSCalendar.currentCalendar()

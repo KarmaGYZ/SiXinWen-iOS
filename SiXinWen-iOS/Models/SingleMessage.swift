@@ -9,13 +9,17 @@
 import Foundation
 
 
-class aComment {
-    let incoming: Bool
+class singleMessage{
+    
+    let owner: Int
+    
+    let oppo: Bool
     let text: String
 //    let sentDate: NSDate
     
-    init(incoming: Bool, text: String) {
-        self.incoming = incoming
+    init(oppo: Bool, text: String, usrID: Int) {
+        self.owner = usrID
+        self.oppo = oppo
         self.text = text
 //        self.sentDate = sentDate
     }

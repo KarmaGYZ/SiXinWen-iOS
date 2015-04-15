@@ -9,7 +9,7 @@
 import UIKit
 
 
-let incomingTag = 0, outgoingTag = 1
+let oppoTag = 0, teamTag = 1
 
 let bubbleTag = 8
 
@@ -27,48 +27,48 @@ func coloredImage(image: UIImage, color:UIColor) -> UIImage! {
     return result
 }
 
-func bubbleImageMake() -> (incoming: UIImage, incomingHighlighed: UIImage, outgoing: UIImage, outgoingHighlighed: UIImage) {
-    let maskOutgoing = UIImage(named: "MessageBubble")!
-    let maskIncoming = UIImage(CGImage: maskOutgoing.CGImage, scale: 2, orientation: .UpMirrored)!
+func bubbleImageMake() -> (oppo: UIImage, oppoHighlighed: UIImage, team: UIImage, teamHighlighed: UIImage) {
+    let maskTeam = UIImage(named: "MessageBubble")!
+    let maskOppo = UIImage(CGImage: maskTeam.CGImage, scale: 2, orientation: .UpMirrored)!
     
-    let capInsetsIncoming = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
-    let capInsetsOutgoing = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
+    let capInsetsOppo = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
+    let capInsetsTeam = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
 
-    let incoming = coloredImage(maskIncoming,leftColor).resizableImageWithCapInsets(capInsetsIncoming)
-    let incomingHighlighted = coloredImage(maskIncoming, highLeftColor).resizableImageWithCapInsets(capInsetsIncoming)
-    let outgoing = coloredImage(maskOutgoing, rightColor).resizableImageWithCapInsets(capInsetsOutgoing)
-    let outgoingHighlighted = coloredImage(maskOutgoing,highRightColor).resizableImageWithCapInsets(capInsetsOutgoing)
+    let oppo = coloredImage(maskOppo,leftColor).resizableImageWithCapInsets(capInsetsOppo)
+    let oppoHighlighted = coloredImage(maskOppo, highLeftColor).resizableImageWithCapInsets(capInsetsOppo)
+    let team = coloredImage(maskTeam, rightColor).resizableImageWithCapInsets(capInsetsTeam)
+    let teamHighlighted = coloredImage(maskTeam,highRightColor).resizableImageWithCapInsets(capInsetsTeam)
     
-    return (incoming, incomingHighlighted, outgoing, outgoingHighlighted)
+    return (oppo, oppoHighlighted, team, teamHighlighted)
 }
 
 
 let bubbleImage = bubbleImageMake()
 
-let commentFontSize: CGFloat = 17
+let FontSize: CGFloat = 17
 
-class CommentCell: UITableViewCell {
+class BubbleCell: UITableViewCell {
     
     
 //    let usrPhoto:UIImage
     
     let bubbleImageView: UIImageView
-    let commentLabel: UILabel
+    let bubbleText: UILabel
     let like: UIButton
     
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     
-        bubbleImageView = UIImageView(image: bubbleImage.incoming, highlightedImage: bubbleImage.incomingHighlighed)
+        bubbleImageView = UIImageView(image: bubbleImage.oppo, highlightedImage: bubbleImage.oppoHighlighed)
         bubbleImageView.backgroundColor = bgColor
         bubbleImageView.tag = bubbleTag
         bubbleImageView.userInteractionEnabled = true // #CopyMesage
         
-        commentLabel = UILabel(frame: CGRectZero)
-        commentLabel.font = UIFont.systemFontOfSize(commentFontSize)
-        commentLabel.numberOfLines = 0
-        commentLabel.userInteractionEnabled = false   // #Copycomment
+        bubbleText = UILabel(frame: CGRectZero)
+        bubbleText.font = UIFont.systemFontOfSize(FontSize)
+        bubbleText.numberOfLines = 0
+        bubbleText.userInteractionEnabled = false   // #Copycomment
        
         like = UIButton(frame: CGRectZero)
         
@@ -78,19 +78,19 @@ class CommentCell: UITableViewCell {
         
         
         contentView.addSubview(bubbleImageView)
-        bubbleImageView.addSubview(commentLabel)
+        bubbleImageView.addSubview(bubbleText)
         
         bubbleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        commentLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        bubbleText.setTranslatesAutoresizingMaskIntoConstraints(false)
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 10))
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 4.5))
-        bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Width, relatedBy: .Equal, toItem: commentLabel, attribute: .Width, multiplier: 1, constant: 30))
+        bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Width, relatedBy: .Equal, toItem: bubbleText, attribute: .Width, multiplier: 1, constant: 30))
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -4.5))
         
-        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .CenterX, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterX, multiplier: 1, constant: 3))
-        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .CenterY, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterY, multiplier: 1, constant: -0.5))
-        commentLabel.preferredMaxLayoutWidth = 218
-        bubbleImageView.addConstraint(NSLayoutConstraint(item: commentLabel, attribute: .Height, relatedBy: .Equal, toItem: bubbleImageView, attribute: .Height, multiplier: 1, constant: -15))
+        bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .CenterX, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterX, multiplier: 1, constant: 3))
+        bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .CenterY, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterY, multiplier: 1, constant: -0.5))
+        bubbleText.preferredMaxLayoutWidth = 218
+        bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .Height, relatedBy: .Equal, toItem: bubbleImageView, attribute: .Height, multiplier: 1, constant: -15))
     }
     
     required init(coder: NSCoder) {
@@ -113,25 +113,25 @@ class CommentCell: UITableViewCell {
     }
     
     
-    func configureWithComment(comment: aComment) {
-        commentLabel.text = comment.text
+    func configureWithMessage(message: singleMessage) {
+        bubbleText.text = message.text
         
 //        if comment.incoming != (tag == incomingTag) {
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
-            
-            if comment.incoming {
-                tag = incomingTag
-                bubbleImageView.image = bubbleImage.incoming
-                bubbleImageView.highlightedImage = bubbleImage.incomingHighlighed
-                commentLabel.textColor = UIColor.whiteColor()
+            bubbleText.textColor = UIColor.whiteColor()
+            if message.oppo {
+                tag = oppoTag
+                bubbleImageView.image = bubbleImage.oppo
+                bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
+               
                 layoutAttribute = .Left
                 layoutConstant = 10
             } else { // outgoing
-                tag = outgoingTag
-                bubbleImageView.image = bubbleImage.outgoing
-                bubbleImageView.highlightedImage = bubbleImage.outgoingHighlighed
-                commentLabel.textColor = UIColor.whiteColor()
+                tag = teamTag
+                bubbleImageView.image = bubbleImage.team
+                bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
+                
                 layoutAttribute = .Right
                 layoutConstant = -10
             }

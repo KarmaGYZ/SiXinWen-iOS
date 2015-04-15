@@ -8,8 +8,9 @@
 
 import Foundation
 
-class User {
+public class User {
     let ID: Int
+    var portrait: String?
     var username: String
     var firstName: String?
     var lastName: String?
@@ -35,6 +36,9 @@ class User {
         return initials
     }
     
+    var commentMessage = Messages()
+    var chatMessage = Messages()
+    
     
     init(){
         ID = -1
@@ -42,14 +46,12 @@ class User {
     }
     
     
-    init(ID: Int, username: String, firstName: String?, lastName: String?) {
+    init(ID: Int, username: String, firstName: String?, lastName: String?, portraitName: String?) {
         self.ID = ID
         self.username = username
         self.firstName = firstName
         self.lastName = lastName
+        self.portrait = portraitName
     }
     
-    func pictureName() -> String {
-        return "User\(ID).jpg"
-    }
 }

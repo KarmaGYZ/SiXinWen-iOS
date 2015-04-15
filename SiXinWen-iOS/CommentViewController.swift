@@ -1,16 +1,30 @@
 //
-//  CommentTableViewController.swift
+//  CommentViewController.swift
 //  SiXinWen-iOS
 //
-//  Created by walker on 15/3/25.
+//  Created by walker on 15/4/14.
 //  Copyright (c) 2015年 SiXinWen. All rights reserved.
 //
 
 import UIKit
 
+public let me = User(ID: -1, username: "walker", firstName: "walker", lastName: nil, portraitName: nil)
+
+public let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
+public let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
+public let highLeftColor = UIColor(red: 51/255.0, green: 102/255.0, blue: 205/255.0, alpha: 1)
+public let rightColor = UIColor(red: 253/255, green: 13/255, blue: 68/255, alpha: 1)
+public let highRightColor = UIColor(red: 255/255.0, green: 99/255.0, blue: 71/255.0, alpha: 1)
+public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
+
+
+
+
+
+
 class InputTextView: UITextView {
     override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
-        if (delegate as! CommentTableViewController).tableView.indexPathForSelectedRow() != nil {
+        if (delegate as! CommentViewController).tableView.indexPathForSelectedRow() != nil {
             return action == "copyTextAction:"
         } else {
             return super.canPerformAction(action, withSender: sender)
@@ -21,31 +35,36 @@ class InputTextView: UITextView {
 
 
 
-class CommentTableViewController: UIViewController , UITableViewDelegate, UITableViewDataSource,UITextViewDelegate{
-    
-    let comments = Comments()
+class CommentViewController: UIViewController ,UITextViewDelegate {
+
     
     var popularcomment = popularComment.alloc()
     var newscontent = newsContent.alloc()
+    var instantcomment = instantComment.alloc()
     
-    var titleview:titleView!
-//    var contentView:UIScrollView!
-    var tableView = UITableView()
+    var instantRefresh = UIRefreshControl()
+    var popularRefresh = UIRefreshControl()
     
-   
+//    var tableView = UITableView()
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var titleview: UIView!
+ //   var titleview:titleView!
+    @IBOutlet weak var arrow: UIImageView!
+    
     var rotating = false
-    
     var showcontent = false
-    
-    let whiteColor = UIColor.whiteColor()
 
-   
-    
     var  shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
     var toolBar:UIToolbar!
     var commentTextView:UITextView!
     var rightButton = UIButton()
     var leftButton = UIButton()
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     
     override var inputAccessoryView: UIView! {
@@ -84,9 +103,9 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
                 
                 commentTextView = InputTextView(frame: CGRectZero)
                 commentTextView.backgroundColor = bgColor
-                    //UIColor(white: 250/255, alpha: 1)
+                //UIColor(white: 250/255, alpha: 1)
                 commentTextView.delegate = self
-                commentTextView.font = UIFont.systemFontOfSize(commentFontSize)
+                commentTextView.font = UIFont.systemFontOfSize(FontSize)
                 commentTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha:1).CGColor
                 commentTextView.layer.borderWidth = 0.5
                 commentTextView.layer.cornerRadius = 5
@@ -111,21 +130,156 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
             return toolBar
         }
     }
+
     
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
-    
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        comments.draft = commentTextView.text
-        //   willHideNewsContent()
+        me.commentMessage.draft = commentTextView.text
     }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: 1, animated: true)
+        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: 0, animated: true)
+        shiftSegmentControl.selectedSegmentIndex = 1
+        shiftSegmentControl.multipleTouchEnabled = false
+        shiftSegmentControl.userInteractionEnabled = true
+        shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
+        self.navigationItem.titleView = shiftSegmentControl
+        
+        
+//        tableView = UITableView(frame: CGRectZero, style: .Plain)
+        
+        tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        tableView.backgroundColor = bgColor
+        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
+        self.tableView.contentInset = edgeInsets
+        self.tableView.dataSource = instantcomment
+        self.tableView.keyboardDismissMode = .Interactive
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.separatorStyle = .None
+        tableView.registerClass(BubbleCell.self, forCellReuseIdentifier: NSStringFromClass(BubbleCell))
+        
+        let tap = UITapGestureRecognizer(target: self, action: "didTap:")
+        titleview.addGestureRecognizer(tap)
+        
+        tableView.addPullToRefresh({ [weak self] in
+            // some code
+            sleep(1)
+          
+            self!.tableView.reloadData()
+            })
+
+
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
+
+        
+        
+        }
+    
+    override func viewDidLayoutSubviews()  {
+        super.viewDidLayoutSubviews()
+        
+        if !me.commentMessage.draft.isEmpty {
+            commentTextView.text = me.commentMessage.draft
+            me.commentMessage.draft = ""
+            textViewDidChange(commentTextView)
+            commentTextView.becomeFirstResponder()
+        }
+    }
+    
+    
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+        
+        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
+            if toolBar.frame.height > textViewMaxHeight.landscape {
+                toolBar.frame.size.height = textViewMaxHeight.landscape+8*2-0.5
+            }
+        } else { // portrait
+            updateTextViewHeight()
+        }
+    }
+
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+
+    
+
+    
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return nil
+//    }
+//    
+//    
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0
+//        {
+//            return 40.0
+//        }
+//        return 0.0
+//    }
+//    
+//override  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+////        println(section)
+////        if section == 0 {
+////            
+////            titleview = titleView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
+////            
+////            
+////            let tap = UITapGestureRecognizer(target: self, action: "didTap:")
+////            titleview.addGestureRecognizer(tap)
+////            return titleview
+////        }
+//        return nil
+//    }
+//
+    
+    
+    
+    func shiftSegment(sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+            
+        case 0:
+            toolBar.hidden = true
+            tableView.dataSource = popularcomment
+            tableView.reloadData()
+            break
+            
+        case 1:
+            toolBar.hidden = false
+            tableView.dataSource = instantcomment
+            tableView.reloadData()
+            break
+            
+        default: break
+            
+        }
+        
+    }
+
+    
+    
+    
     
     func updateTextViewHeight() {
         let oldHeight = commentTextView.frame.height
-//        println("old \(oldHeight)")
+        //        println("old \(oldHeight)")
         let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
         var newHeight = min(commentTextView.sizeThatFits(CGSize(width: commentTextView.frame.width, height: CGFloat.max)).height, maxHeight)
         #if arch(x86_64) || arch(arm64)
@@ -133,7 +287,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
             #else
             newHeight = CGFloat(ceilf(newHeight.native))
         #endif
-//         println("new \(newHeight)")
+        //         println("new \(newHeight)")
         let heightChange = newHeight - oldHeight
         if heightChange != 0 {
             toolBar.frame.origin.y -= heightChange
@@ -148,224 +302,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         leftButton.enabled = textView.hasText()
         rightButton.enabled = textView.hasText()
     }
-    
-    override func viewDidLayoutSubviews()  {
-        super.viewDidLayoutSubviews()
-        
-        if !comments.draft.isEmpty {
-            commentTextView.text = comments.draft
-            comments.draft = ""
-            textViewDidChange(commentTextView)
-            commentTextView.becomeFirstResponder()
-        }
-    }
-    
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        
-        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
-            if toolBar.frame.height > textViewMaxHeight.landscape {
-                toolBar.frame.size.height = textViewMaxHeight.landscape+8*2-0.5
-            }
-        } else { // portrait
-            updateTextViewHeight()
-        }
-    }
-    
-            
-    func shiftSegment(sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-            
-        case 0:
-            toolBar.hidden = true
-            tableView.dataSource = popularcomment
-//            tableView.delegate = instantcomment
-            tableView.reloadData()
-            
-            break
-            
-        case 1:
-            toolBar.hidden = false
-            tableView.dataSource = self
-//            tableView.delegate = self
-            tableView.reloadData()
-            break
-            
-        default: break
-            
-        }
-        
-    }
-    
-      
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    
-    
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
 
-        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: 1, animated: true)
-        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: 0, animated: true)
-        shiftSegmentControl.selectedSegmentIndex = 1
-//        shiftSegmentControl.momentary = true
-        shiftSegmentControl.multipleTouchEnabled = false
-        shiftSegmentControl.userInteractionEnabled = true
-        shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
-        self.navigationItem.titleView = shiftSegmentControl
-        
-        
-        comments.loadedComments = [
-        
-        aComment(incoming: true, text: "公知简直太多 什么人都可以当。。。"),
-        aComment(incoming: false, text: "那您干什么去了？")
-        
-        ]
-                  
-        
-        
-        view.backgroundColor = bgColor
-        
-        tableView = UITableView(frame: view.bounds, style: .Plain)
-        
-        tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        tableView.backgroundColor = bgColor
-        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
-        self.tableView.contentInset = edgeInsets
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.keyboardDismissMode = .Interactive
-        self.tableView.estimatedRowHeight = 44
-        self.tableView.separatorStyle = .None
-        tableView.registerClass(CommentCell.self, forCellReuseIdentifier: NSStringFromClass(CommentCell))
-        view.addSubview(tableView)
-    
-        
-
-        
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
-        
-//        setupInstantComment()
-        
-    }
-    
-//    func showContent() {
-//        showNewsContent()
-//    }
-    
-    
-
-    
-   
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-       // hideNewsContent()
-//
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = true
-    }
-    
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nil
-    }
-    
-    
-   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0
-        {
-            return 40.0
-        }
-        return 0.0
-    }
-    
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        println(section)
-        if section == 0 {
-            
-            titleview = titleView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
-            
-            
-            let tap = UITapGestureRecognizer(target: self, action: "didTap:")
-            titleview.addGestureRecognizer(tap)
-            return titleview
-        }
-        return nil
-    }
-    
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-      
-        return comments.loadedComments.count
-        
-    }
-    
-    
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        //  println(indexPath.section)
-        
-        //        if indexPath.row == 0 && indexPath.section == 0 {
-        //            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(CommentCell)) as UITableViewCell
-        //            cell.backgroundColor = backgroundColor
-        //            return cell
-        //        } else {
-        let cellIdentifier = NSStringFromClass(CommentCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CommentCell!
-        if cell == nil {
-            cell = CommentCell(style: .Default, reuseIdentifier: cellIdentifier)
-            
-            // Add gesture recognizers #CopyMessage
-            //                     let action: Selector = "showMenuAction:"
-            //                     let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: action)
-            //                     doubleTapGestureRecognizer.numberOfTapsRequired = 2
-            //                     cell.bubbleImageView.addGestureRecognizer(doubleTapGestureRecognizer)
-            //                     cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
-        }
-        //            println(comments.loadedComments[indexPath.section-1].count)
-        //            println(indexPath.row)
-                cell.backgroundColor = bgColor
-                let singleComment = comments.loadedComments[indexPath.row]
-                cell.configureWithComment(singleComment)
-        return cell
-        //        }
-        
-    }
-
-    
-      
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
-        
-    
     
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
@@ -419,17 +356,18 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         commentTextView.resignFirstResponder()
         commentTextView.becomeFirstResponder()
         
-        var left = false
+        var oppo = false
         
         if sender.titleLabel?.text == "动嘴"{
-            left = true
-            titleview.support.progress /= 0.8
+            oppo = true
+          //  titleview.support.progress /= 0.8
         }
         else {
-            titleview.support.progress *= 0.8
+          //  titleview.support.progress *= 0.8
         }
         
-        comments.loadedComments.append(aComment(incoming: left, text: commentTextView.text))
+        me.commentMessage.loadedMessages.append(singleMessage(oppo: oppo, text: commentTextView.text, usrID: me.ID))
+       
         commentTextView.text = nil
         updateTextViewHeight()
         leftButton.enabled = false
@@ -438,10 +376,7 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
         let lastsec = tableView.numberOfSections() - 1
         let lastrow = tableView.numberOfRowsInSection(lastsec)
         tableView.beginUpdates()
-        //        tableView.insertSections(NSIndexSet(index: lastsec+1), withRowAnimation: .None)
-        //        tableView.insertRowsAtIndexPaths(NSIndexPath(forRow: lastrow, inSection: lastsec ), withRowAnimation: .Automatic)
-//        println(lastrow)
-//        println(lastsec)
+        
         tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow: lastrow, inSection: lastsec)
             ], withRowAnimation: .Automatic)
@@ -451,105 +386,62 @@ class CommentTableViewController: UIViewController , UITableViewDelegate, UITabl
     
     
     
-
+    
     
     
     
     func didTap(sender: UITapGestureRecognizer) {
         
+//        let frame = CGRectMake(0, 0, arrow.image!.size.height, arrow.image!.size.width);
         
         if showcontent == false {
-            
             showcontent = true
             toolBar.hidden = true
+            tableView.removePullToRefresh()
+            
             tableView.dataSource = newscontent
             tableView.reloadData()
+            arrow.image = UIImage(named: "arrowUp")
+            shiftSegmentControl.hidden = true
         } else {
             toolBar.hidden = false
             showcontent = false
+            arrow.image = UIImage(named: "arrowDown")
+            tableView.addPullToRefresh({ [weak self] in
+                // some code
+                sleep(1)
+                
+                self!.tableView.reloadData()
+                })
+            shiftSegmentControl.hidden = false
+            
             if shiftSegmentControl.selectedSegmentIndex == 1 {
-            tableView.dataSource = self
+                tableView.dataSource = instantcomment
             }
             else {
                 tableView.dataSource = popularcomment
             }
-//       tableView.dataSource
+            //       tableView.dataSource
             tableView.reloadData()
-
-            
-            
             
         }
         
         
     }
     
- 
+    
     
     func tableViewScrollToBottomAnimated(animated: Bool) {
         let lastSection = tableView.numberOfSections() - 1
         let numberOfRows = tableView.numberOfRowsInSection(lastSection)
-        println(lastSection)
+        //println(lastSection)
         //        println(numberOfRows)
         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
         
     }
+    
 
     
-//    func setupInstantComment() {
-//        
-//         var instantcommentDataSource = DataSource(cellData: comments.loadedComments, cellIdentifier: NSStringFromClass(CommentCell)
-////            , configureCell: {(cell, cellData) in
-////        
-////            var instantCommentCell = cell as CommentCell
-////            instantCommentCell.configureWithComment(cellData as aComment)
-////        }
-//        )
-//        
-//        self.tableView.dataSource = instantcommentDataSource
-//    }
-    
-    
-    
-    
-//    
-//    func showMenuAction(gestureRecognizer: UITapGestureRecognizer) {
-//        let twoTaps = (gestureRecognizer.numberOfTapsRequired == 2)
-//        let doubleTap = (twoTaps && gestureRecognizer.state == .Ended)
-//        let longPress = (!twoTaps && gestureRecognizer.state == .Began)
-//        if doubleTap || longPress {
-//            let pressedIndexPath = tableView.indexPathForRowAtPoint(gestureRecognizer.locationInView(tableView))!
-//            tableView.selectRowAtIndexPath(pressedIndexPath, animated: false, scrollPosition: .None)
-//            
-//            let menuController = UIMenuController.sharedMenuController()
-//            let bubbleImageView = gestureRecognizer.view!
-//            menuController.setTargetRect(bubbleImageView.frame, inView: bubbleImageView.superview!)
-//            menuController.menuItems = [UIMenuItem(title: "Copy", action: "copyTextAction:")]
-//            menuController.setMenuVisible(true, animated: true)
-//        }
-//    }
-//    // 2. Copy text to pasteboard
-//    func copyTextAction(menuController: UIMenuController) {
-//        let selectedIndexPath = tableView.indexPathForSelectedRow()
-//        let selectedMessage = comments.loadedComments[selectedIndexPath!.section][selectedIndexPath!.row-1]
-//        UIPasteboard.generalPasteboard().string = selectedMessage.text
-//    }
-//    // 3. Deselect row
-//    func menuControllerWillHide(notification: NSNotification) {
-//        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
-//            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
-//        }
-//        (notification.object as UIMenuController).menuItems = nil
-//    }
-//    
-//    
-//    
-//    
     
     
 }
-
-
-
-
-

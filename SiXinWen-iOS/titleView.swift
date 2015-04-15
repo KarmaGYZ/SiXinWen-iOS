@@ -22,18 +22,18 @@ class titleView: UIView {
     
     override init(frame: CGRect){
         
-        support = UIProgressView(frame: CGRectMake(0, frame.height - 5,frame.width, 5))
-        title = UILabel(frame: CGRectMake(0, 0,frame.width, frame.height ))
+        support = UIProgressView()
+        title = UILabel()
         super.init(frame: frame)
         self.backgroundColor = bgColor
         self.alpha = 0.9
         title.text = "穹顶之下"
         title.textAlignment = NSTextAlignment.Center
-        self.addSubview(title)
+//        self.addSubview(title)
         support.progress = 0.5
         support.progressTintColor = leftColor
         support.trackTintColor = rightColor
-        self.addSubview(support)
+//        self.addSubview(support)
         
     }
 
