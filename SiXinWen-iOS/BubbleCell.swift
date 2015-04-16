@@ -55,7 +55,7 @@ class BubbleCell: UITableViewCell {
     let bubbleImageView: UIImageView
     let bubbleText: UILabel
     let like: UIButton
-    
+    let usrPhoto: UIImageView
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -72,6 +72,10 @@ class BubbleCell: UITableViewCell {
        
         like = UIButton(frame: CGRectZero)
         
+        usrPhoto = UIImageView(frame: CGRectMake(0,0,30,30))
+        usrPhoto.layer.cornerRadius = 15
+        usrPhoto.layer.masksToBounds = true
+        usrPhoto.image = UIImage(named: "匿名用户")
         
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
@@ -114,9 +118,10 @@ class BubbleCell: UITableViewCell {
     
     
     func configureWithMessage(message: singleMessage) {
-        bubbleText.text = message.text
+            bubbleText.text = message.text
         
-//        if comment.incoming != (tag == incomingTag) {
+            usrPhoto.image = UIImage(named: "usr0000\(message.owner)")
+        
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             bubbleText.textColor = UIColor.whiteColor()
@@ -126,14 +131,14 @@ class BubbleCell: UITableViewCell {
                 bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
                
                 layoutAttribute = .Left
-                layoutConstant = 10
+                layoutConstant = 40
             } else { // outgoing
                 tag = teamTag
                 bubbleImageView.image = bubbleImage.team
                 bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
                 
                 layoutAttribute = .Right
-                layoutConstant = -10
+                layoutConstant = -40
             }
             
             let layoutConstraint: NSLayoutConstraint = bubbleImageView.constraints()[1] as! NSLayoutConstraint // `messageLabel` CenterX
@@ -145,7 +150,24 @@ class BubbleCell: UITableViewCell {
             }
             contentView.removeConstraint(constraints[indexOfConstraint] as! NSLayoutConstraint)
             contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: layoutAttribute, relatedBy: .Equal, toItem: contentView, attribute: layoutAttribute, multiplier: 1, constant: layoutConstant))
-//        }
+
+        
+        contentView.addSubview(usrPhoto)
+        usrPhoto.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        
+        if message.oppo {
+                contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 10))
+            contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 40))
+        }
+        else {
+                contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -10))
+                contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -40))
+        }
+
+       contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -4.5))
+        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -34.5))
+        
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let me = User(ID: -1, username: "walker", firstName: "walker", lastName: nil, portraitName: nil)
+public let me = User(ID: 1, username: "walker", firstName: "walker", lastName: nil, portraitName: nil)
 
 public let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
 public let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
