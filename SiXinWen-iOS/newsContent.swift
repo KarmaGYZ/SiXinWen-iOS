@@ -8,9 +8,12 @@
 
 import UIKit
 
+public var cellheight = CGFloat.min
 
-class newsContent: UITableViewController , UITableViewDataSource  {
 
+class newsContent: UITableViewController , UITableViewDataSource , UIWebViewDelegate {
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +33,6 @@ class newsContent: UITableViewController , UITableViewDataSource  {
 
     
     // MARK: - Table view data source
-
-    
-    
     
     
     
@@ -51,14 +51,41 @@ class newsContent: UITableViewController , UITableViewDataSource  {
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! newsContentCell!
         if cell == nil {
             cell = newsContentCell(style: .Default, reuseIdentifier: cellIdentifier)
-            
+
         }
-    
+        
+//        let cell = newsContentCell(frame: CGRectZero)
+//        cell.webView.delegate = self
+        
+        println(cell.frame.height)
+        
         return cell
     }
     
+    func webViewDidFinishLoad(webView: UIWebView) {
+        let actualSize = webView.sizeThatFits(CGSizeZero)
+        var newFrame = webView.frame
+        newFrame.size.height = actualSize.height
+        if newFrame != webView.frame
+        {
+            webView.frame = newFrame
+            println("hi actualsize\(actualSize)")
+            
+           cellheight = actualSize.height
     
-        
+////            tableView.reloadData()
+//            
+//                         tableView.beginUpdates()
+////
+//            tableView.reloadRowsAtIndexPaths([
+//            NSIndexPath(forRow: 0, inSection: 0)
+//            ], withRowAnimation: .Automatic)
+////
+//             tableView.endUpdates()
+        }
+    }
+    
+    
 
     
 }

@@ -41,7 +41,7 @@ class InputTextView: UITextView {
 
 
 
-class CommentViewController: UIViewController ,UITextViewDelegate {
+class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDelegate{
 
     var currentNewsItem:NewsItem!
     
@@ -66,6 +66,10 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
     var rotating = false
     var showcontent = false
 
+    var webView: UIWebView!
+    var scrollView: UIScrollView!
+    
+    
     var  shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
     var toolBar:UIToolbar!
     var commentTextView:UITextView!
@@ -181,6 +185,29 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: "didTap:")
         titleview.addGestureRecognizer(tap)
+        
+        
+        scrollView = UIScrollView(frame: CGRectMake(0, 45 ,UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height - 45))
+        scrollView.backgroundColor = bgColor
+        webView = UIWebView(frame: scrollView.frame )
+        scrollView.hidden = true
+        
+//        let request = NSURLRequest(URL: NSURL(string: "http://www.cnblogs.com/zhuqil/archive/2011/07/28/2119923.html")!)
+        webView.scalesPageToFit = false
+
+        webView.loadHTMLString(currentNewsItem.htmlContent, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath))
+
+        
+//        webView.loadRequest(request)
+        
+        titleview.addSubview(scrollView)
+        scrollView.addSubview(webView)
+//        titleview.addSubview(tableView)
+//        tableView.hidden = true
+        
+        webView.delegate = self
+//        webView.hidden = true
+//        webView.alpha = 0
         
         newstitle.text = currentNewsItem.title
         
@@ -480,30 +507,47 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         if showcontent == false {
             showcontent = true
             toolBar.hidden = true
-            tableView.removePullToRefresh()
+//            tableView.removePullToRefresh()
             
-            tableView.dataSource = newscontent
-            tableView.reloadData()
+//            tableView.dataSource = newscontent
+//            tableView.reloadData()
             arrow.image = UIImage(named: "arrowUp")
             shiftSegmentControl.hidden = true
+            scrollView.hidden = false
+            tableView.hidden = true
+//            webView.hidden = false
+            
+//            let oldFrame = titleview.frame
+//            titleview.frame = CGRectMake(oldFrame.origin.x,oldFrame.origin.y,oldFrame.width, oldFrame.height + 100)
+//            let tableFrame = tableView.frame
+//            tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y + 100, tableFrame.width, tableFrame.height)
+//            println("old\(oldFrame.height), new\(titleview.frame.height)")
+//            titleview.backgroundColor = UIColor.redColor()
+            
         } else {
             toolBar.hidden = false
             showcontent = false
             arrow.image = UIImage(named: "arrowDown")
-            tableView.addPullToRefresh({ [weak self] in
-                sleep(1)
-                self!.comment_refresh()
-                })
+            tableView.hidden = false
+//            tableView.addPullToRefresh({ [weak self] in
+//                sleep(1)
+//                self!.comment_refresh()
+//                })
             shiftSegmentControl.hidden = false
+            scrollView.hidden = true
+//            let oldFrame = titleview.frame
+//            titleview.frame = CGRectMake(oldFrame.origin.x,oldFrame.origin.y,oldFrame.width,oldFrame.height - webView.frame.height)
+//            
             
-            if shiftSegmentControl.selectedSegmentIndex == 1 {
-                tableView.dataSource = instantcomment
-            }
-            else {
-                tableView.dataSource = popularcomment
-            }
-            //       tableView.dataSource
-            tableView.reloadData()
+//            webView.hidden = true
+//            if shiftSegmentControl.selectedSegmentIndex == 1 {
+//                tableView.dataSource = instantcomment
+//            }
+//            else {
+//                tableView.dataSource = popularcomment
+//            }
+//            //       tableView.dataSource
+//            tableView.reloadData()
             
         }
         
@@ -522,7 +566,20 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
     }
     
 
-    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        var newFrame = webView.frame
+        var actualSize = webView.sizeThatFits(CGSizeZero)
+                    cellheight = actualSize.height
+        newFrame.size = actualSize
+        webView.frame = newFrame
+        scrollView.contentSize = actualSize
+        println("as\(actualSize) ch:\(cellheight)")
+        
+        
+        
+        
+    }
+
     
     
 }

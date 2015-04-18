@@ -16,6 +16,6 @@ class NewsItem {
     var commentNum = 50
     var instantComment = Messages()
     var popularComment = Messages()
-    
+    var htmlContent = "<html><body><p>hello</p></body></html>"
     
 }
