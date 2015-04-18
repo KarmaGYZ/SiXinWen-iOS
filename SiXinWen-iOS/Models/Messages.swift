@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import AVOSCloudIM
 
 //var dateFormatter = NSDateFormatter()
 
@@ -19,7 +19,7 @@ class Messages{
 //    var lastCommentSentDateString: String {
 //        return formatDate(lastCommentSentDcate)
 //    }
-    var loadedMessages = [singleMessage]()
+    var loadedMessages = [AVIMMessage]()
     var unreadCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessage = false
     var draft = ""

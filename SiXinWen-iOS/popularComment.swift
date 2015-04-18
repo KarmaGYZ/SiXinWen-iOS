@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVOSCloudIM
 
 
 public let toolBarMinHeight: CGFloat = 44
@@ -18,8 +18,8 @@ public let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrai
 
 
 class popularComment: UITableViewController , UITableViewDataSource {
-
     
+    var currentNewsItem:NewsItem!
        
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -28,22 +28,33 @@ class popularComment: UITableViewController , UITableViewDataSource {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
-//        return comments.loadedComments.count
+        return currentNewsItem.popularComment.loadedMessages.count
         
     }
     
     
-       
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let cellIdentifier = NSStringFromClass(BubbleCell)
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! BubbleCell!
+        if cell == nil {
+            cell = BubbleCell(style: .Default, reuseIdentifier: cellIdentifier)
+            
+            // Add gesture recognizers #CopyMessage
+            //                     let action: Selector = "showMenuAction:"
+            //                     let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: action)
+            //                     doubleTapGestureRecognizer.numberOfTapsRequired = 2
+            //                     cell.bubbleImageView.addGestureRecognizer(doubleTapGestureRecognizer)
+            //                     cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
+        }
+        cell.backgroundColor = bgColor
+        let singlecomment = currentNewsItem.popularComment.loadedMessages[indexPath.row]
+        cell.configureWithMessage(singlecomment)
+        return cell
+        //        }
         
-        let commentcell = UITableViewCell(frame: CGRectMake(0, 0, 100, 100))
-    
-        return commentcell
-    
     }
-    
 
 }

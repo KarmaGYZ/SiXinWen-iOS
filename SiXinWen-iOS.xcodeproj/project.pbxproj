@@ -17,6 +17,7 @@
 		3173F9701ADEA510001D33E3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */; };
 		3173F9721ADEA533001D33E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9711ADEA533001D33E3 /* libicucore.dylib */; };
 		3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9741ADEA56D001D33E3 /* CFNetwork.framework */; };
+		318FF0301AE145CC007C4FCE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318FF02F1AE145CC007C4FCE /* CoreLocation.framework */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
@@ -26,7 +27,6 @@
 		31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F81ACB8E450029C2C8 /* MessageViewController.swift */; };
 		31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */; };
 		31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FC1ACBEF410029C2C8 /* MessageCell.swift */; };
-		31F4E6301AC444830046FCD8 /* SingleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62D1AC444830046FCD8 /* SingleMessage.swift */; };
 		31F4E6311AC444830046FCD8 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* Messages.swift */; };
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
 		31F4E63D1AC445270046FCD8 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63C1AC445270046FCD8 /* BubbleCell.swift */; };
@@ -63,6 +63,8 @@
 		3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		3173F9711ADEA533001D33E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3173F9741ADEA56D001D33E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		318FF02F1AE145CC007C4FCE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		318FF0361AE146C3007C4FCE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +78,6 @@
 		31E891F81ACB8E450029C2C8 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		31E891FC1ACBEF410029C2C8 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		31F4E62D1AC444830046FCD8 /* SingleMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleMessage.swift; sourceTree = "<group>"; };
 		31F4E62E1AC444830046FCD8 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31F4E63C1AC445270046FCD8 /* BubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				318FF0301AE145CC007C4FCE /* CoreLocation.framework in Frameworks */,
 				3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */,
 				3173F9721ADEA533001D33E3 /* libicucore.dylib in Frameworks */,
 				3173F9701ADEA510001D33E3 /* CoreTelephony.framework in Frameworks */,
@@ -121,6 +123,8 @@
 		3173F9731ADEA53C001D33E3 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				318FF02F1AE145CC007C4FCE /* CoreLocation.framework */,
+				3173F9741ADEA56D001D33E3 /* CFNetwork.framework */,
 				3173F9711ADEA533001D33E3 /* libicucore.dylib */,
 				3173F96F1ADEA510001D33E3 /* CoreTelephony.framework */,
 				3173F96D1ADEA500001D33E3 /* MobileCoreServices.framework */,
@@ -135,7 +139,6 @@
 		31C6F8B91ABA702F00DFF5EE = {
 			isa = PBXGroup;
 			children = (
-				3173F9741ADEA56D001D33E3 /* CFNetwork.framework */,
 				3173F9731ADEA53C001D33E3 /* Framework */,
 				31C6F8C41ABA702F00DFF5EE /* SiXinWen-iOS */,
 				31C6F8DD1ABA702F00DFF5EE /* SiXinWen-iOSTests */,
@@ -176,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				31C6F8C61ABA702F00DFF5EE /* Info.plist */,
+				318FF0361AE146C3007C4FCE /* Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,7 +215,6 @@
 		31F4E62C1AC444830046FCD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31F4E62D1AC444830046FCD8 /* SingleMessage.swift */,
 				31F4E62E1AC444830046FCD8 /* Messages.swift */,
 				31F4E62F1AC444830046FCD8 /* User.swift */,
 				311B32911ACA651A00B05BC2 /* NewsItem.swift */,
@@ -341,7 +344,6 @@
 				DE59B2581ADEE89300ADFAC7 /* PullToRefreshView.swift in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				849DA1371AD3D7D700E6D8F3 /* newsContent.swift in Sources */,
-				31F4E6301AC444830046FCD8 /* SingleMessage.swift in Sources */,
 				DEADBAF11AD3FD950070436A /* newsContentCell.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */,

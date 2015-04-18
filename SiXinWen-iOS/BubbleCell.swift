@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVOSCloudIM
 
 let oppoTag = 0, teamTag = 1
 
@@ -75,7 +75,7 @@ class BubbleCell: UITableViewCell {
         usrPhoto = UIImageView(frame: CGRectMake(0,0,30,30))
         usrPhoto.layer.cornerRadius = 15
         usrPhoto.layer.masksToBounds = true
-        usrPhoto.image = UIImage(named: "匿名用户")
+        usrPhoto.image = UIImage(named: "匿名头像")
         
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
@@ -117,15 +117,16 @@ class BubbleCell: UITableViewCell {
     }
     
     
-    func configureWithMessage(message: singleMessage) {
-            bubbleText.text = message.text
-        
-            usrPhoto.image = UIImage(named: "usr0000\(message.owner)")
+    func configureWithMessage(message: AVIMMessage) {
+            let direction = message.content.lastPathComponent
+            bubbleText.text = message.content.stringByDeletingLastPathComponent
+            println("usr\(message.clientId)")
+//            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             bubbleText.textColor = UIColor.whiteColor()
-            if message.oppo {
+            if direction == "l" {
                 tag = oppoTag
                 bubbleImageView.image = bubbleImage.oppo
                 bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
@@ -156,7 +157,7 @@ class BubbleCell: UITableViewCell {
         usrPhoto.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         
-        if message.oppo {
+        if direction == "l" {
                 contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 10))
             contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 40))
         }

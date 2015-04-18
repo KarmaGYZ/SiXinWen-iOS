@@ -9,7 +9,7 @@
 import UIKit
 
 
-class newsContent: UITableViewController , UITableViewDataSource {
+class newsContent: UITableViewController , UITableViewDataSource  {
 
     
     override func viewDidLoad() {
@@ -53,8 +53,12 @@ class newsContent: UITableViewController , UITableViewDataSource {
             cell = newsContentCell(style: .Default, reuseIdentifier: cellIdentifier)
             
         }
-        
-        
+    
         return cell
     }
+    
+    
+        
+
+    
 }

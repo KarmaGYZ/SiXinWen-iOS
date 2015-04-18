@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import AVOSCloudIM
 
 class instantComment: UITableViewController {
 
+    var currentNewsItem:NewsItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +37,7 @@ class instantComment: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return me.commentMessage.loadedMessages.count
+        return currentNewsItem.instantComment.loadedMessages.count
         
     }
     
@@ -56,7 +59,7 @@ class instantComment: UITableViewController {
             //                     cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
         }
         cell.backgroundColor = bgColor
-        let singlecomment = me.commentMessage.loadedMessages[indexPath.row]
+        let singlecomment = currentNewsItem.instantComment.loadedMessages[indexPath.row]
         cell.configureWithMessage(singlecomment)
         return cell
         //        }

@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import AVOSCloudIM
+import AVOSCloud
 
-public let me = User(ID: 1, username: "walker", firstName: "walker", lastName: nil, portraitName: nil)
+public let me = User(ID: 1, username: "walker", portraitName: nil)
+
+
+let conversation = AVIMConversation()
+
+
 
 public let defaultColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
 public let leftColor = UIColor(red: 77/255, green: 188/255, blue: 249/255, alpha: 1)
@@ -16,7 +23,6 @@ public let highLeftColor = UIColor(red: 51/255.0, green: 102/255.0, blue: 205/25
 public let rightColor = UIColor(red: 253/255, green: 13/255, blue: 68/255, alpha: 1)
 public let highRightColor = UIColor(red: 255/255.0, green: 99/255.0, blue: 71/255.0, alpha: 1)
 public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
-
 
 
 
@@ -37,10 +43,12 @@ class InputTextView: UITextView {
 
 class CommentViewController: UIViewController ,UITextViewDelegate {
 
+    var currentNewsItem:NewsItem!
     
-    var popularcomment = popularComment.alloc()
-    var newscontent = newsContent.alloc()
-    var instantcomment = instantComment.alloc()
+    var popularcomment = popularComment()
+    var newscontent = newsContent()
+    var instantcomment = instantComment()
+    
     
     var instantRefresh = UIRefreshControl()
     var popularRefresh = UIRefreshControl()
@@ -53,6 +61,8 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
  //   var titleview:titleView!
     @IBOutlet weak var arrow: UIImageView!
     
+    
+    @IBOutlet weak var newstitle: UILabel!
     var rotating = false
     var showcontent = false
 
@@ -138,7 +148,7 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        me.commentMessage.draft = commentTextView.text
+      //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
     }
     
     
@@ -153,6 +163,7 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.titleView = shiftSegmentControl
         
+
         
 //        tableView = UITableView(frame: CGRectZero, style: .Plain)
         
@@ -160,6 +171,8 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         tableView.backgroundColor = bgColor
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
         self.tableView.contentInset = edgeInsets
+        instantcomment.currentNewsItem = currentNewsItem
+        popularcomment.currentNewsItem = currentNewsItem
         self.tableView.dataSource = instantcomment
         self.tableView.keyboardDismissMode = .Interactive
         self.tableView.estimatedRowHeight = 44
@@ -169,11 +182,13 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         let tap = UITapGestureRecognizer(target: self, action: "didTap:")
         titleview.addGestureRecognizer(tap)
         
+        newstitle.text = currentNewsItem.title
+        
+        
         tableView.addPullToRefresh({ [weak self] in
-            // some code
             sleep(1)
           
-            self!.tableView.reloadData()
+            self!.comment_refresh()
             })
 
 
@@ -189,12 +204,12 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
     override func viewDidLayoutSubviews()  {
         super.viewDidLayoutSubviews()
         
-        if !me.commentMessage.draft.isEmpty {
-            commentTextView.text = me.commentMessage.draft
-            me.commentMessage.draft = ""
-            textViewDidChange(commentTextView)
-            commentTextView.becomeFirstResponder()
-        }
+//        if !me.newsList[me.currentNews].instantComment.draft.isEmpty {
+//            commentTextView.text = me.newsList[me.currentNews].instantComment.draft
+//            me.newsList[me.currentNews].instantComment.draft = ""
+//            textViewDidChange(commentTextView)
+//            commentTextView.becomeFirstResponder()
+//        }
     }
     
     
@@ -350,29 +365,69 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
     }
     
     
-    
-    func sendAction(sender: UIButton) {
-        // Autocomplete text before sending #hack
-        commentTextView.resignFirstResponder()
-        commentTextView.becomeFirstResponder()
+    func comment_refresh(){
         
-        var oppo = false
+        if shiftSegmentControl.selectedSegmentIndex == 1 {
         
-        if sender.titleLabel?.text == "动嘴"{
-            oppo = true
-          //  titleview.support.progress /= 0.8
+            conversation.queryMessagesBeforeId(currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
+            (objects:[AnyObject]!,error: NSError!) -> Void in
+            if (error != nil) {
+                let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                
+            }
+            else {
+                self.tableView.reloadData()
+            }
+           }
+        
         }
         else {
-          //  titleview.support.progress *= 0.8
+            
+            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
+                (objects:[AnyObject]!,error: NSError!) -> Void in
+                if (error != nil) {
+                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                else {
+                    self.tableView.reloadData()
+                }
+            }
+
+            
+            
         }
         
-        me.commentMessage.loadedMessages.append(singleMessage(oppo: oppo, text: commentTextView.text, usrID: me.ID))
-       
-        commentTextView.text = nil
-        updateTextViewHeight()
-        leftButton.enabled = false
-        rightButton.enabled = false
+    }
+    
+    
+    
+    
+    
+    
+    
+    func comment_send(newComment: AVIMMessage ){
         
+       currentNewsItem.instantComment.loadedMessages.append(newComment)
+        conversation.sendMessage(newComment) {
+            (bool:Bool,error: NSError!) -> Void in
+//            if (error != nil) {
+//                let alert = UIAlertController(title: "错误", message: error.description, preferredStyle: .Alert)
+//                let action = UIAlertAction(title: "OK", style: .Default , handler: {
+//                    action in
+//                    //self.startNewRound()
+//                    //self.updateLabels()
+//                })
+//                alert.addAction(action)
+//                self.presentViewController(alert, animated: true, completion: nil)
+//            }
+        }
+        Redrawcomment()
+    }
+    
+    
+    func Redrawcomment() {
         let lastsec = tableView.numberOfSections() - 1
         let lastrow = tableView.numberOfRowsInSection(lastsec)
         tableView.beginUpdates()
@@ -382,6 +437,34 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
             ], withRowAnimation: .Automatic)
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(true)
+        
+    }
+    
+    
+    
+    func sendAction(sender: UIButton) {
+        // Autocomplete text before sending #hack
+        commentTextView.resignFirstResponder()
+        commentTextView.becomeFirstResponder()
+        var content : String
+        if sender.titleLabel?.text == "动嘴"{
+          content = commentTextView.text.stringByAppendingPathComponent("l")
+        }
+        else {
+         content = commentTextView.text.stringByAppendingPathComponent("r")
+        }
+//        println(content)
+        
+        let singleComment = AVIMMessage(content: content)
+       
+        
+        commentTextView.text = nil
+        updateTextViewHeight()
+        leftButton.enabled = false
+        rightButton.enabled = false
+        
+        
+     //   comment_send(singleComment)
     }
     
     
@@ -408,10 +491,8 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
             showcontent = false
             arrow.image = UIImage(named: "arrowDown")
             tableView.addPullToRefresh({ [weak self] in
-                // some code
                 sleep(1)
-                
-                self!.tableView.reloadData()
+                self!.comment_refresh()
                 })
             shiftSegmentControl.hidden = false
             

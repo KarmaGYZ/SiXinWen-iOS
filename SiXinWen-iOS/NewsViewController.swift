@@ -12,22 +12,38 @@ import AVOSCloud
 
 class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-    var newsList:[NewsItem]
+//    var newsList:[NewsItem]
     let NEWS_PER_PAGE = 5
+    var newsList:[NewsItem]
     
     required init(coder aDecoder:NSCoder){
         newsList = [NewsItem]()
         super.init(coder: aDecoder)
-        news_list_update()
+        //news_list_update()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 10
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-       
+
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //        if segue.identifier == "AddItem" {
+        //            let navigationController = segue.destinationViewController as UINavigationController
+        //            let controller = navigationController.topViewController as ItemDetailViewController
+        //            controller.delegate = self
+        //        } else if segue.identifier == "EditItem" {
+        //            let navigationController = segue.destinationViewController as UINavigationController
+        //            let controller = navigationController.topViewController as ItemDetailViewController
+        //            controller.delegate = self
+        //
+        //            if let indexPath = tableView.indexPathForCell(sender as UITableViewCell){
+        //                controller.itemToEdit = items[indexPath.row]
+        //            }
+        //        }
+        let controller = segue.destinationViewController as! CommentViewController
+        controller.currentNewsItem = newsList[tableView.indexPathForSelectedRow()!.row]
+        
+    }
+
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         let currentLocation: AnyObject? = locations.last
@@ -35,17 +51,65 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("错误\(error)")
+       // println("错误\(error)")
     }
     
     
 
     func news_list_update(){
-        if(newsList.isEmpty){
-            for(var i = 0;i < 5;i++){
-                newsList.append(getNewsAtIndex(i))
+        
+//        if(newsList.isEmpty){
+//            for(var i = 0;i < 5;i++){
+//                newsList.append(getNewsAtIndex(i))
+//            }
+//        }
+        newsList.removeAll(keepCapacity: false)
+        var query = AVQuery(className: "News")
+        query.whereKey("Now", equalTo: true)
+        query.cachePolicy = AVCachePolicy.NetworkOnly
+        query.maxCacheAge = 356*24*3600
+       // let array = query.findObjects()
+      //  println("数组Sshi")
+        query.findObjectsInBackgroundWithBlock(){
+            (result:[AnyObject]!, error:NSError!) -> Void in
+            if(result == nil){
+                //println("\(error)")
+                self.showAlert("\(error)")
+            }
+            else{
+             //   println("result:\(result)")
+                //printf()
+                for item in result {
+                    var news = NewsItem()
+                    news.text = item.objectForKey("Content") as! String
+                    news.title = item.objectForKey("Title") as! String
+                    news.commentNum = item.objectForKey("CommentNum") as! Int
+                    news.support = item.objectForKey("SupportRatio") as! Float
+                    //news.image = UIImageJPEGRepresentation(<#image: UIImage!#>, <#compressionQuality: CGFloat#>)
+                    var newsimgFile = item.objectForKey("Picture") as! AVFile
+                    newsimgFile.getDataInBackgroundWithBlock(){
+                        (imgData:NSData!, error:NSError!) -> Void in
+                        if(error == nil){
+                            news.image = UIImage(data: imgData)
+                            self.tableView.reloadData()
+                        }
+                    }
+                    self.newsList.append(news)
+                }
+                self.tableView.reloadData()
             }
         }
+    }
+    
+    func showAlert(message:String){
+        let alert = UIAlertController(title: "无法连接到互联网", message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default , handler: {
+            action in
+            //self.startNewRound()
+            //self.updateLabels()
+        })
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func getNewsAtIndex(indext:Int)->NewsItem{
@@ -58,31 +122,32 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        news_list_update()
+        //AVQuery.clearAllCachedResults()
         //test code
-        var testobject = AVObject(className: "IOSUserInfo")
-        testobject.setObject("ios_test", forKey: "iostestkey")
-        testobject.setObject("IOSUser", forKey: "UserName")
-        testobject.setObject(0, forKey: "UserId")
-        testobject.save()
-        var query = AVQuery(className: "News")
-        
-        var news = query.getObjectWithId("552d0880e4b0f543686dbdff")
-        var htmlCont = news.objectForKey("htmlContent") as! String
-        println("\(htmlCont)")
-        //news.refresh()
-        var bcktest = AVObject(className: "IOSUserInfo")
-        bcktest.setObject("background save", forKey: "bck")
-        //AVBooleanResultBlock
-        bcktest.saveInBackgroundWithBlock(){(succeeded:Bool,error:NSError!)->Void in
-            if(error == nil){
-                println("Save in back succeed")
-            }
-            else{
-                println("\(error)")
-            }
-        }
-        
+//        var testobject = AVObject(className: "IOSUserInfo")
+//        testobject.setObject("ios_test", forKey: "iostestkey")
+//        testobject.setObject("IOSUser", forKey: "UserName")
+//        testobject.setObject(0, forKey: "UserId")
+//        testobject.save()
+//        var query = AVQuery(className: "News")
+//        
+//        var news = query.getObjectWithId("552d0880e4b0f543686dbdff")
+//        var htmlCont = news.objectForKey("htmlContent") as! String
+//        println("\(htmlCont)")
+//        //news.refresh()
+//        var bcktest = AVObject(className: "IOSUserInfo")
+//        bcktest.setObject("background save", forKey: "bck")
+//        //AVBooleanResultBlock
+//        bcktest.saveInBackgroundWithBlock(){(succeeded:Bool,error:NSError!)->Void in
+//            if(error == nil){
+//                println("Save in back succeed")
+//            }
+//            else{
+//                println("\(error)")
+//            }
+//        }
+    
         
         
        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -111,7 +176,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 5
+        return newsList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -130,7 +195,12 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
         cell.newsText.text = news.text
     }
     func configCommentNumForCell(cell:NewsCell,withNewsItem news:NewsItem){
-        cell.commentNum.text = "评论\(news.commentNum)"
+        if(news.commentNum < 1000){
+            cell.commentNum.text = "评论:\(news.commentNum)"
+        }
+        else{
+            cell.commentNum.text = "评论:\(news.commentNum/1000)k"
+        }
     }
     func configSupportForCell(cell:NewsCell,withNewsItem news:NewsItem){
         cell.support.progress = news.support
@@ -138,6 +208,9 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
         cell.support.trackTintColor =  rightColor
     }
     func configImageForCell(cell:NewsCell,withNewsItem news:NewsItem){
+        if let image = news.image {
+            cell.newsImage.image = image
+        }
         //let image = cell.viewWithTag(1004) as UIImageView
     }
     
@@ -145,7 +218,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
     func refresh(sender:AnyObject)
     {
         // Updating your data here...
-        
+        self.news_list_update()
        self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }

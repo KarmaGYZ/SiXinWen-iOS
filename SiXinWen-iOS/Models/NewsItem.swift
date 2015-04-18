@@ -7,12 +7,15 @@
 //
 
 import Foundation
-
+import UIKit
 class NewsItem {
     var text = ""
     var title = ""
     var support:Float = 0.3
-    var image = ""
+    var image:UIImage?
     var commentNum = 50
+    var instantComment = Messages()
+    var popularComment = Messages()
+    
     
 }
