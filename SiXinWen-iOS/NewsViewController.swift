@@ -9,8 +9,13 @@
 import CoreLocation
 import UIKit
 import AVOSCloud
+import AVOSCloudIM
 
-class NewsViewController: UITableViewController , CLLocationManagerDelegate {
+
+
+public var imClient = AVIMClient()
+
+class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVIMClientDelegate{
     let locationManager = CLLocationManager()
 //    var newsList:[NewsItem]
     let NEWS_PER_PAGE = 5
@@ -122,6 +127,41 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        imClient.delegate = self
+        imClient.openWithClientId(me.username, callback: {
+            (success:Bool,error: NSError!) -> Void in
+            if(error != nil){
+                println("登陆失败!")
+                println("错误:\(error)")
+            }
+        })
+//        var converQuery = imClient.conversationQuery()
+//        converQuery.whereKey("title", equalTo: "女教师辞职信走红")
+//        converQuery.findConversationsWithCallback(){
+//            (result:[AnyObject]!, error:NSError!) -> Void in
+//            if(error != nil){
+//                println("查询对话失败")
+//                println("错误:\(error)")
+//               // println("\(result)")
+//            }
+//            else{
+//                if(result.count>1){
+//                    println("对话数超过1")
+//                }
+//                else{
+////                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+////                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
+////                        (success:Bool,error: NSError!) -> Void in
+////                        if(error != nil){
+////                            println("加入群组失败!")
+////                        }
+////                    }
+//                }
+//            }
+//        }
+
+        
         news_list_update()
         //AVQuery.clearAllCachedResults()
         //test code

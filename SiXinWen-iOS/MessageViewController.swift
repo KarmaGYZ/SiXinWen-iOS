@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 SiXinWen. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
+import AVOSCloud
+import AVOSCloudIM
 
 class MessageViewController: UITableViewController {
     
@@ -35,6 +38,9 @@ class MessageViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         //self.tableView.tableHeaderView = topbar
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations

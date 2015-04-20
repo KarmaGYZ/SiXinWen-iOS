@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 SiXinWen. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
 import AVOSCloudIM
 import AVOSCloud
@@ -13,7 +14,7 @@ import AVOSCloud
 public let me = User(ID: 1, username: "walker", portraitName: nil)
 
 
-let conversation = AVIMConversation()
+//let conversation = AVIMConversation()
 
 
 
@@ -41,11 +42,9 @@ class InputTextView: UITextView {
 
 
 
-<<<<<<< HEAD
-class CommentViewController: UIViewController ,UITextViewDelegate, AVIMClientDelegate {
-=======
-class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDelegate{
->>>>>>> de3af5bf81ed9c86aa813780295e82c605daa4fe
+
+class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDelegate ,UITextViewDelegate {
+
 
     var currentNewsItem:NewsItem!
     
@@ -84,6 +83,7 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
     
     
     override var inputAccessoryView: UIView! {
@@ -155,10 +155,10 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
         return true
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-      //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
-    }
+//    override func viewWillDisappear(animated: Bool) {
+//        super.viewWillDisappear(animated)
+//      //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
+//    }
     
     
     override func viewDidLoad() {
@@ -174,23 +174,49 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
         
         
         //login the leancloud
+       // var imClient = AVIMClient()
         imClient.delegate = self
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
-            if(error != nil){
+            if(!success){
                 println("登陆失败!")
+                println("错误:\(error)")
             }
         })
+        var converQuery = imClient.conversationQuery()
+        converQuery.whereKey("title", equalTo: currentNewsItem.title)
+        converQuery.findConversationsWithCallback(){
+            (result:[AnyObject]!, error:NSError!) -> Void in
+            if(error != nil){
+                println("查询对话失败")
+                println("错误:\(error)")
+            }
+            else{
+                println("\(result)")
+                if(result.count>1){
+                    println("对话数超过1")
+                }
+                else if(result.count == 0){
+                    println("未找到对话")
+                }
+                else{
+                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
+                        (success:Bool,error: NSError!) -> Void in
+                        if(error != nil){
+                            println("加入群组失败!")
+                        }
+                    }
+                }
+            }
+        }
         
-        //create a group
-        imClient.createConversationWithName(currentNewsItem.title, clientIds: nil, attributes: <#[NSObject : AnyObject]!#>, options: <#AVIMConversationOption#>, callback: <#AVIMConversationResultBlock!##(AVIMConversation!, NSError!) -> Void#>)
-        
-//AVIMBooleanResultBlock
+        //AVIMBooleanResultBlock
         
 //        tableView = UITableView(frame: CGRectZero, style: .Plain)
         
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        tableView.backgroundColor = bgColor
+        
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
         self.tableView.contentInset = edgeInsets
         instantcomment.currentNewsItem = currentNewsItem
@@ -243,18 +269,18 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
         notificationCenter.addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
 
         
-        
+        self.comment_refresh()
         }
     
     override func viewDidLayoutSubviews()  {
         super.viewDidLayoutSubviews()
         
-//        if !me.newsList[me.currentNews].instantComment.draft.isEmpty {
-//            commentTextView.text = me.newsList[me.currentNews].instantComment.draft
-//            me.newsList[me.currentNews].instantComment.draft = ""
-//            textViewDidChange(commentTextView)
-//            commentTextView.becomeFirstResponder()
-//        }
+        if !currentNewsItem.instantComment.draft.isEmpty {
+            commentTextView.text = currentNewsItem.instantComment.draft
+            currentNewsItem.instantComment.draft = ""
+            textViewDidChange(commentTextView)
+            commentTextView.becomeFirstResponder()
+        }
     }
     
     
@@ -280,34 +306,6 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
 
     
 
-    
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return nil
-//    }
-//    
-//    
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if section == 0
-//        {
-//            return 40.0
-//        }
-//        return 0.0
-//    }
-//    
-//override  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-////        println(section)
-////        if section == 0 {
-////            
-////            titleview = titleView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
-////            
-////            
-////            let tap = UITapGestureRecognizer(target: self, action: "didTap:")
-////            titleview.addGestureRecognizer(tap)
-////            return titleview
-////        }
-//        return nil
-//    }
-//
     
     
     
@@ -413,37 +411,42 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
     func comment_refresh(){
         
         if shiftSegmentControl.selectedSegmentIndex == 1 {
-        
-            conversation.queryMessagesBeforeId(currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
-            (objects:[AnyObject]!,error: NSError!) -> Void in
-            if (error != nil) {
-                let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                
+            // println("hello1")
+            if(currentNewsItem.instantComment.loadedMessages.count == 0){
+                currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: 0x7FFFFFFF , limit: 20 ){
+                    (objects:[AnyObject]!,error: NSError!) -> Void in
+                    if (error != nil) {
+                        println("刷新错误:\(error)")
+                    }
+                    else {
+                 //       println("hello")
+                        for newMessage in objects{
+                         self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: 0)
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
             }
-            else {
-                self.tableView.reloadData()
-            }
-           }
-        
+           
         }
         else {
-            
-            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
-                (objects:[AnyObject]!,error: NSError!) -> Void in
-                if (error != nil) {
-                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
-                    alert.show()
-                }
-                else {
-                    self.tableView.reloadData()
-                }
-            }
-
-            
-            
+             println("hello2")
+//            
+//            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
+//                (objects:[AnyObject]!,error: NSError!) -> Void in
+//                if (error != nil) {
+//                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+//                    alert.show()
+//                }
+//                else {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//
+//            
+//            
         }
-        
+
     }
     
     
@@ -455,18 +458,12 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
     func comment_send(newComment: AVIMMessage ){
         
        currentNewsItem.instantComment.loadedMessages.append(newComment)
-        conversation.sendMessage(newComment) {
-            (bool:Bool,error: NSError!) -> Void in
-//            if (error != nil) {
-//                let alert = UIAlertController(title: "错误", message: error.description, preferredStyle: .Alert)
-//                let action = UIAlertAction(title: "OK", style: .Default , handler: {
-//                    action in
-//                    //self.startNewRound()
-//                    //self.updateLabels()
-//                })
-//                alert.addAction(action)
-//                self.presentViewController(alert, animated: true, completion: nil)
-//            }
+        currentNewsItem.instantComment.conversation.sendMessage(newComment) {
+            (success:Bool,error: NSError!) -> Void in
+            if(!success){
+                println("发送失败!")
+                println("错误:\(error)")
+            }
         }
         Redrawcomment()
     }
@@ -509,7 +506,7 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
         rightButton.enabled = false
         
         
-     //   comment_send(singleComment)
+        comment_send(singleComment)
     }
     
     
@@ -591,13 +588,17 @@ class CommentViewController: UIViewController ,UITextViewDelegate , UIWebViewDel
         newFrame.size = actualSize
         webView.frame = newFrame
         scrollView.contentSize = actualSize
-        println("as\(actualSize) ch:\(cellheight)")
+       // println("as\(actualSize) ch:\(cellheight)")
         
         
         
         
     }
 
+    func conversation(conversation: AVIMConversation!, didReceiveCommonMessage message: AVIMMessage!) {
+        currentNewsItem.instantComment.loadedMessages.append(message)
+        Redrawcomment()
+    }
     
     
 }

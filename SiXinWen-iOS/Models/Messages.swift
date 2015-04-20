@@ -20,6 +20,7 @@ class Messages{
 //        return formatDate(lastCommentSentDcate)
 //    }
     var loadedMessages = [AVIMMessage]()
+    var conversation = AVIMConversation()
     var unreadCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessage = false
     var draft = ""
