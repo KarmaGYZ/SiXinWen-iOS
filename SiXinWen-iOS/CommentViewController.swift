@@ -41,7 +41,7 @@ class InputTextView: UITextView {
 
 
 
-class CommentViewController: UIViewController ,UITextViewDelegate {
+class CommentViewController: UIViewController ,UITextViewDelegate, AVIMClientDelegate {
 
     var currentNewsItem:NewsItem!
     
@@ -49,6 +49,7 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
     var newscontent = newsContent()
     var instantcomment = instantComment()
     
+    var imClient = AVIMClient()
     
     var instantRefresh = UIRefreshControl()
     var popularRefresh = UIRefreshControl()
@@ -163,7 +164,20 @@ class CommentViewController: UIViewController ,UITextViewDelegate {
         shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.titleView = shiftSegmentControl
         
-
+        
+        //login the leancloud
+        imClient.delegate = self
+        imClient.openWithClientId(me.username, callback: {
+            (success:Bool,error: NSError!) -> Void in
+            if(error != nil){
+                println("登陆失败!")
+            }
+        })
+        
+        //create a group
+        imClient.createConversationWithName(currentNewsItem.title, clientIds: nil, attributes: <#[NSObject : AnyObject]!#>, options: <#AVIMConversationOption#>, callback: <#AVIMConversationResultBlock!##(AVIMConversation!, NSError!) -> Void#>)
+        
+//AVIMBooleanResultBlock
         
 //        tableView = UITableView(frame: CGRectZero, style: .Plain)
         
