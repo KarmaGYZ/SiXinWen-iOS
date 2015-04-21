@@ -87,6 +87,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                 for item in result {
                     var news = NewsItem()
                     news.text = item.objectForKey("Content") as! String
+                    news.htmlContent = item.objectForKey("htmlContent") as! String
                     news.title = item.objectForKey("Title") as! String
                     news.commentNum = item.objectForKey("CommentNum") as! Int
                     news.support = item.objectForKey("SupportRatio") as! Float

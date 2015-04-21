@@ -49,7 +49,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     var currentNewsItem:NewsItem!
     
     var popularcomment = popularComment()
-    var newscontent = newsContent()
+//    var newscontent = newsContent()
     var instantcomment = instantComment()
     
     var imClient = AVIMClient()
@@ -63,8 +63,9 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     @IBOutlet weak var titleview: UIView!
  //   var titleview:titleView!
-    @IBOutlet weak var arrow: UIImageView!
+
     
+    @IBOutlet weak var arrow: UIImageView!
     
     @IBOutlet weak var newstitle: UILabel!
     var rotating = false
@@ -215,6 +216,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
 //        tableView = UITableView(frame: CGRectZero, style: .Plain)
         
+        
+       // self.comment_refresh()
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
@@ -268,8 +271,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         notificationCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
 
+      //  self.comment_refresh()
         
-        self.comment_refresh()
         }
     
     override func viewDidLayoutSubviews()  {
@@ -411,26 +414,69 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     func comment_refresh(){
         
         if shiftSegmentControl.selectedSegmentIndex == 1 {
-            // println("hello1")
-            if(currentNewsItem.instantComment.loadedMessages.count == 0){
-                currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: 0x7FFFFFFF , limit: 20 ){
+            var date = NSDate()
+           // INT64_MAX
+            var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
+           // println(oldestMsgTimestamp)
+             println("hello1")
+            if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
+//                println("hello2")
+                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+                    (objects:[AnyObject]!,error: NSError!) -> Void in
+                    if (error != nil) {
+                        println("刷新错误:\(error)")
+                       // AVHistoryMessageQuery
+                    }
+                    else {
+                       //println(objects)
+                        //println("hello")
+                        var index = 0
+                        for newMessage in objects{
+                         self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
+                            index++
+                        }
+                        self.tableView.reloadData()
+                    }
+                   // println("hello6")
+                }
+//                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
+//               // query.timestamp = oldestMsgTimestamp
+//             //   query.query
+//                var array = query.find()
+//               // println(array)
+//               // AVHistoryMessage
+//                 var index = 0
+//                for newHistoryMessage in array{
+//                    var newMessage = self.historyMessage2AVIMMessage(newHistoryMessage as! AVHistoryMessage)
+//                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as (AVIMMessage), atIndex: index)
+//                    index++
+//                }
+//                self.tableView.reloadData()
+            }
+            else{
+                println("hello3")
+                println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
+                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
                     (objects:[AnyObject]!,error: NSError!) -> Void in
                     if (error != nil) {
                         println("刷新错误:\(error)")
                     }
                     else {
-                 //       println("hello")
+                        println(objects)
+                        //       println("hello")
+                        var index = 0
                         for newMessage in objects{
-                         self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: 0)
+                            self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
+                            index++
                         }
                         self.tableView.reloadData()
                     }
                 }
             }
-           
+       //    println("hello4")
         }
         else {
-             println("hello2")
+       //      println("hello2")
 //            
 //            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
 //                (objects:[AnyObject]!,error: NSError!) -> Void in
@@ -446,12 +492,31 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 //            
 //            
         }
+        println("hello5")
 
     }
     
     
     
-    
+    func historyMessage2AVIMMessage(historyMessage:AVHistoryMessage)->AVIMMessage{
+        var result = AVIMMessage()
+        result.conversationId = historyMessage.conversationId
+        result.clientId = historyMessage.fromPeerId
+        
+      //  println(historyMessage)
+       // println("123")
+        
+        if historyMessage.payload != nil{
+        result.content = historyMessage.payload
+        }
+        else {
+        result.content = "34534534/r"
+        }
+     //   println("5")
+        result.sendTimestamp = historyMessage.timestamp
+        
+        return result
+    }
     
     
     
@@ -517,7 +582,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     func didTap(sender: UITapGestureRecognizer) {
         
-//        let frame = CGRectMake(0, 0, arrow.image!.size.height, arrow.image!.size.width);
+        let frame = CGRectMake(0, 0, arrow.image!.size.height, arrow.image!.size.width);
         
         if showcontent == false {
             showcontent = true
@@ -584,10 +649,10 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     func webViewDidFinishLoad(webView: UIWebView) {
         var newFrame = webView.frame
         var actualSize = webView.sizeThatFits(CGSizeZero)
-                    cellheight = actualSize.height
+//                    cellheight = actualSize.height
         newFrame.size = actualSize
         webView.frame = newFrame
-        scrollView.contentSize = actualSize
+        scrollView.contentSize = CGSize(width: actualSize.width, height: actualSize.height + 200)
        // println("as\(actualSize) ch:\(cellheight)")
         
         
