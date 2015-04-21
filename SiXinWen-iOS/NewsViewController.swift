@@ -71,7 +71,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         newsList.removeAll(keepCapacity: false)
         var query = AVQuery(className: "News")
         query.whereKey("Now", equalTo: true)
-        query.cachePolicy = AVCachePolicy.NetworkOnly
+        query.cachePolicy = AVCachePolicy.NetworkElseCache
         query.maxCacheAge = 356*24*3600
        // let array = query.findObjects()
       //  println("数组Sshi")

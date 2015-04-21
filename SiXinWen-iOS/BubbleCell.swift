@@ -120,8 +120,8 @@ class BubbleCell: UITableViewCell {
     func configureWithMessage(message: AVIMMessage) {
             let direction = message.content.lastPathComponent
             bubbleText.text = message.content.stringByDeletingLastPathComponent
-            println("usr\(message.clientId)")
-//            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
+//            println("usr\(message.clientId)")
+            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
