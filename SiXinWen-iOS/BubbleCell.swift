@@ -54,7 +54,7 @@ class BubbleCell: UITableViewCell {
     
     let bubbleImageView: UIImageView
     let bubbleText: UILabel
-    let like: UIButton
+//    let like: UIButton
     let usrPhoto: UIImageView
     
     
@@ -70,7 +70,7 @@ class BubbleCell: UITableViewCell {
         bubbleText.numberOfLines = 0
         bubbleText.userInteractionEnabled = false   // #Copycomment
        
-        like = UIButton(frame: CGRectZero)
+//        like = UIButton(frame: CGRectZero)
         
         usrPhoto = UIImageView(frame: CGRectMake(0,0,30,30))
         usrPhoto.layer.cornerRadius = 15
@@ -93,7 +93,7 @@ class BubbleCell: UITableViewCell {
         
         bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .CenterX, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterX, multiplier: 1, constant: 3))
         bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .CenterY, relatedBy: .Equal, toItem: bubbleImageView, attribute: .CenterY, multiplier: 1, constant: -0.5))
-        bubbleText.preferredMaxLayoutWidth = 218
+//        bubbleText.preferredMaxLayoutWidth = 218
         bubbleImageView.addConstraint(NSLayoutConstraint(item: bubbleText, attribute: .Height, relatedBy: .Equal, toItem: bubbleImageView, attribute: .Height, multiplier: 1, constant: -15))
     }
     
@@ -119,6 +119,7 @@ class BubbleCell: UITableViewCell {
     
     func configureWithMessage(message: AVIMMessage) {
             let direction = message.content.lastPathComponent
+            println("direction\(direction)")
             bubbleText.text = message.content.stringByDeletingLastPathComponent
 //            println("usr\(message.clientId)")
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")

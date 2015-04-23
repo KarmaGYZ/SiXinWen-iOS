@@ -156,11 +156,21 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         return true
     }
 
-//    override func viewWillDisappear(animated: Bool) {
-//        super.viewWillDisappear(animated)
-//      //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
-//    }
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        currentNewsItem.instantComment.conversation.quitWithCallback(){
+            (success:Bool,error: NSError!) -> Void in
+            if(!success){
+                println("退出群组失败!")
+                println("错误:\(error)")
+            }
+            else{
+                //println("xiao")
+            }
+        }
+      //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,45 +186,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
         //login the leancloud
        // var imClient = AVIMClient()
-        imClient.delegate = self
-        imClient.openWithClientId(me.username, callback: {
-            (success:Bool,error: NSError!) -> Void in
-            if(!success){
-                println("登陆失败!")
-                println("错误:\(error)")
-            }
-        })
-        var converQuery = imClient.conversationQuery()
-        converQuery.whereKey("title", equalTo: currentNewsItem.title)
-        converQuery.findConversationsWithCallback(){
-            (result:[AnyObject]!, error:NSError!) -> Void in
-            if(error != nil){
-                println("查询对话失败")
-                println("错误:\(error)")
-            }
-            else{
-                println("\(result)")
-                if(result.count>1){
-                    println("对话数超过1")
-                }
-                else if(result.count == 0){
-                    println("未找到对话")
-                }
-                else{
-                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
-                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
-                        (success:Bool,error: NSError!) -> Void in
-                        if(error != nil){
-                            println("加入群组失败!")
-                        }
-                    }
-                }
-            }
-        }
-        
+                
         //AVIMBooleanResultBlock
         
 //        tableView = UITableView(frame: CGRectZero, style: .Plain)
+        
         
         
        // self.comment_refresh()
@@ -274,6 +250,13 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
       //  self.comment_refresh()
         
         }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       
+        self.comment_refresh()
+       // self.tableView.reloadData()
+    }
     
     override func viewDidLayoutSubviews()  {
         super.viewDidLayoutSubviews()
@@ -303,6 +286,45 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        imClient.delegate = self
+        imClient.openWithClientId(me.username, callback: {
+            (success:Bool,error: NSError!) -> Void in
+            if(!success){
+                println("登陆失败!")
+                println("错误:\(error)")
+            }
+            else{
+                //println("xiao")
+            }
+        })
+        var converQuery = imClient.conversationQuery()
+        converQuery.whereKey("title", equalTo: currentNewsItem.title)
+        converQuery.findConversationsWithCallback(){
+            (result:[AnyObject]!, error:NSError!) -> Void in
+            if(error != nil){
+                println("查询对话失败")
+                println("错误:\(error)")
+            }
+            else{
+                println("\(result)")
+                if(result.count>1){
+                    println("对话数超过1")
+                }
+                else if(result.count == 0){
+                    println("未找到对话")
+                }
+                else{
+                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
+                        (success:Bool,error: NSError!) -> Void in
+                        if(error != nil){
+                            println("加入群组失败!")
+                        }
+                    }
+                }
+            }
+        }
+
         self.tabBarController?.tabBar.hidden = true
     }
     
@@ -420,7 +442,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
            // println(oldestMsgTimestamp)
              println("hello1")
             if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-//                println("hello2")
+                println("hello2")
                 self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
                     (objects:[AnyObject]!,error: NSError!) -> Void in
                     if (error != nil) {
@@ -429,7 +451,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     }
                     else {
                        //println(objects)
-                        //println("hello")
+                        println("hello")
                         var index = 0
                         for newMessage in objects{
                          self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)

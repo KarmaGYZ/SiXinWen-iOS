@@ -118,26 +118,18 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func getNewsAtIndex(indext:Int)->NewsItem{
-        var news = NewsItem()
-        news.text = "近日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
-        news.title = "柴静_穹顶之下"
-        news.support = 0.3
-        return news
-    }
+//    func getNewsAtIndex(indext:Int)->NewsItem{
+//        var news = NewsItem()
+//        news.text = "近日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
+//        news.title = "柴静_穹顶之下"
+//        news.support = 0.3
+//        return news
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        imClient.delegate = self
-        imClient.openWithClientId(me.username, callback: {
-            (success:Bool,error: NSError!) -> Void in
-            if(error != nil){
-                println("登陆失败!")
-                println("错误:\(error)")
-            }
-        })
-//        var converQuery = imClient.conversationQuery()
+       //        var converQuery = imClient.conversationQuery()
 //        converQuery.whereKey("title", equalTo: "女教师辞职信走红")
 //        converQuery.findConversationsWithCallback(){
 //            (result:[AnyObject]!, error:NSError!) -> Void in
@@ -273,6 +265,15 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        imClient.delegate = self
+        imClient.openWithClientId(me.username, callback: {
+            (success:Bool,error: NSError!) -> Void in
+            if(error != nil){
+                println("登陆失败!")
+                println("错误:\(error)")
+            }
+        })
+
         self.tabBarController?.tabBar.hidden = false
     }
     /*
