@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4ED46E35C061684A60739972665B77C695296855</key>
-		<string>github.com:SiXinWen/SiXinWen-iOS.git</string>
+		<string>https://github.com/SiXinWen/SiXinWen-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SiXinWen-iOS.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:SiXinWen/SiXinWen-iOS.git</string>
+	<string>https://github.com/SiXinWen/SiXinWen-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

@@ -29,16 +29,16 @@ public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, 
 
 
 
-class InputTextView: UITextView {
-    override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
-        if (delegate as! CommentViewController).tableView.indexPathForSelectedRow() != nil {
-            return action == "copyTextAction:"
-        } else {
-            return super.canPerformAction(action, withSender: sender)
-        }
-    }
-}
-
+//class InputTextView: UITextView {
+//    override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
+//        if (delegate as! CommentViewController).tableView.indexPathForSelectedRow() != nil {
+//            return action == "copyTextAction:"
+//        } else {
+//            return super.canPerformAction(action, withSender: sender)
+//        }
+//    }
+//}
+//
 
 
 
@@ -90,10 +90,9 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     override var inputAccessoryView: UIView! {
         get {
             if toolBar == nil {
-                
-                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
+//                toolBar = UIToolbar(frame: CGRectZero)
+                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight))
                 toolBar.backgroundColor = bgColor
-                
                 
                 
                 leftButton = UIButton.buttonWithType(.Custom) as! UIButton
@@ -121,31 +120,40 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 
                 
                 
-                commentTextView = InputTextView(frame: CGRectZero)
-                commentTextView.backgroundColor = bgColor
-                //UIColor(white: 250/255, alpha: 1)
+                commentTextView = UITextView(frame: CGRectZero)
+                commentTextView.backgroundColor = UIColor.greenColor()
                 commentTextView.delegate = self
                 commentTextView.font = UIFont.systemFontOfSize(FontSize)
                 commentTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha:1).CGColor
                 commentTextView.layer.borderWidth = 0.5
                 commentTextView.layer.cornerRadius = 5
-                commentTextView.scrollsToTop = false
-                commentTextView.textContainerInset = UIEdgeInsetsMake(4, 3, 3, 3)
+//                commentTextView.scrollsToTop = false
+//                commentTextView.textContainerInset = UIEdgeInsetsMake(5.5, 3, 1.5, 3)
                 toolBar.addSubview(commentTextView)
+            
+                
                 
                 
                 // Auto Layout allows `sendButton` to change width, e.g., for localization.
                 leftButton.setTranslatesAutoresizingMaskIntoConstraints(false)
                 commentTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
                 rightButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+                
                 toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Left, relatedBy:.Equal , toItem: toolBar, attribute: .Left, multiplier: 1, constant: 0))
-                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
+                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Right, relatedBy:.Equal , toItem: toolBar, attribute: .Left, multiplier: 1, constant: 50))
+                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Top, relatedBy:.Equal , toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: -25))
+                toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Bottom, relatedBy: .Equal, toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: 0))
+                
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Left, relatedBy: .Equal, toItem: leftButton, attribute: .Right, multiplier: 1, constant: 2))
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 7.5))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 3.5))
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Right, relatedBy: .Equal, toItem: rightButton, attribute: .Left, multiplier: 1, constant: -2))
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -8))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -3.5))
+                
+                
                 toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
-                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
+                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Left, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: -50))
+                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Top, relatedBy:.Equal , toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: -25))
+                toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Bottom, relatedBy: .Equal, toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: 0))
             }
             return toolBar
         }
@@ -215,22 +223,17 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         webView = UIWebView(frame: scrollView.frame )
         scrollView.hidden = true
         
-//        let request = NSURLRequest(URL: NSURL(string: "http://www.cnblogs.com/zhuqil/archive/2011/07/28/2119923.html")!)
         webView.scalesPageToFit = false
 
         webView.loadHTMLString(currentNewsItem.htmlContent, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath))
 
         
-//        webView.loadRequest(request)
         
         titleview.addSubview(scrollView)
         scrollView.addSubview(webView)
-//        titleview.addSubview(tableView)
-//        tableView.hidden = true
+        
         
         webView.delegate = self
-//        webView.hidden = true
-//        webView.alpha = 0
         
         newstitle.text = currentNewsItem.title
         
@@ -242,14 +245,15 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             })
 
 
-        //let notificationCenter = NSNotificationCenter.defaultCenter()
-   //     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-       // NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
-    //    NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
     
       //  self.comment_refresh()
         
         }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -275,7 +279,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
         if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
             if toolBar.frame.height > textViewMaxHeight.landscape {
-                toolBar.frame.size.height = textViewMaxHeight.landscape+8*2-0.5
+                toolBar.frame.size.height = textViewMaxHeight.landscape + 8 * 2
             }
         } else { // portrait
             updateTextViewHeight()
@@ -329,11 +333,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     }
     
 
-    
-
-    
-    
-    
     func shiftSegment(sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
@@ -358,24 +357,39 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 
     
     
-    
-    
     func updateTextViewHeight() {
-        let oldHeight = commentTextView.frame.height
-        //        println("old \(oldHeight)")
-        let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
-        var newHeight = min(commentTextView.sizeThatFits(CGSize(width: commentTextView.frame.width, height: CGFloat.max)).height, maxHeight)
-        #if arch(x86_64) || arch(arm64)
-            newHeight = ceil(newHeight)
-            #else
-            newHeight = CGFloat(ceilf(newHeight.native))
-        #endif
-        //         println("new \(newHeight)")
-        let heightChange = newHeight - oldHeight
-        if heightChange != 0 {
-            toolBar.frame.origin.y -= heightChange
-            commentTextView.frame.size.height += heightChange
+        let oldHeight = commentTextView.frame.size.height
+                println("old \(oldHeight)")
+//            println("toolbar height \(toolBar.frame.height)")
+        if oldHeight <= 80 {
+//        let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
+//        var newHeight = min(commentTextView.sizeThatFits(CGSize(width: commentTextView.frame.width, height: CGFloat.max)).height, maxHeight)
+         var newHeight = commentTextView.contentSize.height
+//        #if arch(x86_64) || arch(arm64)
+//            newHeight = ceil(newHeight)
+//            #else
+//            newHeight = CGFloat(ceilf(newHeight.native))
+//        #endif
+                 println("new \(newHeight)")
+        var heightChange = newHeight - oldHeight
+        println(heightChange)
+        if heightChange > 10 {
+            var oldBarFrame = toolBar.frame
+            println(oldBarFrame)
+            println("enhum \(heightChange)")
+//            toolBar.frame = CGRectMake(0, commentTextView.frame.origin.y - heightChange, oldBarFrame.width, commentTextView.frame.height + 7 + heightChange )
+            
+    
+            commentTextView.frame.size.height =  newHeight
+            
         }
+        }
+   
+        
+        
+        
+        
+        
     }
     
     
@@ -440,10 +454,10 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
            // INT64_MAX
             var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
            // println(oldestMsgTimestamp)
-             println("hello1")
+//             println("hello1")
             if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-                println("hello2")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+//                println("hello2")
+                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 5 ){
                     (objects:[AnyObject]!,error: NSError!) -> Void in
                     if (error != nil) {
                         println("刷新错误:\(error)")
@@ -461,24 +475,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     }
                    // println("hello6")
                 }
-//                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
-//               // query.timestamp = oldestMsgTimestamp
-//             //   query.query
-//                var array = query.find()
-//               // println(array)
-//               // AVHistoryMessage
-//                 var index = 0
-//                for newHistoryMessage in array{
-//                    var newMessage = self.historyMessage2AVIMMessage(newHistoryMessage as! AVHistoryMessage)
-//                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as (AVIMMessage), atIndex: index)
-//                    index++
-//                }
-//                self.tableView.reloadData()
             }
             else{
-                println("hello3")
+//                println("hello3")
                 println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
+                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 10 ){
                     (objects:[AnyObject]!,error: NSError!) -> Void in
                     if (error != nil) {
                         println("刷新错误:\(error)")
@@ -514,7 +515,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 //            
 //            
         }
-        println("hello5")
+//        println("hello5")
 
     }
     
@@ -598,6 +599,14 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     
+    func menuControllerWillHide(notification: NSNotification){
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
+            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+        }
+        (notification.object as! UIMenuController).menuItems = nil
+        
+    }
     
     
     
