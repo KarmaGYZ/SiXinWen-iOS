@@ -158,14 +158,16 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        currentNewsItem.instantComment.conversation.quitWithCallback(){
-            (success:Bool,error: NSError!) -> Void in
-            if(!success){
-                println("退出群组失败!")
-                println("错误:\(error)")
-            }
-            else{
-                //println("xiao")
+        if currentNewsItem.instantComment.conversation != nil {
+            currentNewsItem.instantComment.conversation!.quitWithCallback(){
+                (success:Bool,error: NSError!) -> Void in
+                if(!success){
+                    println("退出群组失败!")
+                    println("错误:\(error)")
+                }
+                else{
+                    //println("xiao")
+                }
             }
         }
       //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
@@ -315,7 +317,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 }
                 else{
                     self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
-                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
+                    self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
                         (success:Bool,error: NSError!) -> Void in
                         if(error != nil){
                             println("加入群组失败!")
@@ -434,87 +436,204 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     func comment_refresh(){
-        
-        if shiftSegmentControl.selectedSegmentIndex == 1 {
-            var date = NSDate()
-           // INT64_MAX
-            var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
-           // println(oldestMsgTimestamp)
-             println("hello1")
-            if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-                println("hello2")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
-                    (objects:[AnyObject]!,error: NSError!) -> Void in
-                    if (error != nil) {
-                        println("刷新错误:\(error)")
-                       // AVHistoryMessageQuery
-                    }
-                    else {
-                       //println(objects)
-                        println("hello")
-                        var index = 0
-                        for newMessage in objects{
-                         self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
-                            index++
-                        }
-                        self.tableView.reloadData()
-                    }
-                   // println("hello6")
+       // println(currentNewsItem.instantComment.conversation)
+        if currentNewsItem.instantComment.conversation == nil {
+            println("test")
+            var converQuery = imClient.conversationQuery()
+            converQuery.whereKey("title", equalTo: currentNewsItem.title)
+            converQuery.findConversationsWithCallback(){
+                (result:[AnyObject]!, error:NSError!) -> Void in
+                if(error != nil){
+                    println("查询对话失败")
+                    println("错误:\(error)")
+                    return
                 }
-//                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
-//               // query.timestamp = oldestMsgTimestamp
-//             //   query.query
-//                var array = query.find()
-//               // println(array)
-//               // AVHistoryMessage
-//                 var index = 0
-//                for newHistoryMessage in array{
-//                    var newMessage = self.historyMessage2AVIMMessage(newHistoryMessage as! AVHistoryMessage)
-//                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as (AVIMMessage), atIndex: index)
-//                    index++
-//                }
-//                self.tableView.reloadData()
-            }
-            else{
-                println("hello3")
-                println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
-                    (objects:[AnyObject]!,error: NSError!) -> Void in
-                    if (error != nil) {
-                        println("刷新错误:\(error)")
+                else{
+                    println("\(result)")
+                    if(result.count>1){
+                        println("对话数超过1")
+                        return
                     }
-                    else {
-                        println(objects)
-                        //       println("hello")
-                        var index = 0
-                        for newMessage in objects{
-                            self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
-                            index++
+                    else if(result.count == 0){
+                        println("未找到对话")
+                        return
+                    }
+                    else{
+                        self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+                        self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
+                            (success:Bool,error: NSError!) -> Void in
+                            if(error != nil){
+                                println("加入群组失败!")
+                            }
+                            else {
+                                if self.shiftSegmentControl.selectedSegmentIndex == 1 {
+                                    var date = NSDate()
+                                    // INT64_MAX
+                                    var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
+                                    // println(oldestMsgTimestamp)
+                                    println("hello1")
+                                    if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
+                                        println("hello2")
+                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+                                            (objects:[AnyObject]!,error: NSError!) -> Void in
+                                            if (error != nil) {
+                                                println("刷新错误:\(error)")
+                                                // AVHistoryMessageQuery
+                                            }
+                                            else {
+                                                //println(objects)
+                                                println("hello")
+                                                var index = 0
+                                                for newMessage in objects{
+                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
+                                                    index++
+                                                }
+                                                self.tableView.reloadData()
+                                            }
+                                            // println("hello6")
+                                        }
+                                        //                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
+                                        //               // query.timestamp = oldestMsgTimestamp
+                                        //             //   query.query
+                                        //                var array = query.find()
+                                        //               // println(array)
+                                        //               // AVHistoryMessage
+                                        //                 var index = 0
+                                        //                for newHistoryMessage in array{
+                                        //                    var newMessage = self.historyMessage2AVIMMessage(newHistoryMessage as! AVHistoryMessage)
+                                        //                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as (AVIMMessage), atIndex: index)
+                                        //                    index++
+                                        //                }
+                                        //                self.tableView.reloadData()
+                                    }
+                                    else{
+                                        println("hello3")
+                                        println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
+                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
+                                            (objects:[AnyObject]!,error: NSError!) -> Void in
+                                            if (error != nil) {
+                                                println("刷新错误:\(error)")
+                                            }
+                                            else {
+                                                println(objects)
+                                                //       println("hello")
+                                                var index = 0
+                                                for newMessage in objects{
+                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
+                                                    index++
+                                                }
+                                                self.tableView.reloadData()
+                                            }
+                                        }
+                                    }
+                                    //    println("hello4")
+                                }
+                                else {
+                                    //      println("hello2")
+                                    //            
+                                    //            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
+                                    //                (objects:[AnyObject]!,error: NSError!) -> Void in
+                                    //                if (error != nil) {
+                                    //                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+                                    //                    alert.show()
+                                    //                }
+                                    //                else {
+                                    //                    self.tableView.reloadData()
+                                    //                }
+                                    //            }
+                                    //
+                                    //            
+                                    //            
+                                }
+                                println("hello5")
+                            }
                         }
-                        self.tableView.reloadData()
                     }
                 }
             }
-       //    println("hello4")
         }
         else {
-       //      println("hello2")
-//            
-//            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
-//                (objects:[AnyObject]!,error: NSError!) -> Void in
-//                if (error != nil) {
-//                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
-//                    alert.show()
-//                }
-//                else {
-//                    self.tableView.reloadData()
-//                }
-//            }
-//
-//            
-//            
+            if shiftSegmentControl.selectedSegmentIndex == 1 {
+                var date = NSDate()
+               // INT64_MAX
+                var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
+               // println(oldestMsgTimestamp)
+                 println("hello1")
+                if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
+                    println("hello2")
+                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+                        (objects:[AnyObject]!,error: NSError!) -> Void in
+                        if (error != nil) {
+                            println("刷新错误:\(error)")
+                           // AVHistoryMessageQuery
+                        }
+                        else {
+                           //println(objects)
+                            println("hello")
+                            var index = 0
+                            for newMessage in objects{
+                             self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
+                                index++
+                            }
+                            self.tableView.reloadData()
+                        }
+                       // println("hello6")
+                    }
+        //                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
+        //               // query.timestamp = oldestMsgTimestamp
+        //             //   query.query
+        //                var array = query.find()
+        //               // println(array)
+        //               // AVHistoryMessage
+        //                 var index = 0
+        //                for newHistoryMessage in array{
+        //                    var newMessage = self.historyMessage2AVIMMessage(newHistoryMessage as! AVHistoryMessage)
+        //                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as (AVIMMessage), atIndex: index)
+        //                    index++
+        //                }
+        //                self.tableView.reloadData()
+                }
+                else{
+                    println("hello3")
+                    println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
+                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
+                        (objects:[AnyObject]!,error: NSError!) -> Void in
+                        if (error != nil) {
+                            println("刷新错误:\(error)")
+                        }
+                        else {
+                            println(objects)
+                            //       println("hello")
+                            var index = 0
+                            for newMessage in objects{
+                                self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
+                                index++
+                            }
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+           //    println("hello4")
+            }
+            else {
+           //      println("hello2")
+        //            
+        //            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
+        //                (objects:[AnyObject]!,error: NSError!) -> Void in
+        //                if (error != nil) {
+        //                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+        //                    alert.show()
+        //                }
+        //                else {
+        //                    self.tableView.reloadData()
+        //                }
+        //            }
+        //
+        //            
+        //            
+            }
+            println("hello5")
         }
-        println("hello5")
 
     }
     
@@ -545,7 +664,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     func comment_send(newComment: AVIMMessage ){
         
        currentNewsItem.instantComment.loadedMessages.append(newComment)
-        currentNewsItem.instantComment.conversation.sendMessage(newComment) {
+        currentNewsItem.instantComment.conversation!.sendMessage(newComment) {
             (success:Bool,error: NSError!) -> Void in
             if(!success){
                 println("发送失败!")
