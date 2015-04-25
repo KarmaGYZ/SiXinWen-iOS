@@ -41,6 +41,8 @@ public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, 
 //
 
 
+let instant = 0 , popular = 1
+
 
 
 class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDelegate ,UITextViewDelegate {
@@ -185,13 +187,14 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: 1, animated: true)
-        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: 0, animated: true)
-        shiftSegmentControl.selectedSegmentIndex = 1
+        shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: instant, animated: true)
+        shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: popular, animated: true)
+        shiftSegmentControl.selectedSegmentIndex = instant
         shiftSegmentControl.multipleTouchEnabled = false
         shiftSegmentControl.userInteractionEnabled = true
         shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.titleView = shiftSegmentControl
+        
         
         
         //login the leancloud
@@ -360,7 +363,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     func updateTextViewHeight() {
-        let oldHeight = commentTextView.frame.size.height
+        let oldHeight = toolBar.frame.size.height
                 println("old \(oldHeight)")
 //            println("toolbar height \(toolBar.frame.height)")
         if oldHeight <= 80 {
@@ -375,17 +378,21 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                  println("new \(newHeight)")
         var heightChange = newHeight - oldHeight
         println(heightChange)
-        if heightChange > 10 {
-            var oldBarFrame = toolBar.frame
-            println(oldBarFrame)
-            println("enhum \(heightChange)")
-//            toolBar.frame = CGRectMake(0, commentTextView.frame.origin.y - heightChange, oldBarFrame.width, commentTextView.frame.height + 7 + heightChange )
+        if heightChange > 17 {
             
-    
-            commentTextView.frame.size.height =  newHeight
+            UIView.animateWithDuration(0.5){
+                
+                self.toolBar.frame.origin.y = 44 - newHeight
+                self.toolBar.frame.size.height = newHeight + 7
+                self.commentTextView.frame.size.height =  newHeight
+                
+
+                
+                
+            }
             
         }
-        }
+    }
    
         
         
@@ -450,7 +457,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     func comment_refresh(){
-<<<<<<< HEAD
+
        // println(currentNewsItem.instantComment.conversation)
         if currentNewsItem.instantComment.conversation == nil {
             println("test")
@@ -468,22 +475,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     if(result.count>1){
                         println("对话数超过1")
                         return
-=======
-        
-        if shiftSegmentControl.selectedSegmentIndex == 1 {
-            var date = NSDate()
-           // INT64_MAX
-            var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
-           // println(oldestMsgTimestamp)
-//             println("hello1")
-            if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-//                println("hello2")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 5 ){
-                    (objects:[AnyObject]!,error: NSError!) -> Void in
-                    if (error != nil) {
-                        println("刷新错误:\(error)")
-                       // AVHistoryMessageQuery
->>>>>>> fc6a6b8580a0b4dc3936cca6efe1f3d233f8f413
                     }
                     else if(result.count == 0){
                         println("未找到对话")
@@ -497,7 +488,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                 println("加入群组失败!")
                             }
                             else {
-                                if self.shiftSegmentControl.selectedSegmentIndex == 1 {
+                                if self.shiftSegmentControl.selectedSegmentIndex == instant {
                                     var date = NSDate()
                                     // INT64_MAX
                                     var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
@@ -582,10 +573,10 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     }
                 }
             }
-<<<<<<< HEAD
+
         }
         else {
-            if shiftSegmentControl.selectedSegmentIndex == 1 {
+            if shiftSegmentControl.selectedSegmentIndex == instant {
                 var date = NSDate()
                // INT64_MAX
                 var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
@@ -593,7 +584,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                  println("hello1")
                 if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
                     println("hello2")
-                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 10 ){
                         (objects:[AnyObject]!,error: NSError!) -> Void in
                         if (error != nil) {
                             println("刷新错误:\(error)")
@@ -610,15 +601,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                             self.tableView.reloadData()
                         }
                        // println("hello6")
-=======
-            else{
-//                println("hello3")
-                println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
-                self.currentNewsItem.instantComment.conversation.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 10 ){
-                    (objects:[AnyObject]!,error: NSError!) -> Void in
-                    if (error != nil) {
-                        println("刷新错误:\(error)")
->>>>>>> fc6a6b8580a0b4dc3936cca6efe1f3d233f8f413
                     }
         //                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
         //               // query.timestamp = oldestMsgTimestamp
@@ -637,7 +619,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 else{
                     println("hello3")
                     println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
-                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
+                    self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 20 ){
                         (objects:[AnyObject]!,error: NSError!) -> Void in
                         if (error != nil) {
                             println("刷新错误:\(error)")
@@ -675,10 +657,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             }
             println("hello5")
         }
-<<<<<<< HEAD
-=======
-//        println("hello5")
->>>>>>> fc6a6b8580a0b4dc3936cca6efe1f3d233f8f413
 
     }
     
@@ -781,48 +759,19 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         if showcontent == false {
             showcontent = true
             toolBar.hidden = true
-//            tableView.removePullToRefresh()
-            
-//            tableView.dataSource = newscontent
-//            tableView.reloadData()
             arrow.image = UIImage(named: "arrowUp")
             shiftSegmentControl.hidden = true
             scrollView.hidden = false
             tableView.hidden = true
-//            webView.hidden = false
-            
-//            let oldFrame = titleview.frame
-//            titleview.frame = CGRectMake(oldFrame.origin.x,oldFrame.origin.y,oldFrame.width, oldFrame.height + 100)
-//            let tableFrame = tableView.frame
-//            tableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y + 100, tableFrame.width, tableFrame.height)
-//            println("old\(oldFrame.height), new\(titleview.frame.height)")
-//            titleview.backgroundColor = UIColor.redColor()
             
         } else {
             toolBar.hidden = false
             showcontent = false
             arrow.image = UIImage(named: "arrowDown")
             tableView.hidden = false
-//            tableView.addPullToRefresh({ [weak self] in
-//                sleep(1)
-//                self!.comment_refresh()
-//                })
+            
             shiftSegmentControl.hidden = false
             scrollView.hidden = true
-//            let oldFrame = titleview.frame
-//            titleview.frame = CGRectMake(oldFrame.origin.x,oldFrame.origin.y,oldFrame.width,oldFrame.height - webView.frame.height)
-//            
-            
-//            webView.hidden = true
-//            if shiftSegmentControl.selectedSegmentIndex == 1 {
-//                tableView.dataSource = instantcomment
-//            }
-//            else {
-//                tableView.dataSource = popularcomment
-//            }
-//            //       tableView.dataSource
-//            tableView.reloadData()
-            
         }
         
         
@@ -843,11 +792,9 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     func webViewDidFinishLoad(webView: UIWebView) {
         var newFrame = webView.frame
         var actualSize = webView.sizeThatFits(CGSizeZero)
-//                    cellheight = actualSize.height
         newFrame.size = actualSize
         webView.frame = newFrame
         scrollView.contentSize = CGSize(width: actualSize.width, height: actualSize.height + 200)
-       // println("as\(actualSize) ch:\(cellheight)")
         
         
         
@@ -858,6 +805,4 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         currentNewsItem.instantComment.loadedMessages.append(message)
         Redrawcomment()
     }
-    
-    
 }
