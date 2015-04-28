@@ -66,19 +66,23 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     @IBOutlet var titleview: UIView!
  //   var titleview:titleView!
 
+    @IBOutlet var arrow: UIImageView!
     
-  //  @IBOutlet weak var arrow: UIImageView!
     
     @IBOutlet var newstitle: UILabel!
     var rotating = false
     var showcontent = false
 
     var webView: UIWebView!
-//    var scrollView: UIScrollView!
+    var scrollView: UIScrollView!
+
+//    @IBOutlet var scrollView: UIScrollView!
     
-    @IBOutlet var scrollView: UIScrollView!
     
-    var  shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
+    
+    var  shiftSegmentControl:UISegmentedControl!
+//    var  titleSgCtr:UISegmentedControl!
+    
     var toolBar:UIToolbar!
     var commentTextView:UITextView!
     var rightButton = UIButton()
@@ -187,7 +191,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
         shiftSegmentControl.insertSegmentWithTitle("即时评论", atIndex: instant, animated: true)
         shiftSegmentControl.insertSegmentWithTitle("热门评论", atIndex: popular, animated: true)
         shiftSegmentControl.selectedSegmentIndex = instant
@@ -197,17 +201,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         self.navigationItem.titleView = shiftSegmentControl
         
         
-        
-        //login the leancloud
-       // var imClient = AVIMClient()
-                
-        //AVIMBooleanResultBlock
-        
-//        tableView = UITableView(frame: CGRectZero, style: .Plain)
-        
-        
-        
-       // self.comment_refresh()
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
@@ -224,29 +217,28 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         titleview.addGestureRecognizer(tap)
         
         
-   //     scrollView = UIScrollView(frame: CGRectMake(0, 45 ,UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height - 45))
+        scrollView = UIScrollView(frame: CGRectZero)
         scrollView.backgroundColor = bgColor
-        webView = UIWebView(frame: scrollView.frame )
-//        scrollView.hidden = true
         
-        webView.scalesPageToFit = false
-
-        webView.loadHTMLString(currentNewsItem.htmlContent, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath))
-
+         webView = UIWebView(frame: UIScreen.mainScreen().bounds)
+         view.addSubview(scrollView)
+         scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+         view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Right, relatedBy: .Equal, toItem: view, attribute: .Right, multiplier: 1, constant: 0))
+         view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Left, relatedBy: .Equal, toItem: view, attribute: .Left, multiplier: 1, constant: 0))
+         view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Top, relatedBy: .Equal, toItem: titleview, attribute: .Bottom, multiplier: 1, constant: 0))
+         view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Bottom, relatedBy: .Equal, toItem: titleview, attribute: .Bottom, multiplier: 1, constant: 0))
         
-        
-//        titleview.addSubview(scrollView)
         scrollView.addSubview(webView)
         
-        
         webView.delegate = self
-        
+        webView.scalesPageToFit = false
+        webView.loadHTMLString(currentNewsItem.htmlContent, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath))
+
         newstitle.text = currentNewsItem.title
         
         
         tableView.addPullToRefresh({ [weak self] in
             sleep(1)
-          
             self!.comment_refresh()
             })
 
@@ -263,9 +255,15 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-       
+        if currentNewsItem.instantComment.loadedMessages.count == 0 {
         self.comment_refresh()
-       // self.tableView.reloadData()
+        }
+        else {
+//            println(self.currentNewsItem.instantComment.loadedMessages.count )
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.currentNewsItem.instantComment.loadedMessages.count - 1 , inSection: 0), atScrollPosition: .Top, animated: false)
+//            println(self.currentNewsItem.instantComment.loadedMessages[self.currentNewsItem.instantComment.loadedMessages.count - 1].content )
+        }
+   
     }
     
     override func viewDidLayoutSubviews()  {
@@ -324,7 +322,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     println("未找到对话")
                 }
                 else{
-                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+                    self.currentNewsItem.instantComment.conversation = (result[0] as! AVIMConversation)
                     self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
                         (success:Bool,error: NSError!) -> Void in
                         if(error != nil){
@@ -496,7 +494,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                     println("hello1")
                                     if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
                                         println("hello2")
-                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 20 ){
+                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 10 ){
                                             (objects:[AnyObject]!,error: NSError!) -> Void in
                                             if (error != nil) {
                                                 println("刷新错误:\(error)")
@@ -514,6 +512,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                             }
                                             // println("hello6")
                                         }
+                                        
+                                  
                                         //                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
                                         //               // query.timestamp = oldestMsgTimestamp
                                         //             //   query.query
@@ -531,7 +531,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                     else{
                                         println("hello3")
                                         println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
-                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 3 ){
+                                        self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 20 ){
                                             (objects:[AnyObject]!,error: NSError!) -> Void in
                                             if (error != nil) {
                                                 println("刷新错误:\(error)")
@@ -602,6 +602,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                         }
                        // println("hello6")
                     }
+                    
+                 
         //                var query = AVHistoryMessageQuery(conversationId: self.currentNewsItem.instantComment.conversation.conversationId, timestamp: oldestMsgTimestamp, limit: 4)
         //               // query.timestamp = oldestMsgTimestamp
         //             //   query.query
@@ -759,12 +761,19 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         if showcontent == false {
             showcontent = true
             toolBar.hidden = true
-//            arrow.image = UIImage(named: "arrowUp")
-            shiftSegmentControl.hidden = true
+            arrow.image = UIImage(named: "up")
+            shiftSegmentControl.enabled = false
+            shiftSegmentControl.userInteractionEnabled = false
 //            scrollView.hidden = false
 //            tableView.hidden = true
 //            UIViewAnimationOptions
-            UIView.transitionFromView(tableView, toView: scrollView, duration: 0.3, options:.TransitionFlipFromTop | .ShowHideTransitionViews, completion: nil)
+            
+            UIView.animateWithDuration(0.4){
+                
+                self.scrollView.frame.size.height =  UIScreen.mainScreen().bounds.height
+                
+            }
+
             
 //            UIViewAnimationOptions
             
@@ -772,13 +781,17 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         } else {
             toolBar.hidden = false
             showcontent = false
-//            arrow.image = UIImage(named: "arrowDown")
+            arrow.image = UIImage(named: "down")
 //            tableView.hidden = false
             
-            shiftSegmentControl.hidden = false
+            shiftSegmentControl.enabled = true
+            shiftSegmentControl.userInteractionEnabled = true
 //            scrollView.hidden = true
             
-            UIView.transitionFromView(scrollView, toView: tableView, duration: 0.3, options: .TransitionFlipFromBottom | .ShowHideTransitionViews, completion: nil)
+            UIView.animateWithDuration(0.4){
+                self.scrollView.frame.size.height =  0
+                
+            }
         }
         
         
