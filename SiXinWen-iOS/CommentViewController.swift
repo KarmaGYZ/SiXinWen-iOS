@@ -61,21 +61,22 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
 //    var tableView = UITableView()
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     
-    @IBOutlet weak var titleview: UIView!
+    @IBOutlet var titleview: UIView!
  //   var titleview:titleView!
 
     
-    @IBOutlet weak var arrow: UIImageView!
+  //  @IBOutlet weak var arrow: UIImageView!
     
-    @IBOutlet weak var newstitle: UILabel!
+    @IBOutlet var newstitle: UILabel!
     var rotating = false
     var showcontent = false
 
     var webView: UIWebView!
-    var scrollView: UIScrollView!
+//    var scrollView: UIScrollView!
     
+    @IBOutlet var scrollView: UIScrollView!
     
     var  shiftSegmentControl = UISegmentedControl(frame: CGRectMake(80.0, 8.0, 200.0, 30.0))
     var toolBar:UIToolbar!
@@ -223,10 +224,10 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         titleview.addGestureRecognizer(tap)
         
         
-        scrollView = UIScrollView(frame: CGRectMake(0, 45 ,UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height - 45))
+   //     scrollView = UIScrollView(frame: CGRectMake(0, 45 ,UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height - 45))
         scrollView.backgroundColor = bgColor
         webView = UIWebView(frame: scrollView.frame )
-        scrollView.hidden = true
+//        scrollView.hidden = true
         
         webView.scalesPageToFit = false
 
@@ -234,7 +235,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 
         
         
-        titleview.addSubview(scrollView)
+//        titleview.addSubview(scrollView)
         scrollView.addSubview(webView)
         
         
@@ -342,14 +343,16 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
         switch sender.selectedSegmentIndex {
             
-        case 0:
+        case popular:
             toolBar.hidden = true
+            UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromLeft | .ShowHideTransitionViews, completion: nil)
             tableView.dataSource = popularcomment
             tableView.reloadData()
             break
             
-        case 1:
+        case instant:
             toolBar.hidden = false
+            UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromRight | .ShowHideTransitionViews, completion: nil)
             tableView.dataSource = instantcomment
             tableView.reloadData()
             break
@@ -380,14 +383,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         println(heightChange)
         if heightChange > 17 {
             
-            UIView.animateWithDuration(0.5){
+            UIView.animateWithDuration(0.2){
                 
                 self.toolBar.frame.origin.y = 44 - newHeight
                 self.toolBar.frame.size.height = newHeight + 7
                 self.commentTextView.frame.size.height =  newHeight
-                
-
-                
                 
             }
             
@@ -754,24 +754,31 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     func didTap(sender: UITapGestureRecognizer) {
         
-        let frame = CGRectMake(0, 0, arrow.image!.size.height, arrow.image!.size.width);
+//        let frame = CGRectMake(0, 0, arrow.image!.size.height, arrow.image!.size.width);
         
         if showcontent == false {
             showcontent = true
             toolBar.hidden = true
-            arrow.image = UIImage(named: "arrowUp")
+//            arrow.image = UIImage(named: "arrowUp")
             shiftSegmentControl.hidden = true
-            scrollView.hidden = false
-            tableView.hidden = true
+//            scrollView.hidden = false
+//            tableView.hidden = true
+//            UIViewAnimationOptions
+            UIView.transitionFromView(tableView, toView: scrollView, duration: 0.3, options:.TransitionFlipFromTop | .ShowHideTransitionViews, completion: nil)
+            
+//            UIViewAnimationOptions
+            
             
         } else {
             toolBar.hidden = false
             showcontent = false
-            arrow.image = UIImage(named: "arrowDown")
-            tableView.hidden = false
+//            arrow.image = UIImage(named: "arrowDown")
+//            tableView.hidden = false
             
             shiftSegmentControl.hidden = false
-            scrollView.hidden = true
+//            scrollView.hidden = true
+            
+            UIView.transitionFromView(scrollView, toView: tableView, duration: 0.3, options: .TransitionFlipFromBottom | .ShowHideTransitionViews, completion: nil)
         }
         
         
