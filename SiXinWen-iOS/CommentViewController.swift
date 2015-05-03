@@ -501,11 +501,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                                 // AVHistoryMessageQuery
                                             }
                                             else {
-                                                //println(objects)
+                                                println(objects)
                                                 println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
-                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
+                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex: index)
                                                     index++
                                                 }
                                                 self.tableView.reloadData()
@@ -541,7 +541,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                                 //       println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
-                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
+                                                    self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex:index)
                                                     index++
                                                 }
                                                 self.tableView.reloadData()
@@ -591,11 +591,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                            // AVHistoryMessageQuery
                         }
                         else {
-                           //println(objects)
+                           println(objects)
                             println("hello")
                             var index = 0
-                            for newMessage in objects{
-                             self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex: index)
+                            for newMessage in objects {
+                             self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex: index)
                                 index++
                             }
                             self.tableView.reloadData()
@@ -631,7 +631,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                             //       println("hello")
                             var index = 0
                             for newMessage in objects{
-                                self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMMessage), atIndex:index)
+                                self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex:index)
                                 index++
                             }
                             self.tableView.reloadData()
@@ -686,7 +686,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     
-    func comment_send(newComment: AVIMMessage ){
+    func comment_send(newComment: AVIMTextMessage ){
         
        currentNewsItem.instantComment.loadedMessages.append(newComment)
         currentNewsItem.instantComment.conversation!.sendMessage(newComment) {
@@ -719,16 +719,17 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         // Autocomplete text before sending #hack
         commentTextView.resignFirstResponder()
         commentTextView.becomeFirstResponder()
-        var content : String
+        var content : String = commentTextView.text
+        var singleComment:AVIMTextMessage
         if sender.titleLabel?.text == "动嘴"{
-          content = commentTextView.text.stringByAppendingPathComponent("l")
+          singleComment = AVIMTextMessage(text: content, attributes: ["attitude":true])
         }
         else {
-         content = commentTextView.text.stringByAppendingPathComponent("r")
+         singleComment = AVIMTextMessage(text: content, attributes: ["attitude":false])
         }
 //        println(content)
         
-        let singleComment = AVIMMessage(content: content)
+     //   let singleComment = AVIMTextMessage(text: content, attributes: ["attitude":true])
        
         
         commentTextView.text = nil
@@ -768,7 +769,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 //            tableView.hidden = true
 //            UIViewAnimationOptions
             
-            UIView.animateWithDuration(0.4){
+            UIView.animateWithDuration(0.2){
                 
                 self.scrollView.frame.size.height =  UIScreen.mainScreen().bounds.height
                 
@@ -788,7 +789,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             shiftSegmentControl.userInteractionEnabled = true
 //            scrollView.hidden = true
             
-            UIView.animateWithDuration(0.4){
+            UIView.animateWithDuration(0.2){
                 self.scrollView.frame.size.height =  0
                 
             }
@@ -821,8 +822,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
     }
 
-    func conversation(conversation: AVIMConversation!, didReceiveCommonMessage message: AVIMMessage!) {
-        currentNewsItem.instantComment.loadedMessages.append(message)
+    func conversation(conversation: AVIMConversation!, didReceiveTypedMessage message: AVIMTypedMessage!) {
+        currentNewsItem.instantComment.loadedMessages.append(message as! AVIMTextMessage)
         Redrawcomment()
     }
 }

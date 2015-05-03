@@ -138,10 +138,10 @@ class BubbleCell: UITableViewCell {
     }
     
     
-    func configureWithMessage(message: AVIMMessage) {
-            let direction = message.content.lastPathComponent
+    func configureWithMessage(message: AVIMTextMessage) {
+            let direction = message.attributes
 //            println("direction\(direction)")
-            bubbleText.text = message.content.stringByDeletingLastPathComponent
+            bubbleText.text = message.text
 //            println("usr\(message.clientId)")
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         
@@ -150,7 +150,7 @@ class BubbleCell: UITableViewCell {
             var leftConstant: CGFloat
             var rightConstant: CGFloat
             bubbleText.textColor = UIColor.whiteColor()
-            if direction == "l" {
+            if direction["attitude"] as! Bool == true {
                 tag = oppoTag
                 bubbleImageView.image = bubbleImage.oppo
                 bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed

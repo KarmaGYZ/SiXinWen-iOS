@@ -19,7 +19,7 @@ class Messages{
 //    var lastCommentSentDateString: String {
 //        return formatDate(lastCommentSentDcate)
 //    }
-    var loadedMessages = [AVIMMessage]()
+    var loadedMessages = [AVIMTextMessage]()
     var conversation:AVIMConversation?
     var unreadCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessage = false
