@@ -134,11 +134,9 @@ class BubbleCell: UITableViewCell {
     func configureWithMessage(message: AVIMTextMessage) {
             let direction = message.attributes
             bubbleText.text = message.text
-<<<<<<< HEAD
+
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")
-=======
-//            println("usr\(message.clientId)")
->>>>>>> 4591bedea4c2bc2019db7eef3b0abb4357f5607b
+
         
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         if usrPhoto.image == nil {
