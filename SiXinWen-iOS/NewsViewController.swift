@@ -17,33 +17,15 @@ public var imClient = AVIMClient()
 
 class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVIMClientDelegate{
     let locationManager = CLLocationManager()
-//    var newsList:[NewsItem]
     let NEWS_PER_PAGE = 5
     var newsList:[NewsItem]
     
     required init(coder aDecoder:NSCoder){
         newsList = [NewsItem]()
         super.init(coder: aDecoder)
-        //news_list_update()
-        
-
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //        if segue.identifier == "AddItem" {
-        //            let navigationController = segue.destinationViewController as UINavigationController
-        //            let controller = navigationController.topViewController as ItemDetailViewController
-        //            controller.delegate = self
-        //        } else if segue.identifier == "EditItem" {
-        //            let navigationController = segue.destinationViewController as UINavigationController
-        //            let controller = navigationController.topViewController as ItemDetailViewController
-        //            controller.delegate = self
-        //
-        //            if let indexPath = tableView.indexPathForCell(sender as UITableViewCell){
-        //                controller.itemToEdit = items[indexPath.row]
-        //            }
-        //        }
         let controller = segue.destinationViewController as! CommentViewController
         controller.currentNewsItem = newsList[tableView.indexPathForSelectedRow()!.row]
         
@@ -56,25 +38,18 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-       // println("错误\(error)")
+        
     }
     
     
 
     func news_list_update(){
         
-//        if(newsList.isEmpty){
-//            for(var i = 0;i < 5;i++){
-//                newsList.append(getNewsAtIndex(i))
-//            }
-//        }
         newsList.removeAll(keepCapacity: false)
         var query = AVQuery(className: "News")
         query.whereKey("Now", equalTo: true)
         query.cachePolicy = AVCachePolicy.NetworkElseCache
         query.maxCacheAge = 356*24*3600
-       // let array = query.findObjects()
-      //  println("数组Sshi")
         query.findObjectsInBackgroundWithBlock(){
             (result:[AnyObject]!, error:NSError!) -> Void in
             if(result == nil){
@@ -111,109 +86,37 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         let alert = UIAlertController(title: "无法连接到互联网", message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default , handler: {
             action in
-            //self.startNewRound()
-            //self.updateLabels()
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
-//    func getNewsAtIndex(indext:Int)->NewsItem{
-//        var news = NewsItem()
-//        news.text = "近日,从央视辞职的柴静,推出了她自费拍摄的雾霾深度调查《穹顶之下》"
-//        news.title = "柴静_穹顶之下"
-//        news.support = 0.3
-//        return news
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-       //        var converQuery = imClient.conversationQuery()
-//        converQuery.whereKey("title", equalTo: "女教师辞职信走红")
-//        converQuery.findConversationsWithCallback(){
-//            (result:[AnyObject]!, error:NSError!) -> Void in
-//            if(error != nil){
-//                println("查询对话失败")
-//                println("错误:\(error)")
-//               // println("\(result)")
-//            }
-//            else{
-//                if(result.count>1){
-//                    println("对话数超过1")
-//                }
-//                else{
-////                    self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
-////                    self.currentNewsItem.instantComment.conversation.joinWithCallback(){
-////                        (success:Bool,error: NSError!) -> Void in
-////                        if(error != nil){
-////                            println("加入群组失败!")
-////                        }
-////                    }
-//                }
-//            }
-//        }
-
         
         news_list_update()
-        //AVQuery.clearAllCachedResults()
-        //test code
-//        var testobject = AVObject(className: "IOSUserInfo")
-//        testobject.setObject("ios_test", forKey: "iostestkey")
-//        testobject.setObject("IOSUser", forKey: "UserName")
-//        testobject.setObject(0, forKey: "UserId")
-//        testobject.save()
-//        var query = AVQuery(className: "News")
-//        
-//        var news = query.getObjectWithId("552d0880e4b0f543686dbdff")
-//        var htmlCont = news.objectForKey("htmlContent") as! String
-//        println("\(htmlCont)")
-//        //news.refresh()
-//        var bcktest = AVObject(className: "IOSUserInfo")
-//        bcktest.setObject("background save", forKey: "bck")
-//        //AVBooleanResultBlock
-//        bcktest.saveInBackgroundWithBlock(){(succeeded:Bool,error:NSError!)->Void in
-//            if(error == nil){
-//                println("Save in back succeed")
-//            }
-//            else{
-//                println("\(error)")
-//            }
-//        }
-    
-        
         
        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         tableView.tableFooterView = UIView(frame:CGRectZero)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return newsList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     //   let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem") as NewsCell
         let cell = tableView.dequeueReusableCellWithIdentifier("NewsItem", forIndexPath: indexPath) as! NewsCell
         let news = newsList[indexPath.row]
         configTitleAndTextForCell(cell,withNewsItem:news)
@@ -244,15 +147,13 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         if let image = news.image {
             cell.newsImage.image = image
         }
-        //let image = cell.viewWithTag(1004) as UIImageView
     }
     
     
     func refresh(sender:AnyObject)
     {
-        // Updating your data here...
         self.news_list_update()
-       self.tableView.reloadData()
+        self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
 
