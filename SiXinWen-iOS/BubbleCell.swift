@@ -143,8 +143,11 @@ class BubbleCell: UITableViewCell {
 //            println("direction\(direction)")
             bubbleText.text = message.text
 //            println("usr\(message.clientId)")
-            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         
+            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
+        if usrPhoto.image == nil {
+            usrPhoto.image = defaultPhoto
+        }
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             var leftConstant: CGFloat
