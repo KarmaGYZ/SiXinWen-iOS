@@ -97,10 +97,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     override var inputAccessoryView: UIView! {
         get {
             if toolBar == nil {
-//                toolBar = UIToolbar(frame: CGRectZero)
-                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight))
+                toolBar = UIToolbar(frame: CGRectZero)
+//                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, 0))
                 toolBar.backgroundColor = bgColor
                 
+    
                 
                 leftButton = UIButton.buttonWithType(.Custom) as! UIButton
                 leftButton.backgroundColor = leftColor
@@ -135,7 +136,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 commentTextView.layer.borderWidth = 0.5
                 commentTextView.layer.cornerRadius = 5
 //                commentTextView.scrollsToTop = false
-//                commentTextView.textContainerInset = UIEdgeInsetsMake(5.5, 3, 1.5, 3)
+//                commentTextView.textContainerInset = UIEdgeInsetsMake(9, 3, 0 , 3)
+                
                 toolBar.addSubview(commentTextView)
             
                 
@@ -146,21 +148,28 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 commentTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
                 rightButton.setTranslatesAutoresizingMaskIntoConstraints(false)
                 
+                
+                
                 toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Left, relatedBy:.Equal , toItem: toolBar, attribute: .Left, multiplier: 1, constant: 0))
                 toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Right, relatedBy:.Equal , toItem: toolBar, attribute: .Left, multiplier: 1, constant: 50))
                 toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Top, relatedBy:.Equal , toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: -25))
                 toolBar.addConstraint(NSLayoutConstraint(item: leftButton, attribute: .Bottom, relatedBy: .Equal, toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: 0))
                 
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Left, relatedBy: .Equal, toItem: leftButton, attribute: .Right, multiplier: 1, constant: 2))
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 3.5))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 6))
                 toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Right, relatedBy: .Equal, toItem: rightButton, attribute: .Left, multiplier: 1, constant: -2))
-                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -3.5))
+                toolBar.addConstraint(NSLayoutConstraint(item:commentTextView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -6))
                 
                 
                 toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
                 toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Left, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: -50))
                 toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Top, relatedBy:.Equal , toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: -25))
                 toolBar.addConstraint(NSLayoutConstraint(item: rightButton, attribute: .Bottom, relatedBy: .Equal, toItem: commentTextView, attribute: .Bottom, multiplier: 1, constant: 0))
+                
+                
+                toolBar.autoresizingMask = .FlexibleHeight | .FlexibleBottomMargin
+                
+                
             }
             return toolBar
         }
@@ -248,9 +257,12 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
     
-      //  self.comment_refresh()
+      
+//        println(inputAccessoryView.constraints()[0])
+//        self.inputAccessoryView.addConstraint(constraint)
+
         
-        }
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -269,26 +281,27 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     override func viewDidLayoutSubviews()  {
         super.viewDidLayoutSubviews()
         
-        if !currentNewsItem.instantComment.draft.isEmpty {
-            commentTextView.text = currentNewsItem.instantComment.draft
-            currentNewsItem.instantComment.draft = ""
-            textViewDidChange(commentTextView)
-            commentTextView.becomeFirstResponder()
-        }
+//        if !currentNewsItem.instantComment.draft.isEmpty {
+//            commentTextView.text = currentNewsItem.instantComment.draft
+//            currentNewsItem.instantComment.draft = ""
+//            textViewDidChange(commentTextView)
+//            
+//        }
+        commentTextView.becomeFirstResponder()
     }
     
     
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        
-        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
-            if toolBar.frame.height > textViewMaxHeight.landscape {
-                toolBar.frame.size.height = textViewMaxHeight.landscape + 8 * 2
-            }
-        } else { // portrait
-            updateTextViewHeight()
-        }
-    }
+//    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+//        super.willAnimateRotationToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+//        
+//        if UIInterfaceOrientationIsLandscape(toInterfaceOrientation) {
+//            if toolBar.frame.height > textViewMaxHeight.landscape {
+//                toolBar.frame.size.height = textViewMaxHeight.landscape + 8 * 2
+//            }
+//        } else { // portrait
+//            updateTextViewHeight()
+//        }
+//    }
 
     
     
@@ -364,49 +377,71 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
     
     func updateTextViewHeight() {
-        let oldHeight = toolBar.frame.size.height
-                println("old \(oldHeight)")
-//            println("toolbar height \(toolBar.frame.height)")
-        if oldHeight <= 80 {
-//        let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
-//        var newHeight = min(commentTextView.sizeThatFits(CGSize(width: commentTextView.frame.width, height: CGFloat.max)).height, maxHeight)
-         var newHeight = commentTextView.contentSize.height
-//        #if arch(x86_64) || arch(arm64)
-//            newHeight = ceil(newHeight)
-//            #else
-//            newHeight = CGFloat(ceilf(newHeight.native))
-//        #endif
-                 println("new \(newHeight)")
-        var heightChange = newHeight - oldHeight
-        println(heightChange)
-        if heightChange > 17 {
+        
+        let oldHeight = self.toolBar.frame.size.height
+        var newHeight = self.commentTextView.contentSize.height + 14
+        
+        let heightChange = newHeight - oldHeight
+            println(heightChange)
+       
+        if newHeight < 44 {
+            newHeight = 44
+        }
+        if  (heightChange > 10 && oldHeight < 60) || (heightChange < 0 ) {
             
-            UIView.animateWithDuration(0.2){
-                
-                self.toolBar.frame.origin.y = 44 - newHeight
-                self.toolBar.frame.size.height = newHeight + 7
-                self.commentTextView.frame.size.height =  newHeight
-                
+            var constraints: NSArray = self.inputAccessoryView.constraints()
+            
+            let indexOfConstraint = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+                return  (constraint.firstAttribute == .Height)
             }
             
+            self.inputAccessoryView.removeConstraint(constraints[indexOfConstraint] as! NSLayoutConstraint)
+            
+            UIView.animateWithDuration(0.2){
+
+                   self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: newHeight))
+            }
+            
+//            self.commentTextView.frame.size.height = newHeight
+//            self.reloadInputViews()
         }
-    }
-   
-        
-        
-        
-        
+    
         
     }
     
     
     
     func textViewDidChange(textView: UITextView) {
+        
+        
+//        var paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing  = 4.5
+//
+//        var attributes = [ NSFontAttributeName:UIFont.systemFontOfSize(FontSize),
+//            NSParagraphStyleAttributeName:paragraphStyle
+//        ]
+//        
+//        commentTextView.attributedText = NSAttributedString(string: commentTextView.text, attributes: attributes)
+        
         updateTextViewHeight()
         leftButton.enabled = textView.hasText()
         rightButton.enabled = textView.hasText()
     }
 
+    
+//    func keyboardWillChangeFrame(notification: NSNotification){
+//        
+//        let userinfo = notification.userInfo as NSDictionary!
+//        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        self
+//        
+//        println("hello from key")
+//    }
+   
+    
+    
+    
+    
     
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo as NSDictionary!
