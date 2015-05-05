@@ -52,11 +52,8 @@ let photoSize: CGFloat = 30
 class BubbleCell: UITableViewCell {
     
     
-//    let usrPhoto:UIImage
-    
     let bubbleImageView: UIImageView
     let bubbleText: UILabel
-//    let like: UIButton
     let usrPhoto: UIImageView
     
     let defaultPhoto: UIImage
@@ -94,10 +91,6 @@ class BubbleCell: UITableViewCell {
         usrPhoto.setTranslatesAutoresizingMaskIntoConstraints(false)
         bubbleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         bubbleText.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        
-//        contentView.backgroundColor = UIColor.greenColor()
-//        bubbleText.backgroundColor   = UIColor.blueColor()
-//        usrPhoto.backgroundColor = UIColor.redColor()
         
         
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 40))
@@ -135,14 +128,15 @@ class BubbleCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
-    
     
     func configureWithMessage(message: AVIMTextMessage) {
             let direction = message.attributes
-//            println("direction\(direction)")
             bubbleText.text = message.text
-//            println("usr\(message.clientId)")
+
+            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
+
         
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")
         if usrPhoto.image == nil {
