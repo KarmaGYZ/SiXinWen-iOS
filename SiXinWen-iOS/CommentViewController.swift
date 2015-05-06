@@ -43,7 +43,7 @@ public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, 
 
 let instant = 0 , popular = 1
 
-
+let leftButtonTag = 4, rightButtonTag = 5
 
 class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDelegate ,UITextViewDelegate {
 
@@ -104,24 +104,28 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     
                 
                 leftButton = UIButton.buttonWithType(.Custom) as! UIButton
-                leftButton.backgroundColor = leftColor
-                leftButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+                leftButton.setBackgroundImage(UIImage(named:"leftButton"), forState: .Normal)
+                leftButton.tag = leftButtonTag
+//                leftButton.backgroundColor = leftColor
+//                leftButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
                 leftButton.enabled = false
-                leftButton.setTitle("动嘴", forState: .Normal)
-                leftButton.setTitleColor(leftColor, forState: .Disabled)
-                leftButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//                leftButton.setTitle("动嘴", forState: .Normal)
+//                leftButton.setTitleColor(leftColor, forState: .Disabled)
+//                leftButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 leftButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
                 leftButton.addTarget(self, action: "sendAction:", forControlEvents: UIControlEvents.TouchUpInside)
                 toolBar.addSubview(leftButton)
                 
                 
                 rightButton = UIButton.buttonWithType(.Custom) as! UIButton
-                rightButton.backgroundColor = rightColor
+//                rightButton.backgroundColor = rightColor
                 rightButton.enabled = false
-                rightButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
-                rightButton.setTitle("开撕", forState: .Normal)
-                rightButton.setTitleColor(rightColor, forState: .Disabled)
-                rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                rightButton.setBackgroundImage(UIImage(named:"rightButton"), forState: .Normal)
+                rightButton.tag = rightButtonTag
+//                rightButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+//                rightButton.setTitle("开撕", forState: .Normal)
+//                rightButton.setTitleColor(rightColor, forState: .Disabled)
+//                rightButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 rightButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
                 rightButton.addTarget(self, action: "sendAction:", forControlEvents: UIControlEvents.TouchUpInside)
                 toolBar.addSubview(rightButton)
@@ -733,7 +737,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         commentTextView.becomeFirstResponder()
         var content : String = commentTextView.text
         var singleComment:AVIMTextMessage
-        if sender.titleLabel?.text == "动嘴"{
+        if sender.tag == leftButtonTag {
           singleComment = AVIMTextMessage(text: content, attributes: ["attitude":true])
         }
         else {
