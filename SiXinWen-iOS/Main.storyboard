@@ -28,7 +28,6 @@
         <!--我-->
         <scene sceneID="Vze-CI-GQA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="co3-3C-dtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="mrQ-gm-a6e" customClass="menuTableViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9Uc-HV-vvQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -264,6 +263,7 @@
                         <outlet property="usrPhoto" destination="dfo-2R-O85" id="SU4-vn-ey0"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="co3-3C-dtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1027" y="1691"/>
         </scene>
@@ -576,7 +576,9 @@
                     </view>
                     <connections>
                         <outlet property="arrow" destination="588-l0-Mfm" id="MVM-ne-8rU"/>
+                        <outlet property="leftAttitude" destination="h6b-Zj-swa" id="Ixl-qb-WpT"/>
                         <outlet property="newstitle" destination="XIc-72-ZIG" id="3m2-lI-rpr"/>
+                        <outlet property="rightAttitude" destination="zTr-cM-5Ue" id="Qdt-9P-uyR"/>
                         <outlet property="tableView" destination="HWu-v4-ep2" id="D7a-Ni-lEb"/>
                         <outlet property="titleview" destination="90T-nE-TQc" id="CVY-pq-sS1"/>
                     </connections>
@@ -643,7 +645,6 @@
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
         <image name="86c5a43c89" width="512" height="512"/>
         <image name="Contacts-100" width="100" height="100"/>
         <image name="Forward-64" width="64" height="64"/>
@@ -652,17 +653,9 @@
         <image name="User Male Circle Filled-100" width="100" height="100"/>
         <image name="User Male4-50" width="29" height="29"/>
         <image name="b848509317" width="512" height="512"/>
-        <image name="down" width="37" height="23"/>
-        <image name="news29" width="29" height="29"/>
-=======
-        <image name="Home" width="29" height="29"/>
-        <image name="Message" width="44" height="44"/>
-        <image name="Person" width="44" height="44"/>
-        <image name="SliderThumb-Normal" width="220" height="165"/>
         <image name="dislike" width="14" height="12"/>
         <image name="down" width="37" height="23"/>
-        <image name="h_large_yV7D_0fa60001447b111a" width="200" height="200"/>
-        <image name="left" width="352" height="249"/>
->>>>>>> 15124dd6f8a2ef8243b9d02adba3cefec72e5953
+        <image name="left" width="100" height="100"/>
+        <image name="news29" width="29" height="29"/>
     </resources>
 </document>

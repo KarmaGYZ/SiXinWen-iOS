@@ -66,6 +66,11 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
     @IBOutlet var titleview: UIView!
  //   var titleview:titleView!
 
+    @IBOutlet var leftAttitude: UILabel!
+    
+    
+    @IBOutlet var rightAttitude: UILabel!
+    
     @IBOutlet var arrow: UIImageView!
     
     
@@ -249,6 +254,9 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         webView.loadHTMLString(currentNewsItem.htmlContent, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath))
 
         newstitle.text = currentNewsItem.title
+        
+        leftAttitude.text = currentNewsItem.leftAttitude
+        rightAttitude.text = currentNewsItem.rightAttitude
         
         
         tableView.addPullToRefresh({ [weak self] in
@@ -754,11 +762,13 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         else {
          singleComment = AVIMTextMessage(text: content, attributes: ["attitude":false])
         }
+        println("OLD \(commentTextView.contentSize.height)")
         commentTextView.text = nil
-        updateTextViewHeight()
+        println("new \(commentTextView.contentSize.height)")
         leftButton.enabled = false
         rightButton.enabled = false
         comment_send(singleComment)
+        updateTextViewHeight()
     }
     
     
