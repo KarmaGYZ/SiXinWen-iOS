@@ -98,7 +98,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         get {
             if toolBar == nil {
                 toolBar = UIToolbar(frame: CGRectZero)
-//                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, 0))
+//                toolBar = UIToolbar(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 51))
                 toolBar.backgroundColor = bgColor
                 
     
@@ -136,7 +136,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 commentTextView.layer.borderWidth = 0.5
                 commentTextView.layer.cornerRadius = 5
 //                commentTextView.scrollsToTop = false
-//                commentTextView.textContainerInset = UIEdgeInsetsMake(9, 3, 0 , 3)
+//                commentTextView.textContainerInset = UIEdgeInsetsMake(5, 3, 4 , 3)
                 
                 toolBar.addSubview(commentTextView)
             
@@ -268,6 +268,17 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         longPressGesture.minimumPressDuration = 0.2
         self.tableView.addGestureRecognizer(longPressGesture)
         
+//        var constraints: NSArray = self.inputAccessoryView.constraints()
+//        
+//        let indexOfConstraint = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+//            return  (constraint.firstAttribute == .Height)
+//        }
+//        
+//        self.inputAccessoryView.removeConstraint(constraints[indexOfConstraint] as! NSLayoutConstraint)
+//        
+//        
+//        self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 51))
+      
         
         }
 
@@ -405,10 +416,10 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         let heightChange = newHeight - oldHeight
             println(heightChange)
        
-        if newHeight < 44 {
-            newHeight = 44
+        if newHeight < 51 {
+            newHeight = 51
         }
-        if  (heightChange > 10 && oldHeight < 60) || (heightChange < 0 ) {
+        if  (heightChange > 0 && oldHeight < 60) || (heightChange < 0 ) {
             
             var constraints: NSArray = self.inputAccessoryView.constraints()
             
@@ -423,8 +434,8 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                    self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: newHeight))
             }
             
-//            self.commentTextView.frame.size.height = newHeight
-//            self.reloadInputViews()
+//            self.commentTextView.frame.size.height = newHeight - 4
+            self.reloadInputViews()
         }
     
         

@@ -18,6 +18,7 @@
 		3173F9721ADEA533001D33E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9711ADEA533001D33E3 /* libicucore.dylib */; };
 		3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9741ADEA56D001D33E3 /* CFNetwork.framework */; };
 		318FF0301AE145CC007C4FCE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318FF02F1AE145CC007C4FCE /* CoreLocation.framework */; };
+		31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31915B091AFA14B100BFC746 /* menuTableViewController.swift */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
@@ -63,6 +64,7 @@
 		3173F9741ADEA56D001D33E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		318FF02F1AE145CC007C4FCE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		318FF0361AE146C3007C4FCE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		31915B091AFA14B100BFC746 /* menuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuTableViewController.swift; sourceTree = "<group>"; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				DE403FB01AD3A51400EFE1EF /* popularComment.swift */,
 				DE57112C1ADD674A0090CDE3 /* instantComment.swift */,
 				DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */,
+				31915B091AFA14B100BFC746 /* menuTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				DE57112D1ADD674A0090CDE3 /* instantComment.swift in Sources */,
 				DE59B2581ADEE89300ADFAC7 /* PullToRefreshView.swift in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
+				31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */,
 				DE59B2571ADEE89300ADFAC7 /* PullToRefreshConst.swift in Sources */,

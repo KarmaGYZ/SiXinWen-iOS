@@ -139,37 +139,48 @@ class BubbleCell: UITableViewCell {
 
         
             usrPhoto.image = UIImage(named: "usr\(message.clientId)")
-        if usrPhoto.image == nil {
-            usrPhoto.image = defaultPhoto
-        }
+            if usrPhoto.image == nil {
+                usrPhoto.image = defaultPhoto
+            }
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             var leftConstant: CGFloat
             var rightConstant: CGFloat
             bubbleText.textColor = UIColor.whiteColor()
-            if direction["attitude"] as! Bool == true {
+            if direction["attitude"] != nil {
+                if direction["attitude"] as! Bool == true {
+                    tag = oppoTag
+                    bubbleImageView.image = bubbleImage.oppo
+                    bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
+                   
+                    layoutAttribute = .Left
+                    layoutConstant = 40
+                    leftConstant = 10
+                    rightConstant = 40
+
+                    
+                } else { // outgoing
+                    tag = teamTag
+                    bubbleImageView.image = bubbleImage.team
+                    bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
+                    
+                    layoutAttribute = .Right
+                    layoutConstant = -40
+                    leftConstant = -40
+                    rightConstant = -10
+                }
+            }
+            else {
                 tag = oppoTag
                 bubbleImageView.image = bubbleImage.oppo
                 bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
-               
+                
                 layoutAttribute = .Left
                 layoutConstant = 40
                 leftConstant = 10
                 rightConstant = 40
-
-                
-            } else { // outgoing
-                tag = teamTag
-                bubbleImageView.image = bubbleImage.team
-                bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
-                
-                layoutAttribute = .Right
-                layoutConstant = -40
-                leftConstant = -40
-                rightConstant = -10
-
-                
             }
+        
         
         
             let constraints: NSArray = contentView.constraints()

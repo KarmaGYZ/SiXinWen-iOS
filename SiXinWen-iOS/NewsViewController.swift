@@ -66,6 +66,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                     news.title = item.objectForKey("Title") as! String
                     news.commentNum = item.objectForKey("CommentNum") as! Int
                     news.support = item.objectForKey("SupportRatio") as! Float
+                    news.leftAttitude = item.objectForKey("AffirmativeView") as! String
+                    news.rightAttitude = item.objectForKey("OpposeView") as! String
                     //news.image = UIImageJPEGRepresentation(<#image: UIImage!#>, <#compressionQuality: CGFloat#>)
                     var newsimgFile = item.objectForKey("Picture") as! AVFile
                     newsimgFile.getDataInBackgroundWithBlock(){
