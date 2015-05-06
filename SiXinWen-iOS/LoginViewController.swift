@@ -1,56 +1,30 @@
 //
-//  MessageViewController.swift
+//  LoginViewController.swift
 //  SiXinWen-iOS
 //
-//  Created by Karma Guo on 4/1/15.
+//  Created by Karma Guo on 5/6/15.
 //  Copyright (c) 2015 SiXinWen. All rights reserved.
 //
 
-import CoreLocation
 import UIKit
-import AVOSCloud
-import AVOSCloudIM
 
-class MessageViewController: UITableViewController {
-    
-    
-    @IBOutlet weak var topbar: UIView!
-    
-    var messageList:[MessageItem]
-    
-    required init(coder aDecoder:NSCoder){
-        messageList = [MessageItem]()
-        super.init(coder: aDecoder)
-       // messagelist_update()
-      //  self.tableView.tableHeaderView = topbar
-        
-    }
-    
-    func messagelist_update(){
-        for(var i=0;i<1;i++){
-            var message = MessageItem()
-            message.userName = "GYZ"
-            message.messageText = "柴静真是太假了"
-           // message.userPhoto = UIImage(named: "usrgyz")
-            messageList.append(message)
-        }
-    }
-    
+class LoginViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        //self.tableView.tableHeaderView = topbar
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,73 +35,24 @@ class MessageViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-      
-        
-        if messageList.isEmpty {
-            return 1
-        }
-        else {
-            return messageList.count
-        }
+        return 0
     }
-    
-    
 
-    
-    override func viewWillDisappear(animated: Bool) {
-        //tableView.reloadData()
-        super.viewWillDisappear(animated)
-       // self.tabBarController?.tabBar.hidden = false
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-       // tableView.reloadData()
-        super.viewWillAppear(animated)
-      //  self.tabBarController?.tabBar.hidden = false
-    }
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if messageList.isEmpty {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NoNewMessage", forIndexPath: indexPath) as! UITableViewCell
-            //tableView.rowHeight = tableView.frame.size.height
-            return cell
-        }
-        else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath)as! MessageCell
-            cell.messageText.text = messageList[messageList.count - indexPath.row - 1].messageText
-            cell.userName.text = messageList[messageList.count - indexPath.row - 1].userName
-            //tableView.rowHeight = 100.0
-            return cell
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+
         // Configure the cell...
 
-       // return cell
+        return cell
     }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if messageList.isEmpty {
-            return tableView.frame.size.height - 150.0
-        }
-        else {
-            return 70.0
-        }
-    }
-    
-    
-    func refresh(sender:AnyObject)
-    {
-        // Updating your data here...
-        messagelist_update()
-        
-        self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

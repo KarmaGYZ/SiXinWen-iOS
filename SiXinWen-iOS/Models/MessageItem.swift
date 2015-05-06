@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class MessageItem {
     var messageText = ""
-    var userPhoto = ""
+    var userPhoto = UIImage(named: "匿名头像")
     var userName = ""
 }

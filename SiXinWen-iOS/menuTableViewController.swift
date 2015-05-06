@@ -15,10 +15,12 @@ class menuTableViewController: UITableViewController {
     let photoSize: CGFloat = 70
     
     let defaultPhoto = UIImage(named: "匿名头像")!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Slide)
         usrPhoto.layer.cornerRadius = photoSize / 2
         usrPhoto.layer.masksToBounds = true
         usrPhoto.layer.borderColor = UIColor.whiteColor().CGColor
@@ -32,11 +34,17 @@ class menuTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(animated: Bool) {
+         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+   
     // MARK: - Table view data source
 
    

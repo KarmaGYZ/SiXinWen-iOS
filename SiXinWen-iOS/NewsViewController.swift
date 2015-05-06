@@ -176,6 +176,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                 println("错误:\(error)")
             }
         })
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         self.tabBarController?.tabBar.hidden = false
     }

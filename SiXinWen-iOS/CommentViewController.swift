@@ -218,7 +218,16 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         shiftSegmentControl.addTarget(self, action: "shiftSegment:", forControlEvents: UIControlEvents.ValueChanged)
         self.navigationItem.titleView = shiftSegmentControl
         
-        
+        var imgView = UIImageView(frame: CGRectMake(0, 0, 23, 23))
+        imgView.image = UIImage(named: "Share-100-1")
+//        var imgedit:UIImage
+//        UIGraphicsBeginImageContext(CGSize(width: 29, height: 29))
+//        img?.drawInRect(CGRect(x: 0, y: 0, width: 29, height: 29))
+//        imgedit = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        //img?.size = CGSize(width: 29, height: 29)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imgView)
         tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         
         let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: toolBarMinHeight, right: 0)
