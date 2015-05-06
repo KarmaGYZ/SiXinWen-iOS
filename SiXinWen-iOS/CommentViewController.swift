@@ -762,13 +762,12 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         else {
          singleComment = AVIMTextMessage(text: content, attributes: ["attitude":false])
         }
-        println("OLD \(commentTextView.contentSize.height)")
+//        println("OLD \(commentTextView.contentSize.height)")
         commentTextView.text = nil
-        println("new \(commentTextView.contentSize.height)")
-        leftButton.enabled = false
-        rightButton.enabled = false
+        commentTextView.contentSize.height = 0
+//        println("new \(commentTextView.contentSize.height)")
         comment_send(singleComment)
-        updateTextViewHeight()
+        textViewDidChange(commentTextView)
     }
     
     
