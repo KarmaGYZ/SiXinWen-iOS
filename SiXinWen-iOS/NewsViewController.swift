@@ -54,7 +54,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
             (result:[AnyObject]!, error:NSError!) -> Void in
             if(result == nil){
                 //println("\(error)")
-                self.showAlert("\(error)")
+                self.showAlert("无法连接至互联网",message: "请开启网络")
             }
             else{
              //   println("result:\(result)")
@@ -84,8 +84,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         }
     }
     
-    func showAlert(message:String){
-        let alert = UIAlertController(title: "无法连接到互联网", message: message, preferredStyle: .Alert)
+    func showAlert(title:String , message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default , handler: {
             action in
         })
