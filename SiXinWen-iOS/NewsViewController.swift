@@ -168,6 +168,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+//        self.tabBarController?.tabBar.hidden = false
         imClient.delegate = self
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in

@@ -39,6 +39,8 @@
 		DE59B2571ADEE89300ADFAC7 /* PullToRefreshConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59B2531ADEE89300ADFAC7 /* PullToRefreshConst.swift */; };
 		DE59B2581ADEE89300ADFAC7 /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59B2541ADEE89300ADFAC7 /* PullToRefreshView.swift */; };
 		DE59B2591ADEE89300ADFAC7 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */; };
+		DE73A3861B00E1BD003B4FEA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73A3851B00E1BD003B4FEA /* LoginController.swift */; };
+		DE73A3881B00E1E7003B4FEA /* aboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */; };
 		DEADBAF41AD3FE1A0070436A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEADBAF31AD3FE1A0070436A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,8 @@
 		DE59B2531ADEE89300ADFAC7 /* PullToRefreshConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshConst.swift; sourceTree = "<group>"; };
 		DE59B2541ADEE89300ADFAC7 /* PullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
+		DE73A3851B00E1BD003B4FEA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsController.swift; sourceTree = "<group>"; };
 		DEADBAF31AD3FE1A0070436A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +236,8 @@
 				DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */,
 				31915B091AFA14B100BFC746 /* menuTableViewController.swift */,
 				31915B0B1AFA491E00BFC746 /* LoginViewController.swift */,
+				DE73A3851B00E1BD003B4FEA /* LoginController.swift */,
+				DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */,
+				DE73A3861B00E1BD003B4FEA /* LoginController.swift in Sources */,
 				DE59B2571ADEE89300ADFAC7 /* PullToRefreshConst.swift in Sources */,
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
@@ -354,6 +361,7 @@
 				31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */,
 				31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */,
 				3111F77C1ABE98AE00009CF1 /* NewsViewController.swift in Sources */,
+				DE73A3881B00E1E7003B4FEA /* aboutUsController.swift in Sources */,
 				311B32921ACA651A00B05BC2 /* NewsItem.swift in Sources */,
 				DE403FB11AD3A51400EFE1EF /* popularComment.swift in Sources */,
 				DE59B2591ADEE89300ADFAC7 /* UIScrollViewExtension.swift in Sources */,
