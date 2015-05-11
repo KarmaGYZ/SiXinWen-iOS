@@ -93,12 +93,12 @@ class BubbleCell: UITableViewCell {
         bubbleText.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         
-        contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 40))
+        contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1, constant: 50))
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 4.5))
         contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -4.5))
         
-        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -40))
-        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -10))
+        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -50))
+        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1, constant: -20))
         contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -30))
         
@@ -154,9 +154,9 @@ class BubbleCell: UITableViewCell {
                     bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
                    
                     layoutAttribute = .Left
-                    layoutConstant = 40
-                    leftConstant = 10
-                    rightConstant = 40
+                    layoutConstant = 50
+                    leftConstant = 20
+                    rightConstant = 50
 
                     
                 } else { // outgoing
@@ -165,9 +165,9 @@ class BubbleCell: UITableViewCell {
                     bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
                     
                     layoutAttribute = .Right
-                    layoutConstant = -40
-                    leftConstant = -40
-                    rightConstant = -10
+                    layoutConstant = -50
+                    leftConstant = -50
+                    rightConstant = -20
                 }
             }
             else {
@@ -176,9 +176,9 @@ class BubbleCell: UITableViewCell {
                 bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
                 
                 layoutAttribute = .Left
-                layoutConstant = 40
-                leftConstant = 10
-                rightConstant = 40
+                layoutConstant = 50
+                leftConstant = 20
+                rightConstant = 50
             }
         
         

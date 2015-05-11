@@ -236,7 +236,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         popularcomment.currentNewsItem = currentNewsItem
         self.tableView.dataSource = instantcomment
         self.tableView.delegate = instantcomment
-        self.tableView.keyboardDismissMode = .Interactive
+        self.tableView.keyboardDismissMode = .OnDrag
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .None
         tableView.registerClass(BubbleCell.self, forCellReuseIdentifier: NSStringFromClass(BubbleCell))
@@ -796,6 +796,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         if showcontent == false {
             showcontent = true
             toolBar.hidden = true
+             commentTextView.resignFirstResponder()
             arrow.image = UIImage(named: "up")
             shiftSegmentControl.enabled = false
             shiftSegmentControl.userInteractionEnabled = false
@@ -804,6 +805,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             }
         } else {
             toolBar.hidden = false
+//            commentTextView.becomeFirstResponder()
             showcontent = false
             arrow.image = UIImage(named: "down")
             shiftSegmentControl.enabled = true
