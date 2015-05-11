@@ -195,6 +195,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             currentNewsItem.instantComment.conversation!.quitWithCallback(){
                 (success:Bool,error: NSError!) -> Void in
                 if(!success){
+                    KVNProgress.showErrorWithStatus("请检查网络")
                     println("退出群组失败!")
                     println("错误:\(error)")
                 }
@@ -362,6 +363,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
             if(!success){
+                KVNProgress.showErrorWithStatus("请检查网络")
                 println("登陆失败!")
                 println("错误:\(error)")
             }
@@ -374,15 +376,18 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         converQuery.findConversationsWithCallback(){
             (result:[AnyObject]!, error:NSError!) -> Void in
             if(error != nil){
+                 KVNProgress.showErrorWithStatus("请检查网络")
                 println("查询对话失败")
                 println("错误:\(error)")
             }
             else{
-                println("\(result)")
+//                println("\(result)")
                 if(result.count>1){
+                     KVNProgress.showErrorWithStatus("服务器内部错误")
                     println("对话数超过1")
                 }
                 else if(result.count == 0){
+                     KVNProgress.showErrorWithStatus("服务器内部错误")
                     println("未找到对话")
                 }
                 else{
@@ -390,6 +395,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                     self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
                         (success:Bool,error: NSError!) -> Void in
                         if(error != nil){
+                            KVNProgress.showErrorWithStatus("请检查网络")
                             println("加入群组失败!")
                         }
                     }
@@ -552,6 +558,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             converQuery.findConversationsWithCallback(){
                 (result:[AnyObject]!, error:NSError!) -> Void in
                 if(error != nil){
+                    KVNProgress.showErrorWithStatus("请检查网络")
                     println("查询对话失败")
                     println("错误:\(error)")
                     return
@@ -559,10 +566,12 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 else{
                     println("\(result)")
                     if(result.count>1){
+                        KVNProgress.showErrorWithStatus("服务器内部错误")
                         println("对话数超过1")
                         return
                     }
                     else if(result.count == 0){
+                         KVNProgress.showErrorWithStatus("服务器内部错误")
                         println("未找到对话")
                         return
                     }
@@ -571,6 +580,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                         self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
                             (success:Bool,error: NSError!) -> Void in
                             if(error != nil){
+                                 KVNProgress.showErrorWithStatus("请检查网络")
                                 println("加入群组失败!")
                             }
                             else {
@@ -579,18 +589,19 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                     // INT64_MAX
                                     var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
                                     // println(oldestMsgTimestamp)
-                                    println("hello1")
+//                                    println("hello1")
                                     if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-                                        println("hello2")
+//                                        println("hello2")
                                         self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 10 ){
                                             (objects:[AnyObject]!,error: NSError!) -> Void in
                                             if (error != nil) {
+                                                 KVNProgress.showErrorWithStatus("请检查网络")
                                                 println("刷新错误:\(error)")
                                                 // AVHistoryMessageQuery
                                             }
                                             else {
-                                                println(objects)
-                                                println("hello")
+//                                                println(objects)
+//                                                println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
                                                     self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex: index)
@@ -617,11 +628,12 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                         //                self.tableView.reloadData()
                                     }
                                     else{
-                                        println("hello3")
-                                        println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
+//                                        println("hello3")
+//                                        println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
                                         self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 20 ){
                                             (objects:[AnyObject]!,error: NSError!) -> Void in
                                             if (error != nil) {
+                                                 KVNProgress.showErrorWithStatus("请检查网络")
                                                 println("刷新错误:\(error)")
                                             }
                                             else {
@@ -655,7 +667,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                                     //            
                                     //            
                                 }
-                                println("hello5")
+//                                println("hello5")
                             }
                         }
                     }
@@ -667,17 +679,18 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             if shiftSegmentControl.selectedSegmentIndex == instant {
                 var date = NSDate()
                 var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
-                 println("hello1")
+//                 println("hello1")
                 if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
-                    println("hello2")
+//                    println("hello2")
                     self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 10 ){
                         (objects:[AnyObject]!,error: NSError!) -> Void in
                         if (error != nil) {
+                            KVNProgress.showErrorWithStatus("请检查网络")
                             println("刷新错误:\(error)")
                         }
                         else {
-                           println(objects)
-                            println("hello")
+//                           println(objects)
+//                            println("hello")
                             var index = 0
                             for newMessage in objects {
                              self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex: index)
@@ -689,14 +702,15 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
                 }
                 else{
                     
-                    println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
+//                    println("\(self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp)")
                     self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(self.currentNewsItem.instantComment.loadedMessages[0].messageId, timestamp: self.currentNewsItem.instantComment.loadedMessages[0].sendTimestamp , limit: 20 ){
                         (objects:[AnyObject]!,error: NSError!) -> Void in
                         if (error != nil) {
+                             KVNProgress.showErrorWithStatus("请检查网络")
                             println("刷新错误:\(error)")
                         }
                         else {
-                            println(objects)
+//                            println(objects)
                             //       println("hello")
                             var index = 0
                             for newMessage in objects{
@@ -710,26 +724,26 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             }
             else {
             }
-            println("hello5")
+//            println("hello5")
         }
 
     }
     
     
-    
-    func historyMessage2AVIMMessage(historyMessage:AVHistoryMessage)->AVIMMessage{
-        var result = AVIMMessage()
-        result.conversationId = historyMessage.conversationId
-        result.clientId = historyMessage.fromPeerId
-        if historyMessage.payload != nil{
-            result.content = historyMessage.payload
-        }
-        else {
-            result.content = "34534534/r"
-        }
-        result.sendTimestamp = historyMessage.timestamp
-        return result
-    }
+//   
+//    func historyMessage2AVIMMessage(historyMessage:AVHistoryMessage)->AVIMMessage{
+//        var result = AVIMMessage()
+//        result.conversationId = historyMessage.conversationId
+//        result.clientId = historyMessage.fromPeerId
+//        if historyMessage.payload != nil{
+//            result.content = historyMessage.payload
+//        }
+//        else {
+//            result.content = "34534534/r"
+//        }
+//        result.sendTimestamp = historyMessage.timestamp
+//        return result
+//    }
     
     
     
@@ -738,8 +752,9 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         currentNewsItem.instantComment.conversation!.sendMessage(newComment) {
             (success:Bool,error: NSError!) -> Void in
             if(!success){
-                println("发送失败!")
-                println("错误:\(error)")
+                 KVNProgress.showErrorWithStatus("请检查网络")
+//                println("发送失败!")
+//                println("错误:\(error)")
             }
         }
         Redrawcomment()
