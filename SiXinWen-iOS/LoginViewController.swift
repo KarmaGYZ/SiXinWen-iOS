@@ -21,7 +21,8 @@ class LoginViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.hidden = true
+//        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
     

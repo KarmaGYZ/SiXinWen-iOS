@@ -10,7 +10,7 @@ import UIKit
 
 class menuTableViewController: UITableViewController {
 
-    @IBOutlet var usrPhoto: UIImageView!
+    @IBOutlet var usrPhoto: UIButton!
     
     let photoSize: CGFloat = 70
     
@@ -21,11 +21,11 @@ class menuTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
         //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Slide)
-        usrPhoto.layer.cornerRadius = photoSize / 2
-        usrPhoto.layer.masksToBounds = true
-        usrPhoto.layer.borderColor = UIColor.whiteColor().CGColor
-        usrPhoto.layer.borderWidth = 2.3
-        usrPhoto.image = defaultPhoto
+        usrPhoto.imageView!.layer.cornerRadius = photoSize / 2
+        usrPhoto.imageView!.layer.masksToBounds = true
+        usrPhoto.imageView!.layer.borderColor = UIColor.whiteColor().CGColor
+        usrPhoto.imageView!.layer.borderWidth = 2.3
+        usrPhoto.imageView!.image = defaultPhoto
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,6 +35,7 @@ class menuTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     }
@@ -45,6 +46,12 @@ class menuTableViewController: UITableViewController {
     }
     
    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+//        self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     // MARK: - Table view data source
 
    
