@@ -16,14 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        if launchOptions != nil {
+            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
+            (self.window?.rootViewController as! UITabBarController).selectedIndex = 1
+        }
+        
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
             UIUserNotificationType.Sound, categories: nil))
         application.registerForRemoteNotifications()
+        
+       // application.applicationIconBadgeNumber = 0
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            remoteNotification.objectForKey("")
+            
+        }
        // AVAnalytics.setCrashReportEnabled(false){}
         return true
     }
@@ -31,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         AVInstallation.currentInstallation().setDeviceTokenFromData(deviceToken)
         AVInstallation.currentInstallation().saveInBackground()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("Couldn’t register: \(error)")
     }
 
     func applicationWillResignActive(application: UIApplication) {

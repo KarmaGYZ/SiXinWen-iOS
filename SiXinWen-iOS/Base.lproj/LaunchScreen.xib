@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -17,11 +17,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="Ubh-GL-rqY">
-                    <rect key="frame" x="86" y="125" width="300" height="100"/>
+                    <rect key="frame" x="124" y="125" width="225" height="75"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="Cqd-mN-j8V"/>
+                        <constraint firstAttribute="height" constant="75" id="Cqd-mN-j8V"/>
                         <constraint firstAttribute="width" constant="302" id="nya-pE-Hqm"/>
-                        <constraint firstAttribute="width" constant="300" id="pAn-mO-Nph"/>
+                        <constraint firstAttribute="width" constant="225" id="pAn-mO-Nph"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
