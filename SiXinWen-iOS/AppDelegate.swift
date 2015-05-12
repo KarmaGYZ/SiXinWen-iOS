@@ -23,14 +23,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        
         if launchOptions != nil {
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
             (self.window?.rootViewController as! UITabBarController).selectedIndex = 1
         }
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound, categories: nil))
-        application.registerForRemoteNotifications()
+        var currentUser = AVUser.currentUser()
+        if (currentUser == nil||true) {
+            var installationId = AVInstallation.currentInstallation().installationId
+            var parameter = ["InsID":"installationid"]
+           // AVCloud.callFunction("InsSignUp", withParameters: parameter)
+            AVUser.logInWithUsernameInBackground("DerekLH", password: "password"){
+                (user :AVUser!, error :NSError!) -> Void in
+                if user != nil {
+                    println("用户登陆成功")
+                    println(AVUser.currentUser());
+                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
+                        UIUserNotificationType.Sound, categories: nil))
+                    application.registerForRemoteNotifications()
+                }
+                else{
+                    println("用户登录失败")
+                }
+            }
+//                AVAnonymousUtils.logInWithBlock(){
+//                (user :AVUser!, error :NSError!) -> Void in
+//                if user != nil {
+//                    println("用户登陆成功")
+//                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
+//                        UIUserNotificationType.Sound, categories: nil))
+//                    application.registerForRemoteNotifications()
+//                }
+//                else{
+//                    println("用户登录失败")
+//                }
+//
+//            }
+            
+            
+//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
+//                UIUserNotificationType.Sound, categories: nil))
+//            application.registerForRemoteNotifications()
+        }
+        
+        
         
        // application.applicationIconBadgeNumber = 0
         if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
@@ -42,8 +79,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        AVInstallation.currentInstallation().setDeviceTokenFromData(deviceToken)
-        AVInstallation.currentInstallation().saveInBackground()
+        var installation = AVInstallation.currentInstallation();
+        installation.setDeviceTokenFromData(deviceToken)
+        
+//        installation.saveInBackgroundWithBlock(){
+//            (success:Bool, error:NSError!) -> Void in
+//            if success {
+//                println("成功inst\(AVInstallation.currentInstallation().installationId)")
+//            }
+//            else {
+//                println("错误\(error)")
+//            }
+//        }
+       // println("\(AVInstallation.currentInstallation().installationId)")
+        //        var installationId = AVInstallation.currentInstallation().installationId
+//        var parameter = ["InsID":installationId]
+//        AVCloud.callFunction("InsSignUp", withParameters: parameter)
+//        AVUser.logInWithUsernameInBackground(installationId, password: "password"){
+//            (user :AVUser!, error :NSError!) -> Void in
+//            if user != nil {
+//                println("用户登陆成功")
+//            }
+//            else{
+//                println("用户登录失败")
+//            }
+//        }
+       
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
