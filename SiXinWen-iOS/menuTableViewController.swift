@@ -19,7 +19,7 @@ class menuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Slide)
         usrPhoto.imageView!.layer.cornerRadius = photoSize / 2
         usrPhoto.imageView!.layer.masksToBounds = true
@@ -33,9 +33,20 @@ class menuTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
+//    override func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
 
     override func viewWillAppear(animated: Bool) {
+       // self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.tabBarController?.tabBar.hidden = false
+        self.setNeedsStatusBarAppearanceUpdate()
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     }

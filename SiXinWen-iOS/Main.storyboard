@@ -151,9 +151,9 @@
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="centerX" secondItem="GkK-Uq-6mY" secondAttribute="centerX" constant="-0.5" id="52b-ij-s2q"/>
                                 <constraint firstAttribute="centerX" secondItem="K3x-gL-PSL" secondAttribute="centerX" constant="-0.5" id="5fF-eU-ak6"/>
                                 <constraint firstItem="GkK-Uq-6mY" firstAttribute="top" secondItem="K3x-gL-PSL" secondAttribute="bottom" constant="12" id="Dxd-4l-1YL"/>
+                                <constraint firstItem="GkK-Uq-6mY" firstAttribute="centerX" secondItem="j7F-81-U9j" secondAttribute="centerX" id="EmD-HK-i2g"/>
                                 <constraint firstItem="K3x-gL-PSL" firstAttribute="top" secondItem="j7F-81-U9j" secondAttribute="top" constant="40" id="qjC-F4-z2G"/>
                             </constraints>
                         </view>
@@ -340,9 +340,6 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="k6D-Um-hUT">
-                                <cells/>
-                            </tableViewSection>
-                            <tableViewSection headerTitle=" " id="nEZ-lB-Rjt">
                                 <cells/>
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="qJR-H9-8sd">
