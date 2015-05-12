@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "profile_btn_unlike.png"
+      "filename" : "dislike.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "profile_btn_unlike@2x.png"
+      "filename" : "dislike@2x.png"
     },
     {
       "idiom" : "universal",
