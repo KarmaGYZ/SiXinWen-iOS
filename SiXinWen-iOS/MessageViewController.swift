@@ -44,6 +44,9 @@ class MessageViewController: UITableViewController {
         
         //self.tableView.tableHeaderView = topbar
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "red-blue"), forBarMetrics: .Default)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
