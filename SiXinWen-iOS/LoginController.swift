@@ -28,6 +28,9 @@ class LoginController: UIViewController {
         //        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
+    
+    
+    
     /*
     // MARK: - Navigation
 

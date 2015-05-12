@@ -19,7 +19,7 @@
 		3173F9751ADEA56D001D33E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3173F9741ADEA56D001D33E3 /* CFNetwork.framework */; };
 		318FF0301AE145CC007C4FCE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318FF02F1AE145CC007C4FCE /* CoreLocation.framework */; };
 		31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31915B091AFA14B100BFC746 /* menuTableViewController.swift */; };
-		31915B0C1AFA491E00BFC746 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31915B0B1AFA491E00BFC746 /* LoginViewController.swift */; };
+		31915B0C1AFA491E00BFC746 /* ModifyNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31915B0B1AFA491E00BFC746 /* ModifyNameController.swift */; };
 		31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */; };
 		31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */; };
 		31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F8D11ABA702F00DFF5EE /* Images.xcassets */; };
@@ -33,6 +33,7 @@
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
 		31F4E63D1AC445270046FCD8 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63C1AC445270046FCD8 /* BubbleCell.swift */; };
 		DE403FB11AD3A51400EFE1EF /* popularComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE403FB01AD3A51400EFE1EF /* popularComment.swift */; };
+		DE44FD311B025A3600C2BD12 /* ModifyPSwordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44FD301B025A3600C2BD12 /* ModifyPSwordController.swift */; };
 		DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */; };
 		DE57112D1ADD674A0090CDE3 /* instantComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE57112C1ADD674A0090CDE3 /* instantComment.swift */; };
 		DE59B2561ADEE89300ADFAC7 /* pulltorefresharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */; };
@@ -72,7 +73,7 @@
 		318FF02F1AE145CC007C4FCE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		318FF0361AE146C3007C4FCE /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		31915B091AFA14B100BFC746 /* menuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuTableViewController.swift; sourceTree = "<group>"; };
-		31915B0B1AFA491E00BFC746 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		31915B0B1AFA491E00BFC746 /* ModifyNameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyNameController.swift; sourceTree = "<group>"; };
 		31C6F8C21ABA702F00DFF5EE /* SiXinWen-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SiXinWen-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C6F8C61ABA702F00DFF5EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C6F8C71ABA702F00DFF5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31F4E63C1AC445270046FCD8 /* BubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
 		DE403FB01AD3A51400EFE1EF /* popularComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popularComment.swift; sourceTree = "<group>"; };
+		DE44FD301B025A3600C2BD12 /* ModifyPSwordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPSwordController.swift; sourceTree = "<group>"; };
 		DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		DE57112C1ADD674A0090CDE3 /* instantComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = instantComment.swift; sourceTree = "<group>"; };
 		DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulltorefresharrow.png; sourceTree = "<group>"; };
@@ -246,9 +248,10 @@
 				DE57112C1ADD674A0090CDE3 /* instantComment.swift */,
 				DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */,
 				31915B091AFA14B100BFC746 /* menuTableViewController.swift */,
-				31915B0B1AFA491E00BFC746 /* LoginViewController.swift */,
+				31915B0B1AFA491E00BFC746 /* ModifyNameController.swift */,
 				DE73A3851B00E1BD003B4FEA /* LoginController.swift */,
 				DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */,
+				DE44FD301B025A3600C2BD12 /* ModifyPSwordController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -385,9 +388,10 @@
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				DE57112D1ADD674A0090CDE3 /* instantComment.swift in Sources */,
 				DE59B2581ADEE89300ADFAC7 /* PullToRefreshView.swift in Sources */,
-				31915B0C1AFA491E00BFC746 /* LoginViewController.swift in Sources */,
+				31915B0C1AFA491E00BFC746 /* ModifyNameController.swift in Sources */,
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */,
+				DE44FD311B025A3600C2BD12 /* ModifyPSwordController.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
 				DE7C1C3D1B01160600E30F8F /* UIImage+KVNImageEffects.m in Sources */,
 				DE7C1C381B0115FB00E30F8F /* KVNProgress.m in Sources */,
