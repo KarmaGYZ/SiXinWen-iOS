@@ -207,23 +207,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
       //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
     }
 
-    func shareWeixin(){
-        
-        var msg = WXMediaMessage()
-        msg.title = "撕新闻测试"
-        msg.description = "SiXinWen Home Page"
-        msg.setThumbImage(UIImage(named: "Icon-60"))
-        var ext = WXWebpageObject()
-        ext.webpageUrl = "http://sixinwen.avosapps.com"
-        msg.mediaObject = ext
-        
-        
-        var req = SendMessageToWXReq()
-        req.scene = Int32(WXSceneSession.value)
-        req.message = msg
-        req.bText = false
-        WXApi.sendReq(req)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -238,8 +221,6 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
         var imgView = UIImageView(frame: CGRectMake(0, 0, 23, 23))
         imgView.image = UIImage(named: "Share-100-1")
-        let tapGesture = UITapGestureRecognizer(target: self, action: "shareWeixin")
-        imgView.addGestureRecognizer(tapGesture)
 //        var imgedit:UIImage
 //        UIGraphicsBeginImageContext(CGSize(width: 29, height: 29))
 //        img?.drawInRect(CGRect(x: 0, y: 0, width: 29, height: 29))

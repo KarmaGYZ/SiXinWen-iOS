@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,33 +10,48 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 SiXinWen. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch－bg" translatesAutoresizingMaskIntoConstraints="NO" id="8O7-5j-dg2">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uge-YX-zcK">
+                    <rect key="frame" x="-7" y="0.0" width="487" height="480"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999999999999996" contentMode="center" id="bpv-Ki-sXn">
+                        <rect key="frame" x="0.0" y="0.0" width="487" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 SiXinWen. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="20" y="451" width="441" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="Ubh-GL-rqY">
-                    <rect key="frame" x="124" y="125" width="225" height="75"/>
+                <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="Ubh-GL-rqY">
+                    <rect key="frame" x="128" y="66" width="225" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="75" id="Cqd-mN-j8V"/>
-                        <constraint firstAttribute="width" constant="302" id="nya-pE-Hqm"/>
-                        <constraint firstAttribute="width" constant="225" id="pAn-mO-Nph"/>
+                        <constraint firstAttribute="width" constant="225" id="4jd-U4-rzf"/>
+                        <constraint firstAttribute="height" constant="75" id="lbh-OH-s45"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="nya-pE-Hqm"/>
-                        </mask>
-                    </variation>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.43921571969985962" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
-                <constraint firstItem="Ubh-GL-rqY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="125" id="7wS-d8-5gm"/>
-                <constraint firstAttribute="centerX" secondItem="Ubh-GL-rqY" secondAttribute="centerX" constant="4" id="Ghe-gI-txt"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="4aU-ii-UXs"/>
+                <constraint firstAttribute="centerX" secondItem="Ubh-GL-rqY" secondAttribute="centerX" constant="-0.5" id="CtF-NS-hkC"/>
+                <constraint firstItem="uge-YX-zcK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ES1-1i-Iqh"/>
+                <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="19" id="EvG-R7-J99"/>
+                <constraint firstItem="Ubh-GL-rqY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="66" id="FUe-Uk-wze"/>
+                <constraint firstAttribute="trailing" secondItem="8O7-5j-dg2" secondAttribute="trailing" id="MYz-8N-alV"/>
+                <constraint firstAttribute="trailing" secondItem="uge-YX-zcK" secondAttribute="trailing" id="Q40-hq-OwQ"/>
+                <constraint firstAttribute="bottom" secondItem="uge-YX-zcK" secondAttribute="bottom" id="RSy-sP-THs"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="8" id="VHB-hK-yf3"/>
+                <constraint firstAttribute="bottom" secondItem="8O7-5j-dg2" secondAttribute="bottom" id="ZBB-WO-xgZ"/>
+                <constraint firstItem="8O7-5j-dg2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tBV-jJ-rRd"/>
+                <constraint firstItem="8O7-5j-dg2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zmc-hk-AFy"/>
+                <constraint firstItem="uge-YX-zcK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-7" id="zw7-aG-CCM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -45,5 +60,6 @@
     </objects>
     <resources>
         <image name="launch" width="768" height="256"/>
+        <image name="launch－bg" width="400" height="400"/>
     </resources>
 </document>
