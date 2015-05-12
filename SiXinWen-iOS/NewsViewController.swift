@@ -54,7 +54,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
             (result:[AnyObject]!, error:NSError!) -> Void in
             if(result == nil){
                 //println("\(error)")
-                self.showAlert("无法连接至互联网",message: "请开启网络")
+//                self.showAlert("无法连接至互联网",message: "请开启网络")
+                 KVNProgress.showErrorWithStatus("请检查网络")
             }
             else{
              //   println("result:\(result)")
@@ -173,6 +174,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
             if(error != nil){
+                
+                KVNProgress.showErrorWithStatus("请检查网络")
                 println("登陆失败!")
                 println("错误:\(error)")
             }

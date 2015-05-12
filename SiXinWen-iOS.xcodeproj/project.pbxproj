@@ -41,6 +41,10 @@
 		DE59B2591ADEE89300ADFAC7 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */; };
 		DE73A3861B00E1BD003B4FEA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73A3851B00E1BD003B4FEA /* LoginController.swift */; };
 		DE73A3881B00E1E7003B4FEA /* aboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */; };
+		DE7C1C381B0115FB00E30F8F /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7C1C371B0115FB00E30F8F /* KVNProgress.m */; };
+		DE7C1C3D1B01160600E30F8F /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7C1C3A1B01160600E30F8F /* UIImage+KVNImageEffects.m */; };
+		DE7C1C3E1B01160600E30F8F /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7C1C3C1B01160600E30F8F /* UIImage+KVNEmpty.m */; };
+		DE7C1C401B01161200E30F8F /* KVNProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE7C1C3F1B01161200E30F8F /* KVNProgressView.xib */; };
 		DEADBAF41AD3FE1A0070436A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEADBAF31AD3FE1A0070436A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +98,14 @@
 		DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		DE73A3851B00E1BD003B4FEA /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsController.swift; sourceTree = "<group>"; };
+		DE7C1C361B0115FB00E30F8F /* KVNProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVNProgress.h; sourceTree = "<group>"; };
+		DE7C1C371B0115FB00E30F8F /* KVNProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVNProgress.m; sourceTree = "<group>"; };
+		DE7C1C391B01160600E30F8F /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
+		DE7C1C3A1B01160600E30F8F /* UIImage+KVNImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNImageEffects.m"; sourceTree = "<group>"; };
+		DE7C1C3B1B01160600E30F8F /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
+		DE7C1C3C1B01160600E30F8F /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
+		DE7C1C3F1B01161200E30F8F /* KVNProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KVNProgressView.xib; sourceTree = "<group>"; };
+		DEA95E921B00F965001D359C /* SiXinWen-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SiXinWen-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEADBAF31AD3FE1A0070436A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,10 +179,6 @@
 				DEADBAF31AD3FE1A0070436A /* Main.storyboard */,
 				31C6F8D31ABA702F00DFF5EE /* LaunchScreen.xib */,
 				31C6F8C91ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld */,
-				DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */,
-				DE59B2531ADEE89300ADFAC7 /* PullToRefreshConst.swift */,
-				DE59B2541ADEE89300ADFAC7 /* PullToRefreshView.swift */,
-				DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */,
 				31E891F71ACA89EF0029C2C8 /* View */,
 				31F4E62C1AC444830046FCD8 /* Models */,
 				842527971ADCF44A00AE1423 /* Controller */,
@@ -182,6 +190,7 @@
 		31C6F8C51ABA702F00DFF5EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DEA95E921B00F965001D359C /* SiXinWen-iOS-Bridging-Header.h */,
 				31C6F8C61ABA702F00DFF5EE /* Info.plist */,
 				318FF0361AE146C3007C4FCE /* Header.h */,
 			);
@@ -208,6 +217,8 @@
 		31E891F71ACA89EF0029C2C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8469EFFB1B01C183004330E5 /* tableViewRefresh */,
+				DEA95E7C1B00F4BD001D359C /* AlertView */,
 				31E891F51ACA856B0029C2C8 /* NewsCell.swift */,
 				31E891FC1ACBEF410029C2C8 /* MessageCell.swift */,
 				31F4E63C1AC445270046FCD8 /* BubbleCell.swift */,
@@ -240,6 +251,31 @@
 				DE73A3871B00E1E7003B4FEA /* aboutUsController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		8469EFFB1B01C183004330E5 /* tableViewRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */,
+				DE59B2531ADEE89300ADFAC7 /* PullToRefreshConst.swift */,
+				DE59B2541ADEE89300ADFAC7 /* PullToRefreshView.swift */,
+				DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */,
+			);
+			name = tableViewRefresh;
+			sourceTree = "<group>";
+		};
+		DEA95E7C1B00F4BD001D359C /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				DE7C1C361B0115FB00E30F8F /* KVNProgress.h */,
+				DE7C1C371B0115FB00E30F8F /* KVNProgress.m */,
+				DE7C1C391B01160600E30F8F /* UIImage+KVNImageEffects.h */,
+				DE7C1C3F1B01161200E30F8F /* KVNProgressView.xib */,
+				DE7C1C3A1B01160600E30F8F /* UIImage+KVNImageEffects.m */,
+				DE7C1C3B1B01160600E30F8F /* UIImage+KVNEmpty.h */,
+				DE7C1C3C1B01160600E30F8F /* UIImage+KVNEmpty.m */,
+			);
+			name = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C6F8D51ABA702F00DFF5EE /* LaunchScreen.xib in Resources */,
+				DE7C1C401B01161200E30F8F /* KVNProgressView.xib in Resources */,
 				31C6F8D21ABA702F00DFF5EE /* Images.xcassets in Resources */,
 				DEADBAF41AD3FE1A0070436A /* Main.storyboard in Resources */,
 				DE59B2561ADEE89300ADFAC7 /* pulltorefresharrow.png in Resources */,
@@ -352,11 +389,14 @@
 				31F4E6321AC444830046FCD8 /* User.swift in Sources */,
 				31915B0A1AFA14B100BFC746 /* menuTableViewController.swift in Sources */,
 				31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */,
+				DE7C1C3D1B01160600E30F8F /* UIImage+KVNImageEffects.m in Sources */,
+				DE7C1C381B0115FB00E30F8F /* KVNProgress.m in Sources */,
 				DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */,
 				DE73A3861B00E1BD003B4FEA /* LoginController.swift in Sources */,
 				DE59B2571ADEE89300ADFAC7 /* PullToRefreshConst.swift in Sources */,
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
+				DE7C1C3E1B01160600E30F8F /* UIImage+KVNEmpty.m in Sources */,
 				31F4E63D1AC445270046FCD8 /* BubbleCell.swift in Sources */,
 				31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */,
 				31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */,

@@ -52,6 +52,11 @@ class menuTableViewController: UITableViewController {
 //        self.tabBarController?.tabBar.hidden = true
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15.0
+    }
+    
     // MARK: - Table view data source
 
    
