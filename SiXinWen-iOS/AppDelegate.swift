@@ -30,27 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         var currentUser = AVUser.currentUser()
-        if (currentUser == nil||true) {
-            var installationId = AVInstallation.currentInstallation().installationId
-            var parameter = ["InsID":"installationid"]
-           // AVCloud.callFunction("InsSignUp", withParameters: parameter)
-            AVUser.logInWithUsernameInBackground("DerekLH", password: "password"){
-                (user :AVUser!, error :NSError!) -> Void in
-                if user != nil {
-                    println("用户登陆成功")
-                    println(AVUser.currentUser());
-                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
-                        UIUserNotificationType.Sound, categories: nil))
-                    application.registerForRemoteNotifications()
-                }
-                else{
-                    println("用户登录失败")
-                }
-            }
-//                AVAnonymousUtils.logInWithBlock(){
+        if (currentUser == nil) {
+//           // var installationId = AVInstallation.currentInstallation().installationId
+//           // var parameter = ["InsID":"installationid"]
+//           // AVCloud.callFunction("InsSignUp", withParameters: parameter)
+//            AVUser.logInWithUsernameInBackground("DerekLH", password: "password"){
 //                (user :AVUser!, error :NSError!) -> Void in
 //                if user != nil {
 //                    println("用户登陆成功")
+//                    println(AVUser.currentUser());
 //                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
 //                        UIUserNotificationType.Sound, categories: nil))
 //                    application.registerForRemoteNotifications()
@@ -58,13 +46,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                else{
 //                    println("用户登录失败")
 //                }
-//
 //            }
+////                AVAnonymousUtils.logInWithBlock(){
+////                (user :AVUser!, error :NSError!) -> Void in
+////                if user != nil {
+////                    println("用户登陆成功")
+////                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
+////                        UIUserNotificationType.Sound, categories: nil))
+////                    application.registerForRemoteNotifications()
+////                }
+////                else{
+////                    println("用户登录失败")
+////                }
+////
+////            }
             
             
-//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
-//                UIUserNotificationType.Sound, categories: nil))
-//            application.registerForRemoteNotifications()
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
+                UIUserNotificationType.Sound, categories: nil))
+            application.registerForRemoteNotifications()
         }
         
         
@@ -81,8 +81,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         var installation = AVInstallation.currentInstallation();
         installation.setDeviceTokenFromData(deviceToken)
-        
-//        installation.saveInBackgroundWithBlock(){
+        var installationId:String = UIDevice.currentDevice().identifierForVendor.UUIDString
+        println("\(installationId)")
+        var parameter = ["InsID":installationId]
+        AVCloud.callFunction("InsSignUp", withParameters: parameter)
+        AVUser.logInWithUsernameInBackground(installationId, password: "password"){
+            (user :AVUser!, error :NSError!) -> Void in
+            if user != nil {
+                println("用户登陆成功")
+            }
+            else{
+                println("用户登录失败")
+            }
+        }
+
+        //        installation.saveInBackgroundWithBlock(){
 //            (success:Bool, error:NSError!) -> Void in
 //            if success {
 //                println("成功inst\(AVInstallation.currentInstallation().installationId)")

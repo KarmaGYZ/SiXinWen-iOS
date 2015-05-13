@@ -7,15 +7,40 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class menuTableViewController: UITableViewController {
 
     @IBOutlet var usrPhoto: UIButton!
+    @IBOutlet var userNickName: UILabel!
+    
+    @IBOutlet weak var loginHint: UILabel!
+    
+    @IBOutlet weak var nickNameCell: UITableViewCell!
+    
+    @IBOutlet weak var passwordCell: UITableViewCell!
+    
+    @IBOutlet weak var myNickName: UILabel!
+    
+    @IBOutlet weak var modifyPassword: UILabel!
+    
     
     let photoSize: CGFloat = 70
     
-    let defaultPhoto = UIImage(named: "匿名头像")!
-    
+    var defaultPhoto = UIImage(named: "匿名头像")!
+//    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "setNickName" {
+            let controller = segue.destinationViewController as! ModifyNameController
+            //let controller = navigationController.topViewController as! ModifyNameController
+            controller.nickName = userNickName.text!
+        } 
+//            else if segue.identifier == "login" {
+//            //sender?.setSelected(false, animated: false)
+////            (sender as! UIButton)
+//            
+//        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +51,80 @@ class menuTableViewController: UITableViewController {
         usrPhoto.imageView!.layer.borderColor = UIColor.whiteColor().CGColor
         usrPhoto.imageView!.layer.borderWidth = 2.3
         usrPhoto.imageView!.image = defaultPhoto
-        
+        usrPhoto.setImage(defaultPhoto, forState: .Normal)
+        usrPhoto.setImage(defaultPhoto, forState: .Selected)
+        //        var avartarFile = AVUser.currentUser().valueForKey("Avartar") as? AVFile
+//        if avartarFile != nil{
+//            println("asdfasdfasdf")
+//            avartarFile?.getDataInBackgroundWithBlock(){
+//                (imgData:NSData!, error:NSError!) -> Void in
+//                if(error == nil){
+//                    self.usrPhoto.imageView!.image = UIImage(data: imgData)
+//                    println("asdfasdfasdf")
+//                    //self.tableView.reloadData()
+//                }
+//            }
+//        }
+//        else {
+//           // println("asdfasdfasdf")
+//            usrPhoto.imageView!.image = defaultPhoto
+//        }
        
+
     }
 
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = false
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        var query = AVUser.query()
+        query.whereKey("username", equalTo: AVUser.currentUser().username)
+        query.findObjectsInBackgroundWithBlock(){
+            (result:[AnyObject]!, error:NSError!) -> Void in
+            if result != nil {
+                //println("1")
+                for currentUser in result {
+                    var nickName = currentUser.objectForKey("NickName") as? String
+                    if nickName != nil && nickName != "" {
+                        self.userNickName.text = nickName
+                        self.loginHint.text = ""
+                        self.nickNameCell.userInteractionEnabled = true
+                        self.passwordCell.userInteractionEnabled = true
+                        self.myNickName.enabled = true
+                        self.modifyPassword.enabled = true
+                        self.userNickName.enabled = true
+                        
+                    }
+                    else {
+                        self.userNickName.text = "未登录"
+                         self.loginHint.text = "点击登陆"
+                        self.nickNameCell.userInteractionEnabled = false
+                        self.passwordCell.userInteractionEnabled = false
+                        self.myNickName.enabled = false
+                        self.modifyPassword.enabled = false
+                        self.userNickName.enabled = false
+
+                    }
+                    var avartarFile = currentUser.objectForKey("Avartar") as? AVFile
+                    if avartarFile != nil{
+                        //   println("asdfasdfasdf")
+                        avartarFile?.getDataInBackgroundWithBlock(){
+                            (imgData:NSData!, error:NSError!) -> Void in
+                            if(error == nil){
+                                self.usrPhoto.setImage(UIImage(data: imgData), forState: .Normal)
+                                self.usrPhoto.setImage(UIImage(data: imgData), forState: .Selected)
+                                //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+                                // println("asdfasdfasdf")
+                                //self.tableView.reloadData()
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,7 +132,9 @@ class menuTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-   
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

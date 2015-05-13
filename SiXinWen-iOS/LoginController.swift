@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class LoginController: UIViewController {
 
@@ -15,7 +16,27 @@ class LoginController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    @IBOutlet weak var usernameField: UITextField!
 
+    @IBOutlet weak var passwordField: UITextField!
+    
+    
+    @IBAction func login() {
+        if usernameField.text == "" || passwordField.text == "" {
+            KVNProgress.showErrorWithStatus("用户名/密码不能为空")
+            return
+        }
+        AVUser.logInWithUsernameInBackground(usernameField.text, password: passwordField.text){
+            (user :AVUser!, error :NSError!) -> Void in
+            if error == nil {
+                KVNProgress.showSuccessWithStatus("登陆成功")
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                KVNProgress.showErrorWithStatus("用户名或密码错误")
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

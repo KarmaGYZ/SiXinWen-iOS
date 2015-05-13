@@ -7,9 +7,40 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class ModifyPSwordController: UITableViewController {
 
+    @IBOutlet weak var originalPasswordField: UITextField!
+    
+    @IBOutlet weak var newPasswordField: UITextField!
+    
+    @IBOutlet weak var confirmNewPasswordField: UITextField!
+    
+    @IBAction func changePassword(sender: UIBarButtonItem) {
+        if originalPasswordField.text == "" || newPasswordField.text == "" || confirmNewPasswordField.text == ""  {
+            KVNProgress.showErrorWithStatus("密码不能为空")
+            return
+        }
+        
+        if newPasswordField.text != confirmNewPasswordField.text {
+            KVNProgress.showErrorWithStatus("新密码不一致")
+        }
+        AVUser.currentUser().updatePassword(originalPasswordField.text, newPassword: newPasswordField.text){
+            (obj:AnyObject!, error:NSError!) -> Void in
+            if error != nil {
+                KVNProgress.showErrorWithStatus("修改失败")
+            }
+            else {
+                KVNProgress.showSuccessWithStatus("修改成功")
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            
+        }
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,17 +60,26 @@ class ModifyPSwordController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: .Plain, target: self, action: "SaveUserPassword")
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "确定", style: .Plain, target: self, action: "SaveUserPassword")
         //        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
 
-    func SaveUserPassword(){
-        
-        
-        
-        
+    @IBAction func SaveUserPassword(sender: UIBarButtonItem) {
+   
+    
+    
     }
+    
+    
+    
+    
+//    func SaveUserPassword(){
+//        
+//        
+//        
+//        
+//    }
     
     
     

@@ -7,11 +7,20 @@
 //
 
 import UIKit
+import AVOSCloud
 
-class ModifyNameController: UITableViewController {
 
+
+class ModifyNameController: UITableViewController ,UITextFieldDelegate{
+    var nickName:String = ""
+    @IBOutlet weak var nickNameField: UITextField!
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nickNameField.text = nickName
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -22,7 +31,8 @@ class ModifyNameController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: "SaveUserName")
+        nickNameField.becomeFirstResponder()
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: "SaveUserName")
 //        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
@@ -32,18 +42,40 @@ class ModifyNameController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-  
-    
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15.0
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let oldText:NSString = textField.text
+        let newText:NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        
+        saveButton.enabled = (newText.length>0) && !textField.text.isEmpty
+        
+        return true
     }
     
-    func SaveUserName(){
+    @IBAction func SaveUserName() {
+        AVUser.currentUser().setObject(nickNameField.text, forKey: "NickName")
+        AVUser.currentUser().saveInBackgroundWithBlock(){
+            (success:Bool, error:NSError!) -> Void in
+            if success {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+        //self.navigationController?.popViewControllerAnimated(true)
         
         
         
     }
     
+    
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 15.0
+//    }
+    
+//    func SaveUserName(){
+//        
+//        
+//        
+//    }
+//    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
