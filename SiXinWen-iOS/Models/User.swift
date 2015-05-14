@@ -13,7 +13,7 @@ public class User {
     var portrait: String?
     var username: String
 //    var currentNews: Int
-    var chatMessage = Messages()
+    
 //    var newsList = [NewsItem]()
     
     init(ID: Int, username: String, portraitName: String?) {
