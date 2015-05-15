@@ -24,6 +24,10 @@ class SignUpController: UIViewController {
     
     @IBOutlet weak var SignUpButton: UIButton!
     
+    @IBOutlet var gender: UISegmentedControl!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
