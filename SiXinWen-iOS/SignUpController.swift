@@ -60,6 +60,23 @@ class SignUpController: UIViewController {
                     (user :AVUser!, error :NSError!) -> Void in
                     if user != nil {
                         KVNProgress.showSuccessWithStatus("注册成功")
+                        me.username = AVUser.currentUser().username
+                        me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+                        var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
+                        if avartarFile != nil{
+                            //   println("asdfasdfasdf")
+                            avartarFile?.getDataInBackgroundWithBlock(){
+                                (imgData:NSData!, error:NSError!) -> Void in
+                                if(error == nil){
+                                    me.avartar = UIImage(data: imgData)
+                                    //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+                                    // println("asdfasdfasdf")
+                                    //self.tableView.reloadData()
+                                }
+                            }
+                        }
+                        me.password = AVUser.currentUser().password
+                        me.gender = AVUser.currentUser().objectForKey("gender") as? String
                         self.navigationController?.popViewControllerAnimated(true)?.navigationController?.popViewControllerAnimated(true)
                     }
                     else{

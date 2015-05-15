@@ -171,6 +171,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         super.viewWillAppear(animated)
 //        self.tabBarController?.tabBar.hidden = false
         imClient.delegate = self
+        if me.username != nil {
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
             if(error != nil){
@@ -180,6 +181,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                 println("错误:\(error)")
             }
         })
+        }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 

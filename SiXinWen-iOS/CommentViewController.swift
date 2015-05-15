@@ -11,7 +11,7 @@ import UIKit
 import AVOSCloudIM
 import AVOSCloud
 
-public let me = User(ID: 1, username: "walker", portraitName: nil)
+
 
 
 //let conversation = AVIMConversation()

@@ -9,18 +9,22 @@
 import Foundation
 
 public class User {
-    let ID: Int
-    var portrait: String?
-    var username: String
-//    var currentNews: Int
+   // let ID: Int
+   // var portrait: String?
+    var username: String?
+    var avartar = UIImage(named: "usrwalker")
+    var gender:String?
+    var nickname:String?
+    var password:String?
+    //    var currentNews: Int
     
 //    var newsList = [NewsItem]()
     
-    init(ID: Int, username: String, portraitName: String?) {
-        self.ID = ID
-        self.username = username
-        self.portrait = portraitName
-//        self.currentNews = 0
-    }
+//    init(ID: Int, username: String, portraitName: String?) {
+//        self.ID = ID
+//        self.username = username
+//        self.portrait = portraitName
+////        self.currentNews = 0
+//    }
     
 }

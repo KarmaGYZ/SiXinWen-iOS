@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 import AVOSCloud
 
+public let me = User()
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -66,6 +67,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIUserNotificationType.Sound, categories: nil))
             application.registerForRemoteNotifications()
         }
+        else {
+            me.username = AVUser.currentUser().username
+            me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+            var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
+            if avartarFile != nil{
+                //   println("asdfasdfasdf")
+                avartarFile?.getDataInBackgroundWithBlock(){
+                    (imgData:NSData!, error:NSError!) -> Void in
+                    if(error == nil){
+                        me.avartar = UIImage(data: imgData)
+                        //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+                        // println("asdfasdfasdf")
+                        //self.tableView.reloadData()
+                    }
+                }
+            }
+            me.password = AVUser.currentUser().password
+            me.gender = AVUser.currentUser().objectForKey("gender") as? String
+        }
         
         
         
@@ -89,6 +109,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (user :AVUser!, error :NSError!) -> Void in
             if user != nil {
                 println("用户登陆成功")
+                me.username = AVUser.currentUser().username
+                me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+                var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
+                if avartarFile != nil{
+                    //   println("asdfasdfasdf")
+                    avartarFile?.getDataInBackgroundWithBlock(){
+                        (imgData:NSData!, error:NSError!) -> Void in
+                        if(error == nil){
+                            me.avartar = UIImage(data: imgData)
+                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+                            // println("asdfasdfasdf")
+                            //self.tableView.reloadData()
+                        }
+                    }
+                }
+                me.password = AVUser.currentUser().password
+                me.gender = AVUser.currentUser().objectForKey("gender") as? String
             }
             else{
                 println("用户登录失败")

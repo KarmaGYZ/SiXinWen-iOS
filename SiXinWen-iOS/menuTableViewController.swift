@@ -87,55 +87,77 @@ class menuTableViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         var query = AVUser.query()
         if AVUser.currentUser() != nil {
-            query.whereKey("username", equalTo: AVUser.currentUser().username)
-            query.findObjectsInBackgroundWithBlock(){
-                (result:[AnyObject]!, error:NSError!) -> Void in
-                if result != nil {
-                    //println("1")
-                    for currentUser in result {
-                        var nickName = currentUser.objectForKey("NickName") as? String
-                        if nickName != nil && nickName != "" {
-                            self.userNickName.text = nickName
-                            self.loginHint.text = ""
-                            self.nickNameCell.userInteractionEnabled = true
-                            self.passwordCell.userInteractionEnabled = true
-                            self.myNickName.enabled = true
-                            self.modifyPassword.enabled = true
-                            self.userNickName.enabled = true
-                            
-                        }
-                        else {
-                            self.userNickName.text = "未登录"
-                             self.loginHint.text = "点击登陆"
-                            self.nickNameCell.userInteractionEnabled = false
-                            self.passwordCell.userInteractionEnabled = false
-                            self.myNickName.enabled = false
-                            self.modifyPassword.enabled = false
-                            self.userNickName.enabled = false
-
-                        }
-                        var avartarFile = currentUser.objectForKey("Avartar") as? AVFile
-                        if avartarFile != nil{
-                            //   println("asdfasdfasdf")
-                            avartarFile?.getDataInBackgroundWithBlock(){
-                                (imgData:NSData!, error:NSError!) -> Void in
-                                if(error == nil){
-                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Normal)
-                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Selected)
-                                    //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                                    // println("asdfasdfasdf")
-                                    //self.tableView.reloadData()
-                                }
-                            }
-                        }
-                        else {
-                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Normal)
-                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Selected)
-                        }
-                        
-                    }
-                }
+//            query.whereKey("username", equalTo: AVUser.currentUser().username)
+//            query.findObjectsInBackgroundWithBlock(){
+//                (result:[AnyObject]!, error:NSError!) -> Void in
+//                if result != nil {
+//                    //println("1")
+//                    for currentUser in result {
+//                        var nickName = currentUser.objectForKey("NickName") as? String
+//                        if nickName != nil && nickName != "" {
+//                            self.userNickName.text = nickName
+//                            self.loginHint.text = ""
+//                            self.nickNameCell.userInteractionEnabled = true
+//                            self.passwordCell.userInteractionEnabled = true
+//                            self.myNickName.enabled = true
+//                            self.modifyPassword.enabled = true
+//                            self.userNickName.enabled = true
+//                            
+//                        }
+//                        else {
+//                            self.userNickName.text = "未登录"
+//                             self.loginHint.text = "点击登陆"
+//                            self.nickNameCell.userInteractionEnabled = false
+//                            self.passwordCell.userInteractionEnabled = false
+//                            self.myNickName.enabled = false
+//                            self.modifyPassword.enabled = false
+//                            self.userNickName.enabled = false
+//
+//                        }
+//                        var avartarFile = currentUser.objectForKey("Avartar") as? AVFile
+//                        if avartarFile != nil{
+//                            //   println("asdfasdfasdf")
+//                            avartarFile?.getDataInBackgroundWithBlock(){
+//                                (imgData:NSData!, error:NSError!) -> Void in
+//                                if(error == nil){
+//                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Normal)
+//                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Selected)
+//                                    //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+//                                    // println("asdfasdfasdf")
+//                                    //self.tableView.reloadData()
+//                                }
+//                            }
+//                        }
+//                        else {
+//                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Normal)
+//                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Selected)
+//                        }
+//                        
+//                    }
+//                }
+//            }
+            if me.nickname != nil && me.nickname != "" {
+                self.userNickName.text = me.nickname
+                self.loginHint.text = ""
+                self.nickNameCell.userInteractionEnabled = true
+                self.passwordCell.userInteractionEnabled = true
+                self.myNickName.enabled = true
+                self.modifyPassword.enabled = true
+                self.userNickName.enabled = true
             }
+            else {
+                self.userNickName.text = "未登录"
+                self.loginHint.text = "点击登陆"
+                self.nickNameCell.userInteractionEnabled = false
+                self.passwordCell.userInteractionEnabled = false
+                self.myNickName.enabled = false
+                self.modifyPassword.enabled = false
+                self.userNickName.enabled = false
+            }
+            usrPhoto.setImage(me.avartar, forState: .Normal)
+            usrPhoto.setImage(me.avartar, forState: .Selected)
+            
+
         }
 
         

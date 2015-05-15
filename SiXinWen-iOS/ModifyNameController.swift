@@ -56,6 +56,7 @@ class ModifyNameController: UITableViewController ,UITextFieldDelegate{
         AVUser.currentUser().saveInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
             if success {
+                me.nickname = self.nickNameField.text
                 self.navigationController?.popViewControllerAnimated(true)
             }
         }
