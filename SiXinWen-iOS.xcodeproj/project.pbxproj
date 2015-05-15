@@ -562,6 +562,7 @@
 					"$(PROJECT_DIR)/SiXinWen-iOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5e069568-5b43-445f-befb-12cf127905c0";
 				SWIFT_OBJC_BRIDGING_HEADER = "SiXinWen-iOS/SiXinWen-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -584,6 +585,7 @@
 					"$(PROJECT_DIR)/SiXinWen-iOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5e069568-5b43-445f-befb-12cf127905c0";
 				SWIFT_OBJC_BRIDGING_HEADER = "SiXinWen-iOS/SiXinWen-iOS-Bridging-Header.h";
 			};
 			name = Release;

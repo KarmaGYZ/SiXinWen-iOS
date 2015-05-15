@@ -109,6 +109,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (user :AVUser!, error :NSError!) -> Void in
             if user != nil {
                 println("用户登陆成功")
+                
+                installation.saveInBackgroundWithBlock(){
+                    (success:Bool, error:NSError!) -> Void in
+                    if success {
+                        println("成功inst")
+                    }
+                    else {
+                        println("错误\(error)")
+                    }
+                }
+
                 me.username = AVUser.currentUser().username
                 me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
                 var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
@@ -132,16 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        //        installation.saveInBackgroundWithBlock(){
-//            (success:Bool, error:NSError!) -> Void in
-//            if success {
-//                println("成功inst\(AVInstallation.currentInstallation().installationId)")
-//            }
-//            else {
-//                println("错误\(error)")
-//            }
-//        }
-       // println("\(AVInstallation.currentInstallation().installationId)")
+                      // println("\(AVInstallation.currentInstallation().installationId)")
         //        var installationId = AVInstallation.currentInstallation().installationId
 //        var parameter = ["InsID":installationId]
 //        AVCloud.callFunction("InsSignUp", withParameters: parameter)
