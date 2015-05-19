@@ -10,9 +10,19 @@ import UIKit
 
 class aboutUsController: UIViewController {
 
+    @IBOutlet var iconView: UIImageView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        iconView.layer.cornerRadius = 20
+        iconView.layer.masksToBounds = true
+        iconView.layer.borderColor = UIColor.whiteColor().CGColor
+        iconView.layer.borderWidth = 2.3
+
+        
         // Do any additional setup after loading the view.
     }
 

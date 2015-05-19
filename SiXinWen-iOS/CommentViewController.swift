@@ -43,9 +43,11 @@ public let bgColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, 
 
 let instant = 0 , popular = 1
 
+let momentIndex = 0, friendIndex = 1
+
 let leftButtonTag = 4, rightButtonTag = 5
 
-class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDelegate ,UITextViewDelegate {
+class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate {
 
 
     var currentNewsItem:NewsItem!
@@ -83,7 +85,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 
 //    @IBOutlet var scrollView: UIScrollView!
     
-    
+    var chosePlatformView:UIAlertView!
     
     var  shiftSegmentControl:UISegmentedControl!
 //    var  titleSgCtr:UISegmentedControl!
@@ -207,6 +209,27 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
       //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
     }
 
+    
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == momentIndex {
+            shareWeixin()
+        }
+        else if buttonIndex == friendIndex {
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    func share(){
+        chosePlatformView.show()
+    }
+    
+    
     func shareWeixin(){
         
         var msg = WXMediaMessage()
@@ -238,7 +261,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         
         var imgView = UIImageView(frame: CGRectMake(0, 0, 23, 23))
         imgView.image = UIImage(named: "Share-100-1")
-        let tapGesture = UITapGestureRecognizer(target: self, action: "shareWeixin")
+        let tapGesture = UITapGestureRecognizer(target: self, action: "share")
         imgView.addGestureRecognizer(tapGesture)
 //        var imgedit:UIImage
 //        UIGraphicsBeginImageContext(CGSize(width: 29, height: 29))
@@ -321,8 +344,17 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
 //        self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 51))
       
         
+        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
+        
         }
 
+    
+    
+    
+    
+    
+    
+    
     
     func longPressed(longPress:UIGestureRecognizer){
         if(longPress.state != UIGestureRecognizerState.Ended){
