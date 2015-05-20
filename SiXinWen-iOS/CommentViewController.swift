@@ -339,7 +339,7 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
         super.viewDidAppear(animated)
         
         if currentNewsItem.instantComment.loadedMessages.count == 0 {
-        self.comment_refresh()
+      //  self.comment_refresh()
         }
         else {
 //            println(self.currentNewsItem.instantComment.loadedMessages.count )
@@ -388,39 +388,76 @@ class CommentViewController: UIViewController , AVIMClientDelegate, UIWebViewDel
             }
             else{
                 //println("xiao")
-            }
-        })
-        var converQuery = imClient.conversationQuery()
-        converQuery.whereKey("title", equalTo: currentNewsItem.title)
-        converQuery.findConversationsWithCallback(){
-            (result:[AnyObject]!, error:NSError!) -> Void in
-            if(error != nil){
-                 KVNProgress.showErrorWithStatus("请检查网络")
-                println("查询对话失败")
-                println("错误:\(error)")
-            }
-            else{
-//                println("\(result)")
-                if(result.count>1){
-                     KVNProgress.showErrorWithStatus("服务器内部错误")
-                    println("对话数超过1")
-                }
-                else if(result.count == 0){
-                     KVNProgress.showErrorWithStatus("服务器内部错误")
-                    println("未找到对话")
-                }
-                else{
-                    self.currentNewsItem.instantComment.conversation = (result[0] as! AVIMConversation)
-                    self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
-                        (success:Bool,error: NSError!) -> Void in
-                        if(error != nil){
-                            KVNProgress.showErrorWithStatus("请检查网络")
-                            println("加入群组失败!")
+                var converQuery = self.imClient.conversationQuery()
+                
+                converQuery.whereKey("title", equalTo: self.currentNewsItem.title)
+                converQuery.findConversationsWithCallback(){
+                    (result:[AnyObject]!, error:NSError!) -> Void in
+                    if(error != nil){
+                        KVNProgress.showErrorWithStatus("请检查网络")
+                        println("查询对话失败")
+                        println("错误:\(error)")
+                    }
+                    else{
+                        //                println("\(result)")
+                        if(result.count>1){
+                            KVNProgress.showErrorWithStatus("服务器内部错误")
+                            println("对话数超过1")
+                        }
+                        else if(result.count == 0){
+                            KVNProgress.showErrorWithStatus("服务器内部错误")
+                            println("未找到对话")
+                        }
+                        else{
+                            self.currentNewsItem.instantComment.conversation = (result[0] as! AVIMConversation)
+                            self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
+                                (success:Bool,error: NSError!) -> Void in
+                                if(error != nil){
+                                    KVNProgress.showErrorWithStatus("请检查网络")
+                                    println("加入群组失败!")
+                                }
+                                else {
+                                    self.comment_refresh()
+                                }
+                            }
                         }
                     }
                 }
+
             }
-        }
+        })
+//        var converQuery = imClient.conversationQuery()
+//    
+//        converQuery.whereKey("title", equalTo: currentNewsItem.title)
+//        converQuery.findConversationsWithCallback(){
+//            (result:[AnyObject]!, error:NSError!) -> Void in
+//            if(error != nil){
+//                 KVNProgress.showErrorWithStatus("请检查网络")
+//                println("查询对话失败")
+//                println("错误:\(error)")
+//            }
+//            else{
+////                println("\(result)")
+//                if(result.count>1){
+//                     KVNProgress.showErrorWithStatus("服务器内部错误")
+//                    println("对话数超过1")
+//                }
+//                else if(result.count == 0){
+//                     KVNProgress.showErrorWithStatus("服务器内部错误")
+//                    println("未找到对话")
+//                }
+//                else{
+//                    self.currentNewsItem.instantComment.conversation = (result[0] as! AVIMConversation)
+//                    self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
+//                        (success:Bool,error: NSError!) -> Void in
+//                        if(error != nil){
+//                            KVNProgress.showErrorWithStatus("请检查网络")
+//                            println("加入群组失败!")
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         self.tabBarController?.tabBar.hidden = true
     }

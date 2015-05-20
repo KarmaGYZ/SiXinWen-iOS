@@ -56,6 +56,13 @@ class SignUpController: UIViewController {
         user.username = userNameField.text
         user.password = setPasswordField.text
         user.setObject(nickNameField.text, forKey: "NickName")
+        if gender.selectedSegmentIndex == 0{
+            user.setObject("男", forKey: "gender")
+        }
+        else {
+            user.setObject("女", forKey: "gender")
+        }
+       // user.setObject(gender, forKey: <#String!#>)
         user.signUpInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
             if success {

@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        AVOSCloud.setVerbosePolicy(kAVVerboseShow)
+        AVLogger.addLoggerDomain(AVLoggerDomainIM)
+        AVLogger.addLoggerDomain(AVLoggerDomainCURL)
+        AVLogger.setLoggerLevelMask(AVLoggerLevelAll.value)
+       
+        
         WXApi.registerApp("wxc9ddc67127da6ee5")
         if launchOptions != nil {
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
@@ -85,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             me.password = AVUser.currentUser().password
             me.gender = AVUser.currentUser().objectForKey("gender") as? String
+            me.email = AVUser.currentUser().objectForKey("email") as? String
         }
         
         
@@ -109,7 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (user :AVUser!, error :NSError!) -> Void in
             if user != nil {
                 println("用户登陆成功")
-                
+                //installation.addUniqueObject("Giants", forKey: "channels")
+                //installation.setObject(AVObject(withoutDataWithClassName: "_User", objectId: AVUser.currentUser().objectId), forKey: "user")
+                installation.setObject(AVUser.currentUser(), forKey: "user")
                 installation.saveInBackgroundWithBlock(){
                     (success:Bool, error:NSError!) -> Void in
                     if success {
@@ -121,22 +130,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
 
                 me.username = AVUser.currentUser().username
-                me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
-                var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
-                if avartarFile != nil{
-                    //   println("asdfasdfasdf")
-                    avartarFile?.getDataInBackgroundWithBlock(){
-                        (imgData:NSData!, error:NSError!) -> Void in
-                        if(error == nil){
-                            me.avartar = UIImage(data: imgData)
-                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                            // println("asdfasdfasdf")
-                            //self.tableView.reloadData()
-                        }
-                    }
-                }
+            //    me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+//                var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
+//                if avartarFile != nil{
+//                    //   println("asdfasdfasdf")
+//                    avartarFile?.getDataInBackgroundWithBlock(){
+//                        (imgData:NSData!, error:NSError!) -> Void in
+//                        if(error == nil){
+//                            me.avartar = UIImage(data: imgData)
+//                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+//                            // println("asdfasdfasdf")
+//                            //self.tableView.reloadData()
+//                        }
+//                    }
+//                }
                 me.password = AVUser.currentUser().password
-                me.gender = AVUser.currentUser().objectForKey("gender") as? String
+              //  me.gender = AVUser.currentUser().objectForKey("gender") as? String
             }
             else{
                 println("用户登录失败")

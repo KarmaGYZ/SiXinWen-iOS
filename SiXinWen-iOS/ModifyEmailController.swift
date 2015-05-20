@@ -5,7 +5,7 @@
 //  Created by walker on 15/5/15.
 //  Copyright (c) 2015年 SiXinWen. All rights reserved.
 //
-
+import AVOSCloud
 import UIKit
 
 class ModifyEmailController: UITableViewController {
@@ -31,9 +31,17 @@ class ModifyEmailController: UITableViewController {
 
     
     @IBAction func saveEmail(sender: UIBarButtonItem) {
-        
-        
-        
+        AVUser.currentUser().setObject(EmailTextField.text, forKey: "email")
+        AVUser.currentUser().saveInBackgroundWithBlock(){
+            (success:Bool, error:NSError!) -> Void in
+            if success {
+                me.email = self.EmailTextField.text
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                KVNProgress.showErrorWithStatus("网络错误")
+            }
+        }
     }
     
     

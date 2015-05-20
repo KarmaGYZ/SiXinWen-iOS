@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVOSCloud
 
 let cameraIndex = 1, libraryIndex = 2
 
@@ -64,7 +64,20 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
     
     func saveImage(img: UIImage){
         
-        
+        var imgData = UIImagePNGRepresentation(img)
+        var imgFile: AVFile = AVFile.fileWithData(imgData) as! AVFile
+        AVUser.currentUser().setObject(imgFile, forKey: "Avartar")
+        AVUser.currentUser().saveInBackgroundWithBlock(){
+            (success:Bool,error: NSError!) -> Void in
+            if success {
+                me.avartar = img
+                KVNProgress.showSuccessWithStatus("上传成功")
+                //self.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                KVNProgress.showErrorWithStatus("上传失败")
+            }
+        }
         
         
     }
@@ -100,8 +113,42 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
     
     
     @IBAction func Logout(sender: AnyObject) {
+      //  AVUser.logOut()
+        var installationId:String = UIDevice.currentDevice().identifierForVendor.UUIDString
         
+        AVUser.logInWithUsernameInBackground(installationId, password: "password"){
+            (user :AVUser!, error :NSError!) -> Void in
+            if user != nil {
+                println("用户登陆成功")
+                //installation.addUniqueObject("Giants", forKey: "channels")
+                //installation.setObject(AVObject(withoutDataWithClassName: "_User", objectId: AVUser.currentUser().objectId), forKey: "user")
         
+                
+                me.username = AVUser.currentUser().username
+                me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+                var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
+                if avartarFile != nil{
+                    //   println("asdfasdfasdf")
+                    avartarFile?.getDataInBackgroundWithBlock(){
+                        (imgData:NSData!, error:NSError!) -> Void in
+                        if(error == nil){
+                            me.avartar = UIImage(data: imgData)
+                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
+                            // println("asdfasdfasdf")
+                            //self.tableView.reloadData()
+                        }
+                    }
+                }
+                me.password = AVUser.currentUser().password
+                me.gender = AVUser.currentUser().objectForKey("gender") as? String
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            else{
+                println("用户登录失败")
+                KVNProgress.showErrorWithStatus("网络错误")
+            }
+        }
+
         
         
         

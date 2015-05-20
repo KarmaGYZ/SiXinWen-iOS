@@ -11,11 +11,12 @@ import Foundation
 public class User {
    // let ID: Int
    // var portrait: String?
-    var username: String?
+    var username: String = ""
     var avartar = UIImage(named: "usrwalker")
     var gender:String?
     var nickname:String?
     var password:String?
+    var email:String?
     //    var currentNews: Int
     
 //    var newsList = [NewsItem]()

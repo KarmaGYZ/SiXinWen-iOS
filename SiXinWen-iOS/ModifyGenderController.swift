@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class ModifyGenderController: UITableViewController {
 
@@ -59,7 +60,17 @@ class ModifyGenderController: UITableViewController {
     
     func saveGender(gender: String){
         
-        
+        AVUser.currentUser().setObject(gender, forKey: "gender")
+        AVUser.currentUser().saveInBackgroundWithBlock(){
+            (success:Bool, error:NSError!) -> Void in
+            if success {
+                me.gender = gender
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                KVNProgress.showErrorWithStatus("网络错误")
+            }
+        }
         
         
     }

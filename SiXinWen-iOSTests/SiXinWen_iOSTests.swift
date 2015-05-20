@@ -8,8 +8,11 @@
 
 import UIKit
 import XCTest
+//import CommentViewController
 
 class SiXinWen_iOSTests: XCTestCase {
+    
+//    var commentCon = CommentViewController()
     
     override func setUp() {
         super.setUp()
@@ -22,6 +25,7 @@ class SiXinWen_iOSTests: XCTestCase {
     }
     
     func testExample() {
+ //       commentCon.
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
     }
