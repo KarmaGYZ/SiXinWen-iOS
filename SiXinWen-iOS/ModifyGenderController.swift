@@ -22,8 +22,8 @@ class ModifyGenderController: UITableViewController {
         super.viewDidLoad()
 
         
-        maleCell.accessoryType = .Checkmark
-        femaleCell.accessoryType = .None
+//        maleCell.accessoryType = .Checkmark
+//        femaleCell.accessoryType = .None
         
         
         
@@ -32,6 +32,24 @@ class ModifyGenderController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if me.gender == nil {
+            maleCell.accessoryType = .Checkmark
+            femaleCell.accessoryType = .None
+        }
+        else if me.gender == "男" {
+            maleCell.accessoryType = .Checkmark
+            femaleCell.accessoryType = .None
+        }
+        else {
+            maleCell.accessoryType = .None
+            femaleCell.accessoryType =  .Checkmark
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

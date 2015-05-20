@@ -39,15 +39,29 @@ class LoginController: UIViewController {
                         (imgData:NSData!, error:NSError!) -> Void in
                         if(error == nil){
                             me.avartar = UIImage(data: imgData)
+                            me.password = AVUser.currentUser().password
+                            me.gender = AVUser.currentUser().objectForKey("gender") as? String
+                            me.email = AVUser.currentUser().objectForKey("email") as? String
+                            self.navigationController?.popViewControllerAnimated(true)
                             //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
                             // println("asdfasdfasdf")
                             //self.tableView.reloadData()
                         }
+                        else {
+                            KVNProgress.showErrorWithStatus("载入头像失败")
+//                            me.password = AVUser.currentUser().password
+//                            me.gender = AVUser.currentUser().objectForKey("gender") as? String
+//                            me.email = AVUser.currentUser().objectForKey("email") as? String
+//                            self.navigationController?.popViewControllerAnimated(true)
+                        }
                     }
                 }
-                me.password = AVUser.currentUser().password
-                me.gender = AVUser.currentUser().objectForKey("gender") as? String
-                self.navigationController?.popViewControllerAnimated(true)
+                else {
+                    me.password = AVUser.currentUser().password
+                    me.gender = AVUser.currentUser().objectForKey("gender") as? String
+                    me.email = AVUser.currentUser().objectForKey("email") as? String
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             }
             else {
                 KVNProgress.showErrorWithStatus("用户名或密码错误")

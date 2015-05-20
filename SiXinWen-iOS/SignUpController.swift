@@ -88,6 +88,7 @@ class SignUpController: UIViewController {
                         }
                         me.password = AVUser.currentUser().password
                         me.gender = AVUser.currentUser().objectForKey("gender") as? String
+                        me.email = AVUser.currentUser().objectForKey("email") as? String
                         self.navigationController?.popViewControllerAnimated(true)?.navigationController?.popViewControllerAnimated(true)
                     }
                     else{

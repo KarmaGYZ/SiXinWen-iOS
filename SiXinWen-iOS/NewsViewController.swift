@@ -171,7 +171,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         super.viewWillAppear(animated)
 //        self.tabBarController?.tabBar.hidden = false
         imClient.delegate = self
-        if me.username != nil {
+        if me.username != "" {
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
             if(error != nil){

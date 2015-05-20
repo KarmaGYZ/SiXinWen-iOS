@@ -35,7 +35,7 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
         
         picker.delegate = self
         picker.allowsEditing = true
-        
+        Avatar.image = me.avartar
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -140,6 +140,9 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
                             //self.tableView.reloadData()
                         }
                     }
+                }
+                else {
+                    me.avartar = UIImage(named: "usrwalker")
                 }
                 me.password = AVUser.currentUser().password
                 me.gender = AVUser.currentUser().objectForKey("gender") as? String

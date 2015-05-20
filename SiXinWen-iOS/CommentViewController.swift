@@ -213,11 +213,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == momentIndex {
-            shareWeixin()
+            shareTimeLine()
         }
         else if buttonIndex == friendIndex {
             
-            
+            shareFriend()
         }
     }
     
@@ -229,8 +229,25 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         chosePlatformView.show()
     }
     
+    func shareFriend(){
+        var msg = WXMediaMessage()
+        msg.title = currentNewsItem.title
+        msg.description = currentNewsItem.text
+        msg.setThumbImage(UIImage(named: "Icon-60"))
+        var ext = WXWebpageObject()
+        ext.webpageUrl = "http://sixinwen.avosapps.com"
+        msg.mediaObject = ext
+        
+        
+        var req = SendMessageToWXReq()
+        req.scene = Int32(WXSceneSession.value)
+        
+        req.message = msg
+        req.bText = false
+        WXApi.sendReq(req)
+    }
     
-    func shareWeixin(){
+    func shareTimeLine(){
         
         var msg = WXMediaMessage()
         msg.title = currentNewsItem.title
@@ -243,6 +260,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         
         var req = SendMessageToWXReq()
         req.scene = Int32(WXSceneTimeline.value)
+        
         req.message = msg
         req.bText = false
         WXApi.sendReq(req)
