@@ -287,13 +287,13 @@
                         <sections>
                             <tableViewSection id="2d1-Ou-fq4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RdT-op-scf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="45" id="RdT-op-scf">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RdT-op-scf" id="OUb-Om-lqv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="原密码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-f0-B6Q">
-                                                    <rect key="frame" x="14" y="7" width="578" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="原密码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yc2-f0-B6Q">
+                                                    <rect key="frame" x="14" y="7" width="578" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                                 </textField>
@@ -306,13 +306,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MJ8-ze-ZKx">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="45" id="MJ8-ze-ZKx">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MJ8-ze-ZKx" id="9ZY-8h-esv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="新密码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UR7-MO-OxA">
-                                                    <rect key="frame" x="16" y="7" width="576" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="新密码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UR7-MO-OxA">
+                                                    <rect key="frame" x="16" y="7" width="576" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                                 </textField>
@@ -325,13 +325,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1e6-G9-Abm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="45" id="1e6-G9-Abm">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1e6-G9-Abm" id="hxq-UC-CZE">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次确认" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oes-IO-pqA">
-                                                    <rect key="frame" x="14" y="7" width="578" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次确认" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oes-IO-pqA">
+                                                    <rect key="frame" x="14" y="7" width="578" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                                 </textField>
@@ -612,36 +612,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="ceE-1k-QxA">
-                                <rect key="frame" x="188" y="64" width="225" height="75"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Small" translatesAutoresizingMaskIntoConstraints="NO" id="ceE-1k-QxA">
+                                <rect key="frame" x="264" y="109" width="72" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="225" id="Zve-1d-yDf"/>
-                                    <constraint firstAttribute="height" constant="75" id="dIH-Iv-Hx0"/>
+                                    <constraint firstAttribute="width" constant="72" id="Zve-1d-yDf"/>
+                                    <constraint firstAttribute="height" constant="72" id="dIH-Iv-Hx0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:   1.2.6" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcN-7M-cLP">
-                                <rect key="frame" x="31" y="287" width="538" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:   1.0.0" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcN-7M-cLP">
+                                <rect key="frame" x="31" y="428" width="538" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail: SiXinWen@163.com" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-0D-6sL">
-                                <rect key="frame" x="31" y="238" width="538" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WebSite: SiXinWen.com" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-0D-6sL">
+                                <rect key="frame" x="31" y="410" width="538" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No matter what problem that you meet, do not hesitate to communicate with us." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdJ-tB-bdD">
-                                <rect key="frame" x="31" y="344" width="538" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="31" y="482" width="538" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors：Karma Guo, Walker Shaw, Jackie Yang " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTq-Fj-ESP">
-                                <rect key="frame" x="31" y="185" width="538" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="31" y="392" width="538" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC9-hB-r1a">
+                                <rect key="frame" x="249" y="219" width="102" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="撕出你的态度">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLs-QZ-cAt">
+                                <rect key="frame" x="269" y="189" width="63" height="22"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="撕新闻">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="21" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -649,20 +670,27 @@
                         <constraints>
                             <constraint firstItem="sdJ-tB-bdD" firstAttribute="top" secondItem="LcN-7M-cLP" secondAttribute="bottom" constant="36" id="2mT-8u-ugN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sdJ-tB-bdD" secondAttribute="trailing" constant="15" id="4IG-LZ-1CG"/>
+                            <constraint firstItem="9S1-Bf-NVi" firstAttribute="top" secondItem="sdJ-tB-bdD" secondAttribute="bottom" constant="33" id="8vk-Lo-Daz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZTq-Fj-ESP" secondAttribute="trailing" constant="15" id="9ag-5j-g7X"/>
-                            <constraint firstItem="ceE-1k-QxA" firstAttribute="top" secondItem="Pm2-tr-DSu" secondAttribute="bottom" constant="20" id="IJm-xc-IoE"/>
+                            <constraint firstItem="XLs-QZ-cAt" firstAttribute="top" secondItem="ceE-1k-QxA" secondAttribute="bottom" constant="8" id="E7Q-IA-FUa"/>
+                            <constraint firstItem="ceE-1k-QxA" firstAttribute="top" secondItem="Pm2-tr-DSu" secondAttribute="bottom" constant="65" id="IJm-xc-IoE"/>
                             <constraint firstItem="LcN-7M-cLP" firstAttribute="leading" secondItem="cNb-JV-hdL" secondAttribute="leadingMargin" constant="15" id="K0K-8Z-q2g"/>
                             <constraint firstItem="g9i-0D-6sL" firstAttribute="leading" secondItem="cNb-JV-hdL" secondAttribute="leadingMargin" constant="15" id="KHS-hz-xLD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g9i-0D-6sL" secondAttribute="trailing" constant="15" id="M1x-RH-mid"/>
-                            <constraint firstItem="g9i-0D-6sL" firstAttribute="top" secondItem="ZTq-Fj-ESP" secondAttribute="bottom" constant="32" id="NEY-iQ-u7u"/>
+                            <constraint firstItem="g9i-0D-6sL" firstAttribute="top" secondItem="ZTq-Fj-ESP" secondAttribute="bottom" id="NEY-iQ-u7u"/>
+                            <constraint firstAttribute="centerX" secondItem="XLs-QZ-cAt" secondAttribute="centerX" constant="-0.5" id="Q8h-q1-SvR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LcN-7M-cLP" secondAttribute="trailing" constant="15" id="SdV-RY-HMC"/>
+                            <constraint firstItem="NC9-hB-r1a" firstAttribute="top" secondItem="XLs-QZ-cAt" secondAttribute="bottom" constant="8" id="YxC-NV-sjh"/>
                             <constraint firstItem="ZTq-Fj-ESP" firstAttribute="leading" secondItem="cNb-JV-hdL" secondAttribute="leadingMargin" constant="15" id="awB-kI-q4c"/>
-                            <constraint firstItem="ZTq-Fj-ESP" firstAttribute="top" secondItem="Pm2-tr-DSu" secondAttribute="bottom" constant="141" id="g23-Xb-J3x"/>
-                            <constraint firstItem="LcN-7M-cLP" firstAttribute="top" secondItem="g9i-0D-6sL" secondAttribute="bottom" constant="28" id="gl0-dd-iX5"/>
+                            <constraint firstItem="LcN-7M-cLP" firstAttribute="top" secondItem="g9i-0D-6sL" secondAttribute="bottom" id="gl0-dd-iX5"/>
                             <constraint firstItem="sdJ-tB-bdD" firstAttribute="leading" secondItem="cNb-JV-hdL" secondAttribute="leadingMargin" constant="15" id="jVi-qL-Cvu"/>
+                            <constraint firstAttribute="centerX" secondItem="NC9-hB-r1a" secondAttribute="centerX" id="jah-Lg-7NF"/>
                             <constraint firstAttribute="centerX" secondItem="ceE-1k-QxA" secondAttribute="centerX" constant="-0.5" id="yxx-bW-C06"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="iconView" destination="ceE-1k-QxA" id="P52-q2-xQj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOW-Ru-N55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1397,12 +1425,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon-Small" width="76" height="76"/>
         <image name="Message-50" width="60" height="45"/>
         <image name="SliderThumb-Normal" width="220" height="165"/>
         <image name="User Male4-50" width="60" height="62"/>
         <image name="dislike" width="14" height="12"/>
         <image name="down" width="37" height="23"/>
-        <image name="launch" width="768" height="256"/>
         <image name="left" width="100" height="100"/>
         <image name="news29" width="60" height="62"/>
         <image name="password_icon" width="21" height="31"/>

@@ -55,11 +55,13 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
         
         if buttonIndex == cameraIndex {
             picker.sourceType = .Camera
+            self.presentViewController(picker, animated: true, completion: nil)
         }
         else if buttonIndex == libraryIndex{
             picker.sourceType = .PhotoLibrary
+            self.presentViewController(picker, animated: true, completion: nil)
         }
-        self.presentViewController(picker, animated: true, completion: nil)
+        
     }
     
     func saveImage(img: UIImage){
