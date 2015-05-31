@@ -98,7 +98,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        news_list_update()
+       // news_list_update()
         
        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
@@ -170,22 +170,28 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        self.tabBarController?.tabBar.hidden = false
-        imClient.delegate = self
-        if me.username != "" {
-        imClient.openWithClientId(me.username, callback: {
-            (success:Bool,error: NSError!) -> Void in
-            if(error != nil){
-                
-                KVNProgress.showErrorWithStatus("请检查网络")
-                println("登陆失败!")
-                println("错误:\(error)")
-            }
-        })
-        }
+//        imClient.delegate = self
+//        if me.username != "" {
+//        imClient.openWithClientId(me.username, callback: {
+//            (success:Bool,error: NSError!) -> Void in
+//            if(error != nil){
+//                
+//                KVNProgress.showErrorWithStatus("请检查网络")
+//                println("登陆失败!")
+//                println("错误:\(error)")
+//            }
+//        })
+//        }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
         self.tabBarController?.tabBar.hidden = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

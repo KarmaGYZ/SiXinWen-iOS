@@ -48,8 +48,57 @@ let momentIndex = 0, friendIndex = 1
 let leftButtonTag = 4, rightButtonTag = 5
 
 class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate {
+    @IBOutlet weak var rightSwipeRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet weak var leftSwipeRecognizer: UISwipeGestureRecognizer!
 
-
+    @IBAction func rightSwipeAction(sender: UISwipeGestureRecognizer) {
+        println("swipe right")
+        var point = sender.locationInView(self.tableView)
+        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
+       // println("\(message.text)")
+        let direction = message.attributes
+        if direction != nil{
+            if direction["attitude"] as! Bool == true {
+                likeMessage(message)
+            } else { // outgoing
+                dislikeMessage(message)
+            }
+        }
+        
+        
+        
+        //var cell = self.tableView.cellForRowAtIndexPath(cellIdx!) as! BubbleCell
+        //println("\(cell.bubbleText.text)")
+        
+    }
+    
+    func likeMessage(message:AVIMTextMessage) {
+        //点赞操作
+        println("点赞操作")
+    }
+    
+    
+    func dislikeMessage(message:AVIMTextMessage) {
+        println("点踩操作")
+    }
+    
+    @IBAction func leftSwipeAction(sender: UISwipeGestureRecognizer) {
+        println("swipe left")
+        var point = sender.locationInView(self.tableView)
+        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
+        let direction = message.attributes
+        if direction != nil{
+            if direction["attitude"] as! Bool == true {
+                dislikeMessage(message)
+            } else { // outgoing
+                likeMessage(message)
+            }
+        }
+    }
+    
+    
     var currentNewsItem:NewsItem!
     
     var popularcomment = popularComment()
@@ -200,6 +249,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                     KVNProgress.showErrorWithStatus("请检查网络")
                     println("退出群组失败!")
                     println("错误:\(error)")
+                    
                 }
                 else{
                     //println("xiao")
@@ -209,7 +259,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
       //  me.newsList[me.currentNews].instantComment.draft = commentTextView.text
     }
 
-    
+
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == momentIndex {
@@ -381,6 +431,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         var p:CGPoint = longPress.locationInView(self.tableView)
         var indexPath = self.tableView.indexPathForRowAtPoint(p)
         if indexPath != nil {
+            self.commentTextView.text = "@\(currentNewsItem.instantComment.loadedMessages[indexPath!.row].clientId) "
             self.commentTextView.becomeFirstResponder()
         }
     }
@@ -428,6 +479,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
+        rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Right
         imClient.delegate = self
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
@@ -883,7 +936,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func sendAction(sender: UIButton) {
         commentTextView.resignFirstResponder()
-        commentTextView.becomeFirstResponder()
+        //commentTextView.becomeFirstResponder()
         var content : String = commentTextView.text
         var singleComment:AVIMTextMessage
         if sender.tag == leftButtonTag {

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVOSCloudIM
+import AVOSCloud
 
 let oppoTag = 0, teamTag = 1
 
@@ -72,7 +73,7 @@ class BubbleCell: UITableViewCell {
         bubbleText.preferredMaxLayoutWidth = 218
 
         
-        defaultPhoto = UIImage(named: "匿名头像")!
+        defaultPhoto = UIImage(named: "usrwalker")!
         
         usrPhoto = UIImageView(frame: CGRectZero)
         usrPhoto.layer.cornerRadius = photoSize / 2
@@ -134,14 +135,16 @@ class BubbleCell: UITableViewCell {
     func configureWithMessage(message: AVIMTextMessage) {
             let direction = message.attributes
             bubbleText.text = message.text
-
-            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
+        
+       
+        
+           // usrPhoto.image = UIImage(named: "usr\(message.clientId)")
 
         
-            usrPhoto.image = UIImage(named: "usr\(message.clientId)")
-            if usrPhoto.image == nil {
+           // usrPhoto.image = UIImage(named: "usr\(message.clientId)")
+           // if usrPhoto.image == nil {
                 usrPhoto.image = defaultPhoto
-            }
+           // }
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             var leftConstant: CGFloat
@@ -180,6 +183,8 @@ class BubbleCell: UITableViewCell {
                 leftConstant = 20
                 rightConstant = 50
             }
+        
+       
         
         
         

@@ -63,6 +63,32 @@ class instantComment: UITableViewController {
         cell.backgroundColor = bgColor
         let singlecomment = currentNewsItem.instantComment.loadedMessages[indexPath.row]
         cell.configureWithMessage(singlecomment)
+        var userId = singlecomment.clientId
+       // println("userId is \(userId)")
+        var query = AVUser.query()
+        query.whereKey("username", equalTo: userId)
+        query.findObjectsInBackgroundWithBlock(){
+            (result:[AnyObject]!, error:NSError!) -> Void in
+            if error == nil && result.count > 0{
+                var user = result[0] as! AVUser
+                //user.objectForKey("avartar")
+                var avartarFile = user.objectForKey("Avartar") as? AVFile
+                if avartarFile != nil{
+                  //  println("设置对话头像")
+                    //   println("asdfasdfasdf")
+                    avartarFile?.getThumbnail(true, width: 60, height: 60){
+                        (img:UIImage!, error:NSError!) -> Void in
+                        if error == nil{
+                            cell.usrPhoto.image = img
+                            self.tableView.reloadData()
+                            
+                        }
+                    }
+                }
+
+            }
+
+        }
         return cell
         //        }
         

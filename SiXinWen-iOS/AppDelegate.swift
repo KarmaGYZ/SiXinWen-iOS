@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        application.applicationIconBadgeNumber = 0
+        println("\(userInfo)")
+        var message = MessageItem()
+        message.messageText = (userInfo["aps"]! as! NSDictionary).objectForKey("alert")! as! String
+        message.userName = userInfo["user"]! as! String
+        message.userPhoto = UIImage(named: "usrwalker")
+        
+    }
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -24,14 +33,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        AVOSCloud.setVerbosePolicy(kAVVerboseShow)
-        AVLogger.addLoggerDomain(AVLoggerDomainIM)
-        AVLogger.addLoggerDomain(AVLoggerDomainCURL)
-        AVLogger.setLoggerLevelMask(AVLoggerLevelAll.value)
+     //   AVOSCloud.setVerbosePolicy(kAVVerboseShow)
+      //  AVLogger.addLoggerDomain(AVLoggerDomainIM)
+      //  AVLogger.addLoggerDomain(AVLoggerDomainCURL)
+      //  AVLogger.setLoggerLevelMask(AVLoggerLevelAll.value)
        
-        
+        application.applicationIconBadgeNumber = 0
+        println("输出\(launchOptions)输出")
         WXApi.registerApp("wxc9ddc67127da6ee5")
-        if launchOptions != nil {
+        if let launchOpt = launchOptions {
+            var notificationPayLoad:NSDictionary = launchOpt[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary
+            //KVNProgress.showErrorWithStatus("输出\(notificationPayLoad)输出")
+            println("输出\(notificationPayLoad)输出")
+            var message = MessageItem()
+            var textDir:NSDictionary = notificationPayLoad.objectForKey("aps")! as! NSDictionary
+            var text:String = textDir.objectForKey("alert")! as! String
+            message.messageText = text
+            message.userName = notificationPayLoad.objectForKey("user")! as! String
+            message.userPhoto = UIImage(named: "usrwalker")
+            messageList.append(message)
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
             (self.window?.rootViewController as! UITabBarController).selectedIndex = 1
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1006,6 +1006,7 @@
                             </tableView>
                         </subviews>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="HWu-v4-ep2" firstAttribute="top" secondItem="90T-nE-TQc" secondAttribute="bottom" id="GKH-QT-c8X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HWu-v4-ep2" secondAttribute="trailingMargin" constant="-16" id="MaU-0M-9zW"/>
@@ -1015,6 +1016,10 @@
                             <constraint firstItem="DSB-hR-YOH" firstAttribute="top" secondItem="HWu-v4-ep2" secondAttribute="bottom" id="w2r-7g-QJa"/>
                             <constraint firstItem="HWu-v4-ep2" firstAttribute="leadingMargin" secondItem="51t-JB-FfO" secondAttribute="leadingMargin" constant="-16" id="zs7-ZY-Vsj"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="FJZ-eP-4za" appends="YES" id="KJV-Dy-5yN"/>
+                            <outletCollection property="gestureRecognizers" destination="tSX-w2-W0m" appends="YES" id="aSL-TA-1av"/>
+                        </connections>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" id="as6-bp-IXj"/>
@@ -1023,13 +1028,25 @@
                     <connections>
                         <outlet property="arrow" destination="588-l0-Mfm" id="MVM-ne-8rU"/>
                         <outlet property="leftAttitude" destination="h6b-Zj-swa" id="Ixl-qb-WpT"/>
+                        <outlet property="leftSwipeRecognizer" destination="tSX-w2-W0m" id="K28-8D-1f3"/>
                         <outlet property="newstitle" destination="XIc-72-ZIG" id="3m2-lI-rpr"/>
                         <outlet property="rightAttitude" destination="zTr-cM-5Ue" id="Qdt-9P-uyR"/>
+                        <outlet property="rightSwipeRecognizer" destination="FJZ-eP-4za" id="hae-pQ-e14"/>
                         <outlet property="tableView" destination="HWu-v4-ep2" id="D7a-Ni-lEb"/>
                         <outlet property="titleview" destination="90T-nE-TQc" id="CVY-pq-sS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="FJZ-eP-4za">
+                    <connections>
+                        <action selector="rightSwipeAction:" destination="er0-va-D3c" id="XtH-qt-RBz"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="tSX-w2-W0m">
+                    <connections>
+                        <action selector="leftSwipeAction:" destination="er0-va-D3c" id="gW7-DA-pHX"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4189" y="3058"/>
         </scene>

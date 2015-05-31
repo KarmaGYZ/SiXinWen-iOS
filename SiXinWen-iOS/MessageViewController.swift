@@ -11,20 +11,22 @@ import UIKit
 import AVOSCloud
 import AVOSCloudIM
 
+var messageList:[MessageItem] = []
+
 class MessageViewController: UITableViewController {
     
     
     @IBOutlet weak var topbar: UIView!
     
-    var messageList:[MessageItem]
+   // var messageList:[MessageItem]
     
-    required init(coder aDecoder:NSCoder){
-        messageList = [MessageItem]()
-        super.init(coder: aDecoder)
-       // messagelist_update()
-      //  self.tableView.tableHeaderView = topbar
-        
-    }
+//    required init(coder aDecoder:NSCoder){
+//       // messageList = [MessageItem]()
+//        super.init(coder: aDecoder)
+//       // messagelist_update()
+//      //  self.tableView.tableHeaderView = topbar
+//        
+//    }
     
     func messagelist_update(){
         for(var i=0;i<1;i++){
@@ -92,7 +94,14 @@ class MessageViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
        // tableView.reloadData()
         super.viewWillAppear(animated)
+        
       //  self.tabBarController?.tabBar.hidden = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -105,6 +114,7 @@ class MessageViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath)as! MessageCell
             cell.messageText.text = messageList[messageList.count - indexPath.row - 1].messageText
             cell.userName.text = messageList[messageList.count - indexPath.row - 1].userName
+            cell.userPhoto.image = messageList[messageList.count - indexPath.row - 1].userPhoto
             //tableView.rowHeight = 100.0
             return cell
         }
