@@ -8,3 +8,5 @@
 #import "WXApiObject.h"
 #import "WXApi.h"
 #import "KVNProgress.h"
+
+#import <ShareSDK/ShareSDK.h>
