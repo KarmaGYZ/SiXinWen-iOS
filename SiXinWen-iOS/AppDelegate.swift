@@ -21,9 +21,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
         println("\(userInfo)")
         var message = MessageItem()
-        message.messageText = (userInfo["aps"]! as! NSDictionary).objectForKey("alert")! as! String
-        message.userName = userInfo["user"]! as! String
-        message.userPhoto = UIImage(named: "usrwalker")
+        if userInfo["aps"] != nil {
+            if let msg = (userInfo["aps"]! as! NSDictionary).objectForKey("alert") as? String {
+                message.messageText = msg
+            }
+        }
+        if userInfo["user"] != nil {
+            message.userName =  userInfo["user"]! as! String
+            var query = AVUser.query()
+            query.whereKey("username", equalTo: message.userName)
+            query.findObjectsInBackgroundWithBlock(){
+                (result:[AnyObject]!, error:NSError!) -> Void in
+                if error == nil && result.count > 0{
+                    var user = result[0] as! AVUser
+                    //user.objectForKey("avartar")
+                    var avartarFile = user.objectForKey("Avartar") as? AVFile
+                    if avartarFile != nil{
+                        //  println("设置对话头像")
+                        //   println("asdfasdfasdf")
+                        avartarFile?.getDataInBackgroundWithBlock(){
+                            (imgData:NSData!, error:NSError!) -> Void in
+                            if(error == nil){
+                               message.userPhoto = UIImage(data: imgData)
+                                
+                            }
+                            else {
+                                //KVNProgress.showErrorWithStatus("载入头像失败")
+                                message.userPhoto = UIImage(named: "usrwalker")
+                                //                            me.password = AVUser.currentUser().password
+                                //                            me.gender = AVUser.currentUser().objectForKey("gender") as? String
+                                //                            me.email = AVUser.currentUser().objectForKey("email") as? String
+                                //                            self.navigationController?.popViewControllerAnimated(true)
+                            }
+                        }
+                    }
+                    
+                }
+                
+            }
+
+            
+        }
+       // message.messageText = (userInfo["aps"]! as! NSDictionary).objectForKey("alert")! as! String
+       // message.userName = userInfo["user"]! as! String
+      //  message.userPhoto = UIImage(named: "usrwalker")
+        messageList.append(message)
         
     }
     

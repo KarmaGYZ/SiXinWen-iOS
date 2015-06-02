@@ -79,13 +79,18 @@ class ModifyGenderController: UITableViewController {
     func saveGender(gender: String){
         
         AVUser.currentUser().setObject(gender, forKey: "gender")
+        KVNProgress.showWithStatus(" ")
         AVUser.currentUser().saveInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
             if success {
+                KVNProgress.dismiss()
+                KVNProgress.showSuccessWithStatus("修改成功")
                 me.gender = gender
                 self.navigationController?.popViewControllerAnimated(true)
             }
             else {
+                KVNProgress.dismiss()
+            
                 KVNProgress.showErrorWithStatus("网络错误")
             }
         }

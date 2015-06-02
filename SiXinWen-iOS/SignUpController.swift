@@ -63,6 +63,7 @@ class SignUpController: UIViewController {
             user.setObject("女", forKey: "gender")
         }
        // user.setObject(gender, forKey: <#String!#>)
+        KVNProgress.showWithStatus(" ")
         user.signUpInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
             if success {
@@ -70,6 +71,7 @@ class SignUpController: UIViewController {
                 AVUser.logInWithUsernameInBackground(self.userNameField.text, password: self.setPasswordField.text){
                     (user :AVUser!, error :NSError!) -> Void in
                     if user != nil {
+                        KVNProgress.dismiss()
                         KVNProgress.showSuccessWithStatus("注册成功")
                         me.username = AVUser.currentUser().username
                         me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
@@ -92,12 +94,14 @@ class SignUpController: UIViewController {
                         self.navigationController?.popViewControllerAnimated(true)?.navigationController?.popViewControllerAnimated(true)
                     }
                     else{
+                        KVNProgress.dismiss()
                         KVNProgress.showErrorWithStatus("注册失败")
                     }
                 }
                 //self.navigationController?.popViewControllerAnimated(true)
             }
             else {
+                KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("注册失败")
             }
         }

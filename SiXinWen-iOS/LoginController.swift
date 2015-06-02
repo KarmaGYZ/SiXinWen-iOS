@@ -26,9 +26,11 @@ class LoginController: UIViewController {
             KVNProgress.showErrorWithStatus("用户名/密码不能为空")
             return
         }
+        KVNProgress.showWithStatus(" ")
         AVUser.logInWithUsernameInBackground(usernameField.text, password: passwordField.text){
             (user :AVUser!, error :NSError!) -> Void in
             if error == nil {
+                KVNProgress.dismiss()
                 KVNProgress.showSuccessWithStatus("登陆成功")
                 me.username = AVUser.currentUser().username
                 me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
@@ -64,6 +66,7 @@ class LoginController: UIViewController {
                 }
             }
             else {
+                KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("用户名或密码错误")
             }
         }

@@ -69,14 +69,17 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
         var imgData = UIImagePNGRepresentation(img)
         var imgFile: AVFile = AVFile.fileWithData(imgData) as! AVFile
         AVUser.currentUser().setObject(imgFile, forKey: "Avartar")
+        KVNProgress.showWithStatus(" ")
         AVUser.currentUser().saveInBackgroundWithBlock(){
             (success:Bool,error: NSError!) -> Void in
             if success {
                 me.avartar = img
+                KVNProgress.dismiss()
                 KVNProgress.showSuccessWithStatus("上传成功")
                 //self.navigationController?.popViewControllerAnimated(true)
             }
             else {
+                KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("上传失败")
             }
         }

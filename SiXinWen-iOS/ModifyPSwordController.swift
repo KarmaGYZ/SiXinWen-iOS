@@ -26,12 +26,15 @@ class ModifyPSwordController: UITableViewController {
         if newPasswordField.text != confirmNewPasswordField.text {
             KVNProgress.showErrorWithStatus("新密码不一致")
         }
+        KVNProgress.showWithStatus(" ")
         AVUser.currentUser().updatePassword(originalPasswordField.text, newPassword: newPasswordField.text){
             (obj:AnyObject!, error:NSError!) -> Void in
             if error != nil {
+                KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("修改失败")
             }
             else {
+                KVNProgress.dismiss()
                 KVNProgress.showSuccessWithStatus("修改成功")
                 self.navigationController?.popViewControllerAnimated(true)
             }

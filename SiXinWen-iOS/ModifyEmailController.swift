@@ -37,13 +37,17 @@ class ModifyEmailController: UITableViewController {
     
     @IBAction func saveEmail(sender: UIBarButtonItem) {
         AVUser.currentUser().setObject(EmailTextField.text, forKey: "email")
+        KVNProgress.showWithStatus(" ")
         AVUser.currentUser().saveInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
             if success {
+                KVNProgress.dismiss()
+                KVNProgress.showSuccessWithStatus("修改成功")
                 me.email = self.EmailTextField.text
                 self.navigationController?.popViewControllerAnimated(true)
             }
             else {
+                KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("网络错误")
             }
         }

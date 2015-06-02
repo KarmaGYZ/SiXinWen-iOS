@@ -45,7 +45,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
 
     func news_list_update(){
         
-        newsList.removeAll(keepCapacity: false)
+        
         var query = AVQuery(className: "News")
         query.whereKey("Now", equalTo: true)
         query.cachePolicy = AVCachePolicy.NetworkElseCache
@@ -58,6 +58,7 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                  KVNProgress.showErrorWithStatus("请检查网络")
             }
             else{
+                self.newsList.removeAll(keepCapacity: false)
              //   println("result:\(result)")
                 //printf()
                 for item in result {
