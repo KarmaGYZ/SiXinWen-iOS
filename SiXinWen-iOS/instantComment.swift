@@ -43,6 +43,15 @@ class instantComment: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        var menu = QBPopupMenu()
+//        var replyButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "replyTo:")
+//        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "showThread:")
+//        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "like:")
+//        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "dislike:")
+//        
+//        menu.items = NSArray(objects: replyButton, threadButton, likeButton, dislikeButton) as [AnyObject]
+//        
+//        menu.showInView(self.view, atPoint: tableView.cellForRowAtIndexPath(indexPath)!.center)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

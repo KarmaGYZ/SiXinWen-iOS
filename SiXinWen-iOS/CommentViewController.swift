@@ -50,7 +50,7 @@ let leftButtonTag = 4, rightButtonTag = 5
 class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate {
     @IBOutlet weak var rightSwipeRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var leftSwipeRecognizer: UISwipeGestureRecognizer!
-
+    
     @IBAction func rightSwipeAction(sender: UISwipeGestureRecognizer) {
         println("swipe right")
         var point = sender.locationInView(self.tableView)
@@ -134,6 +134,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     }
     
     
+    var menu = QBPopupMenu()
+    
     var currentNewsItem:NewsItem!
     
     var popularcomment = popularComment()
@@ -164,6 +166,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     var rotating = false
     var showcontent = false
 
+//    var selectedMessage: AVIMTextMessage!
+//    var messageSelected = false
+    
+    var selectedIdx: NSIndexPath?
+    
     var webView: UIWebView!
     var scrollView: UIScrollView!
 
@@ -446,7 +453,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //        self.inputAccessoryView.addConstraint(constraint)
 
         
-
+//
         var longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
         longPressGesture.minimumPressDuration = 0.2
         self.tableView.addGestureRecognizer(longPressGesture)
@@ -463,12 +470,28 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //        self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 51))
       
         
-        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
+//        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
+        
+        var replyButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "replyTo")
+        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "showThread:")
+        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "likeMessage:")
+        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "dislikeMessage:")
+        
+        menu.items = NSArray(objects: replyButton, threadButton, likeButton, dislikeButton) as [AnyObject]
+
         
         }
 
     
-    
+    func replyTo(){
+        if selectedIdx != nil {
+            self.commentTextView.text = "@\(currentNewsItem.instantComment.loadedMessages[selectedIdx!.row].clientId) "
+            self.commentTextView.becomeFirstResponder()
+//            messageSelected = false
+        }
+        
+        
+    }
     
     
     
@@ -480,10 +503,19 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             return
         }
         var p:CGPoint = longPress.locationInView(self.tableView)
+        var point = longPress.locationInView(self.view)
         var indexPath = self.tableView.indexPathForRowAtPoint(p)
         if indexPath != nil {
-            self.commentTextView.text = "@\(currentNewsItem.instantComment.loadedMessages[indexPath!.row].clientId) "
-            self.commentTextView.becomeFirstResponder()
+            
+            if selectedIdx != nil && self.tableView.cellForRowAtIndexPath(selectedIdx!) != nil {
+                 (self.tableView.cellForRowAtIndexPath(selectedIdx!) as! BubbleCell).bubbleImageView.highlighted = false
+            }
+            
+            (self.tableView.cellForRowAtIndexPath(indexPath!) as! BubbleCell).bubbleImageView.highlighted = true
+            selectedIdx = indexPath
+//            selectedMessage = currentNewsItem.instantComment.loadedMessages[indexPath!.row]
+//            messageSelected = true
+            menu.showInView(self.view, atPoint:CGPointMake(self.tableView.cellForRowAtIndexPath(indexPath!)!.center.x, point.y))
         }
     }
     
@@ -740,6 +772,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         } else {
             animations()
         }
+        
     }
     
     func keyboardDidShow(notification: NSNotification) {
