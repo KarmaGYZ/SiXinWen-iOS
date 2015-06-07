@@ -7,6 +7,6 @@
 #import "KVNProgress.h"
 #import "WXApiObject.h"
 #import "WXApi.h"
-#import "KVNProgress.h"
+#import "QBPopupMenu.h"
 
 #import <ShareSDK/ShareSDK.h>
