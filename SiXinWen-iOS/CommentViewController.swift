@@ -735,7 +735,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                         return
                     }
                     else{
-                        self.currentNewsItem.instantComment.conversation = result[0] as! AVIMConversation
+                        self.currentNewsItem.instantComment.conversation = result[0] as? AVIMConversation
                         self.currentNewsItem.instantComment.conversation!.joinWithCallback(){
                             (success:Bool,error: NSError!) -> Void in
                             if(error != nil){
