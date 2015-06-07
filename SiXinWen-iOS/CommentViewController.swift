@@ -55,6 +55,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         println("swipe right")
         var point = sender.locationInView(self.tableView)
         var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+        if cellIdx == nil {
+            return
+        }
         var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
        // println("\(message.text)")
         let direction = message.attributes
@@ -87,6 +90,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         println("swipe left")
         var point = sender.locationInView(self.tableView)
         var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+        if cellIdx == nil {
+            return
+        }
         var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
         let direction = message.attributes
         if direction != nil{
@@ -276,7 +282,23 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     
     func share(){
-        chosePlatformView.show()
+        
+        var imagePath = NSBundle.mainBundle().pathForResource("ShareSDK", ofType: "png")
+        
+        var publishContent = ShareSDK.content("分享", defaultContent: "分享", image: ShareSDK.imageWithPath(imagePath), title: currentNewsItem.title, url: "http://sixinwen.avosapps.com", description: currentNewsItem.text, mediaType: SSPublishContentMediaTypeNews)
+        
+        var container = ShareSDK.container()
+        container.setIPadContainerWithView(self.view, arrowDirect: UIPopoverArrowDirection.Up)
+        
+        ShareSDK.showShareActionSheet(container, shareList: nil, content: publishContent, statusBarTips: true, authOptions: nil, shareOptions: nil, result: {
+            (type:ShareType, state:SSResponseState , statusInfo:AnyObject!, error:AnyObject!, end:Bool)  in
+            if state.value == SSResponseStateFail.value {
+                KVNProgress.showErrorWithStatus("分享失败")
+            }
+                
+            
+        })
+//        chosePlatformView.show()
     }
     
     func shareFriend(){
@@ -977,6 +999,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             UIView.animateWithDuration(0.2){
                 self.scrollView.frame.size.height =  UIScreen.mainScreen().bounds.height
             }
+            rightSwipeRecognizer.enabled = false
+            leftSwipeRecognizer.enabled = false
         } else {
             toolBar.hidden = false
 //            commentTextView.becomeFirstResponder()
@@ -988,6 +1012,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                 self.scrollView.frame.size.height =  0
                 
             }
+            rightSwipeRecognizer.enabled = true
+            leftSwipeRecognizer.enabled = true
         }
         
         

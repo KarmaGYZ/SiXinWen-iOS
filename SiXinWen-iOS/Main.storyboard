@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -832,7 +832,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新闻标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JT-YF-Hr0">
-                                            <rect key="frame" x="88" y="10" width="429" height="21"/>
+                                            <rect key="frame" x="88" y="10" width="418" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -855,10 +855,10 @@
                                             </variation>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" tag="1007" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="评论: 145" borderStyle="roundedRect" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kli-WS-eH1">
-                                            <rect key="frame" x="522" y="5" width="70" height="30"/>
+                                            <rect key="frame" x="500" y="5" width="92" height="30"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="9qh-fv-Fgh"/>
+                                                <constraint firstAttribute="width" constant="92" id="9qh-fv-Fgh"/>
                                                 <constraint firstAttribute="height" constant="30" id="KHj-ce-jl3"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -879,7 +879,7 @@
                                         <constraint firstItem="EiA-xU-Tnz" firstAttribute="leading" secondItem="0GP-Pr-3lK" secondAttribute="leadingMargin" id="F07-JW-9zX"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kli-WS-eH1" secondAttribute="trailing" id="Fvc-JU-2tU"/>
                                         <constraint firstItem="kdU-0C-OY3" firstAttribute="top" secondItem="0GP-Pr-3lK" secondAttribute="topMargin" constant="35" id="Gnp-a9-ziE"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="1JT-YF-Hr0" secondAttribute="trailing" constant="75" id="U9P-IZ-xQx"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1JT-YF-Hr0" secondAttribute="trailing" constant="86" id="U9P-IZ-xQx"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="EiA-xU-Tnz" secondAttribute="bottom" id="aqd-Eu-kNU"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="kdU-0C-OY3" secondAttribute="bottom" constant="11" id="b6i-It-Enq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="EiA-xU-Tnz" secondAttribute="trailing" id="bo9-Dx-frD"/>

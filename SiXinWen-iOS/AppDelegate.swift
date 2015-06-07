@@ -82,7 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         application.applicationIconBadgeNumber = 0
         println("输出\(launchOptions)输出")
-        WXApi.registerApp("wxc9ddc67127da6ee5")
+        
+        ShareSDK.registerApp("7da56fc76f5e")
+        
+        ShareSDK.connectWeChatWithAppId("wxc9ddc67127da6ee5", wechatCls: WXApi.self)
+        
+        
+//        WXApi.registerApp("wxc9ddc67127da6ee5")
         if let launchOpt = launchOptions {
             var notificationPayLoad:NSDictionary = launchOpt[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary
             //KVNProgress.showErrorWithStatus("输出\(notificationPayLoad)输出")
