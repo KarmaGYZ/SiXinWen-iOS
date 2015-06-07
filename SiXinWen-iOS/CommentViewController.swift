@@ -454,9 +454,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 
         
 //
-        var longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressed:")
-        longPressGesture.minimumPressDuration = 0.2
-        self.tableView.addGestureRecognizer(longPressGesture)
+        var tapCellGesture = UITapGestureRecognizer(target: self, action: "tapCell:")
+        self.tableView.addGestureRecognizer(tapCellGesture)
         
 //        var constraints: NSArray = self.inputAccessoryView.constraints()
 //        
@@ -498,12 +497,10 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     
     
-    func longPressed(longPress:UIGestureRecognizer){
-        if(longPress.state != UIGestureRecognizerState.Ended){
-            return
-        }
-        var p:CGPoint = longPress.locationInView(self.tableView)
-        var point = longPress.locationInView(self.view)
+    func tapCell(tap:UIGestureRecognizer){
+        
+        var p:CGPoint = tap.locationInView(self.tableView)
+        var point = tap.locationInView(self.view)
         var indexPath = self.tableView.indexPathForRowAtPoint(p)
         if indexPath != nil {
             
@@ -654,7 +651,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         switch sender.selectedSegmentIndex {
             
         case popular:
-            toolBar.hidden = true
+            //            toolBar.hidden = true
+            menu.dismiss()
+            commentTextView.text = currentNewsItem.popularComment.draft
             UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromLeft | .ShowHideTransitionViews, completion: nil)
             tableView.dataSource = popularcomment
             tableView.delegate = popularcomment
@@ -662,7 +661,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             break
             
         case instant:
-            toolBar.hidden = false
+//            toolBar.hidden = false
+            menu.dismiss()
+//            commentTextView.text = currentNewsItem.instantComment.draft
             UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromRight | .ShowHideTransitionViews, completion: nil)
             tableView.dataSource = instantcomment
             tableView.delegate = instantcomment

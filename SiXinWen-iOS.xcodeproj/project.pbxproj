@@ -34,7 +34,7 @@
 		31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891F81ACB8E450029C2C8 /* MessageViewController.swift */; };
 		31E891FB1ACBD9B30029C2C8 /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */; };
 		31E891FD1ACBEF410029C2C8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E891FC1ACBEF410029C2C8 /* MessageCell.swift */; };
-		31F4E6311AC444830046FCD8 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* Messages.swift */; };
+		31F4E6311AC444830046FCD8 /* InstantMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62E1AC444830046FCD8 /* InstantMessages.swift */; };
 		31F4E6321AC444830046FCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E62F1AC444830046FCD8 /* User.swift */; };
 		31F4E63D1AC445270046FCD8 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4E63C1AC445270046FCD8 /* BubbleCell.swift */; };
 		84A745081B241C4900499450 /* QBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A745031B241C4900499450 /* QBPopupMenu.m */; };
@@ -77,6 +77,7 @@
 		DE802FE91B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE802FDF1B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.bundle */; };
 		DE802FEA1B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE802FE01B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.framework */; };
 		DE802FEB1B1DC01E00CFFBE6 /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE802FE11B1DC01E00CFFBE6 /* ShareSDKShareActionSheet.framework */; };
+		DE802FED1B245B6F00CFFBE6 /* PopularMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE802FEC1B245B6F00CFFBE6 /* PopularMessages.swift */; };
 		DEADBAF41AD3FE1A0070436A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEADBAF31AD3FE1A0070436A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -125,7 +126,7 @@
 		31E891F81ACB8E450029C2C8 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
 		31E891FC1ACBEF410029C2C8 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		31F4E62E1AC444830046FCD8 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		31F4E62E1AC444830046FCD8 /* InstantMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantMessages.swift; sourceTree = "<group>"; };
 		31F4E62F1AC444830046FCD8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31F4E63C1AC445270046FCD8 /* BubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
 		84A745021B241C4900499450 /* QBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenu.h; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 		DE802FDF1B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKFlatShareViewUI.bundle; sourceTree = "<group>"; };
 		DE802FE01B1DC01E00CFFBE6 /* ShareSDKFlatShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKFlatShareViewUI.framework; sourceTree = "<group>"; };
 		DE802FE11B1DC01E00CFFBE6 /* ShareSDKShareActionSheet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKShareActionSheet.framework; sourceTree = "<group>"; };
+		DE802FEC1B245B6F00CFFBE6 /* PopularMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMessages.swift; sourceTree = "<group>"; };
 		DEA95E921B00F965001D359C /* SiXinWen-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SiXinWen-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		DEADBAF31AD3FE1A0070436A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -327,10 +329,11 @@
 		31F4E62C1AC444830046FCD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31F4E62E1AC444830046FCD8 /* Messages.swift */,
+				31F4E62E1AC444830046FCD8 /* InstantMessages.swift */,
 				31F4E62F1AC444830046FCD8 /* User.swift */,
 				311B32911ACA651A00B05BC2 /* NewsItem.swift */,
 				31E891FA1ACBD9B30029C2C8 /* MessageItem.swift */,
+				DE802FEC1B245B6F00CFFBE6 /* PopularMessages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -575,7 +578,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31F4E6311AC444830046FCD8 /* Messages.swift in Sources */,
+				31F4E6311AC444830046FCD8 /* InstantMessages.swift in Sources */,
+				DE802FED1B245B6F00CFFBE6 /* PopularMessages.swift in Sources */,
 				31C6F8CB1ABA702F00DFF5EE /* SiXinWen_iOS.xcdatamodeld in Sources */,
 				DE57112D1ADD674A0090CDE3 /* instantComment.swift in Sources */,
 				DE59B2581ADEE89300ADFAC7 /* PullToRefreshView.swift in Sources */,

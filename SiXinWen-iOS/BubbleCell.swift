@@ -132,19 +132,10 @@ class BubbleCell: UITableViewCell {
 
     }
     
-    func configureWithMessage(message: AVIMTextMessage) {
+    func configureWithInstantMessage(message: AVIMTextMessage) {
             let direction = message.attributes
             bubbleText.text = message.text
         
-       
-        
-           // usrPhoto.image = UIImage(named: "usr\(message.clientId)")
-
-        
-           // usrPhoto.image = UIImage(named: "usr\(message.clientId)")
-           // if usrPhoto.image == nil {
-                usrPhoto.image = defaultPhoto
-           // }
             var layoutAttribute: NSLayoutAttribute
             var layoutConstant: CGFloat
             var leftConstant: CGFloat
@@ -212,7 +203,65 @@ class BubbleCell: UITableViewCell {
         }
     
     
-    
+    func configureWithPopularMessage(message: singleComment) {
+        let direction = message.attitude
+        bubbleText.text = message.text
+        
+        var layoutAttribute: NSLayoutAttribute
+        var layoutConstant: CGFloat
+        var leftConstant: CGFloat
+        var rightConstant: CGFloat
+        bubbleText.textColor = UIColor.whiteColor()
+        
+        if direction == true {
+                tag = oppoTag
+                bubbleImageView.image = bubbleImage.oppo
+                bubbleImageView.highlightedImage = bubbleImage.oppoHighlighed
+                
+                layoutAttribute = .Left
+                layoutConstant = 50
+                leftConstant = 20
+                rightConstant = 50
+                
+                
+        } else { // outgoing
+                tag = teamTag
+                bubbleImageView.image = bubbleImage.team
+                bubbleImageView.highlightedImage = bubbleImage.teamHighlighed
+                
+                layoutAttribute = .Right
+                layoutConstant = -50
+                leftConstant = -50
+                rightConstant = -20
+        }
+        
+        
+        
+        
+        
+        let constraints: NSArray = contentView.constraints()
+        let indexOfConstraint1 = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+            return (constraint.firstItem as! UIView).tag == bubbleTag && (constraint.firstAttribute == .Left || constraint.firstAttribute == .Right)
+        }
+        let indexOfLeftConstraint = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+            return (constraint.firstItem as! UIView).tag == photoTag && constraint.firstAttribute == .Left
+        }
+        let indexOfRightConstraint = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
+            return (constraint.firstItem as! UIView).tag == photoTag && constraint.firstAttribute == .Right
+        }
+        
+        
+        contentView.removeConstraint(constraints[indexOfConstraint1] as! NSLayoutConstraint)
+        contentView.removeConstraint(constraints[indexOfLeftConstraint] as! NSLayoutConstraint)
+        contentView.removeConstraint(constraints[indexOfRightConstraint] as! NSLayoutConstraint)
+        contentView.addConstraint(NSLayoutConstraint(item: bubbleImageView, attribute: layoutAttribute, relatedBy: .Equal, toItem: contentView, attribute: layoutAttribute, multiplier: 1, constant: layoutConstant))
+        
+        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: layoutAttribute, multiplier: 1, constant: leftConstant))
+        
+        contentView.addConstraint(NSLayoutConstraint(item: usrPhoto, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: layoutAttribute, multiplier: 1, constant: rightConstant))
+        
+    }
+
     
     
 }

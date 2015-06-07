@@ -12,7 +12,7 @@ import AVOSCloudIM
 
 //var dateFormatter = NSDateFormatter()
 
-class Messages{
+class InstantMessages{
     
 //    var lastCommentText: String
 //    var lastCommentSentDate: NSDate

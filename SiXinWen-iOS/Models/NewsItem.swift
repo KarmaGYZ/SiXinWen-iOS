@@ -14,8 +14,8 @@ class NewsItem {
     var support:Float = 0.3
     var image:UIImage?
     var commentNum = 50
-    var instantComment = Messages()
-    var popularComment = Messages()
+    var instantComment = InstantMessages()
+    var popularComment = PopularMessages()
     var htmlContent = "<html><body><p>hello</p></body></html>"
     var leftAttitude = "蓝方观点"
     var rightAttitude = "红方观点"

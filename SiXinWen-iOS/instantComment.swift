@@ -71,7 +71,7 @@ class instantComment: UITableViewController {
         }
         cell.backgroundColor = bgColor
         let singlecomment = currentNewsItem.instantComment.loadedMessages[indexPath.row]
-        cell.configureWithMessage(singlecomment)
+        cell.configureWithInstantMessage(singlecomment)
         var userId = singlecomment.clientId
        // println("userId is \(userId)")
         var query = AVUser.query()

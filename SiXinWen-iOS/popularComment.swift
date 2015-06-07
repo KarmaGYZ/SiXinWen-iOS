@@ -51,7 +51,7 @@ class popularComment: UITableViewController , UITableViewDataSource {
         }
         cell.backgroundColor = bgColor
         let singlecomment = currentNewsItem.popularComment.loadedMessages[indexPath.row]
-        cell.configureWithMessage(singlecomment)
+        cell.configureWithPopularMessage(singlecomment)
         return cell
         //        }
         
