@@ -58,6 +58,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                  KVNProgress.showErrorWithStatus("请检查网络")
             }
             else{
+               // var push = AVPush()
+                //push.
                 self.newsList.removeAll(keepCapacity: false)
              //   println("result:\(result)")
                 //printf()
@@ -67,7 +69,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
                     news.htmlContent = item.objectForKey("htmlContent") as! String
                     news.title = item.objectForKey("Title") as! String
                     news.commentNum = item.objectForKey("CommentNum") as! Int
-                    news.support = item.objectForKey("SupportRatio") as! Float
+                    news.support = (item.objectForKey("SupportNum") as! Float)/((item.objectForKey("RefuteNum") as! Float) + (item.objectForKey("SupportNum") as! Float))
+                  //  println("\(news.support)")
                     news.leftAttitude = item.objectForKey("AffirmativeView") as! String
                     news.rightAttitude = item.objectForKey("OpposeView") as! String
                     //news.image = UIImageJPEGRepresentation(<#image: UIImage!#>, <#compressionQuality: CGFloat#>)

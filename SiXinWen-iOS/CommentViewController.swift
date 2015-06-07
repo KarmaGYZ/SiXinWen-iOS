@@ -78,12 +78,41 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func likeMessage(message:AVIMTextMessage) {
         //点赞操作
-        println("点赞操作")
+        var attribute = message.attributes
+        if attribute["commentId"] != nil {
+            var commentId = attribute["commentId"]! as! String
+            var query = AVQuery(className: "Comments")
+            query.getObjectInBackgroundWithId(commentId){
+                (comment:AVObject!, error:NSError!) -> Void in
+                comment.incrementKey("Like")
+                comment.incrementKey("heat")
+                comment.saveInBackground()
+            }
+            println("点赞操作")
+        }
+        else {
+            println("缺少 commentId")
+        }
     }
     
     
     func dislikeMessage(message:AVIMTextMessage) {
-        println("点踩操作")
+        var attribute = message.attributes
+        if attribute["commentId"] != nil {
+            var commentId = attribute["commentId"]! as! String
+            var query = AVQuery(className: "Comments")
+            query.getObjectInBackgroundWithId(commentId){
+                (comment:AVObject!, error:NSError!) -> Void in
+                comment.incrementKey("Dislike")
+                comment.incrementKey("heat")
+                comment.saveInBackground()
+            }
+            println("点踩操作")
+        }
+        else {
+            println("缺少 commentId")
+        }
+
     }
     
     @IBAction func leftSwipeAction(sender: UISwipeGestureRecognizer) {
@@ -785,6 +814,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //                                                println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
+                                                    //println("receiveid\((newMessage as! AVIMTextMessage).messageId)")
                                                     self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex: index)
                                                     index++
                                                 }
@@ -822,6 +852,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                                                 //       println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
+                                                    //println("receiveid\((newMessage as! AVIMTextMessage).messageId)")
                                                     self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex:index)
                                                     index++
                                                 }
@@ -967,6 +998,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         else {
          singleComment = AVIMTextMessage(text: content, attributes: ["attitude":false])
         }
+       // println("sendId\(singleComment.messageId)")
 //        println("OLD \(commentTextView.contentSize.height)")
         commentTextView.text = nil
         commentTextView.contentSize.height = 0
@@ -1038,6 +1070,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     }
 
     func conversation(conversation: AVIMConversation!, didReceiveTypedMessage message: AVIMTypedMessage!) {
+        println("receiveid\((message as! AVIMTextMessage).messageId)")
         currentNewsItem.instantComment.loadedMessages.append(message as! AVIMTextMessage)
         Redrawcomment()
     }
