@@ -19,6 +19,7 @@ class singleComment{
     var attitude: Bool!
     var text: String!
     var avatar =  UIImage(named: "usrwalker")
+    var user:String!
 }
 
 

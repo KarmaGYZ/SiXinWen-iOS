@@ -48,90 +48,53 @@ let momentIndex = 0, friendIndex = 1
 let leftButtonTag = 4, rightButtonTag = 5
 
 class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate {
-    @IBOutlet weak var rightSwipeRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet weak var leftSwipeRecognizer: UISwipeGestureRecognizer!
+//    @IBOutlet weak var rightSwipeRecognizer: UISwipeGestureRecognizer!
+//    @IBOutlet weak var leftSwipeRecognizer: UISwipeGestureRecognizer!
+//    
+//    @IBAction func rightSwipeAction(sender: UISwipeGestureRecognizer) {
+//        println("swipe right")
+//        var point = sender.locationInView(self.tableView)
+//        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+//        if cellIdx == nil {
+//            return
+//        }
+//        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
+//       // println("\(message.text)")
+//        let direction = message.attributes
+//        if direction != nil{
+//            if direction["attitude"] as! Bool == true {
+//                likeMessage(message)
+//            } else { // outgoing
+//                dislikeMessage(message)
+//            }
+//        }
+//        
+//        
+//        
+//        //var cell = self.tableView.cellForRowAtIndexPath(cellIdx!) as! BubbleCell
+//        //println("\(cell.bubbleText.text)")
+//        
+//    }
     
-    @IBAction func rightSwipeAction(sender: UISwipeGestureRecognizer) {
-        println("swipe right")
-        var point = sender.locationInView(self.tableView)
-        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
-        if cellIdx == nil {
-            return
-        }
-        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
-       // println("\(message.text)")
-        let direction = message.attributes
-        if direction != nil{
-            if direction["attitude"] as! Bool == true {
-                likeMessage(message)
-            } else { // outgoing
-                dislikeMessage(message)
-            }
-        }
-        
-        
-        
-        //var cell = self.tableView.cellForRowAtIndexPath(cellIdx!) as! BubbleCell
-        //println("\(cell.bubbleText.text)")
-        
-    }
-    
-    func likeMessage(message:AVIMTextMessage) {
-        //点赞操作
-        var attribute = message.attributes
-        if attribute["commentId"] != nil {
-            var commentId = attribute["commentId"]! as! String
-            var query = AVQuery(className: "Comments")
-            query.getObjectInBackgroundWithId(commentId){
-                (comment:AVObject!, error:NSError!) -> Void in
-                comment.incrementKey("Like")
-                comment.incrementKey("heat")
-                comment.saveInBackground()
-            }
-            println("点赞操作")
-        }
-        else {
-            println("缺少 commentId")
-        }
-    }
-    
-    
-    func dislikeMessage(message:AVIMTextMessage) {
-        var attribute = message.attributes
-        if attribute["commentId"] != nil {
-            var commentId = attribute["commentId"]! as! String
-            var query = AVQuery(className: "Comments")
-            query.getObjectInBackgroundWithId(commentId){
-                (comment:AVObject!, error:NSError!) -> Void in
-                comment.incrementKey("Dislike")
-                comment.incrementKey("heat")
-                comment.saveInBackground()
-            }
-            println("点踩操作")
-        }
-        else {
-            println("缺少 commentId")
-        }
 
-    }
     
-    @IBAction func leftSwipeAction(sender: UISwipeGestureRecognizer) {
-        println("swipe left")
-        var point = sender.locationInView(self.tableView)
-        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
-        if cellIdx == nil {
-            return
-        }
-        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
-        let direction = message.attributes
-        if direction != nil{
-            if direction["attitude"] as! Bool == true {
-                dislikeMessage(message)
-            } else { // outgoing
-                likeMessage(message)
-            }
-        }
-    }
+//    @IBAction func leftSwipeAction(sender: UISwipeGestureRecognizer) {
+//        println("swipe left")
+//        var point = sender.locationInView(self.tableView)
+//        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
+//        if cellIdx == nil {
+//            return
+//        }
+//        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
+//        let direction = message.attributes
+//        if direction != nil{
+//            if direction["attitude"] as! Bool == true {
+//                dislikeMessage(message)
+//            } else { // outgoing
+//                likeMessage(message)
+//            }
+//        }
+//    }
     
     
     var menu = QBPopupMenu()
@@ -472,16 +435,17 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
         
         var replyButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "replyTo")
-        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "showThread:")
-        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "likeMessage:")
-        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "dislikeMessage:")
-        
+        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "showThread")
+        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "likeMessages")
+        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "dislikeMessages")
         menu.items = NSArray(objects: replyButton, threadButton, likeButton, dislikeButton) as [AnyObject]
 
         
         }
 
-    
+    func showThread(){
+        
+    }
     func replyTo(){
         if selectedIdx != nil {
             self.commentTextView.text = "@\(currentNewsItem.instantComment.loadedMessages[selectedIdx!.row].clientId) "
@@ -492,7 +456,54 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         
     }
     
+    func likeMessages() {
+        //点赞操作
+        println("shabi")
+        if selectedIdx != nil{
+            var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
+            var attribute = message.attributes
+            if attribute["commentId"] != nil {
+                var commentId = attribute["commentId"]! as! String
+                var query = AVQuery(className: "Comments")
+                query.getObjectInBackgroundWithId(commentId){
+                    (comment:AVObject!, error:NSError!) -> Void in
+                    comment.incrementKey("Like")
+                    comment.incrementKey("heat")
+                    comment.saveInBackground()
+                }
+                println("点赞操作")
+            }
+            else {
+                println("缺少 commentId")
+            }
+        }
+        else {
+            println("shabi")
+        }
+    }
     
+    
+    func dislikeMessages() {
+        if selectedIdx != nil{
+            var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
+            var attribute = message.attributes
+            if attribute["commentId"] != nil {
+                var commentId = attribute["commentId"]! as! String
+                var query = AVQuery(className: "Comments")
+                query.getObjectInBackgroundWithId(commentId){
+                    (comment:AVObject!, error:NSError!) -> Void in
+                    comment.incrementKey("Dislike")
+                    comment.incrementKey("heat")
+                    comment.saveInBackground()
+                }
+                println("点踩操作")
+            }
+            else {
+                println("缺少 commentId")
+            }
+        }
+        
+    }
     
     
     
@@ -559,8 +570,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
-        rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Right
+     //   leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
+      //  rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Right
         imClient.delegate = self
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
@@ -658,6 +669,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             tableView.dataSource = popularcomment
             tableView.delegate = popularcomment
             tableView.reloadData()
+            self.comment_refresh()
             break
             
         case instant:
@@ -668,6 +680,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             tableView.dataSource = instantcomment
             tableView.delegate = instantcomment
             tableView.reloadData()
+            self.comment_refresh()
             break
             
         default: break
@@ -896,22 +909,64 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                                     }
                                     //    println("hello4")
                                 }
-                                else {
-                                    //      println("hello2")
-                                    //            
-                                    //            conversation.queryMessagesBeforeId(currentNewsItem.popularComment.loadedMessages[0].messageId, timestamp: 0, limit: 20) {
-                                    //                (objects:[AnyObject]!,error: NSError!) -> Void in
-                                    //                if (error != nil) {
-                                    //                    let alert = UIAlertView(title: "操作失败", message: error.description, delegate: nil, cancelButtonTitle: "OK")
-                                    //                    alert.show()
-                                    //                }
-                                    //                else {
-                                    //                    self.tableView.reloadData()
-                                    //                }
-                                    //            }
-                                    //
-                                    //            
-                                    //            
+                                else { // popupar
+                                    var query = AVQuery(className: "HotComments")
+                                    query.whereKey("TargetConv", equalTo: self.currentNewsItem.instantComment.conversation!.conversationId)
+                                    query.findObjectsInBackgroundWithBlock(){
+                                        (array:[AnyObject]!, error:NSError!) -> Void in
+                                        if error == nil{
+                                            self.currentNewsItem.popularComment.loadedMessages.removeAll(keepCapacity: true)
+                                            for item in array {
+                                                var commentId = (item as! AVObject).objectForKey("Comments") as! String
+                                                query = AVQuery(className: "Comments")
+                                                query.getObjectInBackgroundWithId(commentId){
+                                                    (comment:AVObject!, error:NSError!) -> Void in
+                                                    if error == nil{
+                                                        var newItem = singleComment()
+                                                        newItem.attitude = comment.objectForKey("Attitude") as! Bool
+                                                        newItem.text = comment.objectForKey("Content") as! String
+                                                        newItem.user = comment.objectForKey("user") as! String
+//                                                        var query = AVUser.query()
+//                                                        query.whereKey("username", equalTo: newItem.user)
+//                                                        query.findObjectsInBackgroundWithBlock(){
+//                                                            (result:[AnyObject]!, error:NSError!) -> Void in
+//                                                            if error == nil && result.count > 0{
+//                                                                var user = result[0] as! AVUser
+//                                                                //user.objectForKey("avartar")
+//                                                                var avartarFile = user.objectForKey("Avartar") as? AVFile
+//                                                                if avartarFile != nil{
+//                                                                    //  println("设置对话头像")
+//                                                                    //   println("asdfasdfasdf")
+//                                                                    avartarFile?.getThumbnail(true, width: 60, height: 60){
+//                                                                        (img:UIImage!, error:NSError!) -> Void in
+//                                                                        //println(cell)
+//                                                                        if error == nil{
+//                                                                            // var tmp = self.tableView.cellForRowAtIndexPath(indexPath)
+//                                                                            // println(tmp)
+//                                                                            //cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BubbleCell
+//                                                                            newItem.avatar = img
+//                                                                            //     self.tableView.reloadData()
+//                                                                        }
+//                                                                    }
+//                                                                }
+//                                                                
+//                                                            }
+//                                                            
+//                                                        }
+                                                        //avartar to be continue
+                                                        self.currentNewsItem.popularComment.loadedMessages.append(newItem)
+                                                        self.tableView.reloadData()
+                                                    }
+                                                    else {
+                                                        KVNProgress.showErrorWithStatus("请检查网络")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            KVNProgress.showErrorWithStatus("请检查网络")
+                                        }
+                                    }
                                 }
 //                                println("hello5")
                             }
@@ -968,7 +1023,67 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                     }
                 }
             }
-            else {
+            else { // popular
+                var query = AVQuery(className: "HotComments")
+                query.whereKey("TargetConv", equalTo: self.currentNewsItem.instantComment.conversation!.conversationId)
+                query.findObjectsInBackgroundWithBlock(){
+                    (array:[AnyObject]!, error:NSError!) -> Void in
+                    if error == nil{
+                        self.currentNewsItem.popularComment.loadedMessages.removeAll(keepCapacity: true)
+                        for item in array {
+                            var commentId = (item as! AVObject).objectForKey("Comments") as! String
+                            query = AVQuery(className: "Comments")
+                            query.getObjectInBackgroundWithId(commentId){
+                                (comment:AVObject!, error:NSError!) -> Void in
+                                if error == nil{
+                                    var newItem = singleComment()
+                                    newItem.attitude = comment.objectForKey("Attitude") as! Bool
+                                    newItem.text = comment.objectForKey("Content") as! String
+                                    newItem.user = comment.objectForKey("user") as! String
+//                                    var query = AVUser.query()
+//                                    query.whereKey("username", equalTo: newItem.user)
+//                                    query.findObjectsInBackgroundWithBlock(){
+//                                        (result:[AnyObject]!, error:NSError!) -> Void in
+//                                        if error == nil && result.count > 0{
+//                                            var user = result[0] as! AVUser
+//                                            //user.objectForKey("avartar")
+//                                            var avartarFile = user.objectForKey("Avartar") as? AVFile
+//                                            if avartarFile != nil{
+//                                                //  println("设置对话头像")
+//                                                //   println("asdfasdfasdf")
+//                                                avartarFile?.getThumbnail(true, width: 60, height: 60){
+//                                                    (img:UIImage!, error:NSError!) -> Void in
+//                                                    //println(cell)
+//                                                    if error == nil{
+//                                                        // var tmp = self.tableView.cellForRowAtIndexPath(indexPath)
+//                                                        // println(tmp)
+//                                                        //cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BubbleCell
+//                                                        newItem.avatar = img
+//                                                        //     self.tableView.reloadData()
+//                                                    }
+//                                                }
+//                                            }
+//                                            
+//                                        }
+//                                        
+//                                    }
+
+                                    //avartar to be continue
+                                    self.currentNewsItem.popularComment.loadedMessages.append(newItem)
+                                    self.tableView.reloadData()
+                                }
+                                else {
+                                    KVNProgress.showErrorWithStatus("请检查网络")
+                                    println("1")
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        KVNProgress.showErrorWithStatus("请检查网络")
+                        
+                    }
+                }
             }
 //            println("hello5")
         }
@@ -1065,8 +1180,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             UIView.animateWithDuration(0.2){
                 self.scrollView.frame.size.height =  UIScreen.mainScreen().bounds.height
             }
-            rightSwipeRecognizer.enabled = false
-            leftSwipeRecognizer.enabled = false
+         //   rightSwipeRecognizer.enabled = false
+         //   leftSwipeRecognizer.enabled = false
         } else {
             toolBar.hidden = false
 //            commentTextView.becomeFirstResponder()
@@ -1078,8 +1193,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                 self.scrollView.frame.size.height =  0
                 
             }
-            rightSwipeRecognizer.enabled = true
-            leftSwipeRecognizer.enabled = true
+       //     rightSwipeRecognizer.enabled = true
+        //    leftSwipeRecognizer.enabled = true
         }
         
         

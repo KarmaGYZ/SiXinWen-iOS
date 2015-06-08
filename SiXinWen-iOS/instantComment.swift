@@ -58,9 +58,9 @@ class instantComment: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifier = NSStringFromClass(BubbleCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! BubbleCell!
-        if cell == nil {
-            cell = BubbleCell(style: .Default, reuseIdentifier: cellIdentifier)
+      //  var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! BubbleCell!
+      //  if cell == nil {
+          var  cell = BubbleCell(style: .Default, reuseIdentifier: cellIdentifier)
             
             // Add gesture recognizers #CopyMessage
             //                     let action: Selector = "showMenuAction:"
@@ -68,7 +68,7 @@ class instantComment: UITableViewController {
             //                     doubleTapGestureRecognizer.numberOfTapsRequired = 2
             //                     cell.bubbleImageView.addGestureRecognizer(doubleTapGestureRecognizer)
             //                     cell.bubbleImageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: action))
-        }
+       // }
         cell.backgroundColor = bgColor
         let singlecomment = currentNewsItem.instantComment.loadedMessages[indexPath.row]
         cell.configureWithInstantMessage(singlecomment)
@@ -87,10 +87,13 @@ class instantComment: UITableViewController {
                     //   println("asdfasdfasdf")
                     avartarFile?.getThumbnail(true, width: 60, height: 60){
                         (img:UIImage!, error:NSError!) -> Void in
+                        //println(cell)
                         if error == nil{
-                            cell.usrPhoto.image = img
-                            self.tableView.reloadData()
-                            
+                           // var tmp = self.tableView.cellForRowAtIndexPath(indexPath)
+                           // println(tmp)
+                            //cell = self.tableView.cellForRowAtIndexPath(indexPath) as! BubbleCell
+                                cell.usrPhoto.image = img
+                           //     self.tableView.reloadData()
                         }
                     }
                 }
