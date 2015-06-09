@@ -236,9 +236,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func share(){
         
-        var imagePath = NSBundle.mainBundle().pathForResource("ShareSDK", ofType: "png")
+        var imagePath = NSBundle.mainBundle().pathForResource("AppIcon", ofType: "png")
+        println(imagePath)
+//        currentNewsItem.image
         
-        var publishContent = ShareSDK.content("分享", defaultContent: "分享", image: ShareSDK.imageWithPath(imagePath), title: currentNewsItem.title, url: "http://sixinwen.avosapps.com", description: currentNewsItem.text, mediaType: SSPublishContentMediaTypeNews)
+        var publishContent = ShareSDK.content("分享", defaultContent: currentNewsItem.text, image: ShareSDK.imageWithPath(imagePath), title: "对于 \(currentNewsItem.title) 我的态度是?", url: "http://dev.sixinwen.avosapps.com/share?nid=5573e468e4b03c3d0281e5ae", description: currentNewsItem.text, mediaType: SSPublishContentMediaTypeNews)
         
         var container = ShareSDK.container()
         container.setIPadContainerWithView(self.view, arrowDirect: UIPopoverArrowDirection.Up)
@@ -417,24 +419,42 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         //点赞操作
 //        println("shabi")
         if selectedIdx != nil{
-            var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
-            var attribute = message.attributes
-            if attribute["commentId"] != nil {
-                var commentId = attribute["commentId"]! as! String
+            if shiftSegmentControl.selectedSegmentIndex == instant{
+                var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
+                var attribute = message.attributes
+                if attribute["commentId"] != nil {
+                    var commentId = attribute["commentId"]! as! String
+                    var query = AVQuery(className: "Comments")
+                    query.getObjectInBackgroundWithId(commentId){
+                        (comment:AVObject!, error:NSError!) -> Void in
+                        if comment != nil {
+                        comment.incrementKey("Like")
+                        comment.incrementKey("heat")
+                        comment.saveInBackground()
+                        }
+                    }
+                    println("点赞操作")
+                }
+                else {
+                    println("缺少 commentId")
+                }
+            }
+            else {
+                var message = currentNewsItem.popularComment.loadedMessages[selectedIdx!.row] as singleComment
+                var commentId = message.commentId
                 var query = AVQuery(className: "Comments")
                 query.getObjectInBackgroundWithId(commentId){
                     (comment:AVObject!, error:NSError!) -> Void in
                     if comment != nil {
-                    comment.incrementKey("Like")
-                    comment.incrementKey("heat")
-                    comment.saveInBackground()
+                        comment.incrementKey("Like")
+                        comment.incrementKey("heat")
+                        comment.saveInBackground()
                     }
                 }
                 println("点赞操作")
+                //message.
             }
-            else {
-                println("缺少 commentId")
-            }
+            
         }
 //        else {
 //            println("shabi")
@@ -444,23 +464,40 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func dislikeMessages() {
         if selectedIdx != nil{
-            var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
-            var attribute = message.attributes
-            if attribute["commentId"] != nil {
-                var commentId = attribute["commentId"]! as! String
+            if shiftSegmentControl.selectedSegmentIndex == instant{
+                var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
+                var attribute = message.attributes
+                if attribute["commentId"] != nil {
+                    var commentId = attribute["commentId"]! as! String
+                    var query = AVQuery(className: "Comments")
+                    query.getObjectInBackgroundWithId(commentId){
+                        (comment:AVObject!, error:NSError!) -> Void in
+                        if comment != nil {
+                        comment.incrementKey("Dislike")
+                        comment.incrementKey("heat")
+                        comment.saveInBackground()
+                        }
+                    }
+                    println("点踩操作")
+                }
+                else {
+                    println("缺少 commentId")
+                }
+            }
+            else {
+                var message = currentNewsItem.popularComment.loadedMessages[selectedIdx!.row] as singleComment
+                var commentId = message.commentId
                 var query = AVQuery(className: "Comments")
                 query.getObjectInBackgroundWithId(commentId){
                     (comment:AVObject!, error:NSError!) -> Void in
                     if comment != nil {
-                    comment.incrementKey("Dislike")
-                    comment.incrementKey("heat")
-                    comment.saveInBackground()
+                        comment.incrementKey("Dislike")
+                        comment.incrementKey("heat")
+                        comment.saveInBackground()
                     }
                 }
-                println("点踩操作")
-            }
-            else {
-                println("缺少 commentId")
+                println("点赞操作")
+                //message.
             }
         }
         
@@ -633,7 +670,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             tableViewScrollToBottomAnimated(true)
             UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromLeft | .ShowHideTransitionViews, completion: nil)
 
-//            self.comment_refresh()
+            self.comment_refresh()
             break
             
         case instant:
@@ -949,6 +986,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                                                         newItem.attitude = comment.objectForKey("Attitude") as! Bool
                                                         newItem.text = comment.objectForKey("Content") as! String
                                                         newItem.user = comment.objectForKey("user") as! String
+                                                        newItem.commentId = commentId
 //                                                        var query = AVUser.query()
 //                                                        query.whereKey("username", equalTo: newItem.user)
 //                                                        query.findObjectsInBackgroundWithBlock(){
@@ -1063,6 +1101,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                                     newItem.attitude = comment.objectForKey("Attitude") as! Bool
                                     newItem.text = comment.objectForKey("Content") as! String
                                     newItem.user = comment.objectForKey("user") as! String
+                                    newItem.commentId = commentId
 //                                    var query = AVUser.query()
 //                                    query.whereKey("username", equalTo: newItem.user)
 //                                    query.findObjectsInBackgroundWithBlock(){
@@ -1127,7 +1166,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //                println("错误:\(error)")
             }
         }
-        Redrawcomment()
+        if shiftSegmentControl.selectedSegmentIndex == instant{
+            Redrawcomment()
+        }
     }
     
     

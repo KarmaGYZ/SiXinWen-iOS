@@ -20,6 +20,7 @@ class singleComment{
     var text: String!
     var avatar =  UIImage(named: "usrwalker")
     var user:String!
+    var commentId:String!
 }
 
 
