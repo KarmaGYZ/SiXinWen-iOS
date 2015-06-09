@@ -390,12 +390,20 @@
     
     CGContextAddPath(context, basePath2);
     switch(state) {
+//        case QBPopupMenuStateNormal:
+//            CGContextSetRGBFillColor(context, 0.471, 0.471, 0.471, 1.0);
+//            break;
+//        case QBPopupMenuStateHighlighted:
+//            CGContextSetRGBFillColor(context, 0.384, 0.608, 0.906, 1.0);
+//            break;
+
         case QBPopupMenuStateNormal:
-            CGContextSetRGBFillColor(context, 0.471, 0.471, 0.471, 1.0);
+            CGContextSetRGBFillColor(context, 0.102, 0.102, 0.102, 1.0);
             break;
         case QBPopupMenuStateHighlighted:
-            CGContextSetRGBFillColor(context, 0.384, 0.608, 0.906, 1.0);
+            CGContextSetRGBFillColor(context, 0.047, 0.306, 0.827, 1.0);
             break;
+
     }
     CGContextFillPath(context);
     
@@ -417,12 +425,19 @@
     
     CGContextAddPath(context, basePath3);
     switch(state) {
+//        case QBPopupMenuStateNormal:
+//            CGContextSetRGBFillColor(context, 0.314, 0.314, 0.314, 1.0);
+//            break;
+//        case QBPopupMenuStateHighlighted:
+//            CGContextSetRGBFillColor(context, 0.216, 0.471, 0.871, 1.0);
+//            break;
         case QBPopupMenuStateNormal:
-            CGContextSetRGBFillColor(context, 0.314, 0.314, 0.314, 1.0);
+            CGContextSetRGBFillColor(context, 0.102, 0.102, 0.102, 1.0);
             break;
         case QBPopupMenuStateHighlighted:
-            CGContextSetRGBFillColor(context, 0.216, 0.471, 0.871, 1.0);
+            CGContextSetRGBFillColor(context, 0.047, 0.306, 0.827, 1.0);
             break;
+
     }
     CGContextFillPath(context);
     
@@ -434,14 +449,25 @@
     CGColorSpaceRef colorSpaceRef3 = CGColorSpaceCreateDeviceRGB();
     CGFloat components3[8];
     switch(state) {
+//        case QBPopupMenuStateNormal:
+//            components3[0] = 0.314; components3[1] = 0.314; components3[2] = 0.314; components3[3] = 1;
+//            components3[4] = 0.314; components3[5] = 0.314; components3[6] = 0.314; components3[7] = 1;
+//
+////            components3[4] = 0.165; components3[5] = 0.165; components3[6] = 0.165; components3[7] = 1;
+//            break;
+//        case QBPopupMenuStateHighlighted:
+//            components3[0] = 0.216; components3[1] = 0.471; components3[2] = 0.871; components3[3] = 1;
+//            components3[4] = 0.059; components3[5] = 0.353; components3[6] = 0.839; components3[7] = 1;
+//            break;
         case QBPopupMenuStateNormal:
-            components3[0] = 0.314; components3[1] = 0.314; components3[2] = 0.314; components3[3] = 1;
-            components3[4] = 0.165; components3[5] = 0.165; components3[6] = 0.165; components3[7] = 1;
+            components3[0] = 0.102; components3[1] = 0.102; components3[2] = 0.102; components3[3] = 1;
+            components3[4] = 0.102; components3[5] = 0.102; components3[6] = 0.102; components3[7] = 1;
             break;
         case QBPopupMenuStateHighlighted:
-            components3[0] = 0.216; components3[1] = 0.471; components3[2] = 0.871; components3[3] = 1;
-            components3[4] = 0.059; components3[5] = 0.353; components3[6] = 0.839; components3[7] = 1;
+            components3[0] = 0.047; components3[1] = 0.306; components3[2] = 0.827; components3[3] = 1;
+            components3[4] = 0.047; components3[5] = 0.306; components3[6] = 0.827; components3[7] = 1;
             break;
+
     }
     size_t count3 = sizeof(components3) / (sizeof(CGFloat) * 4);
     
@@ -566,18 +592,20 @@
     switch(state) {
         case QBPopupMenuStateNormal:
             components[0] = 0.31; components[1] = 0.31; components[2] = 0.31; components[3] = 1;
-            components[4] = 0.06; components[5] = 0.06; components[6] = 0.06; components[7] = 1;
+            components[4] = 0.31; components[5] = 0.31; components[6] = 0.31; components[7] = 1;
             
-            components[8] = 0.04; components[9] = 0.04; components[10] = 0.04; components[11] = 1;
-            components[12] = 0; components[13] = 0; components[14] = 0; components[15] = 1;
+            components[8] = 0.24; components[9] = 0.24; components[10] = 0.24; components[11] = 1;
+            components[12] = 0.24; components[13] = 0.24; components[14] = 0.24; components[15] = 1;
+            //            components[12] = 0.05; components[13] = 0.05; components[14] = 0.05; components[15] = 1;
             break;
         case QBPopupMenuStateHighlighted:
             components[0] = 0.22; components[1] = 0.47; components[2] = 0.87; components[3] = 1;
-            components[4] = 0.03; components[5] = 0.18; components[6] = 0.72; components[7] = 1;
+            components[4] = 0.22; components[5] = 0.47; components[6] = 0.87; components[7] = 1;
             
-            components[8] = 0.02; components[9] = 0.15; components[10] = 0.73; components[11] = 1;
-            components[12] = 0.03; components[13] = 0.17; components[14] = 0.72; components[15] = 1;
+            components[8] = 0.09; components[9] = 0.47; components[10] = 0.88; components[11] = 1;
+            components[12] = 0.09; components[13] = 0.47; components[14] = 0.88; components[15] = 1;
             break;
+
     }
     size_t count = sizeof(components) / (sizeof(CGFloat) * 4);
     
@@ -604,14 +632,15 @@
             components[4] = 0.31; components[5] = 0.31; components[6] = 0.31; components[7] = 1;
             
             components[8] = 0.24; components[9] = 0.24; components[10] = 0.24; components[11] = 1;
-            components[12] = 0.05; components[13] = 0.05; components[14] = 0.05; components[15] = 1;
+            components[12] = 0.24; components[13] = 0.24; components[14] = 0.24; components[15] = 1;
+//            components[12] = 0.05; components[13] = 0.05; components[14] = 0.05; components[15] = 1;
             break;
         case QBPopupMenuStateHighlighted:
             components[0] = 0.22; components[1] = 0.47; components[2] = 0.87; components[3] = 1;
-            components[4] = 0.12; components[5] = 0.50; components[6] = 0.89; components[7] = 1;
+            components[4] = 0.22; components[5] = 0.47; components[6] = 0.87; components[7] = 1;
             
             components[8] = 0.09; components[9] = 0.47; components[10] = 0.88; components[11] = 1;
-            components[12] = 0.03; components[13] = 0.18; components[14] = 0.74; components[15] = 1;
+            components[12] = 0.09; components[13] = 0.47; components[14] = 0.88; components[15] = 1;
             break;
     }
     size_t count = sizeof(components) / (sizeof(CGFloat) * 4);

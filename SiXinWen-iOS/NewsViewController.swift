@@ -188,8 +188,8 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
 //        }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-
         self.tabBarController?.tabBar.hidden = false
+    
     }
     
     override func viewDidAppear(animated: Bool) {

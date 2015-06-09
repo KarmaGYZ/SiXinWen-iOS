@@ -47,54 +47,8 @@ let momentIndex = 0, friendIndex = 1
 
 let leftButtonTag = 4, rightButtonTag = 5
 
-class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate {
-//    @IBOutlet weak var rightSwipeRecognizer: UISwipeGestureRecognizer!
-//    @IBOutlet weak var leftSwipeRecognizer: UISwipeGestureRecognizer!
-//    
-//    @IBAction func rightSwipeAction(sender: UISwipeGestureRecognizer) {
-//        println("swipe right")
-//        var point = sender.locationInView(self.tableView)
-//        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
-//        if cellIdx == nil {
-//            return
-//        }
-//        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
-//       // println("\(message.text)")
-//        let direction = message.attributes
-//        if direction != nil{
-//            if direction["attitude"] as! Bool == true {
-//                likeMessage(message)
-//            } else { // outgoing
-//                dislikeMessage(message)
-//            }
-//        }
-//        
-//        
-//        
-//        //var cell = self.tableView.cellForRowAtIndexPath(cellIdx!) as! BubbleCell
-//        //println("\(cell.bubbleText.text)")
-//        
-//    }
-    
+class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate {
 
-    
-//    @IBAction func leftSwipeAction(sender: UISwipeGestureRecognizer) {
-//        println("swipe left")
-//        var point = sender.locationInView(self.tableView)
-//        var cellIdx = self.tableView.indexPathForRowAtPoint(point)
-//        if cellIdx == nil {
-//            return
-//        }
-//        var message = currentNewsItem.instantComment.loadedMessages[cellIdx!.row]
-//        let direction = message.attributes
-//        if direction != nil{
-//            if direction["attitude"] as! Bool == true {
-//                dislikeMessage(message)
-//            } else { // outgoing
-//                likeMessage(message)
-//            }
-//        }
-//    }
     
     
     var menu = QBPopupMenu()
@@ -144,7 +98,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     var  shiftSegmentControl:UISegmentedControl!
 //    var  titleSgCtr:UISegmentedControl!
     
-    var toolBar:UIToolbar!
+    var toolBar:UITabBar!
     var commentTextView:UITextView!
     var rightButton = UIButton()
     var leftButton = UIButton()
@@ -158,8 +112,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     override var inputAccessoryView: UIView! {
         get {
             if toolBar == nil {
-                toolBar = UIToolbar(frame: CGRectZero)
-//                toolBar = UIToolbar(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 51))
+//                toolBar = UIToolbar(frame: CGRectZero)
+                toolBar = UITabBar()
                 toolBar.backgroundColor = bgColor
                 
     
@@ -266,15 +220,15 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 
 
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == momentIndex {
-            shareTimeLine()
-        }
-        else if buttonIndex == friendIndex {
-            
-            shareFriend()
-        }
-    }
+//    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+//        if buttonIndex == momentIndex {
+//            shareTimeLine()
+//        }
+//        else if buttonIndex == friendIndex {
+//            
+//            shareFriend()
+//        }
+//    }
     
     
     
@@ -300,42 +254,42 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //        chosePlatformView.show()
     }
     
-    func shareFriend(){
-        var msg = WXMediaMessage()
-        msg.title = currentNewsItem.title
-        msg.description = currentNewsItem.text
-        msg.setThumbImage(UIImage(named: "Icon-60"))
-        var ext = WXWebpageObject()
-        ext.webpageUrl = "http://sixinwen.avosapps.com"
-        msg.mediaObject = ext
-        
-        
-        var req = SendMessageToWXReq()
-        req.scene = Int32(WXSceneSession.value)
-        
-        req.message = msg
-        req.bText = false
-        WXApi.sendReq(req)
-    }
-    
-    func shareTimeLine(){
-        
-        var msg = WXMediaMessage()
-        msg.title = currentNewsItem.title
-        msg.description = currentNewsItem.text
-        msg.setThumbImage(UIImage(named: "Icon-60"))
-        var ext = WXWebpageObject()
-        ext.webpageUrl = "http://sixinwen.avosapps.com"
-        msg.mediaObject = ext
-        
-        
-        var req = SendMessageToWXReq()
-        req.scene = Int32(WXSceneTimeline.value)
-        
-        req.message = msg
-        req.bText = false
-        WXApi.sendReq(req)
-    }
+//    func shareFriend(){
+//        var msg = WXMediaMessage()
+//        msg.title = currentNewsItem.title
+//        msg.description = currentNewsItem.text
+//        msg.setThumbImage(UIImage(named: "Icon-60"))
+//        var ext = WXWebpageObject()
+//        ext.webpageUrl = "http://sixinwen.avosapps.com"
+//        msg.mediaObject = ext
+//        
+//        
+//        var req = SendMessageToWXReq()
+//        req.scene = Int32(WXSceneSession.value)
+//        
+//        req.message = msg
+//        req.bText = false
+//        WXApi.sendReq(req)
+//    }
+//    
+//    func shareTimeLine(){
+//        
+//        var msg = WXMediaMessage()
+//        msg.title = currentNewsItem.title
+//        msg.description = currentNewsItem.text
+//        msg.setThumbImage(UIImage(named: "Icon-60"))
+//        var ext = WXWebpageObject()
+//        ext.webpageUrl = "http://sixinwen.avosapps.com"
+//        msg.mediaObject = ext
+//        
+//        
+//        var req = SendMessageToWXReq()
+//        req.scene = Int32(WXSceneTimeline.value)
+//        
+//        req.message = msg
+//        req.bText = false
+//        WXApi.sendReq(req)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -371,6 +325,8 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         self.tableView.keyboardDismissMode = .OnDrag
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .None
+//        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 70, right: 0.0)
+//        self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 70 , right: 0.0)
         tableView.registerClass(BubbleCell.self, forCellReuseIdentifier: NSStringFromClass(BubbleCell))
         
         let tap = UITapGestureRecognizer(target: self, action: "didTap:")
@@ -406,10 +362,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             })
 
 
-        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuControllerWillHide:", name: UIMenuControllerWillHideMenuNotification, object: nil)
     
       
 //        println(inputAccessoryView.constraints()[0])
@@ -420,32 +377,32 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         var tapCellGesture = UITapGestureRecognizer(target: self, action: "tapCell:")
         self.tableView.addGestureRecognizer(tapCellGesture)
         
-//        var constraints: NSArray = self.inputAccessoryView.constraints()
-//        
-//        let indexOfConstraint = constraints.indexOfObjectPassingTest { (var constraint, idx, stop) in
-//            return  (constraint.firstAttribute == .Height)
-//        }
-//        
-//        self.inputAccessoryView.removeConstraint(constraints[indexOfConstraint] as! NSLayoutConstraint)
-//        
-//        
-//        self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 51))
-      
-        
 //        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
         
         var replyButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "replyTo")
-        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "showThread")
-        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "likeMessages")
-        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "dislikeMessages")
+        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuThread"), target: self, action: "showThread")
+        var likeButton = QBPopupMenuItem(image: UIImage(named: "menuLike"), target: self, action: "likeMessages")
+        var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuDislike"), target: self, action: "dislikeMessages")
         menu.items = NSArray(objects: replyButton, threadButton, likeButton, dislikeButton) as [AnyObject]
 
+        menu.delegate = self
         
         }
+    
+    func popupMenuWillDisappear(popupMenu: QBPopupMenu!) {
+        if selectedIdx != nil && self.tableView.cellForRowAtIndexPath(selectedIdx!) != nil {
+            (self.tableView.cellForRowAtIndexPath(selectedIdx!) as! BubbleCell).bubbleImageView.highlighted = false
+            selectedIdx = nil
+        }
+    }
+    
+    
 
     func showThread(){
         
     }
+    
+    
     func replyTo(){
         if selectedIdx != nil {
             self.commentTextView.text = "@\(currentNewsItem.instantComment.loadedMessages[selectedIdx!.row].clientId) "
@@ -458,7 +415,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     
     func likeMessages() {
         //点赞操作
-        println("shabi")
+//        println("shabi")
         if selectedIdx != nil{
             var message = currentNewsItem.instantComment.loadedMessages[selectedIdx!.row] as AVIMTextMessage
             var attribute = message.attributes
@@ -467,9 +424,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                 var query = AVQuery(className: "Comments")
                 query.getObjectInBackgroundWithId(commentId){
                     (comment:AVObject!, error:NSError!) -> Void in
+                    if comment != nil {
                     comment.incrementKey("Like")
                     comment.incrementKey("heat")
                     comment.saveInBackground()
+                    }
                 }
                 println("点赞操作")
             }
@@ -477,9 +436,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                 println("缺少 commentId")
             }
         }
-        else {
-            println("shabi")
-        }
+//        else {
+//            println("shabi")
+//        }
     }
     
     
@@ -492,9 +451,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
                 var query = AVQuery(className: "Comments")
                 query.getObjectInBackgroundWithId(commentId){
                     (comment:AVObject!, error:NSError!) -> Void in
+                    if comment != nil {
                     comment.incrementKey("Dislike")
                     comment.incrementKey("heat")
                     comment.saveInBackground()
+                    }
                 }
                 println("点踩操作")
             }
@@ -572,6 +533,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         super.viewWillAppear(animated)
      //   leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
       //  rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.Right
+         self.tabBarController?.tabBar.hidden = true
         imClient.delegate = self
         imClient.openWithClientId(me.username, callback: {
             (success:Bool,error: NSError!) -> Void in
@@ -653,7 +615,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //            }
 //        }
 
-        self.tabBarController?.tabBar.hidden = true
+       
     }
     
 
@@ -665,22 +627,27 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             //            toolBar.hidden = true
             menu.dismiss()
             commentTextView.text = currentNewsItem.popularComment.draft
-            UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromLeft | .ShowHideTransitionViews, completion: nil)
-            tableView.dataSource = popularcomment
+                       tableView.dataSource = popularcomment
             tableView.delegate = popularcomment
             tableView.reloadData()
-            self.comment_refresh()
+            tableViewScrollToBottomAnimated(true)
+            UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromLeft | .ShowHideTransitionViews, completion: nil)
+
+//            self.comment_refresh()
             break
             
         case instant:
 //            toolBar.hidden = false
             menu.dismiss()
 //            commentTextView.text = currentNewsItem.instantComment.draft
-            UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromRight | .ShowHideTransitionViews, completion: nil)
+           
             tableView.dataSource = instantcomment
             tableView.delegate = instantcomment
             tableView.reloadData()
-            self.comment_refresh()
+//            tableViewScrollToBottomAnimated(true)
+
+             UIView.transitionFromView(tableView, toView: tableView, duration: 0.3, options:.TransitionFlipFromRight | .ShowHideTransitionViews, completion: nil)
+//            self.comment_refresh()
             break
             
         default: break
@@ -698,9 +665,13 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         
         let heightChange = newHeight - oldHeight
             println(heightChange)
-       
+//        let oldContentInset = self.tableView.contentInset
+        
         if newHeight < 51 {
             newHeight = 51
+        }
+        else if newHeight > 80{
+            newHeight = 80
         }
         if  (heightChange > 0 && oldHeight < 60) || (heightChange < 0 ) {
             
@@ -715,6 +686,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             UIView.animateWithDuration(0.2){
 
                    self.inputAccessoryView.addConstraint(NSLayoutConstraint(item: self.inputAccessoryView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: newHeight))
+//                   self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: oldContentInset.bottom + newHeight , right: 0.0)
+//                   self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: oldContentInset.bottom + newHeight , right: 0.0)
+                
             }
             
 //            self.commentTextView.frame.size.height = newHeight - 4
@@ -755,54 +729,103 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
    
     
     
-    
-    
+    func keyboardWillHide(notification: NSNotification) {
+     
+//        let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
+//        
+//        // Inset `tableView` with keyboard
+//        let contentOffsetY = tableView.contentOffset.y
+//        UIView.animateWithDuration(0.05){
+//        
+//            self.tableView.contentInset.bottom = insetNewBottom
+//            self.tableView.scrollIndicatorInsets.bottom = insetNewBottom
+////            self.tableView.contentOffset.y = contentOffsetY
+//
+//        }
+//        tableViewScrollToBottomAnimated(true)
+//                      // Prevents jump after keyboard dismissal
+////        if self.tableView.tracking || self.tableView.decelerating {
+//        
+////        }
+        let userInfo = notification.userInfo as NSDictionary!
+        let rate = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+//        NSTimeInterval
+            UIView.animateWithDuration(rate.doubleValue, animations:{
+                () -> Void in
+                self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.toolBar.frame.height , right: 0.0)
+                self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: self.toolBar.frame.height , right: 0.0)
+                return
+        })
+        
+    }
     
     func keyboardWillShow(notification: NSNotification) {
+//        let userInfo = notification.userInfo as NSDictionary!
+//        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        let insetNewBottom = self.tableView.convertRect(frameNew, fromView: nil).height
+//        let insetOld = self.tableView.contentInset
+//        let insetChange = insetNewBottom - insetOld.bottom
+//        let overflow = self.tableView.contentSize.height - (self.tableView.frame.height-insetOld.top-insetOld.bottom)
+//        
+//        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+//        let animations: (() -> Void) = {
+//            if !(self.tableView.tracking || self.tableView.decelerating) {
+//                // Move content with keyboard
+//                if overflow > 0 {                   // scrollable before
+//                    self.tableView.contentOffset.y += insetChange
+//                    if self.tableView.contentOffset.y < -insetOld.top {
+//                        self.tableView.contentOffset.y = -insetOld.top
+//                    }
+//                } else if insetChange > -overflow { // scrollable after
+//                    self.tableView.contentOffset.y += insetChange + overflow
+//                }
+//            }
+//        }
+//        if duration > 0 {
+//            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+//            UIView.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
+//        } else {
+//            animations()
+//        }
         let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        let insetNewBottom = self.tableView.convertRect(frameNew, fromView: nil).height
-        let insetOld = self.tableView.contentInset
-        let insetChange = insetNewBottom - insetOld.bottom
-        let overflow = self.tableView.contentSize.height - (self.tableView.frame.height-insetOld.top-insetOld.bottom)
+        let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+        let rate = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        var contentInsets: UIEdgeInsets
+//        if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) {
+        if keyboardSize.height == 49 {
+                return
+        }
+            contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height + 30 , right: 0.0)
         
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-        let animations: (() -> Void) = {
-            if !(self.tableView.tracking || self.tableView.decelerating) {
-                // Move content with keyboard
-                if overflow > 0 {                   // scrollable before
-                    self.tableView.contentOffset.y += insetChange
-                    if self.tableView.contentOffset.y < -insetOld.top {
-                        self.tableView.contentOffset.y = -insetOld.top
-                    }
-                } else if insetChange > -overflow { // scrollable after
-                    self.tableView.contentOffset.y += insetChange + overflow
-                }
+//        }
+//        else {
+//            contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.width , right: 0.0)
+//        }
+        let lastSection = tableView.numberOfSections() - 1
+        let numberOfRows = tableView.numberOfRowsInSection(lastSection)
+         UIView.animateWithDuration(rate.doubleValue, animations:{
+        self.tableView.contentInset = contentInsets
+        self.tableView.scrollIndicatorInsets = contentInsets
+            if numberOfRows != 0 {
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: numberOfRows - 1, inSection: lastSection), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
             }
-        }
-        if duration > 0 {
-            let options = UIViewAnimationOptions(UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
-            UIView.animateWithDuration(duration, delay: 0, options: options, animations: animations, completion: nil)
-        } else {
-            animations()
-        }
-        
+        })
     }
     
-    func keyboardDidShow(notification: NSNotification) {
-        let userInfo = notification.userInfo as NSDictionary!
-        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
-        
-        // Inset `tableView` with keyboard
-        let contentOffsetY = tableView.contentOffset.y
-        tableView.contentInset.bottom = insetNewBottom
-        tableView.scrollIndicatorInsets.bottom = insetNewBottom
-        // Prevents jump after keyboard dismissal
-        if self.tableView.tracking || self.tableView.decelerating {
-            tableView.contentOffset.y = contentOffsetY
-        }
-    }
+//    func keyboardDidShow(notification: NSNotification) {
+////        let userInfo = notification.userInfo as NSDictionary!
+////        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+////        let insetNewBottom = tableView.convertRect(frameNew, fromView: nil).height
+////        
+////        // Inset `tableView` with keyboard
+////        let contentOffsetY = tableView.contentOffset.y
+////        tableView.contentInset.bottom = insetNewBottom
+////        tableView.scrollIndicatorInsets.bottom = insetNewBottom
+////        // Prevents jump after keyboard dismissal
+////        if self.tableView.tracking || self.tableView.decelerating {
+////            tableView.contentOffset.y = contentOffsetY
+////        }
+//    }
     
     
     func comment_refresh(){
@@ -1087,25 +1110,11 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
             }
 //            println("hello5")
         }
-
+//        tableViewScrollToBottomAnimated(true)
     }
     
     
-//   
-//    func historyMessage2AVIMMessage(historyMessage:AVHistoryMessage)->AVIMMessage{
-//        var result = AVIMMessage()
-//        result.conversationId = historyMessage.conversationId
-//        result.clientId = historyMessage.fromPeerId
-//        if historyMessage.payload != nil{
-//            result.content = historyMessage.payload
-//        }
-//        else {
-//            result.content = "34534534/r"
-//        }
-//        result.sendTimestamp = historyMessage.timestamp
-//        return result
-//    }
-    
+
     
     
     func comment_send(newComment: AVIMTextMessage ){
@@ -1128,7 +1137,7 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         tableView.beginUpdates()
         tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow: lastrow, inSection: lastsec)
-            ], withRowAnimation: .Automatic)
+            ], withRowAnimation: .Fade)
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(true)
         
@@ -1152,19 +1161,20 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
         commentTextView.text = nil
         commentTextView.contentSize.height = 0
 //        println("new \(commentTextView.contentSize.height)")
-        comment_send(singleComment)
+           comment_send(singleComment)
         textViewDidChange(commentTextView)
+     
     }
     
     
     
-    func menuControllerWillHide(notification: NSNotification){
-        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
-            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
-        }
-        (notification.object as! UIMenuController).menuItems = nil
-        
-    }
+//    func menuControllerWillHide(notification: NSNotification){
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow() {
+//            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+//        }
+//        (notification.object as! UIMenuController).menuItems = nil
+//        
+//    }
     
     
     
@@ -1205,8 +1215,9 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
     func tableViewScrollToBottomAnimated(animated: Bool) {
         let lastSection = tableView.numberOfSections() - 1
         let numberOfRows = tableView.numberOfRowsInSection(lastSection)
+        if numberOfRows != 0 {
         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
-        
+        }
     }
     
 

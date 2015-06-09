@@ -31,6 +31,7 @@
     UIView *view = touch.view;
     
     if([view isMemberOfClass:[QBPopupMenuOverlayView class]]) {
+        
         [self.popupMenu dismiss];
     }
 }

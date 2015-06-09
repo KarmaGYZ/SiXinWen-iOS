@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "20150609122533850_easyicon_net_48-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Icon-60@2x.png"
+      "filename" : "20150609122533850_easyicon_net_48.png"
     },
     {
       "idiom" : "universal",

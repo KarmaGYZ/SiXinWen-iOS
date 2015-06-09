@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jjc-vE-ycb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -926,13 +926,12 @@
         <!--Comment View Controller-->
         <scene sceneID="N35-Xb-6da">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="er0-va-D3c" customClass="CommentViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qUH-K8-oHS"/>
                         <viewControllerLayoutGuide type="bottom" id="DSB-hR-YOH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="redraw" id="51t-JB-FfO">
+                    <view key="view" contentMode="scaleToFill" id="51t-JB-FfO">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1002,25 +1001,24 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HWu-v4-ep2">
-                                <rect key="frame" x="-15" y="124" width="630" height="432"/>
+                                <rect key="frame" x="0.0" y="124" width="600" height="432"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="HWu-v4-ep2" firstAttribute="top" secondItem="90T-nE-TQc" secondAttribute="bottom" id="GKH-QT-c8X"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HWu-v4-ep2" secondAttribute="trailingMargin" constant="-16" id="MaU-0M-9zW"/>
+                            <constraint firstAttribute="trailing" secondItem="HWu-v4-ep2" secondAttribute="trailing" id="MaU-0M-9zW"/>
                             <constraint firstAttribute="trailing" secondItem="90T-nE-TQc" secondAttribute="trailing" id="ajd-hL-cYU"/>
+                            <constraint firstItem="DSB-hR-YOH" firstAttribute="top" secondItem="HWu-v4-ep2" secondAttribute="bottom" id="crS-6w-2Mb"/>
                             <constraint firstItem="90T-nE-TQc" firstAttribute="top" secondItem="qUH-K8-oHS" secondAttribute="bottom" id="dsG-pj-FSA"/>
                             <constraint firstItem="90T-nE-TQc" firstAttribute="leading" secondItem="51t-JB-FfO" secondAttribute="leading" id="pMo-3m-O9h"/>
-                            <constraint firstItem="DSB-hR-YOH" firstAttribute="top" secondItem="HWu-v4-ep2" secondAttribute="bottom" id="w2r-7g-QJa"/>
-                            <constraint firstItem="HWu-v4-ep2" firstAttribute="leadingMargin" secondItem="51t-JB-FfO" secondAttribute="leadingMargin" constant="-16" id="zs7-ZY-Vsj"/>
+                            <constraint firstItem="HWu-v4-ep2" firstAttribute="leading" secondItem="51t-JB-FfO" secondAttribute="leading" id="zs7-ZY-Vsj"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="as6-bp-IXj"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="arrow" destination="588-l0-Mfm" id="MVM-ne-8rU"/>
@@ -1031,6 +1029,7 @@
                         <outlet property="titleview" destination="90T-nE-TQc" id="CVY-pq-sS1"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-RP-fc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4189" y="3058"/>
         </scene>
