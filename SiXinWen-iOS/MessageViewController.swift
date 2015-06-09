@@ -29,13 +29,13 @@ class MessageViewController: UITableViewController {
 //    }
     
     func messagelist_update(){
-        for(var i=0;i<1;i++){
-            var message = MessageItem()
-            message.userName = "GYZ"
-            message.messageText = "柴静真是太假了"
-           // message.userPhoto = UIImage(named: "usrgyz")
-            messageList.append(message)
-        }
+//        for(var i=0;i<1;i++){
+//            var message = MessageItem()
+//            message.userName = "GYZ"
+//            message.messageText = "柴静真是太假了"
+//           // message.userPhoto = UIImage(named: "usrgyz")
+//            messageList.append(message)
+//        }
     }
     
 
