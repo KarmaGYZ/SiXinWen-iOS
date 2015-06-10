@@ -382,10 +382,10 @@ class CommentViewController: UIViewController, AVIMClientDelegate, UIWebViewDele
 //        chosePlatformView = UIAlertView(title: "分享", message: "选择分享平台", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "分享到朋友圈", "分享给微信好友")
         
         var replyButton = QBPopupMenuItem(image: UIImage(named: "menuReply"), target: self, action: "replyTo")
-        var threadButton = QBPopupMenuItem(image: UIImage(named: "menuThread"), target: self, action: "showThread")
+       // var threadButton = QBPopupMenuItem(image: UIImage(named: "menuThread"), target: self, action: "showThread")
         var likeButton = QBPopupMenuItem(image: UIImage(named: "menuLike"), target: self, action: "likeMessages")
         var dislikeButton = QBPopupMenuItem(image: UIImage(named: "menuDislike"), target: self, action: "dislikeMessages")
-        menu.items = NSArray(objects: replyButton, threadButton, likeButton, dislikeButton) as [AnyObject]
+        menu.items = NSArray(objects: replyButton, likeButton, dislikeButton) as [AnyObject]
 
         menu.delegate = self
         
