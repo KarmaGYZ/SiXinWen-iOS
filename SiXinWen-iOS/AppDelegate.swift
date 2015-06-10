@@ -16,6 +16,16 @@ public let me = User()
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        
+        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
+        (self.window?.rootViewController as! UITabBarController).selectedIndex = 0
+        var commentVC = CommentViewController()
+        commentVC.currentNewsItem = ((self.window?.rootViewController as! UITabBarController).navigationController?.topViewController as! NewsViewController).newsList[5]
+        (self.window?.rootViewController as! UITabBarController).navigationController?.pushViewController(commentVC, animated: true)
+        return true
+    }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         application.applicationIconBadgeNumber = 0
