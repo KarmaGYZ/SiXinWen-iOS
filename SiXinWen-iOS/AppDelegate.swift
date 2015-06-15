@@ -21,9 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
         (self.window?.rootViewController as! UITabBarController).selectedIndex = 0
-        var commentVC = CommentViewController()
-        commentVC.currentNewsItem = ((self.window?.rootViewController as! UITabBarController).navigationController?.topViewController as! NewsViewController).newsList[5]
-        (self.window?.rootViewController as! UITabBarController).navigationController?.pushViewController(commentVC, animated: true)
+        //println("\((self.window?.rootViewController as! UITabBarController).selectedViewController)")
+        var navVC = (self.window?.rootViewController as! UITabBarController).selectedViewController as! UINavigationController
+        var newsVC = navVC.topViewController as! NewsViewController
+        newsVC.news_list_update_syn()
+        var commentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentVC") as! CommentViewController
+        commentVC.currentNewsItem = newsVC.newsList[5]
+        navVC.pushViewController(commentVC, animated: true)
+        return true
+    }
+    
+    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         return true
     }
 

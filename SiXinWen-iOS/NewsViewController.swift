@@ -41,7 +41,50 @@ class NewsViewController: UITableViewController , CLLocationManagerDelegate ,AVI
         
     }
     
-    
+    func news_list_update_syn(){
+        var query = AVQuery(className: "News")
+        query.whereKey("Now", equalTo: true)
+        query.cachePolicy = AVCachePolicy.NetworkElseCache
+        query.maxCacheAge = 356*24*3600
+        var result = query.findObjects()
+        
+        if(result == nil){
+            //println("\(error)")
+            //                self.showAlert("无法连接至互联网",message: "请开启网络")
+            KVNProgress.showErrorWithStatus("请检查网络")
+        }
+        else{
+            // var push = AVPush()
+            //push.
+            self.newsList.removeAll(keepCapacity: false)
+            //   println("result:\(result)")
+            //printf()
+            for item in result {
+                var news = NewsItem()
+                news.text = item.objectForKey("Content") as! String
+                news.htmlContent = item.objectForKey("htmlContent") as! String
+                news.title = item.objectForKey("Title") as! String
+                news.commentNum = item.objectForKey("CommentNum") as! Int
+                news.support = (item.objectForKey("SupportNum") as! Float)/((item.objectForKey("RefuteNum") as! Float) + (item.objectForKey("SupportNum") as! Float))
+                //  println("\(news.support)")
+                news.leftAttitude = item.objectForKey("AffirmativeView") as! String
+                news.rightAttitude = item.objectForKey("OpposeView") as! String
+                //news.image = UIImageJPEGRepresentation(<#image: UIImage!#>, <#compressionQuality: CGFloat#>)
+                var newsimgFile = item.objectForKey("Picture") as! AVFile
+                newsimgFile.getDataInBackgroundWithBlock(){
+                    (imgData:NSData!, error:NSError!) -> Void in
+                    if(error == nil){
+                        news.image = UIImage(data: imgData)
+                        self.tableView.reloadData()
+                    }
+                }
+                self.newsList.append(news)
+            }
+            self.tableView.reloadData()
+        }
+        
+
+    }
 
     func news_list_update(){
         

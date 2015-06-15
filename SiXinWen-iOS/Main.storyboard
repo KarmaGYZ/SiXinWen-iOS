@@ -926,7 +926,7 @@
         <!--Comment View Controller-->
         <scene sceneID="N35-Xb-6da">
             <objects>
-                <viewController id="er0-va-D3c" customClass="CommentViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentVC" id="er0-va-D3c" customClass="CommentViewController" customModule="SiXinWen_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qUH-K8-oHS"/>
                         <viewControllerLayoutGuide type="bottom" id="DSB-hR-YOH"/>
