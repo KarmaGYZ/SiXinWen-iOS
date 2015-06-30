@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MessageItem {
+class MessageItem { // message struct
     var messageText = ""
     var userPhoto = UIImage(named: "匿名头像")
     var userName = ""

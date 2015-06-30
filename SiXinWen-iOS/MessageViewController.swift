@@ -18,42 +18,15 @@ class MessageViewController: UITableViewController {
     
     @IBOutlet weak var topbar: UIView!
     
-   // var messageList:[MessageItem]
-    
-//    required init(coder aDecoder:NSCoder){
-//       // messageList = [MessageItem]()
-//        super.init(coder: aDecoder)
-//       // messagelist_update()
-//      //  self.tableView.tableHeaderView = topbar
-//        
-//    }
-    
     func messagelist_update(){
-//        for(var i=0;i<1;i++){
-//            var message = MessageItem()
-//            message.userName = "GYZ"
-//            message.messageText = "柴静真是太假了"
-//           // message.userPhoto = UIImage(named: "usrgyz")
-//            messageList.append(message)
-//        }
+        // to be continue...
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        //self.tableView.tableHeaderView = topbar
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
-        
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "red-blue"), forBarMetrics: .Default)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,16 +59,12 @@ class MessageViewController: UITableViewController {
 
     
     override func viewWillDisappear(animated: Bool) {
-        //tableView.reloadData()
         super.viewWillDisappear(animated)
-       // self.tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
-       // tableView.reloadData()
         super.viewWillAppear(animated)
         
-      //  self.tabBarController?.tabBar.hidden = false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -105,12 +74,14 @@ class MessageViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         if messageList.isEmpty {
+            // if message list is empty, just return a no new message cell
             let cell = tableView.dequeueReusableCellWithIdentifier("NoNewMessage", forIndexPath: indexPath) as! UITableViewCell
-            //tableView.rowHeight = tableView.frame.size.height
             return cell
         }
         else {
+            // if it has, configue the message cell for message item
             let cell = tableView.dequeueReusableCellWithIdentifier("MessageItem", forIndexPath: indexPath)as! MessageCell
             cell.messageText.text = messageList[messageList.count - indexPath.row - 1].messageText
             cell.userName.text = messageList[messageList.count - indexPath.row - 1].userName

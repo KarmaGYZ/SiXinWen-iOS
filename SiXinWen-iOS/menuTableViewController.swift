@@ -32,20 +32,14 @@ class menuTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "setNickName" {
             let controller = segue.destinationViewController as! ModifyNameController
-            //let controller = navigationController.topViewController as! ModifyNameController
             controller.nickName = userNickName.text!
-        } 
-//            else if segue.identifier == "login" {
-//            //sender?.setSelected(false, animated: false)
-////            (sender as! UIButton)
-//            
-//        }
+        }
+        // prepare for the segue to the set Nick name controller, set the textview of it
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
-        //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Slide)
+        // configue the imageview layer and image
         usrPhoto.imageView!.layer.cornerRadius = photoSize / 2
         usrPhoto.imageView!.layer.masksToBounds = true
         usrPhoto.imageView!.layer.borderColor = UIColor.whiteColor().CGColor
@@ -53,26 +47,10 @@ class menuTableViewController: UITableViewController {
         usrPhoto.imageView!.image = defaultPhoto
         usrPhoto.setImage(defaultPhoto, forState: .Normal)
         usrPhoto.setImage(defaultPhoto, forState: .Selected)
-        //        var avartarFile = AVUser.currentUser().valueForKey("Avartar") as? AVFile
-//        if avartarFile != nil{
-//            println("asdfasdfasdf")
-//            avartarFile?.getDataInBackgroundWithBlock(){
-//                (imgData:NSData!, error:NSError!) -> Void in
-//                if(error == nil){
-//                    self.usrPhoto.imageView!.image = UIImage(data: imgData)
-//                    println("asdfasdfasdf")
-//                    //self.tableView.reloadData()
-//                }
-//            }
-//        }
-//        else {
-//           // println("asdfasdfasdf")
-//            usrPhoto.imageView!.image = defaultPhoto
-//        }
-       
-
     }
+    
     @IBAction func clickAvartar() {
+        // perform segue depend on whether user has login
         if loginHint.text == "点击登陆" {
             performSegueWithIdentifier("login", sender: nil)
         }
@@ -87,55 +65,7 @@ class menuTableViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         var query = AVUser.query()
         if AVUser.currentUser() != nil {
-//            query.whereKey("username", equalTo: AVUser.currentUser().username)
-//            query.findObjectsInBackgroundWithBlock(){
-//                (result:[AnyObject]!, error:NSError!) -> Void in
-//                if result != nil {
-//                    //println("1")
-//                    for currentUser in result {
-//                        var nickName = currentUser.objectForKey("NickName") as? String
-//                        if nickName != nil && nickName != "" {
-//                            self.userNickName.text = nickName
-//                            self.loginHint.text = ""
-//                            self.nickNameCell.userInteractionEnabled = true
-//                            self.passwordCell.userInteractionEnabled = true
-//                            self.myNickName.enabled = true
-//                            self.modifyPassword.enabled = true
-//                            self.userNickName.enabled = true
-//                            
-//                        }
-//                        else {
-//                            self.userNickName.text = "未登录"
-//                             self.loginHint.text = "点击登陆"
-//                            self.nickNameCell.userInteractionEnabled = false
-//                            self.passwordCell.userInteractionEnabled = false
-//                            self.myNickName.enabled = false
-//                            self.modifyPassword.enabled = false
-//                            self.userNickName.enabled = false
-//
-//                        }
-//                        var avartarFile = currentUser.objectForKey("Avartar") as? AVFile
-//                        if avartarFile != nil{
-//                            //   println("asdfasdfasdf")
-//                            avartarFile?.getDataInBackgroundWithBlock(){
-//                                (imgData:NSData!, error:NSError!) -> Void in
-//                                if(error == nil){
-//                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Normal)
-//                                    self.usrPhoto.setImage(UIImage(data: imgData), forState: .Selected)
-//                                    //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-//                                    // println("asdfasdfasdf")
-//                                    //self.tableView.reloadData()
-//                                }
-//                            }
-//                        }
-//                        else {
-//                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Normal)
-//                            self.usrPhoto.setImage(self.defaultPhoto, forState: .Selected)
-//                        }
-//                        
-//                    }
-//                }
-//            }
+            // configue for login user
             if me.nickname != nil && me.nickname != "" {
                 self.userNickName.text = me.nickname
                 self.loginHint.text = ""
@@ -145,6 +75,7 @@ class menuTableViewController: UITableViewController {
                 self.modifyPassword.enabled = true
                 self.userNickName.enabled = true
             }
+                // configue for anonimous user
             else {
                 self.userNickName.text = "未登录"
                 self.loginHint.text = "点击登陆"

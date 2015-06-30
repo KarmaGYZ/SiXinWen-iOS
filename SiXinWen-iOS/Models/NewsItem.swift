@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class NewsItem {
+class NewsItem { // news struct
     var text = ""
     var title = ""
     var support:Float = 0.3

@@ -17,34 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        
-        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
-        (self.window?.rootViewController as! UITabBarController).selectedIndex = 0
-        //println("\((self.window?.rootViewController as! UITabBarController).selectedViewController)")
-        var navVC = (self.window?.rootViewController as! UITabBarController).selectedViewController as! UINavigationController
-        var newsVC = navVC.topViewController as! NewsViewController
-        newsVC.news_list_update_syn()
-        var commentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentVC") as! CommentViewController
-        commentVC.currentNewsItem = newsVC.newsList[5]
-        navVC.pushViewController(commentVC, animated: true)
-        return true
-    }
-    
-    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        return true
-    }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        application.applicationIconBadgeNumber = 0
-        println("\(userInfo)")
+        application.applicationIconBadgeNumber = 0 // clear the applicationIconBadgeNumber to 0
+        //println("\(userInfo)")
+        // a new message item
         var message = MessageItem()
         if userInfo["aps"] != nil {
             if let msg = (userInfo["aps"]! as! NSDictionary).objectForKey("alert") as? String {
-                message.messageText = msg
+                message.messageText = msg // get the information from notification
             }
         }
-        if userInfo["user"] != nil {
+        if userInfo["user"] != nil { // if have user set the user name and the avartar
             message.userName =  userInfo["user"]! as! String
             var query = AVUser.query()
             query.whereKey("username", equalTo: message.userName)
@@ -52,37 +36,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (result:[AnyObject]!, error:NSError!) -> Void in
                 if error == nil && result.count > 0{
                     var user = result[0] as! AVUser
-                    //user.objectForKey("avartar")
                     var avartarFile = user.objectForKey("Avartar") as? AVFile
                     if avartarFile != nil{
-                        //  println("设置对话头像")
-                        //   println("asdfasdfasdf")
                         avartarFile?.getDataInBackgroundWithBlock(){
                             (imgData:NSData!, error:NSError!) -> Void in
                             if(error == nil){
                                message.userPhoto = UIImage(data: imgData)
-                                
                             }
                             else {
-                                //KVNProgress.showErrorWithStatus("载入头像失败")
                                 message.userPhoto = UIImage(named: "usrwalker")
-                                //                            me.password = AVUser.currentUser().password
-                                //                            me.gender = AVUser.currentUser().objectForKey("gender") as? String
-                                //                            me.email = AVUser.currentUser().objectForKey("email") as? String
-                                //                            self.navigationController?.popViewControllerAnimated(true)
                             }
                         }
                     }
-                    
                 }
-                
             }
-
-            
         }
-       // message.messageText = (userInfo["aps"]! as! NSDictionary).objectForKey("alert")! as! String
-       // message.userName = userInfo["user"]! as! String
-      //  message.userPhoto = UIImage(named: "usrwalker")
         messageList.append(message)
         
     }
@@ -90,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch
+        
+        // set the server code
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
@@ -98,19 +68,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //  AVLogger.addLoggerDomain(AVLoggerDomainCURL)
       //  AVLogger.setLoggerLevelMask(AVLoggerLevelAll.value)
        
-        application.applicationIconBadgeNumber = 0
-        println("输出\(launchOptions)输出")
+        application.applicationIconBadgeNumber = 0 // clear  the applicationIconBadgeNumber to 0
         
+        
+        //set the weixin function code
         ShareSDK.registerApp("7da56fc76f5e")
         
         ShareSDK.connectWeChatWithAppId("wxc9ddc67127da6ee5", wechatCls: WXApi.self)
         
         
 //        WXApi.registerApp("wxc9ddc67127da6ee5")
-        if let launchOpt = launchOptions {
+        if let launchOpt = launchOptions { // if launch with notification
             var notificationPayLoad:NSDictionary = launchOpt[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary
-            //KVNProgress.showErrorWithStatus("输出\(notificationPayLoad)输出")
-            println("输出\(notificationPayLoad)输出")
+            // merge a message and set by the notification
             var message = MessageItem()
             var textDir:NSDictionary = notificationPayLoad.objectForKey("aps")! as! NSDictionary
             var text:String = textDir.objectForKey("alert")! as! String
@@ -118,60 +88,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             message.userName = notificationPayLoad.objectForKey("user")! as! String
             message.userPhoto = UIImage(named: "usrwalker")
             messageList.append(message)
+            // set the initial view to message view
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
             (self.window?.rootViewController as! UITabBarController).selectedIndex = 1
         }
         
         var currentUser = AVUser.currentUser()
-        if (currentUser == nil) {
-//           // var installationId = AVInstallation.currentInstallation().installationId
-//           // var parameter = ["InsID":"installationid"]
-//           // AVCloud.callFunction("InsSignUp", withParameters: parameter)
-//            AVUser.logInWithUsernameInBackground("DerekLH", password: "password"){
-//                (user :AVUser!, error :NSError!) -> Void in
-//                if user != nil {
-//                    println("用户登陆成功")
-//                    println(AVUser.currentUser());
-//                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
-//                        UIUserNotificationType.Sound, categories: nil))
-//                    application.registerForRemoteNotifications()
-//                }
-//                else{
-//                    println("用户登录失败")
-//                }
-//            }
-////                AVAnonymousUtils.logInWithBlock(){
-////                (user :AVUser!, error :NSError!) -> Void in
-////                if user != nil {
-////                    println("用户登陆成功")
-////                    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
-////                        UIUserNotificationType.Sound, categories: nil))
-////                    application.registerForRemoteNotifications()
-////                }
-////                else{
-////                    println("用户登录失败")
-////                }
-////
-////            }
-            
-            
+        if (currentUser == nil) { // if it is first time open the app
             application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge | UIUserNotificationType.Alert |
                 UIUserNotificationType.Sound, categories: nil))
-            application.registerForRemoteNotifications()
+            application.registerForRemoteNotifications() // register notification and register an anonymous account
         }
-        else {
+        else { // if it not the first time to open the app
+            // set the user information
             me.username = AVUser.currentUser().username
             me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
             var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
             if avartarFile != nil{
-                //   println("asdfasdfasdf")
                 avartarFile?.getDataInBackgroundWithBlock(){
                     (imgData:NSData!, error:NSError!) -> Void in
                     if(error == nil){
                         me.avartar = UIImage(data: imgData)
-                        //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                        // println("asdfasdfasdf")
-                        //self.tableView.reloadData()
                     }
                 }
             }
@@ -192,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // register the remote notification and register an anonymous account
         var installation = AVInstallation.currentInstallation();
         installation.setDeviceTokenFromData(deviceToken)
         var installationId:String = UIDevice.currentDevice().identifierForVendor.UUIDString
@@ -202,8 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (user :AVUser!, error :NSError!) -> Void in
             if user != nil {
                 println("用户登陆成功")
-                //installation.addUniqueObject("Giants", forKey: "channels")
-                //installation.setObject(AVObject(withoutDataWithClassName: "_User", objectId: AVUser.currentUser().objectId), forKey: "user")
                 installation.setObject(AVUser.currentUser(), forKey: "user")
                 installation.saveInBackgroundWithBlock(){
                     (success:Bool, error:NSError!) -> Void in
@@ -216,42 +152,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
 
                 me.username = AVUser.currentUser().username
-            //    me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
-//                var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
-//                if avartarFile != nil{
-//                    //   println("asdfasdfasdf")
-//                    avartarFile?.getDataInBackgroundWithBlock(){
-//                        (imgData:NSData!, error:NSError!) -> Void in
-//                        if(error == nil){
-//                            me.avartar = UIImage(data: imgData)
-//                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-//                            // println("asdfasdfasdf")
-//                            //self.tableView.reloadData()
-//                        }
-//                    }
-//                }
-                me.password = AVUser.currentUser().password
-              //  me.gender = AVUser.currentUser().objectForKey("gender") as? String
+     
             }
             else{
                 println("用户登录失败")
             }
         }
-
-                      // println("\(AVInstallation.currentInstallation().installationId)")
-        //        var installationId = AVInstallation.currentInstallation().installationId
-//        var parameter = ["InsID":installationId]
-//        AVCloud.callFunction("InsSignUp", withParameters: parameter)
-//        AVUser.logInWithUsernameInBackground(installationId, password: "password"){
-//            (user :AVUser!, error :NSError!) -> Void in
-//            if user != nil {
-//                println("用户登陆成功")
-//            }
-//            else{
-//                println("用户登录失败")
-//            }
-//        }
-       
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
