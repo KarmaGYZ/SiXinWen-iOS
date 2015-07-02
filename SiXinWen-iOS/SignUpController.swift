@@ -27,26 +27,16 @@ class SignUpController: UIViewController {
     @IBOutlet var gender: UISegmentedControl!
     
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+      
     
     @IBAction func SignUp(sender: UIButton) {
-        
+        // ensure those fields not empty
         if userNameField.text == "" || nickNameField.text == "" || setPasswordField.text == "" || ensurePasswordField.text == "" {
             KVNProgress.showErrorWithStatus("无效的用户名/昵称/密码")
             return
         }
         
+        // double check the password
         if setPasswordField.text != ensurePasswordField.text {
             KVNProgress.showErrorWithStatus("密码不一致")
             return
@@ -56,13 +46,7 @@ class SignUpController: UIViewController {
         user.username = userNameField.text
         user.password = setPasswordField.text
         user.setObject(nickNameField.text, forKey: "NickName")
-//        if gender.selectedSegmentIndex == 0{
-//            user.setObject("男", forKey: "gender")
-//        }
-//        else {
-//            user.setObject("女", forKey: "gender")
-//        }
-       // user.setObject(gender, forKey: <#String!#>)
+        
         KVNProgress.showWithStatus(" ")
         user.signUpInBackgroundWithBlock(){
             (success:Bool, error:NSError!) -> Void in
@@ -73,21 +57,21 @@ class SignUpController: UIViewController {
                     if user != nil {
                         KVNProgress.dismiss()
                         KVNProgress.showSuccessWithStatus("注册成功")
+                        // get the user name and nick name
                         me.username = AVUser.currentUser().username
                         me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
                         var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
                         if avartarFile != nil{
-                            //   println("asdfasdfasdf")
+                            // find the avatar
                             avartarFile?.getDataInBackgroundWithBlock(){
                                 (imgData:NSData!, error:NSError!) -> Void in
                                 if(error == nil){
+                                     // save the avatar
                                     me.avartar = UIImage(data: imgData)
-                                    //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                                    // println("asdfasdfasdf")
-                                    //self.tableView.reloadData()
                                 }
                             }
                         }
+                        // save the password\gender\email
                         me.password = AVUser.currentUser().password
                         me.gender = AVUser.currentUser().objectForKey("gender") as? String
                         me.email = AVUser.currentUser().objectForKey("email") as? String
@@ -98,7 +82,6 @@ class SignUpController: UIViewController {
                         KVNProgress.showErrorWithStatus("注册失败")
                     }
                 }
-                //self.navigationController?.popViewControllerAnimated(true)
             }
             else {
                 KVNProgress.dismiss()
@@ -110,15 +93,10 @@ class SignUpController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
     }
-    */
+
 
 }

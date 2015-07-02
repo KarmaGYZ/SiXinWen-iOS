@@ -20,45 +20,48 @@ class LoginController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!
     
-    
+//    user log in
     @IBAction func login() {
+        // ensure the name and password not empty
         if usernameField.text == "" || passwordField.text == "" {
             KVNProgress.showErrorWithStatus("用户名/密码不能为空")
             return
         }
         KVNProgress.showWithStatus(" ")
+        
+        // log in
         AVUser.logInWithUsernameInBackground(usernameField.text, password: passwordField.text){
             (user :AVUser!, error :NSError!) -> Void in
             if error == nil {
                 KVNProgress.dismiss()
                 KVNProgress.showSuccessWithStatus("登陆成功")
+                // set the user name and nick name
                 me.username = AVUser.currentUser().username
                 me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
+                // set the avatar
                 var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
                 if avartarFile != nil{
-                    //   println("asdfasdfasdf")
+                    // find the avatar
                     avartarFile?.getDataInBackgroundWithBlock(){
                         (imgData:NSData!, error:NSError!) -> Void in
                         if(error == nil){
+                            // save the avatar
                             me.avartar = UIImage(data: imgData)
+                            // save the password\gender\email
                             me.password = AVUser.currentUser().password
                             me.gender = AVUser.currentUser().objectForKey("gender") as? String
                             me.email = AVUser.currentUser().objectForKey("email") as? String
                             self.navigationController?.popViewControllerAnimated(true)
-                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                            // println("asdfasdfasdf")
-                            //self.tableView.reloadData()
                         }
                         else {
+                            // fail to get the avatar
                             KVNProgress.showErrorWithStatus("载入头像失败")
-//                            me.password = AVUser.currentUser().password
-//                            me.gender = AVUser.currentUser().objectForKey("gender") as? String
-//                            me.email = AVUser.currentUser().objectForKey("email") as? String
-//                            self.navigationController?.popViewControllerAnimated(true)
                         }
                     }
                 }
                 else {
+                    // cannot find the avatar
+                    // save the password\gender\email
                     me.password = AVUser.currentUser().password
                     me.gender = AVUser.currentUser().objectForKey("gender") as? String
                     me.email = AVUser.currentUser().objectForKey("email") as? String
@@ -66,34 +69,16 @@ class LoginController: UIViewController {
                 }
             }
             else {
+                // fail to log in 
                 KVNProgress.dismiss()
                 KVNProgress.showErrorWithStatus("用户名或密码错误")
             }
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
-        //        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

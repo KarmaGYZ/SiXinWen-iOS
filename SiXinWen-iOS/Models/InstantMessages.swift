@@ -17,8 +17,5 @@ class InstantMessages{
     var loadedMessages = [AVIMTextMessage]() //message array
     var conversation:AVIMConversation?
     var unreadCount: Int = 0 // subtacted from total when read
-    var hasUnloadedMessage = false
-    var draft = ""
-    
     
 }

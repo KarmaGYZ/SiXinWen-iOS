@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         application.applicationIconBadgeNumber = 0 // clear the applicationIconBadgeNumber to 0
-        //println("\(userInfo)")
+        
         // a new message item
         var message = MessageItem()
         if userInfo["aps"] != nil {
@@ -62,11 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set the server code
         AVOSCloud.setApplicationId("epg58oo2271uuupna7b9awz9nzpcxes870uj0j0rzeqkm8mh", clientKey: "xjgx65z5yavhg8nj4r48004prjelkq0fzz9xgricyb2nh0qq")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        
-     //   AVOSCloud.setVerbosePolicy(kAVVerboseShow)
-      //  AVLogger.addLoggerDomain(AVLoggerDomainIM)
-      //  AVLogger.addLoggerDomain(AVLoggerDomainCURL)
-      //  AVLogger.setLoggerLevelMask(AVLoggerLevelAll.value)
+
        
         application.applicationIconBadgeNumber = 0 // clear  the applicationIconBadgeNumber to 0
         

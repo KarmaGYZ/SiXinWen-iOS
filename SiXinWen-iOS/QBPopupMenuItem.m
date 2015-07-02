@@ -136,8 +136,8 @@
             
             if(self.title && self.image) {
                 UIFont *font = (self.font) ? self.font : [QBPopupMenuItem fontForTitleWithImage];
-                
-                CGSize titleSize = [self.title sizeWithFont:font];
+                NSDictionary *attributes = @{NSFontAttributeName:font};
+                CGSize titleSize = [self.title sizeWithAttributes:attributes];
                 CGSize imageSize = self.image.size;
                 
                 if(titleSize.width > imageSize.width) {
@@ -147,8 +147,8 @@
                 }
             } else if(self.title) {
                 UIFont *font = (self.font) ? self.font : [QBPopupMenuItem fontForTitle];
-                
-                CGSize titleSize = [self.title sizeWithFont:font];
+                NSDictionary *attributes = @{NSFontAttributeName:font};
+                CGSize titleSize = [self.title sizeWithAttributes:attributes];
                 width = titleSize.width;
             } else if(self.image) {
                 width = self.image.size.width;

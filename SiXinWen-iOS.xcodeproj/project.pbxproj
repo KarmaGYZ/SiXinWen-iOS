@@ -47,6 +47,7 @@
 		DE44FD331B0596B700C2BD12 /* detailInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44FD321B0596B700C2BD12 /* detailInfoController.swift */; };
 		DE44FD371B05B11900C2BD12 /* ModifyEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44FD361B05B11900C2BD12 /* ModifyEmailController.swift */; };
 		DE44FD391B05B13A00C2BD12 /* ModifyGenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44FD381B05B13A00C2BD12 /* ModifyGenderController.swift */; };
+		DE4996AC1B44614100892E2E /* CommonUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4996AB1B44614100892E2E /* CommonUse.swift */; };
 		DE57112B1ADD65E40090CDE3 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */; };
 		DE57112D1ADD674A0090CDE3 /* instantComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE57112C1ADD674A0090CDE3 /* instantComment.swift */; };
 		DE59B2561ADEE89300ADFAC7 /* pulltorefresharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */; };
@@ -138,6 +139,7 @@
 		DE44FD321B0596B700C2BD12 /* detailInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailInfoController.swift; sourceTree = "<group>"; };
 		DE44FD361B05B11900C2BD12 /* ModifyEmailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyEmailController.swift; sourceTree = "<group>"; };
 		DE44FD381B05B13A00C2BD12 /* ModifyGenderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyGenderController.swift; sourceTree = "<group>"; };
+		DE4996AB1B44614100892E2E /* CommonUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUse.swift; sourceTree = "<group>"; };
 		DE57112A1ADD65E40090CDE3 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		DE57112C1ADD674A0090CDE3 /* instantComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = instantComment.swift; sourceTree = "<group>"; };
 		DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulltorefresharrow.png; sourceTree = "<group>"; };
@@ -307,12 +309,13 @@
 		31E891F71ACA89EF0029C2C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				84A745011B241C2200499450 /* menuView */,
-				8469EFFB1B01C183004330E5 /* tableViewRefresh */,
+				84A745011B241C2200499450 /* PopUpMenuView */,
+				8469EFFB1B01C183004330E5 /* TableViewWithRefresh */,
 				DEA95E7C1B00F4BD001D359C /* HUDView */,
 				31E891F51ACA856B0029C2C8 /* NewsCell.swift */,
 				31E891FC1ACBEF410029C2C8 /* MessageCell.swift */,
 				31F4E63C1AC445270046FCD8 /* BubbleCell.swift */,
+				DE4996AB1B44614100892E2E /* CommonUse.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -350,7 +353,7 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		8469EFFB1B01C183004330E5 /* tableViewRefresh */ = {
+		8469EFFB1B01C183004330E5 /* TableViewWithRefresh */ = {
 			isa = PBXGroup;
 			children = (
 				DE59B2521ADEE89300ADFAC7 /* pulltorefresharrow.png */,
@@ -358,10 +361,10 @@
 				DE59B2541ADEE89300ADFAC7 /* PullToRefreshView.swift */,
 				DE59B2551ADEE89300ADFAC7 /* UIScrollViewExtension.swift */,
 			);
-			name = tableViewRefresh;
+			name = TableViewWithRefresh;
 			sourceTree = "<group>";
 		};
-		84A745011B241C2200499450 /* menuView */ = {
+		84A745011B241C2200499450 /* PopUpMenuView */ = {
 			isa = PBXGroup;
 			children = (
 				84A745021B241C4900499450 /* QBPopupMenu.h */,
@@ -373,7 +376,7 @@
 				84A745181B24225100499450 /* QBPopupMenu-Info.plist */,
 				84A745171B24221E00499450 /* QBPopupMenu-Prefix.pch */,
 			);
-			name = menuView;
+			name = PopUpMenuView;
 			sourceTree = "<group>";
 		};
 		DE802FCE1B1DC01D00CFFBE6 /* ShareSDK */ = {
@@ -580,6 +583,7 @@
 				DE59B2571ADEE89300ADFAC7 /* PullToRefreshConst.swift in Sources */,
 				31E891F61ACA856B0029C2C8 /* NewsCell.swift in Sources */,
 				31C6F8C81ABA702F00DFF5EE /* AppDelegate.swift in Sources */,
+				DE4996AC1B44614100892E2E /* CommonUse.swift in Sources */,
 				DE7C1C3E1B01160600E30F8F /* UIImage+KVNEmpty.m in Sources */,
 				31F4E63D1AC445270046FCD8 /* BubbleCell.swift in Sources */,
 				31E891F91ACB8E450029C2C8 /* MessageViewController.swift in Sources */,

@@ -25,7 +25,4 @@ class singleComment{
 class PopularMessages{
     var loadedMessages = [singleComment]()
     var unreadCount: Int = 0 // subtacted from total when read
-    var hasUnloadedMessage = false
-    var draft = ""
-    
 }

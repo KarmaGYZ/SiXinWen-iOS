@@ -30,40 +30,37 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        choseSourceView = UIAlertView(title:"修改头像" , message:"选择头像来源", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "拍照", "从相册选择")
+        // init the alert view, in which user select the source of the avatar
+        choseSourceView = UIAlertView(title:"修改头像" , message:"选择头像来源", delegate: self,
+            cancelButtonTitle: "取消", otherButtonTitles: "拍照", "从相册选择")
         
+        // init the image pick
         picker.delegate = self
         picker.allowsEditing = true
         Avatar.image = me.avartar
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
 
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         
         if buttonIndex == cameraIndex {
+            // select from camera
             picker.sourceType = .Camera
+            // present pick view
             self.presentViewController(picker, animated: true, completion: nil)
         }
         else if buttonIndex == libraryIndex{
+            // select from photo library
             picker.sourceType = .PhotoLibrary
+            // present pick view
             self.presentViewController(picker, animated: true, completion: nil)
         }
         
     }
     
+// save the avatar in the server
     func saveImage(img: UIImage){
         
         var imgData = UIImagePNGRepresentation(img)
@@ -76,7 +73,6 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
                 me.avartar = img
                 KVNProgress.dismiss()
                 KVNProgress.showSuccessWithStatus("上传成功")
-                //self.navigationController?.popViewControllerAnimated(true)
             }
             else {
                 KVNProgress.dismiss()
@@ -108,40 +104,29 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
     }
     
     
-    
-    
-    
     @IBAction func changeAvatar(sender: AnyObject) {
               choseSourceView.show()
     }
     
     
-    
+// log out
     @IBAction func Logout(sender: AnyObject) {
-      //  AVUser.logOut()
+        
         var installationId:String = UIDevice.currentDevice().identifierForVendor.UUIDString
         
         AVUser.logInWithUsernameInBackground(installationId, password: "password"){
             (user :AVUser!, error :NSError!) -> Void in
             if user != nil {
-                println("用户登陆成功")
-                //installation.addUniqueObject("Giants", forKey: "channels")
-                //installation.setObject(AVObject(withoutDataWithClassName: "_User", objectId: AVUser.currentUser().objectId), forKey: "user")
-        
-                
                 me.username = AVUser.currentUser().username
                 me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
                 var avartarFile = AVUser.currentUser().objectForKey("Avartar") as? AVFile
                 if avartarFile != nil{
-                    //   println("asdfasdfasdf")
+                    
                     avartarFile?.getDataInBackgroundWithBlock(){
                         (imgData:NSData!, error:NSError!) -> Void in
                         if(error == nil){
                             me.avartar = UIImage(data: imgData)
-                            //                                self.usrPhoto.imageView!.image = UIImage(data: imgData)
-                            // println("asdfasdfasdf")
-                            //self.tableView.reloadData()
-                        }
+                                                    }
                     }
                 }
                 else {
@@ -152,7 +137,7 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
                 self.navigationController?.popViewControllerAnimated(true)
             }
             else{
-                println("用户登录失败")
+                // fail to log out
                 KVNProgress.showErrorWithStatus("网络错误")
             }
         }
@@ -163,59 +148,5 @@ class detailInfoController: UITableViewController, UIAlertViewDelegate, UIImageP
     }
     
     
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }
