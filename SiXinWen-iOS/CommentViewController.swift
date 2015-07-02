@@ -617,11 +617,13 @@ UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate{
     
     func comment_refresh(){
 
-       // println(currentNewsItem.instantComment.conversation)
+       // for the init fresh
         if currentNewsItem.instantComment.conversation == nil {
             println("test")
             var converQuery = imClient.conversationQuery()
+            // init the imclient
             converQuery.whereKey("title", equalTo: currentNewsItem.title)
+            // query to find the conversation
             converQuery.findConversationsWithCallback(){
                 (result:[AnyObject]!, error:NSError!) -> Void in
                 if(error != nil){
@@ -690,7 +692,7 @@ UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate{
                                                 //       println("hello")
                                                 var index = 0
                                                 for newMessage in objects{
-                                                    
+                                                    // set up the message item
                                                     self.currentNewsItem.instantComment.loadedMessages.insert(newMessage as! (AVIMTextMessage), atIndex:index)
                                                     index++
                                                 }
@@ -702,9 +704,11 @@ UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate{
                                 else { // popupar
                                     var query = AVQuery(className: "HotComments")
                                     query.whereKey("TargetConv", equalTo: self.currentNewsItem.instantComment.conversation!.conversationId)
+                                    // query to hot comment
                                     query.findObjectsInBackgroundWithBlock(){
                                         (array:[AnyObject]!, error:NSError!) -> Void in
                                         if error == nil{
+                                            // get the hot comments
                                             self.currentNewsItem.popularComment.loadedMessages.removeAll(keepCapacity: true)
                                             for item in array {
                                                 var commentId = (item as! AVObject).objectForKey("Comments") as! String
@@ -740,9 +744,11 @@ UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate{
 
         }
         else {
+            // if not the initial refresh
             if shiftSegmentControl.selectedSegmentIndex == instant {
                 var date = NSDate()
                 var oldestMsgTimestamp:Int64 = Int64(date.timeIntervalSince1970*1000)
+                // get the older message
                 if(self.currentNewsItem.instantComment.loadedMessages.count == 0){
                     self.currentNewsItem.instantComment.conversation!.queryMessagesBeforeId(nil, timestamp: oldestMsgTimestamp , limit: 10 ){
                         (objects:[AnyObject]!,error: NSError!) -> Void in
@@ -791,6 +797,7 @@ UIWebViewDelegate, UITextViewDelegate, UIAlertViewDelegate, QBPopupMenuDelegate{
                             query.getObjectInBackgroundWithId(commentId){
                                 (comment:AVObject!, error:NSError!) -> Void in
                                 if error == nil{
+                                    // set popular comment depends on results
                                     var newItem = singleComment()
                                     newItem.attitude = comment.objectForKey("Attitude") as! Bool
                                     newItem.text = comment.objectForKey("Content") as! String

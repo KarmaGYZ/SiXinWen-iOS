@@ -55,8 +55,7 @@ class SignUpController: UIViewController {
                 AVUser.logInWithUsernameInBackground(self.userNameField.text, password: self.setPasswordField.text){
                     (user :AVUser!, error :NSError!) -> Void in
                     if user != nil {
-                        KVNProgress.dismiss()
-                        KVNProgress.showSuccessWithStatus("注册成功")
+                        
                         // get the user name and nick name
                         me.username = AVUser.currentUser().username
                         me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
@@ -75,6 +74,8 @@ class SignUpController: UIViewController {
                         me.password = AVUser.currentUser().password
                         me.gender = AVUser.currentUser().objectForKey("gender") as? String
                         me.email = AVUser.currentUser().objectForKey("email") as? String
+                        KVNProgress.dismiss()
+                        KVNProgress.showSuccessWithStatus("注册成功")
                         self.navigationController?.popViewControllerAnimated(true)?.navigationController?.popViewControllerAnimated(true)
                     }
                     else{

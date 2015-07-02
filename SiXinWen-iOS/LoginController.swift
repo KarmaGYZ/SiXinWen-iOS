@@ -33,8 +33,7 @@ class LoginController: UIViewController {
         AVUser.logInWithUsernameInBackground(usernameField.text, password: passwordField.text){
             (user :AVUser!, error :NSError!) -> Void in
             if error == nil {
-                KVNProgress.dismiss()
-                KVNProgress.showSuccessWithStatus("登陆成功")
+                
                 // set the user name and nick name
                 me.username = AVUser.currentUser().username
                 me.nickname = AVUser.currentUser().objectForKey("NickName") as? String
@@ -51,9 +50,12 @@ class LoginController: UIViewController {
                             me.password = AVUser.currentUser().password
                             me.gender = AVUser.currentUser().objectForKey("gender") as? String
                             me.email = AVUser.currentUser().objectForKey("email") as? String
+                            KVNProgress.dismiss()
+                            KVNProgress.showSuccessWithStatus("登陆成功")
                             self.navigationController?.popViewControllerAnimated(true)
                         }
                         else {
+                            KVNProgress.dismiss()
                             // fail to get the avatar
                             KVNProgress.showErrorWithStatus("载入头像失败")
                         }
@@ -65,6 +67,8 @@ class LoginController: UIViewController {
                     me.password = AVUser.currentUser().password
                     me.gender = AVUser.currentUser().objectForKey("gender") as? String
                     me.email = AVUser.currentUser().objectForKey("email") as? String
+                    KVNProgress.dismiss()
+                    KVNProgress.showSuccessWithStatus("登陆成功")
                     self.navigationController?.popViewControllerAnimated(true)
                 }
             }
